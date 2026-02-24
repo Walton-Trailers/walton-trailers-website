@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gooseneck Flatbeds — Walton Trailers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f3ef;
+    --steel: #1c2028;
+    --rust: #c0392b;
+    --rust-dark: #a93226;
+    --gray: #6b7280;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 48px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.65), transparent);
+    transition: background 0.3s;
+  }
+  nav.scrolled { background: rgba(10,10,10,0.96); }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 3px; color: var(--white); text-decoration: none; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { color: rgba(245,243,239,0.85); text-decoration: none; font-size: 14px; font-weight: 400; letter-spacing: 1px; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta { background: var(--rust); color: var(--white) !important; padding: 10px 22px; border-radius: 2px; font-weight: 500 !important; }
+  .nav-chevron { font-size: 10px; margin-left: 4px; display: inline-block; transition: transform 0.2s; }
+  .nav-dropdown-trigger { cursor: pointer; }
+
+  /* MEGA PANEL */
+  .nav-mega {
+    position: fixed; left: 0; right: 0; z-index: 190;
+    background: rgba(10,10,10,0.97); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding: 32px 48px 36px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.25s;
+  }
+  .nav-mega.open { opacity: 1; pointer-events: all; }
+  .nav-mega-inner { display: grid; gap: 16px; }
+  .mega-item {
+    cursor: pointer; padding: 12px; border-radius: 4px;
+    border: 1px solid transparent;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .mega-item:hover { border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.04); }
+  .mega-img { aspect-ratio: 16/9; border-radius: 3px; overflow: hidden; margin-bottom: 10px; }
+  .mega-img-placeholder { width: 100%; height: 100%; background: linear-gradient(135deg,#1e2330,#14181f); display: flex; align-items: center; justify-content: center; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.1); }
+  .mega-name { font-size: 13px; font-weight: 500; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .mega-links { display: flex; gap: 12px; }
+  .mega-links a { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(245,243,239,0.45); text-decoration: none; transition: color 0.2s; }
+  .mega-links a:hover { color: var(--white); }
+  .mega-build { color: var(--rust) !important; }
+
+  /* Discover dropdown */
+  .nav-discover-wrap { position: relative; }
+  .nav-discover-mega {
+    position: fixed; left: 0; right: 0; z-index: 190;
+    background: rgba(10,10,10,0.97); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding: 32px 48px 36px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.25s;
+  }
+  .nav-discover-wrap:hover .nav-discover-mega { opacity: 1; pointer-events: all; }
+  .nav-discover-inner { display: grid; grid-template-columns: repeat(2, 200px); gap: 48px; }
+  .discover-col-heading { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: rgba(245,243,239,0.3); margin-bottom: 16px; }
+  .discover-col-links { list-style: none; }
+  .discover-col-links li a {
+    display: block; color: rgba(245,243,239,0.75) !important;
+    font-size: 14px !important; letter-spacing: 0 !important;
+    text-transform: none !important; font-weight: 400 !important;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+    transition: color 0.15s;
+    text-decoration: none !important;
+  }
+  .discover-col-links li:last-child a { border-bottom: none; }
+  .discover-col-links a:hover { color: var(--rust) !important; }
+
+  /* HAMBURGER */
+  .hamburger {
+    display: none; flex-direction: column; justify-content: center;
+    gap: 5px; width: 36px; height: 36px;
+    cursor: pointer; background: none; border: none; padding: 4px; z-index: 300;
+  }
+  .hamburger span { display: block; width: 100%; height: 2px; background: var(--white); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; transform-origin: center; }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* MOBILE MENU */
+  .mobile-menu {
+    position: fixed; inset: 0; z-index: 250;
+    background: rgba(10,10,10,0.98);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    pointer-events: none;
+  }
+  .mobile-menu.open { transform: translateX(0); pointer-events: all; }
+  .mobile-menu-item { width: 100%; text-align: center; padding: 22px 40px; border-bottom: 1px solid rgba(255,255,255,0.06); opacity: 0; transform: translateX(20px); transition: opacity 0.3s, transform 0.3s; }
+  .mobile-menu.open .mobile-menu-item { opacity: 1; transform: translateX(0); }
+  .mobile-menu.open .mobile-menu-item:nth-child(1) { transition-delay: 0.05s; }
+  .mobile-menu.open .mobile-menu-item:nth-child(2) { transition-delay: 0.1s; }
+  .mobile-menu.open .mobile-menu-item:nth-child(3) { transition-delay: 0.15s; }
+  .mobile-menu.open .mobile-menu-item:nth-child(4) { transition-delay: 0.2s; }
+  .mobile-menu.open .mobile-menu-item:nth-child(5) { transition-delay: 0.25s; }
+  .mobile-menu.open .mobile-menu-item:nth-child(6) { transition-delay: 0.3s; }
+  .mobile-menu-item a { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 3px; color: rgba(245,243,239,0.8); text-decoration: none; transition: color 0.2s; }
+  .mobile-menu-item a:hover { color: var(--white); }
+  .mobile-menu-cta { margin-top: 12px; padding: 24px 40px; border-bottom: none !important; }
+  .mobile-menu-cta a { background: var(--rust); color: var(--white) !important; padding: 16px 48px; border-radius: 2px; font-size: 24px !important; }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+  }
+
+  /* ── HERO CAROUSEL ── */
+  .hero {
+    height: 100vh; min-height: 600px;
+    position: relative; overflow: hidden;
+  }
+  .hero-slides { position: absolute; inset: 0; }
+  .hero-slide {
+    position: absolute; inset: 0;
+    opacity: 0; transition: opacity 0.9s ease;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: flex-end;
+    padding-bottom: 100px;
+  }
+  .hero-slide.active { opacity: 1; }
+  .hero-slide-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #1a1e28 0%, #0d1018 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.08);
+  }
+  /* Replace .hero-slide-bg content with <img src="your-photo.jpg"> for real photos */
+  .hero-slide-bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero-slide-gradient { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.15) 60%, transparent 100%); }
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center; padding: 0 48px;
+  }
+  .hero-eyebrow {
+    font-size: 12px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase;
+    color: rgba(245,243,239,0.55); margin-bottom: 16px;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 10vw, 120px);
+    letter-spacing: 4px; line-height: 0.95;
+    margin-bottom: 20px;
+  }
+  .hero-sub {
+    font-size: 16px; font-weight: 300; color: rgba(245,243,239,0.65);
+    line-height: 1.7; margin-bottom: 36px;
+    max-width: 520px; margin-left: auto; margin-right: auto;
+  }
+  .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { background: var(--rust); color: var(--white); border: none; padding: 15px 36px; font-size: 13px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; border-radius: 2px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s; text-decoration: none; display: inline-block; }
+  .btn-primary:hover { background: var(--rust-dark); }
+  .btn-outline { background: rgba(255,255,255,0.08); color: var(--white); border: 1px solid rgba(245,243,239,0.35); padding: 15px 36px; font-size: 13px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; border-radius: 2px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: border-color 0.2s, background 0.2s; text-decoration: none; display: inline-block; }
+  .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.14); }
+  .hero-dots {
+    position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 10px; z-index: 10;
+  }
+  .hero-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,0.3); cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .hero-dot.active { background: var(--white); transform: scale(1.4); }
+  .hero-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: var(--white);
+    width: 52px; height: 52px; border-radius: 50%;
+    font-size: 22px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(6px);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .hero-arrow:hover { background: rgba(255,255,255,0.28); border-color: rgba(255,255,255,0.5); }
+  .hero-arrow-prev { left: 32px; }
+  .hero-arrow-next { right: 32px; }
+  @media (max-width: 768px) { .hero-arrow { display: none; } }
+
+  /* ── QUICK SPECS BAR ── */
+  .specs-bar {
+    background: var(--steel);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .spec-item {
+    padding: 28px 48px;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.06);
+  }
+  .spec-item:last-child { border-right: none; }
+  .spec-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 2px;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .spec-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(245,243,239,0.4);
+  }
+
+  /* ── OVERVIEW ── */
+  .overview {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 560px;
+  }
+  .overview-text {
+    padding: 80px 64px;
+    background: var(--black);
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .section-label {
+    font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--rust); margin-bottom: 20px;
+  }
+  .overview-text h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 4vw, 56px);
+    letter-spacing: 2px;
+    line-height: 1.05;
+    margin-bottom: 24px;
+  }
+  .overview-text p {
+    font-size: 15px; font-weight: 300; color: rgba(245,243,239,0.6);
+    line-height: 1.8; margin-bottom: 16px;
+  }
+  .overview-img {
+    background: linear-gradient(135deg, #1a1e28 0%, #0d1018 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.08);
+    position: relative; overflow: hidden;
+  }
+  .overview-img img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* ── FEATURES CAROUSEL ── */
+  .features-section {
+    background: var(--steel);
+    padding: 80px 0;
+  }
+  .features-section-header {
+    text-align: center;
+    padding: 0 48px;
+    margin-bottom: 48px;
+  }
+  .features-section h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 4vw, 56px);
+    letter-spacing: 2px;
+  }
+  .fc-viewport {
+    overflow: hidden;
+    position: relative;
+  }
+  .fc-track {
+    display: flex;
+    gap: 16px;
+    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+    padding: 4px 0;
+  }
+  .feature-card {
+    flex: 0 0 320px;
+    background: rgba(255,255,255,0.04);
+    padding: 40px 36px;
+    border-top: 2px solid transparent;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .feature-card:hover { border-top-color: var(--rust); background: rgba(255,255,255,0.08); }
+  .feature-icon {
+    width: 40px; height: 40px; margin-bottom: 20px;
+    color: var(--rust);
+  }
+  .feature-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px; letter-spacing: 2px; margin-bottom: 10px;
+  }
+  .feature-card p {
+    font-size: 14px; font-weight: 300; color: rgba(245,243,239,0.5); line-height: 1.7;
+  }
+  .fc-outer { position: relative; }
+  .fc-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    color: var(--white); font-size: 16px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 10; transition: background 0.2s;
+  }
+  .fc-btn:hover { background: rgba(255,255,255,0.2); }
+  .fc-btn-prev { left: 12px; }
+  .fc-btn-next { right: 12px; }
+  .fc-dots {
+    display: flex; gap: 8px; justify-content: center; margin-top: 36px; padding: 0 48px;
+  }
+  .fc-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,0.2); cursor: pointer;
+    transition: background 0.3s;
+  }
+  .fc-dot.active { background: var(--rust); }
+
+  /* ── GALLERY ── */
+  .gallery-section { padding: 80px 48px; background: var(--black); }
+  .gallery-section h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 4vw, 56px);
+    letter-spacing: 2px; margin-bottom: 40px;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 280px 280px;
+    gap: 12px;
+  }
+  .gallery-item {
+    background: linear-gradient(135deg, #1a1e28 0%, #0d1018 100%);
+    border-radius: 4px; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.08);
+    position: relative;
+  }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+  .gallery-item.tall { grid-row: span 2; }
+
+  /* ── FULL SPECS TABLE ── */
+  .specs-section { background: var(--steel); padding: 80px 48px; }
+  .specs-section h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 4vw, 56px);
+    letter-spacing: 2px; margin-bottom: 40px;
+  }
+  .specs-table {
+    width: 100%; max-width: 900px;
+    border-collapse: collapse;
+  }
+  .specs-table tr { border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .specs-table tr:last-child { border-bottom: none; }
+  .specs-table td {
+    padding: 18px 0;
+    font-size: 14px;
+  }
+  .specs-table td:first-child {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(245,243,239,0.4); width: 40%;
+    font-weight: 500;
+  }
+  .specs-table td:last-child { color: var(--white); font-weight: 400; }
+  .specs-group-header td {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px; letter-spacing: 2px;
+    color: var(--rust) !important;
+    padding-top: 36px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+  }
+  .specs-group-header:first-child td { padding-top: 0 !important; }
+
+  /* ── CTA BANNER ── */
+  .cta-banner {
+    background: var(--rust);
+    padding: 72px 48px;
+    text-align: center;
+  }
+  .cta-banner h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 5vw, 72px);
+    letter-spacing: 3px; margin-bottom: 16px;
+  }
+  .cta-banner p {
+    font-size: 16px; font-weight: 300;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 36px;
+  }
+  .btn-white { background: var(--white); color: var(--black); border: none; padding: 15px 40px; font-size: 13px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; border-radius: 2px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: opacity 0.2s; text-decoration: none; display: inline-block; }
+  .btn-white:hover { opacity: 0.88; }
+
+  /* ── RELATED PRODUCTS ── */
+  .related-section { background: var(--black); padding: 80px 48px; }
+  .related-section h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 4vw, 56px);
+    letter-spacing: 2px; margin-bottom: 40px;
+  }
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .related-card {
+    background: var(--steel);
+    border-radius: 4px; overflow: hidden;
+    text-decoration: none; color: var(--white);
+    transition: transform 0.3s;
+  }
+  .related-card:hover { transform: translateY(-4px); }
+  .related-card-img {
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, #242836 0%, #1a1e28 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.08);
+    overflow: hidden;
+  }
+  .related-card-img img { width: 100%; height: 100%; object-fit: cover; }
+  .related-card-body { padding: 20px; }
+  .related-card-name { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1.5px; margin-bottom: 4px; }
+  .related-card-gvwr { font-size: 12px; color: rgba(245,243,239,0.4); letter-spacing: 1px; }
+
+  /* ── FOOTER ── */
+  footer { background: var(--steel); padding: 60px 48px 40px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+  .footer-brand { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 3px; margin-bottom: 12px; }
+  .footer-tagline { font-size: 13px; color: rgba(245,243,239,0.35); line-height: 1.7; max-width: 240px; }
+  .footer-col h4 { font-size: 11px; font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(245,243,239,0.35); margin-bottom: 20px; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 12px; }
+  .footer-col ul li a { color: rgba(245,243,239,0.6); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--white); }
+  .footer-bottom { background: var(--steel); padding: 20px 48px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: rgba(245,243,239,0.3); letter-spacing: 1px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .hero-content { padding: 0 24px 56px; }
+    .spec-item { padding: 20px 24px; }
+    .overview { grid-template-columns: 1fr; }
+    .overview-img { height: 300px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+    .gallery-item.tall { grid-row: span 1; }
+    .related-grid { grid-template-columns: repeat(2, 1fr); }
+    footer { grid-template-columns: 1fr 1fr; }
+    .gallery-section, .specs-section, .features-section, .related-section, .cta-banner { padding: 60px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">WALTON TRAILERS</a>
+  <ul class="nav-links">
+    <li id="trailersTrigger">
+      <a href="index.html#trailers" class="nav-dropdown-trigger" id="trailersTriggerLink">Trailers <span class="nav-chevron" id="trailersChevron">&#9662;</span></a>
+    </li>
+    <li class="nav-discover-wrap">
+      <a href="#" class="nav-dropdown-trigger">Discover <span class="nav-chevron">&#9662;</span></a>
+      <div class="nav-discover-mega">
+        <div class="nav-discover-inner">
+          <div>
+            <div class="discover-col-heading">Resources</div>
+            <ul class="discover-col-links">
+              <li><a href="#">Learn</a></li>
+              <li><a href="#">Video Guides</a></li>
+              <li><a href="#">User Manuals</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="discover-col-heading">Company</div>
+            <ul class="discover-col-links">
+              <li><a href="#">About</a></li>
+              <li><a href="#">Careers</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a href="#">Owners</a></li>
+    <li><a href="#">Parts</a></li>
+    <li><a href="index.html#dealers" class="nav-cta">Find a Dealer</a></li>
+    <li><a href="#" class="nav-dealer-login" title="Dealer Login">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+    </a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- TRAILERS MEGA PANEL -->
+<div class="nav-mega" id="trailersMega">
+  <div class="nav-mega-inner" style="grid-template-columns:repeat(5,1fr);gap:8px;">
+    <div class="mega-item">
+      <div class="mega-img"><div class="mega-img-placeholder">Gooseneck Photo</div></div>
+      <div class="mega-name">Gooseneck Flatbeds</div>
+      <div class="mega-links"><a href="#">Learn</a><a href="#" class="mega-build">Build</a></div>
+    </div>
+    <div class="mega-item">
+      <div class="mega-img"><div class="mega-img-placeholder">Dump Trailer Photo</div></div>
+      <div class="mega-name">Dump Trailers</div>
+      <div class="mega-links"><a href="#">Learn</a><a href="#" class="mega-build">Build</a></div>
+    </div>
+    <div class="mega-item">
+      <div class="mega-img"><div class="mega-img-placeholder">Tilt Deck Photo</div></div>
+      <div class="mega-name">Tilt Deck Trailers</div>
+      <div class="mega-links"><a href="#">Learn</a><a href="#" class="mega-build">Build</a></div>
+    </div>
+    <div class="mega-item">
+      <div class="mega-img"><div class="mega-img-placeholder">Deckover Photo</div></div>
+      <div class="mega-name">Deckover Equipment</div>
+      <div class="mega-links"><a href="#">Learn</a><a href="#" class="mega-build">Build</a></div>
+    </div>
+    <div class="mega-item">
+      <div class="mega-img"><div class="mega-img-placeholder">Landscape Photo</div></div>
+      <div class="mega-name">Landscape Trailers</div>
+      <div class="mega-links"><a href="#">Learn</a><a href="#" class="mega-build">Build</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-item"><a href="index.html#trailers" onclick="closeMenu()">Trailers</a></div>
+  <div class="mobile-menu-item"><a href="#" onclick="closeMenu()">Discover</a></div>
+  <div class="mobile-menu-item"><a href="#" onclick="closeMenu()">Owners</a></div>
+  <div class="mobile-menu-item"><a href="#" onclick="closeMenu()">Parts</a></div>
+  <div class="mobile-menu-item mobile-menu-cta"><a href="index.html#dealers" onclick="closeMenu()">Find a Dealer →</a></div>
+</div>
+
+<!-- HERO CAROUSEL -->
+<!-- TO CUSTOMIZE: Update eyebrow, title, subtitle per slide. Replace .hero-slide-bg content with <img src="your-photo.jpg"> -->
+<section class="hero">
+  <div class="hero-slides" id="heroSlides">
+
+    <div class="hero-slide active">
+      <div class="hero-slide-bg">Hero Photo 1 — Gooseneck Flatbed loaded</div>
+      <div class="hero-slide-gradient"></div>
+      <div class="hero-content">
+        <p class="hero-eyebrow">Category 01 — Gooseneck Flatbeds</p>
+        <h1 class="hero-title">Gooseneck<br>Flatbeds</h1>
+        <p class="hero-sub">The workhorse of our lineup. Engineered for maximum payload, built to outlast the job.</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="alert('Quote form coming soon')">Build Your Own</button>
+          <a href="#specs" class="btn-outline">View Specs</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-slide">
+      <div class="hero-slide-bg" style="background:linear-gradient(135deg,#121820 0%,#0a0f18 100%)">Hero Photo 2 — Gooseneck in action</div>
+      <div class="hero-slide-gradient"></div>
+      <div class="hero-content">
+        <p class="hero-eyebrow">Up to 35,000 lbs GVWR</p>
+        <h1 class="hero-title">Built for<br>Heavy Work</h1>
+        <p class="hero-sub">Fully welded high-strength steel frame. Available in lengths from 20' to 40'.</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="alert('Quote form coming soon')">Build Your Own</button>
+          <a href="#specs" class="btn-outline">View Specs</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-slide">
+      <div class="hero-slide-bg" style="background:linear-gradient(135deg,#1a1208 0%,#120e06 100%)">Hero Photo 3 — Detail shot</div>
+      <div class="hero-slide-gradient"></div>
+      <div class="hero-content">
+        <p class="hero-eyebrow">Made in Logan, Utah Since 1973</p>
+        <h1 class="hero-title">Lifetime<br>Warranty</h1>
+        <p class="hero-sub">Every weld inspected. Every trailer backed by our lifetime structural warranty.</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="alert('Quote form coming soon')">Build Your Own</button>
+          <a href="#specs" class="btn-outline">View Specs</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="hero-arrow hero-arrow-prev" onclick="heroMove(-1)">&#8592;</button>
+  <button class="hero-arrow hero-arrow-next" onclick="heroMove(1)">&#8594;</button>
+
+  <div class="hero-dots">
+    <div class="hero-dot active" onclick="heroGoTo(0)"></div>
+    <div class="hero-dot" onclick="heroGoTo(1)"></div>
+    <div class="hero-dot" onclick="heroGoTo(2)"></div>
+  </div>
+</section>
+
+<!-- QUICK SPECS BAR -->
+<!-- TO CUSTOMIZE: Update values for each trailer type -->
+<div class="specs-bar">
+  <div class="spec-item">
+    <div class="spec-value">35K</div>
+    <div class="spec-label">Max GVWR (lbs)</div>
+  </div>
+  <div class="spec-item">
+    <div class="spec-value">29K</div>
+    <div class="spec-label">Est. Payload (lbs)</div>
+  </div>
+  <div class="spec-item">
+    <div class="spec-value">20–40'</div>
+    <div class="spec-label">Deck Length</div>
+  </div>
+  <div class="spec-item">
+    <div class="spec-value">102"</div>
+    <div class="spec-label">Overall Width</div>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<!-- TO CUSTOMIZE: Update headline, body copy, and replace .overview-img content with <img src="your-photo.jpg"> -->
+<div class="overview">
+  <div class="overview-text">
+    <div class="section-label">Built for the Long Haul</div>
+    <h2>Heavy Work Demands a Heavy-Duty Trailer</h2>
+    <p>Walton Gooseneck Flatbeds are built from high-strength steel with fully welded frames — not bolted. Every weld is inspected before it leaves our Logan, Utah facility.</p>
+    <p>Whether you're hauling equipment across a job site or running cross-state, these trailers are engineered to handle the load and keep working long after lesser trailers give out.</p>
+  </div>
+  <div class="overview-img">Overview Photo — Trailer loaded with equipment</div>
+</div>
+
+<!-- FEATURES CAROUSEL -->
+<!-- TO CUSTOMIZE: Update feature cards for each trailer type. Add/remove cards freely. -->
+<section class="features-section">
+  <div class="features-section-header">
+    <h2>Built Different</h2>
+  </div>
+  <div class="fc-outer">
+    <button class="fc-btn fc-btn-prev" id="fcPrev" onclick="fcMove(-1)">&#8249;</button>
+    <button class="fc-btn fc-btn-next" id="fcNext" onclick="fcMove(1)">&#8250;</button>
+    <div class="fc-viewport">
+      <div class="fc-track" id="fcTrack">
+
+        <div class="feature-card">
+          <svg class="feature-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="4" y="12" width="32" height="16" rx="2"/>
+            <circle cx="12" cy="30" r="4"/><circle cx="28" cy="30" r="4"/>
+          </svg>
+          <h3>Fully Welded Frame</h3>
+          <p>No bolts, no flex points. The entire frame is welded and stress-tested before leaving the factory floor.</p>
+        </div>
+
+        <div class="feature-card">
+          <svg class="feature-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M8 20h24M20 8v24"/><circle cx="20" cy="20" r="12"/>
+          </svg>
+          <h3>Lifetime Structural Warranty</h3>
+          <p>We stand behind every trailer we build. The structural warranty is lifetime — no fine print, no exceptions.</p>
+        </div>
+
+        <div class="feature-card">
+          <svg class="feature-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 34L20 6l14 28H6z"/>
+          </svg>
+          <h3>Made in Logan, Utah</h3>
+          <p>Every trailer is manufactured start-to-finish in our Logan, Utah facility. American steel, American labor.</p>
+        </div>
+
+        <div class="feature-card">
+          <svg class="feature-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M10 28V16l10-8 10 8v12"/><rect x="15" y="22" width="10" height="10"/>
+          </svg>
+          <h3>Multiple Deck Lengths</h3>
+          <p>Choose from 20' to 40' deck lengths. We build to your application, not the other way around.</p>
+        </div>
+
+        <div class="feature-card">
+          <svg class="feature-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="20" cy="20" r="14"/><path d="M20 12v8l6 4"/>
+          </svg>
+          <h3>Heavy-Duty Axles</h3>
+          <p>Industry-leading axle ratings with sealed bearings and integrated brake systems built for the long haul.</p>
+        </div>
+
+        <div class="feature-card">
+          <svg class="feature-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M8 16h24v16H8z"/><path d="M14 16V10a6 6 0 0112 0v6"/>
+          </svg>
+          <h3>Corrosion Protection</h3>
+          <p>Primer, intermediate, and finish coats applied in sequence. Built to resist rust for the life of the trailer.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="fc-dots" id="fcDots">
+    <div class="fc-dot active" onclick="fcGoTo(0)"></div>
+    <div class="fc-dot" onclick="fcGoTo(1)"></div>
+    <div class="fc-dot" onclick="fcGoTo(2)"></div>
+    <div class="fc-dot" onclick="fcGoTo(3)"></div>
+    <div class="fc-dot" onclick="fcGoTo(4)"></div>
+    <div class="fc-dot" onclick="fcGoTo(5)"></div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<!-- TO CUSTOMIZE: Replace each .gallery-item div with <img src="your-photo.jpg"> wrapped in the same div -->
+<section class="gallery-section">
+  <h2>In the Field</h2>
+  <div class="gallery-grid">
+    <div class="gallery-item tall">Gallery Photo — Main</div>
+    <div class="gallery-item">Gallery Photo — Detail</div>
+    <div class="gallery-item">Gallery Photo — In Use</div>
+  </div>
+</section>
+
+<!-- FULL SPECS -->
+<!-- TO CUSTOMIZE: Update all spec values for each trailer type -->
+<section class="specs-section" id="specs">
+  <h2>Full Specifications</h2>
+  <table class="specs-table">
+
+    <tr class="specs-group-header"><td colspan="2">Dimensions</td></tr>
+    <tr><td>Deck Length</td><td>20', 24', 28', 32', 36', 40'</td></tr>
+    <tr><td>Overall Width</td><td>102"</td></tr>
+    <tr><td>Deck Width</td><td>96"</td></tr>
+    <tr><td>Deck Height</td><td>30" (loaded)</td></tr>
+    <tr><td>Gooseneck Rise</td><td>48"</td></tr>
+
+    <tr class="specs-group-header"><td colspan="2">Weight & Capacity</td></tr>
+    <tr><td>GVWR</td><td>Up to 35,000 lbs</td></tr>
+    <tr><td>Estimated Payload</td><td>Up to 29,000 lbs</td></tr>
+    <tr><td>Trailer Weight (empty)</td><td>Varies by length</td></tr>
+
+    <tr class="specs-group-header"><td colspan="2">Construction</td></tr>
+    <tr><td>Frame</td><td>High-strength steel, fully welded</td></tr>
+    <tr><td>Crossmembers</td><td>3" channel on 12" centers</td></tr>
+    <tr><td>Deck Material</td><td>2" Douglas fir or steel optional</td></tr>
+    <tr><td>Finish</td><td>Primer + intermediate + finish coat</td></tr>
+
+    <tr class="specs-group-header"><td colspan="2">Running Gear</td></tr>
+    <tr><td>Axles</td><td>Dual 7,000 lb or 8,000 lb</td></tr>
+    <tr><td>Brakes</td><td>Electric on all axles</td></tr>
+    <tr><td>Tires</td><td>235/80R16 LRE</td></tr>
+    <tr><td>Coupler</td><td>2-5/16" gooseneck ball</td></tr>
+
+    <tr class="specs-group-header"><td colspan="2">Warranty</td></tr>
+    <tr><td>Structural Frame</td><td>Lifetime</td></tr>
+    <tr><td>Paint & Finish</td><td>1 year</td></tr>
+    <tr><td>Running Gear</td><td>Manufacturer warranty</td></tr>
+
+  </table>
+</section>
+
+<!-- CTA BANNER -->
+<!-- TO CUSTOMIZE: Update headline and subtext -->
+<div class="cta-banner">
+  <h2>Ready to Build Yours?</h2>
+  <p>Talk to a dealer or request a quote — we'll match you to the right configuration.</p>
+  <a href="#" class="btn-white">Get a Quote</a>
+</div>
+
+<!-- RELATED PRODUCTS -->
+<!-- TO CUSTOMIZE: Update the 4 related trailers for each page -->
+<section class="related-section">
+  <h2>Also Consider</h2>
+  <div class="related-grid">
+    <a href="#" class="related-card">
+      <div class="related-card-img">Dump Trailer Photo</div>
+      <div class="related-card-body">
+        <div class="related-card-name">Dump Trailers</div>
+        <div class="related-card-gvwr">Up to 25,000 lbs GVWR</div>
+      </div>
+    </a>
+    <a href="#" class="related-card">
+      <div class="related-card-img">Tilt Deck Photo</div>
+      <div class="related-card-body">
+        <div class="related-card-name">Tilt Deck Trailers</div>
+        <div class="related-card-gvwr">Up to 20,000 lbs GVWR</div>
+      </div>
+    </a>
+    <a href="#" class="related-card">
+      <div class="related-card-img">Deckover Photo</div>
+      <div class="related-card-body">
+        <div class="related-card-name">Deckover Equipment</div>
+        <div class="related-card-gvwr">Up to 30,000 lbs GVWR</div>
+      </div>
+    </a>
+    <a href="#" class="related-card">
+      <div class="related-card-img">Landscape Photo</div>
+      <div class="related-card-body">
+        <div class="related-card-name">Landscape Trailers</div>
+        <div class="related-card-gvwr">Up to 14,000 lbs GVWR</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">WALTON TRAILERS</div>
+    <p class="footer-tagline">Built Strong. Built Right. Built Here. Manufacturing commercial trailers since 1973 in Logan, Utah.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Products</h4>
+    <ul>
+      <li><a href="#">Dump Trailers</a></li>
+      <li><a href="#">Equipment & Tilt</a></li>
+      <li><a href="#">Flatbeds & Deck Overs</a></li>
+      <li><a href="#">Landscape Trailers</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Dealers</h4>
+    <ul>
+      <li><a href="#">Find a Dealer</a></li>
+      <li><a href="#">Become a Dealer</a></li>
+      <li><a href="#">Dealer Portal</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Owners</h4>
+    <ul>
+      <li><a href="#">Warranty Claim</a></li>
+      <li><a href="#">Register Trailer</a></li>
+      <li><a href="#">Owner's Manual</a></li>
+      <li><a href="#">Parts</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>© 2026 Walton Trailers. All rights reserved.</span>
+  <span>150 W 2500 N Logan, Utah 84341</span>
+</div>
+
+<script>
+/* ── NAV ── */
+function toggleMenu() {
+  var menu = document.getElementById('mobileMenu');
+  var btn  = document.getElementById('hamburger');
+  var open = menu.classList.contains('open');
+  menu.classList.toggle('open', !open);
+  btn.classList.toggle('open', !open);
+  document.body.style.overflow = open ? '' : 'hidden';
+}
+function closeMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+window.addEventListener('scroll', function() {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+/* Trailers mega hover */
+var tTrigger  = document.getElementById('trailersTrigger');
+var tMega     = document.getElementById('trailersMega');
+var tChevron  = document.getElementById('trailersChevron');
+var tTimer    = null;
+var navbar    = document.getElementById('navbar');
+function showMega() {
+  clearTimeout(tTimer);
+  tMega.style.top = navbar.getBoundingClientRect().height + 'px';
+  tMega.classList.add('open');
+  if (tChevron) tChevron.style.transform = 'rotate(180deg)';
+}
+function hideMega() {
+  tTimer = setTimeout(function() {
+    tMega.classList.remove('open');
+    if (tChevron) tChevron.style.transform = '';
+  }, 150);
+}
+if (tTrigger && tMega) {
+  tTrigger.addEventListener('mouseenter', showMega);
+  tTrigger.addEventListener('mouseleave', hideMega);
+  tMega.addEventListener('mouseenter', showMega);
+  tMega.addEventListener('mouseleave', hideMega);
+}
+
+/* ── HERO CAROUSEL ── */
+var heroSlides = document.querySelectorAll('.hero-slide');
+var heroDots   = document.querySelectorAll('.hero-dot');
+var heroIdx    = 0;
+
+function heroGoTo(i) {
+  heroSlides[heroIdx].classList.remove('active');
+  heroDots[heroIdx].classList.remove('active');
+  heroIdx = i;
+  heroSlides[heroIdx].classList.add('active');
+  heroDots[heroIdx].classList.add('active');
+}
+function heroMove(dir) {
+  heroGoTo((heroIdx + dir + heroSlides.length) % heroSlides.length);
+}
+heroDots.forEach(function(d, i) {
+  d.addEventListener('click', function() { heroGoTo(i); });
+});
+setInterval(function() { heroMove(1); }, 6000);
+
+/* ── FEATURES CAROUSEL ── */
+var fcIndex = 0;
+var FC_TOTAL = 6;
+var FC_PAD = 48;
+var FC_GAP = 16;
+
+function fcRender() {
+  var vp    = document.querySelector('.fc-viewport');
+  var track = document.getElementById('fcTrack');
+  if (!vp || !track) return;
+
+  var cards = track.querySelectorAll('.feature-card');
+  if (!cards.length) return;
+
+  var cardW   = cards[0].offsetWidth;
+  var step    = cardW + FC_GAP;
+  var maxOff  = (FC_TOTAL - 1) * step - (vp.offsetWidth - FC_PAD * 2 - cardW);
+  var offset  = Math.min(fcIndex * step, Math.max(0, maxOff));
+
+  track.style.paddingLeft  = FC_PAD + 'px';
+  track.style.paddingRight = FC_PAD + 'px';
+  track.style.transform = 'translateX(-' + offset + 'px)';
+
+  document.querySelectorAll('.fc-dot').forEach(function(d, i) {
+    d.classList.toggle('active', i === fcIndex);
+  });
+  var prev = document.getElementById('fcPrev');
+  var next = document.getElementById('fcNext');
+  if (prev) prev.style.display = fcIndex === 0 ? 'none' : 'flex';
+  if (next) next.style.display = fcIndex === FC_TOTAL - 1 ? 'none' : 'flex';
+}
+
+function fcMove(dir) {
+  fcIndex = Math.max(0, Math.min(fcIndex + dir, FC_TOTAL - 1));
+  fcRender();
+}
+function fcGoTo(i) { fcIndex = i; fcRender(); }
+
+window.addEventListener('resize', fcRender);
+document.addEventListener('DOMContentLoaded', function() {
+  fcRender();
+});
+</script>
+</body>
+</html>
