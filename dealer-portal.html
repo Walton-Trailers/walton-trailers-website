@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Walton Trailers — Dealer Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand: #b7a380;
+    --brand-dark: #8c7a5e;
+    --brand-light: #d4c4a8;
+    --brand-pale: #f5f0e8;
+    --bg: #f0ece6;
+    --surface: #ffffff;
+    --border: #e0d8cc;
+    --text: #1a1714;
+    --text-muted: #7a7060;
+    --success: #4a7c59;
+    --warning: #c4862a;
+    --danger: #8c3a3a;
+    --info: #3a6080;
+    --sidebar-w: 240px;
+    --dealer-accent: #1c2028;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--text); font-size:14px; min-height:100vh; display:flex; }
+
+  /* ── SIDEBAR ── */
+  .sidebar { width:var(--sidebar-w); background:var(--dealer-accent); display:flex; flex-direction:column; position:fixed; top:0; left:0; bottom:0; z-index:100; }
+  .sidebar-logo { padding:22px 20px 16px; border-bottom:1px solid rgba(183,163,128,0.15); }
+  .logo-eyebrow { font-size:9px; color:rgba(183,163,128,0.45); text-transform:uppercase; letter-spacing:0.15em; margin-bottom:4px; }
+  .logo-mark { font-family:'DM Serif Display',serif; font-size:18px; color:var(--brand); letter-spacing:0.01em; line-height:1.1; }
+  .logo-tag { display:inline-flex; align-items:center; gap:5px; margin-top:6px; background:rgba(74,124,89,0.15); border:1px solid rgba(74,124,89,0.25); border-radius:4px; padding:3px 8px; font-size:10px; color:#6db88a; letter-spacing:0.06em; }
+  .logo-tag-dot { width:5px; height:5px; border-radius:50%; background:#6db88a; }
+
+  .dealer-tag { margin:14px 14px 6px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:8px; padding:10px 12px; display:flex; align-items:center; gap:10px; }
+  .dealer-avatar { width:30px; height:30px; background:var(--brand); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:var(--dealer-accent); flex-shrink:0; }
+  .dealer-info .name { font-size:12.5px; font-weight:600; color:rgba(255,255,255,0.85); }
+  .dealer-info .role { font-size:10px; color:rgba(183,163,128,0.55); margin-top:1px; }
+
+  .nav { padding:8px 0; flex:1; overflow-y:auto; }
+  .nav-section { padding:14px 16px 4px; font-size:9.5px; color:rgba(183,163,128,0.35); text-transform:uppercase; letter-spacing:0.14em; font-weight:600; }
+  .nav-item { display:flex; align-items:center; gap:10px; padding:8px 14px; color:rgba(255,255,255,0.4); cursor:pointer; transition:all 0.15s; border-left:2px solid transparent; font-size:13px; margin:1px 0; text-decoration:none; }
+  .nav-item:hover { color:rgba(255,255,255,0.75); background:rgba(255,255,255,0.04); }
+  .nav-item.active { color:var(--brand); border-left-color:var(--brand); background:rgba(183,163,128,0.08); }
+  .nav-icon { width:15px; height:15px; flex-shrink:0; opacity:0.6; }
+  .nav-item.active .nav-icon { opacity:1; }
+  .nav-badge { margin-left:auto; background:var(--warning); color:white; font-size:9.5px; font-weight:700; padding:2px 6px; border-radius:20px; min-width:18px; text-align:center; }
+
+  .sidebar-footer { padding:14px; border-top:1px solid rgba(255,255,255,0.05); }
+  .logout-btn { display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.25); font-size:12.5px; cursor:pointer; padding:6px 2px; transition:color 0.15s; background:none; border:none; font-family:'DM Sans',sans-serif; }
+  .logout-btn:hover { color:rgba(255,255,255,0.5); }
+
+  /* ── MAIN ── */
+  .main { margin-left:var(--sidebar-w); flex:1; display:flex; flex-direction:column; min-height:100vh; }
+  .topbar { background:var(--surface); border-bottom:1px solid var(--border); padding:0 28px; height:54px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:50; }
+  .page-title { font-size:15px; font-weight:600; color:var(--text); }
+  .topbar-right { display:flex; align-items:center; gap:12px; }
+  .topbar-btn { padding:7px 14px; border-radius:7px; font-family:'DM Sans',sans-serif; font-size:12.5px; font-weight:500; cursor:pointer; border:1px solid var(--border); background:var(--surface); color:var(--text-muted); transition:all 0.15s; display:flex; align-items:center; gap:6px; }
+  .topbar-btn:hover { border-color:var(--brand); color:var(--text); }
+  .topbar-btn.primary { background:var(--brand); color:var(--text); border-color:var(--brand); }
+  .topbar-btn.primary:hover { background:var(--brand-dark); color:white; }
+
+  .content { padding:28px; flex:1; }
+  .tab { display:none; }
+  .tab.active { display:block; }
+
+  /* ── CARDS ── */
+  .metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:28px; }
+  .metric-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:18px 20px; position:relative; overflow:hidden; }
+  .metric-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--accent,var(--brand)); }
+  .metric-label { font-size:10.5px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px; font-weight:600; }
+  .metric-value { font-family:'DM Serif Display',serif; font-size:34px; color:var(--text); line-height:1; margin-bottom:4px; }
+  .metric-sub { font-size:11px; color:var(--text-muted); }
+
+  .section-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+  .section-title { font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-muted); }
+  .section-action { font-size:12.5px; color:var(--brand-dark); cursor:pointer; }
+
+  .card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:20px 24px; margin-bottom:20px; }
+  .card-title { font-size:14px; font-weight:600; margin-bottom:16px; display:flex; align-items:center; gap:8px; }
+
+  /* ── TABLE ── */
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th { text-align:left; padding:8px 12px; font-size:10.5px; text-transform:uppercase; letter-spacing:0.07em; color:var(--text-muted); font-weight:600; border-bottom:2px solid var(--border); }
+  td { padding:12px 12px; border-bottom:1px solid var(--border); vertical-align:middle; }
+  tr:last-child td { border-bottom:none; }
+  tr:hover td { background:var(--brand-pale); }
+
+  .status-pill { display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:20px; font-size:11px; font-weight:600; }
+  .status-pill.shipped   { background:rgba(74,124,89,0.12);  color:var(--success); }
+  .status-pill.pending   { background:rgba(196,134,42,0.12); color:var(--warning); }
+  .status-pill.processing{ background:rgba(58,96,128,0.12);  color:var(--info); }
+  .status-pill.cancelled { background:rgba(140,58,58,0.12);  color:var(--danger); }
+  .status-dot { width:6px; height:6px; border-radius:50%; background:currentColor; }
+
+  /* ── RESOURCES ── */
+  .resource-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .resource-card { background:var(--brand-pale); border:1px solid var(--border); border-radius:8px; padding:16px; display:flex; align-items:flex-start; gap:12px; cursor:pointer; transition:all 0.15s; text-decoration:none; color:inherit; }
+  .resource-card:hover { border-color:var(--brand); background:var(--surface); }
+  .resource-icon { width:36px; height:36px; background:var(--brand); border-radius:6px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .resource-icon svg { width:18px; height:18px; stroke:white; }
+  .resource-title { font-size:13px; font-weight:600; margin-bottom:3px; }
+  .resource-meta { font-size:11px; color:var(--text-muted); }
+
+  /* ── PARTS REQUEST ── */
+  .parts-request-form { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .field-group { display:flex; flex-direction:column; gap:5px; }
+  .field-group.full { grid-column:1/-1; }
+  .field-label { font-size:11px; text-transform:uppercase; letter-spacing:0.07em; color:var(--text-muted); font-weight:600; }
+  .field-input, .field-select, .field-textarea {
+    padding:9px 12px; border:1px solid var(--border); border-radius:6px;
+    font-family:'DM Sans',sans-serif; font-size:13px; color:var(--text);
+    background:var(--surface); outline:none; transition:border-color 0.2s;
+  }
+  .field-input:focus, .field-select:focus, .field-textarea:focus { border-color:var(--brand); }
+  .field-textarea { resize:vertical; min-height:80px; }
+
+  /* ── ANNOUNCEMENTS ── */
+  .notice { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border-radius:8px; margin-bottom:12px; font-size:13px; }
+  .notice.info    { background:rgba(58,96,128,0.08);  border:1px solid rgba(58,96,128,0.2);  color:var(--info); }
+  .notice.warning { background:rgba(196,134,42,0.08); border:1px solid rgba(196,134,42,0.2); color:var(--warning); }
+  .notice.success { background:rgba(74,124,89,0.08);  border:1px solid rgba(74,124,89,0.2);  color:var(--success); }
+  .notice-icon { flex-shrink:0; margin-top:1px; }
+  .notice-body strong { display:block; font-weight:600; margin-bottom:2px; }
+
+  @media(max-width:900px) {
+    .metrics { grid-template-columns:1fr 1fr; }
+    .resource-grid { grid-template-columns:1fr 1fr; }
+    .parts-request-form { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-eyebrow">Authorized Dealer</div>
+    <div class="logo-mark">Walton Trailers</div>
+    <div class="logo-tag"><span class="logo-tag-dot"></span> Dealer Portal</div>
+  </div>
+
+  <div class="dealer-tag">
+    <div class="dealer-avatar" id="sidebarInitials">DE</div>
+    <div class="dealer-info">
+      <div class="name" id="sidebarName">Dealer Account</div>
+      <div class="role">Authorized Dealer</div>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-section">Main</div>
+    <a class="nav-item active" onclick="showTab('dashboard',this)">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Dashboard
+    </a>
+    <a class="nav-item" onclick="showTab('orders',this)">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+      My Orders
+      <span class="nav-badge">3</span>
+    </a>
+    <a class="nav-item" onclick="showTab('parts',this)">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>
+      Parts Requests
+    </a>
+    <div class="nav-section">Resources</div>
+    <a class="nav-item" onclick="showTab('catalog',this)">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+      Catalog &amp; Pricing
+    </a>
+    <a class="nav-item" onclick="showTab('docs',this)">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      Documents
+    </a>
+    <a class="nav-item" onclick="showTab('support',this)">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      Support
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <button class="logout-btn" onclick="doLogout()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      Sign Out
+    </button>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="topbar">
+    <div class="page-title" id="topbarTitle">Dashboard</div>
+    <div class="topbar-right">
+      <button class="topbar-btn" onclick="showTab('parts', document.querySelector('.nav-item:nth-child(3)'))">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        New Parts Request
+      </button>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- DASHBOARD TAB -->
+    <div class="tab active" id="tab-dashboard">
+
+      <div class="notice warning">
+        <svg class="notice-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <div class="notice-body"><strong>2026 Price Book Available</strong> Updated pricing is now live. Download from the Catalog &amp; Pricing tab.</div>
+      </div>
+      <div class="notice success">
+        <svg class="notice-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <div class="notice-body"><strong>Order #W-2024-0891 Shipped</strong> Your gooseneck order shipped Feb 21 — estimated delivery Feb 25.</div>
+      </div>
+
+      <div class="metrics">
+        <div class="metric-card" style="--accent:#4a7c59">
+          <div class="metric-label">Active Orders</div>
+          <div class="metric-value">3</div>
+          <div class="metric-sub">2 in transit</div>
+        </div>
+        <div class="metric-card" style="--accent:#c4862a">
+          <div class="metric-label">Pending Quotes</div>
+          <div class="metric-value">1</div>
+          <div class="metric-sub">Parts request</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Units YTD</div>
+          <div class="metric-value">14</div>
+          <div class="metric-sub">+3 vs last year</div>
+        </div>
+        <div class="metric-card" style="--accent:#3a6080">
+          <div class="metric-label">Dealer Since</div>
+          <div class="metric-value" style="font-size:24px">2019</div>
+          <div class="metric-sub">Authorized Partner</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/></svg>
+          Recent Orders
+        </div>
+        <table>
+          <thead><tr><th>Order #</th><th>Model</th><th>Qty</th><th>Placed</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td><strong>W-2024-0891</strong></td><td>FBH210 Gooseneck 21'</td><td>1</td><td>Feb 14, 2026</td><td><span class="status-pill shipped"><span class="status-dot"></span>Shipped</span></td></tr>
+            <tr><td><strong>W-2024-0874</strong></td><td>DHO212 Dump 12'</td><td>2</td><td>Feb 8, 2026</td><td><span class="status-pill processing"><span class="status-dot"></span>Processing</span></td></tr>
+            <tr><td><strong>W-2024-0863</strong></td><td>TSX208 Tilt 20'</td><td>1</td><td>Jan 28, 2026</td><td><span class="status-pill pending"><span class="status-dot"></span>Pending</span></td></tr>
+            <tr><td><strong>W-2024-0812</strong></td><td>BDE210 Deckover 21'</td><td>1</td><td>Jan 10, 2026</td><td><span class="status-pill shipped"><span class="status-dot"></span>Shipped</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ORDERS TAB -->
+    <div class="tab" id="tab-orders">
+      <div class="card">
+        <div class="card-title">All Orders</div>
+        <table>
+          <thead><tr><th>Order #</th><th>Model</th><th>Qty</th><th>Placed</th><th>Est. Delivery</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td><strong>W-2024-0891</strong></td><td>FBH210 Gooseneck 21'</td><td>1</td><td>Feb 14, 2026</td><td>Feb 25, 2026</td><td><span class="status-pill shipped"><span class="status-dot"></span>Shipped</span></td></tr>
+            <tr><td><strong>W-2024-0874</strong></td><td>DHO212 Dump 12'</td><td>2</td><td>Feb 8, 2026</td><td>Mar 5, 2026</td><td><span class="status-pill processing"><span class="status-dot"></span>Processing</span></td></tr>
+            <tr><td><strong>W-2024-0863</strong></td><td>TSX208 Tilt 20'</td><td>1</td><td>Jan 28, 2026</td><td>TBD</td><td><span class="status-pill pending"><span class="status-dot"></span>Pending</span></td></tr>
+            <tr><td><strong>W-2024-0812</strong></td><td>BDE210 Deckover 21'</td><td>1</td><td>Jan 10, 2026</td><td>Delivered</td><td><span class="status-pill shipped"><span class="status-dot"></span>Delivered</span></td></tr>
+            <tr><td><strong>W-2023-0744</strong></td><td>MPR207 Landscape 16'</td><td>3</td><td>Nov 4, 2025</td><td>Delivered</td><td><span class="status-pill shipped"><span class="status-dot"></span>Delivered</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PARTS TAB -->
+    <div class="tab" id="tab-parts">
+      <div class="card">
+        <div class="card-title">Submit a Parts Request</div>
+        <div class="parts-request-form">
+          <div class="field-group">
+            <label class="field-label">Trailer Model</label>
+            <select class="field-select">
+              <option value="">Select model…</option>
+              <option>FBH207 Gooseneck 20'</option>
+              <option>FBH210 Gooseneck 21'</option>
+              <option>DHO212 Dump 12'</option>
+              <option>TSX208 Tilt 20'</option>
+              <option>BDE210 Deckover 21'</option>
+              <option>MPR207 Landscape 16'</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label class="field-label">VIN / Serial # (if known)</label>
+            <input class="field-input" type="text" placeholder="e.g. 1W9BHE20NW000001">
+          </div>
+          <div class="field-group full">
+            <label class="field-label">Parts Needed</label>
+            <textarea class="field-textarea" placeholder="List part names, SKUs, or describe what you need…"></textarea>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Urgency</label>
+            <select class="field-select">
+              <option>Standard (5–7 business days)</option>
+              <option>Expedited (2–3 business days)</option>
+              <option>Emergency (next day if available)</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Your Reference #</label>
+            <input class="field-input" type="text" placeholder="Internal PO or job number">
+          </div>
+          <div class="field-group full" style="margin-top:4px;">
+            <button class="topbar-btn primary" style="width:fit-content;padding:10px 24px;" onclick="alert('Parts request submitted! A Walton rep will follow up within 1 business day.')">Submit Request</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Previous Parts Requests</div>
+        <table>
+          <thead><tr><th>Request #</th><th>Parts</th><th>Submitted</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td><strong>PR-2024-041</strong></td><td>LED Tail Light Set, Brake Magnet</td><td>Feb 3, 2026</td><td><span class="status-pill shipped"><span class="status-dot"></span>Fulfilled</span></td></tr>
+            <tr><td><strong>PR-2024-038</strong></td><td>7,000 lb Torsion Axle</td><td>Jan 15, 2026</td><td><span class="status-pill shipped"><span class="status-dot"></span>Fulfilled</span></td></tr>
+            <tr><td><strong>PR-2024-031</strong></td><td>Breakaway Kit, D-Ring Set (x4)</td><td>Dec 8, 2025</td><td><span class="status-pill shipped"><span class="status-dot"></span>Fulfilled</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CATALOG TAB -->
+    <div class="tab" id="tab-catalog">
+      <div class="card">
+        <div class="card-title">Catalog &amp; Pricing Resources</div>
+        <div class="resource-grid">
+          <a class="resource-card" href="#">
+            <div class="resource-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div><div class="resource-title">2026 Price Book</div><div class="resource-meta">Updated Feb 2026 · PDF</div></div>
+          </a>
+          <a class="resource-card" href="#">
+            <div class="resource-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+            <div><div class="resource-title">Full Product Catalog</div><div class="resource-meta">All models &amp; specs · PDF</div></div>
+          </a>
+          <a class="resource-card" href="#">
+            <div class="resource-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+            <div><div class="resource-title">Option Sheets</div><div class="resource-meta">Upgrades &amp; add-ons · PDF</div></div>
+          </a>
+          <a class="resource-card" href="#">
+            <div class="resource-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+            <div><div class="resource-title">Lead Times</div><div class="resource-meta">Current build schedule</div></div>
+          </a>
+          <a class="resource-card" href="parts.html">
+            <div class="resource-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg></div>
+            <div><div class="resource-title">Parts Catalog</div><div class="resource-meta">Search &amp; quote parts</div></div>
+          </a>
+          <a class="resource-card" href="#">
+            <div class="resource-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+            <div><div class="resource-title">Dealer Incentives</div><div class="resource-meta">Volume bonuses &amp; promos</div></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- DOCUMENTS TAB -->
+    <div class="tab" id="tab-docs">
+      <div class="card">
+        <div class="card-title">Your Documents</div>
+        <table>
+          <thead><tr><th>Document</th><th>Type</th><th>Date</th><th></th></tr></thead>
+          <tbody>
+            <tr><td><strong>Dealer Authorization Agreement</strong></td><td>Contract</td><td>Jan 8, 2023</td><td><button class="topbar-btn" style="padding:5px 12px;font-size:11px;">Download</button></td></tr>
+            <tr><td><strong>W9 — Dealer Account</strong></td><td>Tax Form</td><td>Mar 14, 2023</td><td><button class="topbar-btn" style="padding:5px 12px;font-size:11px;">Download</button></td></tr>
+            <tr><td><strong>Warranty Policy 2026</strong></td><td>Policy</td><td>Jan 1, 2026</td><td><button class="topbar-btn" style="padding:5px 12px;font-size:11px;">Download</button></td></tr>
+            <tr><td><strong>Dealer Training Manual</strong></td><td>Manual</td><td>Sep 2, 2024</td><td><button class="topbar-btn" style="padding:5px 12px;font-size:11px;">Download</button></td></tr>
+            <tr><td><strong>Logo &amp; Brand Assets</strong></td><td>Marketing</td><td>Feb 1, 2025</td><td><button class="topbar-btn" style="padding:5px 12px;font-size:11px;">Download</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SUPPORT TAB -->
+    <div class="tab" id="tab-support">
+      <div class="card">
+        <div class="card-title">Contact Your Rep</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <div style="padding:16px;background:var(--brand-pale);border:1px solid var(--border);border-radius:8px;">
+            <div style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--text-muted);margin-bottom:6px;">Sales Representative</div>
+            <div style="font-weight:600;margin-bottom:2px;">Mike Hartley</div>
+            <div style="font-size:13px;color:var(--text-muted);">mike.hartley@waltontrailers.com</div>
+            <div style="font-size:13px;color:var(--text-muted);">(435) 555-0142</div>
+          </div>
+          <div style="padding:16px;background:var(--brand-pale);border:1px solid var(--border);border-radius:8px;">
+            <div style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--text-muted);margin-bottom:6px;">Parts &amp; Service</div>
+            <div style="font-weight:600;margin-bottom:2px;">Parts Desk</div>
+            <div style="font-size:13px;color:var(--text-muted);">parts@waltontrailers.com</div>
+            <div style="font-size:13px;color:var(--text-muted);">(435) 555-0190</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Send a Message</div>
+        <div class="parts-request-form">
+          <div class="field-group full">
+            <label class="field-label">Subject</label>
+            <input class="field-input" type="text" placeholder="What do you need help with?">
+          </div>
+          <div class="field-group full">
+            <label class="field-label">Message</label>
+            <textarea class="field-textarea" style="min-height:120px;" placeholder="Describe your question or issue…"></textarea>
+          </div>
+          <div class="field-group full">
+            <button class="topbar-btn primary" style="width:fit-content;padding:10px 24px;" onclick="alert('Message sent! Your rep will respond within 1 business day.')">Send Message</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end content -->
+</div><!-- end main -->
+
+<script>
+(function() {
+  // Auth guard
+  if (sessionStorage.getItem('wt_auth') !== '1' || sessionStorage.getItem('wt_role') !== 'dealer') {
+    window.location.href = 'login.html';
+    return;
+  }
+
+  // Personalize with email
+  var email = sessionStorage.getItem('wt_email') || 'dealer@example.com';
+  var name = email.split('@')[0].replace(/[._]/g,' ').replace(/\b\w/g, function(c){ return c.toUpperCase(); });
+  var initials = name.split(' ').map(function(w){ return w[0]; }).join('').substring(0,2).toUpperCase();
+  document.getElementById('sidebarName').textContent = name;
+  document.getElementById('sidebarInitials').textContent = initials;
+
+  // Tab switching
+  var TITLES = {
+    dashboard: 'Dashboard', orders: 'My Orders', parts: 'Parts Requests',
+    catalog: 'Catalog & Pricing', docs: 'Documents', support: 'Support'
+  };
+
+  window.showTab = function(id, el) {
+    document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+    document.querySelectorAll('.nav-item').forEach(function(n){ n.classList.remove('active'); });
+    document.getElementById('tab-' + id).classList.add('active');
+    if (el) el.classList.add('active');
+    document.getElementById('topbarTitle').textContent = TITLES[id] || id;
+  };
+
+  window.doLogout = function() {
+    sessionStorage.removeItem('wt_auth');
+    sessionStorage.removeItem('wt_role');
+    sessionStorage.removeItem('wt_email');
+    window.location.href = 'login.html';
+  };
+})();
+</script>
+
+</body>
+</html>
