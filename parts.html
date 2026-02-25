@@ -397,6 +397,62 @@
   }
   .cart-clear-btn:hover { border-color: #e74c3c; color: #e74c3c; }
 
+  /* ── VIN SEARCH ── */
+  .vin-section {
+    background: rgba(28,32,40,0.6);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 36px 48px;
+  }
+  .vin-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+  }
+  .vin-copy { }
+  .vin-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--rust); margin-bottom: 10px; }
+  .vin-copy h2 { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 3px; margin-bottom: 8px; }
+  .vin-copy p { font-size: 14px; color: rgba(245,243,239,0.5); line-height: 1.6; }
+  .vin-form { display: flex; flex-direction: column; gap: 10px; }
+  .vin-input-row { display: flex; gap: 0; }
+  .vin-input {
+    flex: 1; padding: 14px 16px; font-size: 14px; letter-spacing: 1px; text-transform: uppercase;
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); border-right: none;
+    border-radius: 2px 0 0 2px; color: var(--white); font-family: 'DM Sans', sans-serif;
+    outline: none; transition: border-color 0.2s;
+  }
+  .vin-input:focus { border-color: var(--rust); }
+  .vin-input::placeholder { color: rgba(245,243,239,0.3); text-transform: none; letter-spacing: 0; }
+  .vin-btn {
+    padding: 14px 24px; background: var(--rust); color: var(--white); border: none;
+    border-radius: 0 2px 2px 0; cursor: pointer; font-size: 12px; letter-spacing: 1.5px;
+    text-transform: uppercase; font-family: 'DM Sans', sans-serif; font-weight: 500;
+    transition: background 0.2s; white-space: nowrap;
+  }
+  .vin-btn:hover { background: var(--rust-dark); }
+  .vin-hint { font-size: 12px; color: rgba(245,243,239,0.3); }
+  .vin-hint a { color: var(--rust); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+  .vin-result {
+    margin-top: 4px; padding: 16px; background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 2px;
+    display: none;
+  }
+  .vin-result.visible { display: block; }
+  .vin-result-title { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--rust); margin-bottom: 10px; }
+  .vin-result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; }
+  .vin-result-row { font-size: 13px; }
+  .vin-result-label { color: rgba(245,243,239,0.4); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+  .vin-result-val { color: var(--white); font-weight: 500; }
+  .vin-result-action {
+    margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 13px; color: rgba(245,243,239,0.6);
+  }
+  .vin-error { color: #e74c3c; font-size: 13px; margin-top: 4px; display: none; }
+  .vin-error.visible { display: block; }
+  @media(max-width:768px) {
+    .vin-section { padding: 32px 24px; }
+    .vin-inner { grid-template-columns: 1fr; gap: 24px; }
+  }
+
   @media(max-width:1024px) {
     .parts-layout { grid-template-columns: 1fr; }
     .quote-cart { position: static; }
@@ -481,9 +537,8 @@
 </div>
 <div class="nav-mega" id="shopMega">
   <div class="nav-mega-inner" style="grid-template-columns:repeat(3,1fr);gap:16px;max-width:700px;margin:0 auto;">
-    <a href="#" class="mega-item">
-      <div class="mega-img" style="background:#edeae4;border-radius:4px;display:flex;align-items:center;justify-content:center;">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/><path d="M14.12 9.88a3 3 0 0 1 0 4.24"/><path d="M9.88 9.88a3 3 0 0 0 0 4.24"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/></svg>
+    <a href="parts.html" class="mega-item">
+      <div class="mega-img" style="background-image:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBhUSBxMWFhUXGBoaGBYYGSEdHRsdHxseHh4aHSEiHygjISQlIRsdITEiKSotLi4uIiAzODYsNygtLisBCgoKDg0OFQ8QFi0dHR0rLTctKy0rLSstLS0tLS0tLS0tKy0tLSstLSsrKzIrLS0rKy0tNy4tKy0tLisrLS0tN//AABEIAOEA4QMBIgACEQEDEQH/xAAcAAEAAgIDAQAAAAAAAAAAAAAABgcEBQEDCAL/xABCEAABAwIEBAQCBwQIBwEAAAABAAIRAwQFEiExBkFRYQcTInEygRQjQlJykaFiscHwJDNTgpLR0uEVJSZzorLCFv/EABcBAQEBAQAAAAAAAAAAAAAAAAABAgP/xAAZEQEBAQEBAQAAAAAAAAAAAAAAEQECEiH/2gAMAwEAAhEDEQA/ALxREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBEUU8QuL2cK4YPJAdXqSKbTsI3e7sJHufmg3+JYrYYVSzYjVbTHLMdT7Dc/JRm48SuH2vi0eah7Q3/wBod+i8843j9fELw1L6o6q8nVzj6fYAdOggLBGKUjo6m0+2n71qI9KM8QbQEfSKL2TG5B3MAdzz9lv8Ix7DcYH9CfLhuw6O/I7juJC8u4XxDWs3AWTiB/ZuMsPUb6HuIUrw7EKb2CrhxNNzCJYN2EDTIGjWTz5ie4CYV6KRRngXib/9Dh7hcaV6RDardvZ8cpg6ciCpMsqIiICIiAiIgIiICIiAiIgIiICIiAiIgKtfFDxBvuGMTp2+HNYMzA99WpOgc4tDWwDBkGXEECQrKUB8UeDL/iVjKuGPGem1zTSPpztJkw8QQdPhd6TJ23QRfgHjTELri2jRD6lRlfNna9xfkIa4yDygtjTQg+yuZUD4eXl3wji1YPyOdo19B9Py6zQOhMkD2L2neeaunBeIMPxln9FdD41pu0cPlz9xIV1MbVeavFzGql9xRXM6Nd5DOwZIdH97P+a9KOcGtl2gVDv4Rp1eJa9xiNQZfPquptpmXEOq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7kAFquUZ+K48/G7/AM2o2SA1uYwHOytjM7lLtf0WAH3FXDXVKgy05Abruew+1EQSBpopBieF4ZheB0quG5nF73NcX66sj1NMCRPJajiKnWrOaa2207AdAP8AIbIPmza64IJ+7P5N/wBln4czznGOX+S+7K2p0aOuvoGvLUQP3k/ms7AKDW2rn1NiT+QQa29qC0doJOXbaJ5k8gs3CMausKtcha05vUS4EakCIg7DTdvVay/rfSrguGo+yJHL9B76n2MKyeB/DfF8WsfNxt/kNcJaA3K90/aIaWwPfU9BuaImeJrlx0ZS/wDP/QlHFcUv6+W3a2dYDWTy5T+SuPCvC/BrRh+nuq1iY3qPY0ewDp131J7QpRg2A4XgbHDC6QZmjM7UudGglxJcY6SpSKf4W8P8Z4juhU4hNSnRGv1k5yfusYQGt7kg9p3FwYLgOGYHQy4ZTDert3O93HU+2w5LZIooiIgIiICIiAiIgIiICIiAiIgIiIK+8SvD0cSUzWwotbX3LXfDUIaGjX7LoAE7EAA8iKhr4df4HUDMQo1WVGn0tFN28ES10BneZK9PrggHdSYudbjynidpieC2zal9Rcx1QHJ5jSNNJIB30AA9idonDsMOq1bGtXtPNGRoL3OADXOOjmN00Mu6zHTY+sb6ytcRtHUr5jXscIc1wkEKKcQ+GXDWNUgGUzQc0QHUYbpEatgtOgiYnutI83gXTWNN69xADS0OJdI3GUE7d9t99l03datdn68kx+n8/wA8grdvPA68a/8AoN3TI/bplp/QlduG+BrjUBxW79PNtJmp/vOOn+EoiAU7WtiD2W+FMe90S7K0k6AS6ACYiY+Z5wrIwDwvvL1rRjbjRoAD6thBqP7OMEMHYEk9lY3DfDOE8NWuTCaYbPxPOr3ficdT7bDkAtwoqJ4V4ecO4Xiba9CmXOa1oaHnM0ET64jVxnczECIUsREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREH//2Q==');background-size:cover;background-position:center;border-radius:4px;">
       </div>
       <div class="mega-name">Parts</div>
     </a>
@@ -521,6 +576,35 @@
       <button class="parts-search-btn" onclick="filterParts()">Search</button>
     </div>
   </section>
+
+  <!-- VIN LOOKUP -->
+  <div class="vin-section">
+    <div class="vin-inner">
+      <div class="vin-copy">
+        <div class="vin-tag">VIN Lookup</div>
+        <h2>Shop by Your Trailer</h2>
+        <p>Enter your 17-character VIN to instantly see parts that are confirmed compatible with your specific trailer — model, year, and configuration.</p>
+      </div>
+      <div>
+        <div class="vin-form">
+          <div class="vin-input-row">
+            <input class="vin-input" id="vinInput" type="text" maxlength="17" placeholder="e.g. 1WKBF3425NW123456" oninput="this.value=this.value.toUpperCase()">
+            <button class="vin-btn" onclick="lookupVin()">Look Up</button>
+          </div>
+          <div class="vin-hint">
+            Your VIN is stamped on the driver-side tongue of your trailer.
+            <a onclick="showVinHelp()">Where is my VIN?</a>
+          </div>
+          <div class="vin-error" id="vinError">Please enter a valid 17-character VIN.</div>
+          <div class="vin-result" id="vinResult">
+            <div class="vin-result-title">Trailer Identified</div>
+            <div class="vin-result-grid" id="vinResultGrid"></div>
+            <div class="vin-result-action" id="vinResultAction"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- MODEL FILTER -->
   <div class="parts-filter-section">
@@ -1444,6 +1528,94 @@ function toggleMenu() {
       '</li>';
     }).join('');
   }
+
+  // ── VIN LOOKUP ──
+  // Walton VIN structure (simplified decode for demo):
+  // Pos 1-3: WMI  (1WT = Walton Trailers)
+  // Pos 4:   Type (B=Gooseneck, F=Flatbed/Deckover, D=Dump, T=Tilt, L=Landscape, U=Utility)
+  // Pos 5:   Series (H=Heavy, S=Standard, X=XL)
+  // Pos 6:   Config (E=Electric brake, H=Hydraulic, N=None)
+  // Pos 7-8: Deck length (e.g. 20, 24, 30)
+  // Pos 9:   Check digit
+  // Pos 10:  Model year (N=2022, P=2023, R=2024, S=2025, T=2026)
+  // Pos 11:  Plant (W=Logan UT)
+  // Pos 12-17: Serial number
+
+  var VIN_TYPES = { B:'Gooseneck Flatbed', F:'Deckover Flatbed', D:'Dump Trailer', T:'Tilt Equipment', L:'Landscape Trailer', U:'Utility Trailer' };
+  var VIN_SERIES = { H:'Heavy Duty', S:'Standard', X:'XL / Extended' };
+  var VIN_BRAKE = { E:'Electric Brakes', H:'Hydraulic Brakes', N:'No Brakes' };
+  var VIN_YEAR = { N:'2022', P:'2023', R:'2024', S:'2025', T:'2026' };
+  var VIN_MODELS = { B:'gooseneck', F:'deckover', D:'dump', T:'tilt', L:'landscape', U:'utility' };
+
+  window.lookupVin = function() {
+    var vin = document.getElementById('vinInput').value.trim().toUpperCase();
+    var errEl = document.getElementById('vinError');
+    var resEl = document.getElementById('vinResult');
+
+    // Validate length
+    if (vin.length !== 17) {
+      errEl.textContent = 'Please enter a valid 17-character VIN.';
+      errEl.classList.add('visible');
+      resEl.classList.remove('visible');
+      return;
+    }
+
+    // Validate WMI — must be a Walton prefix
+    var wmi = vin.substring(0, 3);
+    if (['1W9', '7SR', '7X1'].indexOf(wmi) === -1) {
+      errEl.textContent = 'This VIN doesn\u2019t appear to be a Walton trailer. Walton VINs begin with 1W9, 7SR, or 7X1 \u2014 please double-check and try again.';
+      errEl.classList.add('visible');
+      resEl.classList.remove('visible');
+      return;
+    }
+    errEl.classList.remove('visible');
+    var typeCode = vin.charAt(3);
+    var seriesCode = vin.charAt(4);
+    var brakeCode = vin.charAt(5);
+    var deckLen = vin.substring(6, 8);
+    var yearCode = vin.charAt(9);
+    var serial = vin.substring(11);
+
+    var trailerType = VIN_TYPES[typeCode] || 'Walton Trailer';
+    var series = VIN_SERIES[seriesCode] || 'Standard';
+    var brakes = VIN_BRAKE[brakeCode] || 'Electric Brakes';
+    var year = VIN_YEAR[yearCode] || '2024';
+    var model = VIN_MODELS[typeCode] || 'all';
+    var deckFt = parseInt(deckLen, 10) || 20;
+
+    document.getElementById('vinResultGrid').innerHTML =
+      '<div class="vin-result-row"><div class="vin-result-label">Model</div><div class="vin-result-val">' + trailerType + '</div></div>' +
+      '<div class="vin-result-row"><div class="vin-result-label">Year</div><div class="vin-result-val">' + year + '</div></div>' +
+      '<div class="vin-result-row"><div class="vin-result-label">Series</div><div class="vin-result-val">' + series + '</div></div>' +
+      '<div class="vin-result-row"><div class="vin-result-label">Brakes</div><div class="vin-result-val">' + brakes + '</div></div>' +
+      '<div class="vin-result-row"><div class="vin-result-label">Deck Length</div><div class="vin-result-val">' + deckFt + ' ft</div></div>' +
+      '<div class="vin-result-row"><div class="vin-result-label">Serial</div><div class="vin-result-val">' + serial + '</div></div>';
+
+    document.getElementById('vinResultAction').innerHTML =
+      'Showing parts compatible with your <strong>' + year + ' ' + trailerType + '</strong>. ' +
+      '<a href="#" style="color:var(--rust);text-decoration:underline;text-underline-offset:3px;" ' +
+      'onclick="applyVinFilter(\'' + model + '\');return false;">Filter parts now &rarr;</a>';
+
+    resEl.classList.add('visible');
+
+    // Also pre-fill trailer field in quote cart
+    var cfTrailer = document.getElementById('cfTrailer');
+    if (cfTrailer) cfTrailer.value = year + ' ' + trailerType + ' — VIN: ' + vin;
+  };
+
+  window.applyVinFilter = function(model) {
+    var pills = document.querySelectorAll('.model-pill');
+    pills.forEach(function(p){
+      p.classList.toggle('active', p.dataset.model === model || (model === 'all' && p.dataset.model === 'all'));
+    });
+    filterParts(model);
+    // Scroll down to parts grid
+    document.getElementById('partsCatalog').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  window.showVinHelp = function() {
+    alert('Your VIN (Vehicle Identification Number) is a 17-character code stamped on a metal plate.\n\nOn Walton trailers, look for it:\n  • On the driver-side (left) of the tongue\n  • On the front cross-member near the coupler\n  • On your title, registration, or warranty card\n\nExample: 1WTBHE2024W000001');
+  };
 
   window.submitQuote = function() {
     var name = document.getElementById('cfName').value.trim();
