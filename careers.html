@@ -109,7 +109,106 @@
   .cta-band a { display: inline-flex; align-items: center; gap: 8px; background: #0a0a0a; color: #f5f3ef; padding: 14px 32px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; border-radius: 2px; transition: background 0.2s; }
   @media(max-width:768px) { .perks-grid { grid-template-columns:1fr 1fr; } .job-card { flex-direction:column; align-items:flex-start; gap:20px; } .page-hero,.perks-section,.jobs-section { padding-left:24px; padding-right:24px; } }
 
-  </style>
+    /* ════════════════════════════════
+     SUPPORT CHAT WIDGET
+  ════════════════════════════════ */
+  .chat-fab {
+    position: fixed; bottom: 32px; right: 32px; z-index: 500;
+    display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
+  }
+  .chat-fab-btn {
+    width: 60px; height: 60px; border-radius: 50%;
+    background: #c0392b; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(192,57,43,0.4);
+    transition: transform 0.2s, background 0.2s; position: relative;
+  }
+  .chat-fab-btn:hover { transform: scale(1.08); background: #a93226; }
+  .chat-fab-btn svg { width: 26px; height: 26px; fill: var(--white); }
+  .chat-fab-pulse {
+    position: absolute; inset: -4px; border-radius: 50%;
+    border: 2px solid #c0392b; opacity: 0.6;
+    animation: fabPulse 2.5s ease-out infinite;
+    pointer-events: none;
+  }
+  @keyframes fabPulse { 0%{transform:scale(1);opacity:.6} 100%{transform:scale(1.5);opacity:0} }
+  .chat-fab-label {
+    background: rgba(10,10,10,0.9); color: #f5f3ef;
+    font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
+    padding: 6px 12px; border-radius: 2px; white-space: nowrap;
+    opacity: 0; transform: translateX(8px);
+    transition: opacity 0.2s, transform 0.2s; pointer-events: none;
+  }
+  .chat-fab:hover .chat-fab-label { opacity: 1; transform: translateX(0); }
+
+  /* Chat window */
+  .support-chat {
+    position: fixed; bottom: 104px; right: 32px; width: 360px;
+    max-height: 540px; background: #12151b;
+    border: 1px solid rgba(255,255,255,0.08); border-radius: 8px;
+    display: flex; flex-direction: column; z-index: 499;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+    transform: translateY(16px) scale(0.97); opacity: 0; pointer-events: none;
+    transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+  }
+  .support-chat.open { transform: translateY(0) scale(1); opacity: 1; pointer-events: all; }
+  .chat-header {
+    background: var(--steel); padding: 16px 20px;
+    border-radius: 8px 8px 0 0;
+    display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
+  }
+  .chat-header-info { display: flex; align-items: center; gap: 12px; }
+  .chat-avatar {
+    width: 36px; height: 36px; background: #c0392b; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .chat-avatar svg { width: 18px; height: 18px; fill: white; }
+  .chat-header-text h4 { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 1px; color: #f5f3ef; }
+  .chat-header-text p { font-size: 11px; color: rgba(245,243,239,0.5); margin-top: 1px; }
+  .chat-close-btn { background: none; border: none; color: rgba(245,243,239,0.4); font-size: 22px; cursor: pointer; line-height: 1; transition: color 0.2s; padding: 0; }
+  .chat-close-btn:hover { color: #f5f3ef; }
+  .chat-messages {
+    flex: 1; overflow-y: auto; padding: 16px;
+    display: flex; flex-direction: column; gap: 10px; scroll-behavior: smooth;
+  }
+  .chat-messages::-webkit-scrollbar { width: 4px; }
+  .chat-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+  .chat-msg { display: flex; max-width: 90%; }
+  .chat-msg.bot { align-self: flex-start; }
+  .chat-msg.user { align-self: flex-end; }
+  .msg-bubble { padding: 10px 14px; border-radius: 12px; font-size: 13px; line-height: 1.55; }
+  .chat-msg.bot .msg-bubble { background: rgba(255,255,255,0.07); color: rgba(245,243,239,0.9); border-radius: 4px 12px 12px 12px; }
+  .chat-msg.user .msg-bubble { background: #c0392b; color: #f5f3ef; border-radius: 12px 4px 12px 12px; }
+  .chat-msg.bot .msg-bubble a { color: #e74c3c; }
+  .chat-quick-replies { padding: 6px 16px 10px; display: flex; flex-wrap: wrap; gap: 6px; flex-shrink: 0; }
+  .chat-qr-btn {
+    background: transparent; border: 1px solid rgba(183,163,128,0.4);
+    color: rgba(245,243,239,0.75); font-size: 11px; letter-spacing: 0.5px;
+    padding: 5px 10px; border-radius: 20px; cursor: pointer;
+    transition: all 0.15s; font-family: 'DM Sans', sans-serif; white-space: nowrap;
+  }
+  .chat-qr-btn:hover { border-color: #c0392b; color: #c0392b; }
+  .chat-input-row { padding: 12px 16px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; gap: 8px; flex-shrink: 0; }
+  .chat-text-input {
+    flex: 1; background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 20px;
+    padding: 8px 14px; color: #f5f3ef; font-size: 13px;
+    font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.2s;
+  }
+  .chat-text-input:focus { border-color: #c0392b; }
+  .chat-text-input::placeholder { color: rgba(245,243,239,0.3); }
+  .chat-send-btn {
+    width: 34px; height: 34px; background: #c0392b; border: none;
+    border-radius: 50%; cursor: pointer; display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0; transition: background 0.2s; align-self: flex-end;
+  }
+  .chat-send-btn:hover { background: #a93226; }
+  .chat-send-btn svg { width: 14px; height: 14px; fill: white; }
+  @media (max-width: 480px) {
+    .support-chat { width: calc(100vw - 32px); right: 16px; bottom: 92px; }
+    .chat-fab { bottom: 20px; right: 16px; }
+  }
+</style>
 </head>
 <body>
 <nav id="navbar">
@@ -336,6 +435,240 @@ function toggleMenu() {
   if(h) h.classList.toggle('open');
 }
 
+/* ════════════════════════════════════════
+   SUPPORT CHAT
+════════════════════════════════════════ */
+(function() {
+  var chatOpen = false;
+  var greeted  = false;
+
+  /* Detect page depth for correct relative URLs
+     GitHub Pages: /repo/subfolder/page.html = 3 slashes
+                   /repo/page.html           = 2 slashes          */
+  var depth = (window.location.pathname.match(/\//g) || []).length;
+  var base  = depth >= 3 ? '../' : '';
+
+  /* ── Knowledge Base ── */
+  var PAGES = [
+    { title:'Gooseneck Flatbeds',    url: base+'Gooseneck/gooseneck.html',
+      tags:['gooseneck','flatbed','fbh','fbx','flat bed','flat-bed','goose neck'] },
+    { title:'Dump Trailers',         url: base+'Dump%20Trailers/dump-trailers.html',
+      tags:['dump','dho','dhv','hydraulic dump','dumping'] },
+    { title:'Tilt Deck Trailers',    url: base+'Tilt%20Equipment/tilt-equipment.html',
+      tags:['tilt','tsx','tmx','tilt deck','equipment trailer','tilt-deck'] },
+    { title:'Deckover Equipment',    url: base+'Deckover/deckover.html',
+      tags:['deckover','deck-over','bde','wide load','deck over'] },
+    { title:'Landscape Trailers',    url: base+'Landscape/landscape.html',
+      tags:['landscape','mpr','lawn','mowing','landscaping','grass'] },
+    { title:'About Walton Trailers', url: base+'about.html',
+      tags:['about','company','history','who are you','founded','walton'] },
+    { title:'Become a Dealer',       url: base+'become-a-dealer.html',
+      tags:['become dealer','resell','partner','dealership','sell walton','dealer program'] },
+    { title:'Careers',               url: base+'careers.html',
+      tags:['job','career','hiring','work here','employment','position','apply'] },
+    { title:'Buying Guides',         url: base+'learn.html',
+      tags:['learn','guide','buying guide','how to choose','which trailer','help me choose'] },
+    { title:'Video Guides',          url: base+'video-guides.html',
+      tags:['video','watch','tutorial','how to','youtube'] },
+  ];
+
+  var FAQS = [
+    { tags:['warranty','warrant','guarantee','lifetime'],
+      answer:'Walton Trailers come with a <strong>Lifetime Structural Warranty</strong> on all models. Contact your local dealer for full warranty terms and claims.' },
+    { tags:['price','cost','how much','pricing','quote','msrp','afford'],
+      answer:'Pricing varies by model and options. Use the <strong>Get a Quote</strong> button on any product page and a dealer will follow up with current pricing.',
+      link:{ text:'Browse Models', url: base+'index.html' } },
+    { tags:['dealer','find dealer','near me','closest','local dealer','buy','purchase','where can i'],
+      answer:'Walton Trailers are sold through an authorised dealer network across the United States. Use our dealer locator to find the closest one to you.',
+      link:{ text:'Find a Dealer', url: base+'index.html#dealers' } },
+    { tags:['gvwr','weight rating','capacity','payload','how much can','load','tow rating'],
+      answer:'GVWR ranges from <strong>14,000 lbs</strong> on entry-level models up to <strong>40,000+ lbs</strong> on heavy-duty equipment trailers. Check each model page for exact specs.',
+      link:{ text:'Browse Models', url: base+'index.html' } },
+    { tags:['gooseneck vs bumper','bumper pull','difference between','which type','hitch type'],
+      answer:'<strong>Gooseneck</strong> trailers mount in the truck bed for maximum stability and heavier payloads. <strong>Bumper pull</strong> trailers use a standard receiver hitch and work with most tow vehicles. Our buying guide explains it in detail.',
+      link:{ text:'Read the Buying Guide', url: base+'learn.html' } },
+    { tags:['financing','finance','loan','monthly payment','lease','credit'],
+      answer:'Financing options are available through Walton dealer locations. Contact your nearest dealer to discuss rates and terms.',
+      link:{ text:'Find a Dealer', url: base+'index.html#dealers' } },
+    { tags:['made in','manufactured','built where','usa','american made','logan','utah'],
+      answer:'Every Walton Trailer is <strong>designed and built in Logan, Utah, USA</strong> — American-made quality with over 50 years of experience.' },
+    { tags:['color','colour','paint','customize','custom order','options','configuration','build your own'],
+      answer:'Walton Trailers can be ordered in various configurations. Hit <strong>Build Your Own</strong> on any product page to explore options, or speak to a dealer about custom builds.' },
+    { tags:['parts','accessories','replacement part','repair','service','maintenance','fix'],
+      answer:'Genuine Walton parts and service are available through our dealer network. Contact your nearest dealer for parts orders or repair scheduling.',
+      link:{ text:'Find a Dealer', url: base+'index.html#dealers' } },
+    { tags:['register','registration','owner manual','owners manual','manual'],
+      answer:"Register your trailer and download the owner's manual through our support section. Your dealer can also assist with registration." },
+    { tags:['contact','call','phone','email','reach','message','talk','speak','help','support'],
+      answer:"I'd be happy to connect you with our team. Fill out a quick message below and we'll get back to you as soon as possible.",
+      action:'contact' },
+    { tags:['landscape trailer','lawn trailer','mpr','mpr205','mpr207'],
+      answer:'The <strong>MPR Series</strong> Landscape Trailers are purpose-built for lawn care and landscaping equipment loads.',
+      link:{ text:'View Landscape Trailers', url: base+'Landscape/landscape.html' } },
+    { tags:['dump trailer','dho210','dho212','dho215','dhv207','dhv208','hydraulic hoist'],
+      answer:'The DHO and DHV Series Dump Trailers feature heavy-duty hydraulic hoists for reliable dumping in demanding work environments.',
+      link:{ text:'View Dump Trailers', url: base+'Dump%20Trailers/dump-trailers.html' } },
+    { tags:['tilt trailer','tsx207','tsx208','tsx307','tmx107','tilt equipment'],
+      answer:'Our Tilt Deck Equipment Trailers (TSX & TMX Series) feature a full-tilt deck for easy equipment loading without ramps.',
+      link:{ text:'View Tilt Trailers', url: base+'Tilt%20Equipment/tilt-equipment.html' } },
+    { tags:['deckover','bde207','bde208','bde210','bde212','wide deck'],
+      answer:'The BDE Series Deckover Equipment Trailers offer a flush, wide deck for oversized equipment with no wheel wells in the way.',
+      link:{ text:'View Deckover Trailers', url: base+'Deckover/deckover.html' } },
+    { tags:['gooseneck','fbh207','fbh208','fbh210','fbh307','fbx210','fbx212','fbx215','flatbed'],
+      answer:'Our FBH and FBX Series Gooseneck Flatbeds are built for heavy hauling with a range of deck lengths and GVWR ratings.',
+      link:{ text:'View Gooseneck Flatbeds', url: base+'Gooseneck/gooseneck.html' } },
+  ];
+
+  /* ── Scoring ── */
+  function score(input, tags) {
+    var lower = input.toLowerCase(), s = 0;
+    tags.forEach(function(tag) {
+      if (lower.indexOf(tag) !== -1) s += tag.split(' ').length * 2;
+    });
+    return s;
+  }
+
+  function respond(input) {
+    // Check FAQs
+    var bestFaq = null, bestFaqScore = 0;
+    FAQS.forEach(function(f) {
+      var s = score(input, f.tags);
+      if (s > bestFaqScore) { bestFaqScore = s; bestFaq = f; }
+    });
+
+    // Check pages
+    var hitPages = [];
+    PAGES.forEach(function(p) {
+      var s = score(input, p.tags);
+      if (s > 0) hitPages.push({ p: p, s: s });
+    });
+    hitPages.sort(function(a,b){ return b.s - a.s; });
+
+    if (bestFaqScore >= 2 && bestFaq) {
+      var html = bestFaq.answer;
+      if (bestFaq.link) html += '<br><br><a href="' + bestFaq.link.url + '">' + bestFaq.link.text + ' &rarr;</a>';
+      if (bestFaq.action === 'contact') html += '<br><br><button class="chat-qr-btn" onclick="wcContact()" style="margin-top:4px">Send a Message</button>';
+      return html;
+    }
+    if (hitPages.length) {
+      var html = "Here's what I found on our site:";
+      hitPages.slice(0,3).forEach(function(r) {
+        html += '<br>&bull; <a href="' + r.p.url + '">' + r.p.title + '</a>';
+      });
+      return html;
+    }
+    return "I'm not sure about that one — but I'm happy to connect you with someone who can help. <button class=\"chat-qr-btn\" onclick=\"wcContact()\" style=\"display:inline;vertical-align:middle;margin-left:4px\">Send a Message</button>";
+  }
+
+  /* ── DOM Helpers ── */
+  function msgs() { return document.getElementById('wcMsgs'); }
+
+  function addMsg(role, html) {
+    var m = msgs(); if (!m) return;
+    var d = document.createElement('div');
+    d.className = 'chat-msg ' + role;
+    var b = document.createElement('div');
+    b.className = 'msg-bubble'; b.innerHTML = html;
+    d.appendChild(b); m.appendChild(d);
+    m.scrollTop = m.scrollHeight;
+  }
+
+  function hideQR() {
+    var qr = document.getElementById('wcQR');
+    if (qr) qr.style.display = 'none';
+  }
+
+  /* ── Public API ── */
+  window.wcToggle = function() {
+    chatOpen = !chatOpen;
+    var win = document.getElementById('wcWin');
+    if (win) win.classList.toggle('open', chatOpen);
+    if (chatOpen && !greeted) {
+      greeted = true;
+      setTimeout(function() {
+        addMsg('bot', 'Hi! I\'m the Walton Trailers support assistant. I can help you find the right trailer, answer questions about specs, warranty, dealers, and more.<br><br>What can I help you with today?');
+        var qr = document.getElementById('wcQR');
+        if (qr) qr.style.display = 'flex';
+      }, 200);
+    }
+  };
+
+  window.wcQuick = function(text) {
+    hideQR();
+    addMsg('user', text);
+    setTimeout(function() { addMsg('bot', respond(text)); }, 350);
+  };
+
+  window.wcSend = function() {
+    var inp = document.getElementById('wcInput');
+    if (!inp) return;
+    var text = inp.value.trim();
+    if (!text) return;
+    inp.value = '';
+    hideQR();
+    addMsg('user', text);
+    setTimeout(function() { addMsg('bot', respond(text)); }, 350);
+  };
+
+  window.wcKey = function(e) { if (e.key === 'Enter') wcSend(); };
+
+  window.wcContact = function() {
+    addMsg('bot',
+      'Fill this out and we\'ll get back to you shortly.' +
+      '<div style="display:flex;flex-direction:column;gap:8px;margin-top:10px">' +
+        '<input id="wc-name" placeholder="Your name" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:4px;padding:8px 10px;color:#f5f3ef;font-size:13px;font-family:inherit;outline:none;width:100%;box-sizing:border-box">' +
+        '<input id="wc-email" type="email" placeholder="Email address" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:4px;padding:8px 10px;color:#f5f3ef;font-size:13px;font-family:inherit;outline:none;width:100%;box-sizing:border-box">' +
+        '<textarea id="wc-msg" placeholder="Your message" rows="3" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:4px;padding:8px 10px;color:#f5f3ef;font-size:13px;font-family:inherit;outline:none;resize:none;width:100%;box-sizing:border-box"></textarea>' +
+        '<button onclick="wcSubmit()" style="background:#c0392b;color:#f5f3ef;border:none;border-radius:2px;padding:10px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;font-family:inherit">Send Message</button>' +
+      '</div>'
+    );
+  };
+
+  window.wcSubmit = function() {
+    var name  = (document.getElementById('wc-name')  || {}).value || '';
+    var email = (document.getElementById('wc-email') || {}).value || '';
+    if (!name.trim() || !email.trim()) {
+      addMsg('bot', 'Please enter your name and email before sending.'); return;
+    }
+    addMsg('bot', '<strong>Message sent!</strong> &#10003;<br>Thanks, ' + name.split(' ')[0] + '! We\'ll be in touch soon.');
+  };
+})();
 </script>
+<div class="chat-fab">
+  <span class="chat-fab-label">Ask a Question</span>
+  <button class="chat-fab-btn" onclick="wcToggle()" aria-label="Open support chat">
+    <div class="chat-fab-pulse"></div>
+    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+  </button>
+</div>
+
+<div class="support-chat" id="wcWin">
+  <div class="chat-header">
+    <div class="chat-header-info">
+      <div class="chat-avatar">
+        <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+      </div>
+      <div class="chat-header-text">
+        <h4>Walton Support</h4>
+        <p>Ask us anything about our trailers</p>
+      </div>
+    </div>
+    <button class="chat-close-btn" onclick="wcToggle()">&#x2715;</button>
+  </div>
+  <div class="chat-messages" id="wcMsgs"></div>
+  <div class="chat-quick-replies" id="wcQR" style="display:none">
+    <button class="chat-qr-btn" onclick="wcQuick('What trailers do you offer?')">What trailers do you offer?</button>
+    <button class="chat-qr-btn" onclick="wcQuick('Warranty info')">Warranty info</button>
+    <button class="chat-qr-btn" onclick="wcQuick('Get a quote')">Get a quote</button>
+    <button class="chat-qr-btn" onclick="wcQuick('Find a dealer near me')">Find a dealer</button>
+    <button class="chat-qr-btn" onclick="wcQuick('What GVWR do I need?')">What GVWR do I need?</button>
+  </div>
+  <div class="chat-input-row">
+    <input class="chat-text-input" id="wcInput" placeholder="Ask a question..." onkeydown="wcKey(event)" />
+    <button class="chat-send-btn" onclick="wcSend()">
+      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+</div>
 </body>
 </html>
