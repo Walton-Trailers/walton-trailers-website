@@ -1,0 +1,2219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S1DJR65JZJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-S1DJR65JZJ');
+  </script>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DHV207 | Walton Trailers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f3ef;
+      --steel: #1c2028;
+      --rust: #c0392b;
+      --rust-dark: #a93226;
+      --gray: #6b7280;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+    }
+    
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    
+    .main-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(10, 10, 10, 0.98);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 88px;
+    }
+    
+    .nav-logo a {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      letter-spacing: 2px;
+      color: var(--white);
+      font-weight: 700;
+    }
+    
+    .nav-menu {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      position: relative;
+    }
+    
+    .nav-link {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(245, 243, 239, 0.7);
+      transition: color 0.2s;
+    }
+    
+    .nav-link:hover {
+      color: var(--rust);
+    }
+    
+    .mega-panel {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--steel);
+      border-radius: 4px;
+      padding: 24px;
+      min-width: 250px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s, visibility 0.2s;
+      margin-top: 8px;
+    }
+    
+    .nav-menu:hover .mega-panel {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .mega-panel a {
+      display: block;
+      padding: 12px 0;
+      font-size: 13px;
+      letter-spacing: 1px;
+      color: rgba(245, 243, 239, 0.75);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .mega-panel a:last-child {
+      border-bottom: none;
+    }
+    
+    .mega-panel a:hover {
+      color: var(--rust);
+    }
+    
+    .main-footer {
+      background: var(--steel);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 60px 0 40px;
+      margin-top: 80px;
+    }
+    
+    .footer-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 60px;
+      margin-bottom: 40px;
+    }
+    
+    .footer-section h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      color: var(--white);
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-section a {
+      font-size: 13px;
+      color: rgba(245, 243, 239, 0.6);
+      transition: color 0.2s;
+    }
+    
+    .footer-section a:hover {
+      color: var(--rust);
+    }
+    
+    .footer-bottom {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 48px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+    }
+    
+    .footer-bottom p {
+      font-size: 12px;
+      color: rgba(245, 243, 239, 0.35);
+    }
+    
+    @media (max-width: 768px) {
+      .nav-container {
+        padding: 0 24px;
+      }
+      
+      .footer-container {
+        padding: 0 24px;
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      
+      .footer-bottom {
+        padding: 0 24px;
+      }
+    }
+    
+    
+    .model-hero {
+      background: linear-gradient(135deg, #1a1e28 0%, #0d1018 100%);
+      min-height: 55vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 64px 60px;
+      position: relative;
+      overflow: hidden;
+      margin-top: 88px;
+    }
+    
+    .model-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10, 10, 10, 0.85) 0%, transparent 70%);
+    }
+    
+    .model-hero-breadcrumb {
+      position: relative;
+      z-index: 2;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(245, 243, 239, 0.35);
+      margin-bottom: 16px;
+    }
+    
+    .model-hero-breadcrumb a {
+      color: rgba(245, 243, 239, 0.35);
+      text-decoration: none;
+    }
+    
+    .model-hero-breadcrumb a:hover {
+      color: var(--rust);
+    }
+    
+    .model-hero-code {
+      position: relative;
+      z-index: 2;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(72px, 10vw, 130px);
+      letter-spacing: 4px;
+      line-height: 0.9;
+      color: var(--white);
+    }
+    
+    .model-hero-name {
+      position: relative;
+      z-index: 2;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(245, 243, 239, 0.5);
+      margin: 14px 0 0;
+    }
+    
+    .model-hero-tag {
+      position: relative;
+      z-index: 2;
+      display: inline-block;
+      background: var(--rust);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 2px;
+      margin-top: 20px;
+    }
+    
+    .quick-specs {
+      background: var(--steel);
+      padding: 40px 48px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .spec-item {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .spec-label {
+      font-size: 9px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(245, 243, 239, 0.35);
+      font-weight: 500;
+    }
+    
+    .spec-value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 1.5px;
+      color: var(--white);
+    }
+    
+    .overview-section {
+      background: var(--black);
+      padding: 80px 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    
+    .overview-text h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 4vw, 56px);
+      letter-spacing: 2px;
+      margin-bottom: 32px;
+    }
+    
+    .overview-text p {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(245, 243, 239, 0.7);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+    
+    .overview-image {
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #1a1e28 0%, #0d1018 100%);
+      border-radius: 4px;
+      border: 1px dashed rgba(255, 255, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.15);
+    }
+    
+    .features-grid-section {
+      background: var(--steel);
+      padding: 80px 48px;
+    }
+    
+    .features-grid-section h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 4vw, 56px);
+      letter-spacing: 2px;
+      margin-bottom: 40px;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .feature-item:nth-child(odd) {
+      padding-right: 32px;
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .feature-item:nth-child(even) {
+      padding-left: 32px;
+    }
+    
+    .feature-check {
+      color: var(--rust);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    
+    .feature-text {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(245, 243, 239, 0.7);
+      line-height: 1.5;
+    }
+    
+    .specs-section {
+      background: var(--steel);
+      padding: 80px 48px;
+    }
+    
+    .specs-section h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 4vw, 56px);
+      letter-spacing: 2px;
+      margin-bottom: 40px;
+    }
+    
+    .specs-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .specs-table tr {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    
+    .specs-table tr:last-child {
+      border-bottom: none;
+    }
+    
+    .specs-table td {
+      padding: 16px 0;
+      font-size: 14px;
+    }
+    
+    .specs-table td:first-child {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(245, 243, 239, 0.4);
+      width: 45%;
+      font-weight: 500;
+    }
+    
+    .specs-table td:last-child {
+      color: var(--white);
+      font-weight: 400;
+    }
+    
+    .specs-group-header td {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      letter-spacing: 2px;
+      color: var(--rust) !important;
+      padding-top: 32px !important;
+      text-transform: uppercase !important;
+    }
+    
+    .specs-group-header:first-child td {
+      padding-top: 0 !important;
+    }
+    
+    .specs-diagram {
+      position: sticky;
+      top: 108px;
+    }
+    
+    .specs-diagram-label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(245, 243, 239, 0.3);
+      margin-bottom: 16px;
+    }
+    
+    .specs-diagram-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #242836 0%, #1a1e28 100%);
+      border-radius: 4px;
+      border: 1px dashed rgba(255, 255, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.15);
+    }
+    
+    .configs-section {
+      background: var(--black);
+      padding: 80px 48px;
+    }
+    
+    .configs-section h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 4vw, 56px);
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+    
+    .configs-intro {
+      font-size: 14px;
+      color: rgba(245, 243, 239, 0.45);
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+    
+    .configs-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    
+    .configs-table th {
+      text-align: left;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(245, 243, 239, 0.35);
+      font-weight: 500;
+      padding: 0 16px 16px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    .configs-table td {
+      padding: 14px 16px 14px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: rgba(245, 243, 239, 0.75);
+      vertical-align: top;
+    }
+    
+    .configs-table td:first-child {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      letter-spacing: 1.5px;
+      color: var(--white);
+    }
+    
+    .configs-table td.msrp {
+      color: var(--rust);
+      font-weight: 500;
+    }
+    
+    .configs-table tr:last-child td {
+      border-bottom: none;
+    }
+    
+    .tire-note {
+      margin-top: 28px;
+      padding: 20px 24px;
+      background: rgba(255, 255, 255, 0.03);
+      border-left: 3px solid var(--rust);
+      font-size: 13px;
+      color: rgba(245, 243, 239, 0.5);
+      line-height: 1.7;
+    }
+    
+    .cta-banner {
+      background: var(--rust);
+      padding: 60px 48px;
+      text-align: center;
+      color: var(--white);
+    }
+    
+    .cta-banner h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 4vw, 56px);
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+    
+    .cta-banner p {
+      font-size: 16px;
+      margin-bottom: 32px;
+      opacity: 0.95;
+    }
+    
+    .cta-btn {
+      display: inline-block;
+      background: var(--white);
+      color: var(--rust);
+      padding: 15px 40px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+    
+    .cta-btn:hover {
+      background: rgba(245, 243, 239, 0.9);
+    }
+    
+    .related-section {
+      background: var(--steel);
+      padding: 80px 48px;
+    }
+    
+    .related-section h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 4vw, 56px);
+      letter-spacing: 2px;
+      margin-bottom: 40px;
+    }
+    
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    
+    .related-card {
+      background: var(--black);
+      border-radius: 4px;
+      overflow: hidden;
+      text-decoration: none;
+      color: var(--white);
+      transition: transform 0.3s;
+      display: block;
+    }
+    
+    .related-card:hover {
+      transform: translateY(-4px);
+    }
+    
+    .related-card-img {
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #1a1e28 0%, #0d1018 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.08);
+    }
+    
+    .related-card-body {
+      padding: 20px;
+    }
+    
+    .related-card-code {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      letter-spacing: 2px;
+      margin-bottom: 4px;
+    }
+    
+    .related-card-gvwr {
+      font-size: 11px;
+      color: rgba(245, 243, 239, 0.35);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    
+    @media (max-width: 900px) {
+      .specs-layout {
+        grid-template-columns: 1fr;
+      }
+      
+      .specs-diagram {
+        position: static;
+      }
+      
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .feature-item:nth-child(odd) {
+        padding-right: 0;
+        border-right: none;
+      }
+      
+      .feature-item:nth-child(even) {
+        padding-left: 0;
+      }
+      
+      .related-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .overview-section {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      
+      .quick-specs {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .model-hero {
+        padding: 0 32px 48px;
+      }
+      
+      .quick-specs {
+        padding: 32px 24px;
+      }
+      
+      .overview-section {
+        padding: 48px 24px;
+      }
+      
+      .features-grid-section {
+        padding: 48px 24px;
+      }
+      
+      .specs-section {
+        padding: 48px 24px;
+      }
+      
+      .configs-section {
+        padding: 48px 24px;
+      }
+      
+      .cta-banner {
+        padding: 48px 24px;
+      }
+      
+      .related-section {
+        padding: 48px 24px;
+      }
+      
+      .related-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+  
+/* ── NAV OVERRIDE (matches main page) ── */
+nav#navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 48px;
+  background: rgba(10,10,10,0.96);
+  border-bottom: none;
+  transition: background 0.3s;
+}
+nav#navbar.scrolled { background: rgba(10,10,10,0.96); }
+nav#navbar .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 3px; color: #f5f3ef; text-decoration: none; display: flex; align-items: center; }
+nav#navbar .nav-links { display: flex; gap: 36px; list-style: none; margin: 0; padding: 0; }
+nav#navbar .nav-links a { color: rgba(245,243,239,0.85); text-decoration: none; font-size: 14px; font-weight: 400; letter-spacing: 1px; text-transform: uppercase; transition: color 0.2s; }
+nav#navbar .nav-links a:hover { color: #f5f3ef; }
+nav#navbar .nav-cta { background: #b7a380; color: #f5f3ef !important; padding: 10px 22px; border-radius: 2px; font-weight: 500 !important; }
+nav#navbar .nav-dealer-login { padding: 0 !important; background: none !important; }
+nav#navbar .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 36px; height: 36px; cursor: pointer; background: none; border: none; padding: 4px; z-index: 300; }
+nav#navbar .hamburger span { display: block; width: 100%; height: 2px; background: #f5f3ef; border-radius: 2px; transition: transform 0.3s, opacity 0.3s; transform-origin: center; }
+nav#navbar .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+nav#navbar .hamburger.open span:nth-child(2) { opacity: 0; }
+nav#navbar .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+nav#navbar .nav-dropdown-trigger { display: flex; align-items: center; gap: 4px; cursor: pointer; position: relative; }
+nav#navbar .nav-chevron { font-size: 9px; opacity: 0.55; transition: transform 0.25s; display: inline-block; }
+.nav-mega { position: fixed; top: 64px; left: 0; right: 0; background: rgba(245,243,239,0.97); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-top: 1px solid rgba(0,0,0,0.08); box-shadow: 0 12px 48px rgba(0,0,0,0.18); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.22s ease, transform 0.22s ease; z-index: 210; color: #0a0a0a; }
+.nav-mega.open { opacity: 1; pointer-events: all; transform: translateY(0); }
+.nav-mega-inner { max-width: 1100px; margin: 0 auto; padding: 48px 48px 52px; display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; }
+.mega-item { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 24px 16px 20px; border-radius: 4px; cursor: pointer; transition: background 0.18s; text-decoration: none; color: #0a0a0a; }
+.mega-item:hover { background: rgba(0,0,0,0.05); }
+.mega-img { width: 100%; height: 140px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+.mega-img-placeholder { width: 85%; height: 100%; border: 1px dashed rgba(0,0,0,0.15); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(0,0,0,0.2); }
+.mega-name { font-size: 16px; font-weight: 500; letter-spacing: 0.3px; margin-bottom: 10px; color: #0a0a0a; }
+.mega-desc { font-size: 12px; color: rgba(0,0,0,0.45); letter-spacing: 0.3px; line-height: 1.5; margin-bottom: 14px; }
+.mega-learn { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #0a0a0a; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+.mega-learn::after { content: '→'; }
+.nav-discover-wrap { position: static; }
+.nav-discover-mega { position: fixed; top: 64px; left: 0; right: 0; background: rgba(245,243,239,0.97); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-top: 1px solid rgba(0,0,0,0.08); box-shadow: 0 12px 48px rgba(0,0,0,0.18); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.22s ease, transform 0.22s ease; z-index: 210; color: var(--black); }
+.nav-discover-wrap:hover .nav-discover-mega, .nav-discover-mega:hover { opacity: 1; pointer-events: all; transform: translateY(0); }
+.nav-discover-wrap:hover .nav-chevron { transform: rotate(180deg); }
+.nav-discover-wrap .nav-dropdown-trigger::after { content: ''; position: absolute; top: 100%; left: -40px; right: -40px; height: 24px; }
+.nav-discover-inner { max-width: 900px; margin: 0 auto; padding: 52px 48px 56px; display: grid; grid-template-columns: repeat(2, 240px); gap: 0 80px; }
+.discover-col-heading { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: rgba(0,0,0,0.4); font-weight: 400; margin-bottom: 20px; }
+.discover-col-links { list-style: none; }
+.discover-col-links li { margin-bottom: 4px; }
+.discover-col-links a { display: block; font-size: 16px; font-weight: 500; color: var(--black) !important; text-decoration: none !important; text-transform: none !important; letter-spacing: 0 !important; padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.07); transition: color 0.15s; }
+.discover-col-links li:last-child a { border-bottom: none; }
+.discover-col-links a:hover { color: var(--rust) !important; }
+.mobile-menu { position: fixed; inset: 0; z-index: 250; background: rgba(10,10,10,0.98); display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 0; transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); pointer-events: none; }
+.mobile-menu.open { transform: translateX(0); pointer-events: all; }
+.mobile-menu-link { font-family: 'Bebas Neue', sans-serif; font-size: 42px; letter-spacing: 4px; color: #f5f3ef; text-decoration: none; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.07); width: 80%; text-align: center; transition: color 0.2s; }
+.mobile-menu-link:hover { color: #b7a380; }
+.mobile-menu-close { position: absolute; top: 24px; right: 24px; background: none; border: none; color: #f5f3ef; font-size: 28px; cursor: pointer; padding: 8px; line-height: 1; }
+@media(max-width:768px) {
+  nav#navbar { padding: 16px 24px; }
+  nav#navbar .nav-links { display: none; }
+  nav#navbar .hamburger { display: flex; }
+  .nav-mega { top: 56px; }
+}
+
+
+/* ── FOOTER ── */
+footer {
+  background: var(--steel);
+  padding: 60px 48px 40px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+.footer-brand { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 3px; margin-bottom: 16px; }
+.footer-tagline { font-size: 13px; color: rgba(245,243,239,0.4); line-height: 1.6; max-width: 220px; }
+.footer-social { display: flex; gap: 12px; margin-top: 20px; }
+.footer-social-btn { width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.12); color: rgba(245,243,239,0.5) !important; display: flex; align-items: center; justify-content: center; text-decoration: none !important; transition: border-color 0.2s, color 0.2s, background 0.2s; }
+.footer-social-btn:hover { border-color: #b7a380; color: #f5f3ef; background: rgba(183,163,128,0.15); }
+.footer-col h4 { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: rgba(245,243,239,0.4); margin-bottom: 20px; }
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 12px; }
+.footer-col a { color: rgba(245,243,239,0.75); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+.footer-col a:hover { color: #f5f3ef; }
+.footer-bottom { background: var(--steel); padding: 20px 48px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: rgba(245,243,239,0.3); letter-spacing: 1px; }
+@media(max-width:768px) {
+  footer { grid-template-columns: 1fr 1fr; padding: 40px 24px 32px; }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; padding: 16px 24px; }
+}
+
+
+/* ── FIXES ── */
+.footer-bottom { max-width: none !important; width: 100% !important; margin: 0 !important; box-sizing: border-box !important; }
+.model-card-subtitle { color: #b7a380 !important; }
+.model-hero-name { color: #b7a380 !important; }
+.nav-mega-inner .mega-img { width: 100%; height: 140px; margin-bottom: 12px; border-radius: 4px; overflow: hidden; background-size: cover !important; background-position: center !important; }
+.mega-item { padding-bottom: 16px; }
+  /* ════════════════════════════════
+     SUPPORT CHAT WIDGET
+  ════════════════════════════════ */
+  .chat-fab {
+    position: fixed; bottom: 32px; right: 32px; z-index: 500;
+    display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
+  }
+  .chat-fab-btn {
+    width: 60px; height: 60px; border-radius: 50%;
+    background: #c0392b; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(192,57,43,0.4);
+    transition: transform 0.2s, background 0.2s; position: relative;
+  }
+  .chat-fab-btn:hover { transform: scale(1.08); background: #a93226; }
+  .chat-fab-btn svg { width: 26px; height: 26px; fill: var(--white); }
+  .chat-fab-pulse {
+    position: absolute; inset: -4px; border-radius: 50%;
+    border: 2px solid #c0392b; opacity: 0.6;
+    animation: fabPulse 2.5s ease-out infinite;
+    pointer-events: none;
+  }
+  @keyframes fabPulse { 0%{transform:scale(1);opacity:.6} 100%{transform:scale(1.5);opacity:0} }
+  .chat-fab-label {
+    background: rgba(10,10,10,0.9); color: #f5f3ef;
+    font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
+    padding: 6px 12px; border-radius: 2px; white-space: nowrap;
+    opacity: 0; transform: translateX(8px);
+    transition: opacity 0.2s, transform 0.2s; pointer-events: none;
+  }
+  .chat-fab:hover .chat-fab-label { opacity: 1; transform: translateX(0); }
+
+  /* Chat window */
+  .support-chat {
+    position: fixed; bottom: 104px; right: 32px; width: 360px;
+    max-height: 540px; background: #12151b;
+    border: 1px solid rgba(255,255,255,0.08); border-radius: 8px;
+    display: flex; flex-direction: column; z-index: 499;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+    transform: translateY(16px) scale(0.97); opacity: 0; pointer-events: none;
+    transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+  }
+  .support-chat.open { transform: translateY(0) scale(1); opacity: 1; pointer-events: all; }
+  .chat-header {
+    background: var(--steel); padding: 16px 20px;
+    border-radius: 8px 8px 0 0;
+    display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
+  }
+  .chat-header-info { display: flex; align-items: center; gap: 12px; }
+  .chat-avatar {
+    width: 36px; height: 36px; background: #c0392b; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .chat-avatar svg { width: 18px; height: 18px; fill: white; }
+  .chat-header-text h4 { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 1px; color: #f5f3ef; }
+  .chat-header-text p { font-size: 11px; color: rgba(245,243,239,0.5); margin-top: 1px; }
+  .chat-close-btn { background: none; border: none; color: rgba(245,243,239,0.4); font-size: 22px; cursor: pointer; line-height: 1; transition: color 0.2s; padding: 0; }
+  .chat-close-btn:hover { color: #f5f3ef; }
+  .chat-messages {
+    flex: 1; overflow-y: auto; padding: 16px;
+    display: flex; flex-direction: column; gap: 10px; scroll-behavior: smooth;
+  }
+  .chat-messages::-webkit-scrollbar { width: 4px; }
+  .chat-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+  .chat-msg { display: flex; max-width: 90%; }
+  .chat-msg.bot { align-self: flex-start; }
+  .chat-msg.user { align-self: flex-end; }
+  .msg-bubble { padding: 10px 14px; border-radius: 12px; font-size: 13px; line-height: 1.55; }
+  .chat-msg.bot .msg-bubble { background: rgba(255,255,255,0.07); color: rgba(245,243,239,0.9); border-radius: 4px 12px 12px 12px; }
+  .chat-msg.user .msg-bubble { background: #c0392b; color: #f5f3ef; border-radius: 12px 4px 12px 12px; }
+  .chat-msg.bot .msg-bubble a { color: #e74c3c; }
+  .chat-quick-replies { padding: 6px 16px 10px; display: flex; flex-wrap: wrap; gap: 6px; flex-shrink: 0; }
+  .chat-qr-btn {
+    background: transparent; border: 1px solid rgba(183,163,128,0.4);
+    color: rgba(245,243,239,0.75); font-size: 11px; letter-spacing: 0.5px;
+    padding: 5px 10px; border-radius: 20px; cursor: pointer;
+    transition: all 0.15s; font-family: 'DM Sans', sans-serif; white-space: nowrap;
+  }
+  .chat-qr-btn:hover { border-color: #c0392b; color: #c0392b; }
+  .chat-input-row { padding: 12px 16px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; gap: 8px; flex-shrink: 0; }
+  .chat-text-input {
+    flex: 1; background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 20px;
+    padding: 8px 14px; color: #f5f3ef; font-size: 13px;
+    font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.2s;
+  }
+  .chat-text-input:focus { border-color: #c0392b; }
+  .chat-text-input::placeholder { color: rgba(245,243,239,0.3); }
+  .chat-send-btn {
+    width: 34px; height: 34px; background: #c0392b; border: none;
+    border-radius: 50%; cursor: pointer; display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0; transition: background 0.2s; align-self: flex-end;
+  }
+  .chat-send-btn:hover { background: #a93226; }
+  .chat-send-btn svg { width: 14px; height: 14px; fill: white; }
+  @media (max-width: 480px) {
+    .support-chat { width: calc(100vw - 32px); right: 16px; bottom: 92px; }
+    .chat-fab { bottom: 20px; right: 16px; }
+  }
+
+  /* ── SIMPLE DROPDOWN MENUS (Owners / Dealers / Company) ── */
+  .nav-simple-wrap { position: static; }
+  .nav-simple-wrap .nav-dropdown-trigger::after { content:''; position:absolute; bottom:-12px; left:0; right:0; height:12px; }
+  .nav-simple-mega {
+    position: fixed; top: 64px; left: 0; right: 0;
+    background: rgba(245,243,239,0.97);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 12px 48px rgba(0,0,0,0.18);
+    opacity: 0; pointer-events: none;
+    transform: translateY(-6px);
+    transition: opacity 0.22s ease, transform 0.22s ease;
+    z-index: 210; color: var(--black);
+  }
+  .nav-simple-wrap:hover .nav-simple-mega,
+  .nav-simple-mega:hover { opacity:1; pointer-events:all; transform:translateY(0); }
+  .nav-simple-wrap:hover .nav-chevron { transform:rotate(180deg); }
+  .nav-simple-inner {
+    max-width: 900px; margin: 0 auto;
+    padding: 40px 48px 48px; display: flex; gap: 80px;
+  }
+  .simple-col { min-width: 180px; }
+  
+  /* ── TRAILERS MEGA: CSS hover (consistent with other dropdowns) ── */
+  #trailersTrigger .nav-dropdown-trigger::after {
+    content: ''; position: absolute;
+    bottom: -12px; left: 0; right: 0; height: 12px;
+  }
+  nav:has(#trailersTrigger:hover) ~ #trailersMega,
+  #trailersMega:hover {
+    opacity: 1 !important; pointer-events: all !important; transform: translateY(0) !important;
+  }
+  nav:has(#trailersTrigger:hover) #trailersChevron {
+    transform: rotate(180deg);
+  }
+
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+  <a href="../index.html" class="nav-logo"><img src="../Images/logos/walton-logo-white.png" alt="Walton Trailers" style="height:52px;width:auto;"></a>
+  <ul class="nav-links">
+    <!-- Trailers dropdown -->
+    <li id="trailersTrigger">
+      <a href="#" onclick="return false" class="nav-dropdown-trigger" id="trailersTriggerLink">Trailers <span class="nav-chevron" id="trailersChevron">&#9662;</span></a>
+    </li>
+    
+    <!-- Owners dropdown -->
+    <li class="nav-simple-wrap" id="ownersTrigger">
+      <a href="#" class="nav-dropdown-trigger" onclick="return false">Owners <span class="nav-chevron">&#9662;</span></a>
+      <div class="nav-simple-mega">
+        <div class="nav-simple-inner">
+          <div class="simple-col">
+            <div class="discover-col-heading">Owner Resources</div>
+            <ul class="discover-col-links">
+              <li><a href="../owners.html#owners">User Manuals</a></li>
+              <li><a href="../parts.html">Parts &amp; Accessories</a></li>
+              <li><a href="../video-guides.html">Video Guides</a></li>
+              <li><a href="../learn.html">FAQ &amp; Learning Center</a></li>
+            </ul>
+          </div>
+          <div class="simple-col">
+            <div class="discover-col-heading">Service</div>
+            <ul class="discover-col-links">
+              <li><a href="../owners.html#warranty">Warranty Claim</a></li>
+              <li><a href="../owners.html#register">Register Your Trailer</a></li>
+              <li><a href="#" onclick="toggleContactDrawer(); return false;">Contact Support</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </li>
+    <!-- Dealers dropdown -->
+    <li class="nav-simple-wrap" id="dealersTrigger">
+      <a href="#" class="nav-dropdown-trigger" onclick="return false">Dealers <span class="nav-chevron">&#9662;</span></a>
+      <div class="nav-simple-mega">
+        <div class="nav-simple-inner">
+          <div class="simple-col">
+            <div class="discover-col-heading">Find &amp; Buy</div>
+            <ul class="discover-col-links">
+              <li><a href="../index.html#dealers">Find a Dealer</a></li>
+              <li><a href="../become-a-dealer.html">Become a Dealer</a></li>
+            </ul>
+          </div>
+          <div class="simple-col">
+            <div class="discover-col-heading">Dealer Tools</div>
+            <ul class="discover-col-links">
+              <li><a href="#" onclick="return false">Dealer Portal</a></li>
+              <li><a href="#" onclick="return false">Dealer Resources</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </li>
+    <!-- Company dropdown -->
+    <li class="nav-simple-wrap" id="companyTrigger">
+      <a href="#" class="nav-dropdown-trigger" onclick="return false">Company <span class="nav-chevron">&#9662;</span></a>
+      <div class="nav-simple-mega">
+        <div class="nav-simple-inner">
+          <div class="simple-col">
+            <div class="discover-col-heading">Company</div>
+            <ul class="discover-col-links">
+              <li><a href="../about.html">About Walton</a></li>
+              <li><a href="../careers.html">Careers</a></li>
+              <li><a href="#" onclick="toggleContactDrawer(); return false;">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </li>
+    <!-- CTA -->
+    <li><a href="../index.html#dealers" class="nav-cta">Find a Dealer</a></li>
+    <!-- Dealer login icon -->
+    <li><a href="#" class="nav-dealer-login" title="Dealer Login" onclick="return false">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+    </a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mega" id="trailersMega">
+  <div class="nav-mega-inner" style="grid-template-columns:repeat(5,1fr);gap:8px;">
+
+    <a href="../Gooseneck/gooseneck.html" class="mega-item">
+      <div class="mega-img" style="background-image:url('../Images/site/img-1-832x1248.png');background-size:cover;background-position:center;border-radius:4px;"></div>
+      <div class="mega-name">Gooseneck Flatbeds</div>
+    </a>
+
+    <a href="../dump-trailers/dump-trailers.html" class="mega-item">
+      <div class="mega-img" style="background-image:url('../Images/site/img-1-1344x768.png');background-size:cover;background-position:center;border-radius:4px;"></div>
+      <div class="mega-name">Dump Trailers</div>
+    </a>
+
+    <a href="../tilt-equipment/tilt-equipment.html" class="mega-item">
+      <div class="mega-img" style="background-image:url('../Images/site/site-img-1-1184x864.jpg');background-size:cover;background-position:center;border-radius:4px;"></div>
+      <div class="mega-name">Tilt Deck Trailers</div>
+    </a>
+
+    <a href="../Deckover/deckover.html" class="mega-item">
+      <div class="mega-img" style="background-image:url('../Images/site/site-img-mega-1184x864.jpg');background-size:cover;background-position:center;border-radius:4px;"></div>
+      <div class="mega-name">Deckover Equipment</div>
+    </a>
+
+    <a href="../Landscape/landscape.html" class="mega-item">
+      <div class="mega-img" style="background-image:url('../Images/site/extracted-1-832x1248.jpg');background-size:cover;background-position:center;border-radius:4px;"></div>
+      <div class="mega-name">Landscape Trailers</div>
+    </a>
+
+  </div>
+</div>
+<div class="nav-mega" id="shopMega">
+  <div class="nav-mega-inner" style="grid-template-columns:repeat(3,1fr);gap:16px;max-width:700px;margin:0 auto;">
+    <a href="../parts.html" class="mega-item">
+      <div class="mega-img" style="background-image:url('../Images/site/new-4-225x225.jpg');background-size:cover;background-position:center;border-radius:4px;">
+      </div>
+      <div class="mega-name">Parts</div>
+    </a>
+    <a href="#" class="mega-item">
+      <div class="mega-img" style="background-image:url('../Images/site/new-5-1024x1024.png');background-size:cover;background-position:center;border-radius:4px;"></div>
+      <div class="mega-name">Apparel</div>
+    </a>
+    <a href="#" class="mega-item">
+      <div class="mega-img" style="background:#edeae4;border-radius:4px;display:flex;align-items:center;justify-content:center;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="13" y2="15"/></svg>
+      </div>
+      <div class="mega-name">Inventory</div>
+    </a>
+  </div>
+</div>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" onclick="toggleMenu()">&#x2715;</button>
+  <a href="../Gooseneck/gooseneck.html" class="mobile-menu-link">Gooseneck</a>
+  <a href="../tilt-equipment/tilt-equipment.html" class="mobile-menu-link">Tilt Equipment</a>
+  <a href="../Deckover/deckover.html" class="mobile-menu-link">Deckover</a>
+  <a href="../dump-trailers/dump-trailers.html" class="mobile-menu-link">Dump Trailers</a>
+  <a href="../Landscape/landscape.html" class="mobile-menu-link">Landscape</a>
+  <a href="#" class="mobile-menu-link">Shop</a>
+  <a href="#" class="mobile-menu-link">Find a Dealer</a>
+</div>
+  
+  <section class="model-hero">
+    <div class="model-hero-breadcrumb">
+      <a href="#">Home</a> / <a href="#">Trailers</a> / <a href="dump-trailers.html">Dump Trailers</a> / DHV207
+    </div>
+    <h1 class="model-hero-code">DHV207</h1>
+    <p class="model-hero-name">7' WIDE 14K DUMP TRAILER</p>
+  </section>
+  
+  <section class="quick-specs">
+    
+    <div class="spec-item">
+      <div class="spec-label">GVWR</div>
+      <div class="spec-value">14,900–15,500 lbs</div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-label">Payload</div>
+      <div class="spec-value">~10,720 lbs</div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-label">Widths</div>
+      <div class="spec-value">102" overall / 83" bed</div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-label">Deck Height</div>
+      <div class="spec-value">31"</div>
+    </div>
+    
+  </section>
+  
+  <section class="overview-section">
+    <div class="overview-text">
+      <h2>14K 7' Wide Dump — Everyday Contractor Workhorse</h2>
+      <p>The DHV207 is built for contractors, landscapers, and aggregate haulers who dump every day. A 24" 12-gauge wall, 10-gauge floor, and scissor hoist HPU handle up to 8.30 cubic yards. Available as a bumper pull (14,900 lbs GVWR) or gooseneck (15,500 lbs GVWR) with 14' or 16' beds.</p>
+      <p>Standard equipment includes a pull-style tarp system, combo barn door/spreader gate, 72" slide-in ramps, front locking toolbox, 4 D-rings, and tread plate fenders. Dexter E-Z Lube axles keep maintenance simple.</p>
+    </div>
+    <div class="overview-image">Add photo here</div>
+  </section>
+  
+  <section class="features-grid-section">
+    <h2>Standard Features</h2>
+    <div class="features-grid">
+      
+    <div class="feature-item">
+      <div class="feature-check">✓</div>
+      <div class="feature-text">516 Scissor Hoist with HPU (14') / 520 (16')</div>
+    </div>
+    
+    <div class="feature-item">
+      <div class="feature-check">✓</div>
+      <div class="feature-text">Combo Barn Door / Spreader Gate</div>
+    </div>
+    
+    <div class="feature-item">
+      <div class="feature-check">✓</div>
+      <div class="feature-text">24" Walls — 12 Gauge</div>
+    </div>
+    
+    <div class="feature-item">
+      <div class="feature-check">✓</div>
+      <div class="feature-text">10 Gauge Steel Floor</div>
+    </div>
+    
+    <div class="feature-item">
+      <div class="feature-check">✓</div>
+      <div class="feature-text">Pull-Style Tarp System</div>
+    </div>
+    
+    <div class="feature-item">
+      <div class="feature-check">✓</div>
+      <div class="feature-text">72" Slide-In Ramps</div>
+    </div>
+    
+    <div class="feature-item">
+      <div class="feature-check">✓</div>
+      <div class="feature-text">2" × 6" × 3/16" Tube Main Frame</div>
+    </div>
+    
+    <div class="feature-item">
+      <div class="feature-check">✓</div>
+      <div class="feature-text">3" Channel Cross Members on 18" Centers</div>
+    </div>
+    
+    <div class="feature-item">
+      <div class="feature-check">✓</div>
+      <div class="feature-text">Electric Self-Adjusting Brakes</div>
+    </div>
+    
+    <div class="feature-item">
+      <div class="feature-check">✓</div>
+      <div class="feature-text">4 — 5/8" D-Rings</div>
+    </div>
+    
+    <div class="feature-item">
+      <div class="feature-check">✓</div>
+      <div class="feature-text">Grommet Mounted LED Lights</div>
+    </div>
+    
+    <div class="feature-item">
+      <div class="feature-check">✓</div>
+      <div class="feature-text">Dexter E-Z Lube Axles</div>
+    </div>
+    
+    <div class="feature-item">
+      <div class="feature-check">✓</div>
+      <div class="feature-text">3/16" Tread Plate Fenders</div>
+    </div>
+    
+    <div class="feature-item">
+      <div class="feature-check">✓</div>
+      <div class="feature-text">Black Powder Coat</div>
+    </div>
+    
+    <div class="feature-item">
+      <div class="feature-check">✓</div>
+      <div class="feature-text">Front Locking Toolbox</div>
+    </div>
+    
+    <div class="feature-item">
+      <div class="feature-check">✓</div>
+      <div class="feature-text">12K Drop Leg Jack (Bolt On)</div>
+    </div>
+    
+    <div class="feature-item">
+      <div class="feature-check">✓</div>
+      <div class="feature-text">Spare Tire Mount</div>
+    </div>
+    
+    <div class="feature-item">
+      <div class="feature-check">✓</div>
+      <div class="feature-text">Safety Chains with Stow Hooks</div>
+    </div>
+    
+    </div>
+  </section>
+  
+  <section class="specs-section" id="specs">
+    <h2>Full Specifications</h2>
+    <div class="specs-layout">
+      <div>
+        
+    <table class="specs-table">
+      <tr class="specs-group-header">
+        <td colspan="2">Frame & Suspension</td>
+      </tr>
+      <tr>
+        <td>Axles</td>
+        <td>Dexter E-Z Lube — GAWR 7,000 (2)</td>
+      </tr>
+      <tr>
+        <td>Frame</td>
+        <td>2" × 6" × 3/16" Tube Main Frame</td>
+      </tr>
+      <tr>
+        <td>Cross Members</td>
+        <td>3" Channel on 18" centers</td>
+      </tr>
+      <tr>
+        <td>Coupler</td>
+        <td>2 5/16" Adjustable (bumper or gooseneck)</td>
+      </tr>
+      <tr>
+        <td>Jacks</td>
+        <td>12K Drop Leg Jack (Bolt On)</td>
+      </tr>
+      <tr>
+        <td>Brakes</td>
+        <td>Electric Self-Adjusting</td>
+      </tr>
+      <tr class="specs-group-header">
+        <td colspan="2">Tires & Deck</td>
+      </tr>
+      <tr>
+        <td>Standard Tires</td>
+        <td>ST235/80R16 "E" 10 Ply, 8 Lug, 16" Black</td>
+      </tr>
+      <tr>
+        <td>Upgrade Tires</td>
+        <td>ST235/85R16 "G" 14 Ply, 8 Lug, 16" Black (+$665)</td>
+      </tr>
+      <tr>
+        <td>Deck Material</td>
+        <td>10 ga. Steel Floor / 24" × 12 ga. Walls</td>
+      </tr>
+      <tr>
+        <td>Finish</td>
+        <td>Black Powder Coat</td>
+      </tr>
+    </table>
+    <p style="font-size: 11px; color: rgba(245, 243, 239, 0.35); margin-top: 28px; line-height: 1.6;">Limited Lifetime Structural Warranty on frame. Third-party components carry manufacturer warranty.</p>
+    
+      </div>
+      <div class="specs-diagram">
+        <div class="specs-diagram-label">Dimensions Reference</div>
+        <div class="specs-diagram-img">Dimensions diagram placeholder</div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="configs-section">
+    <h2>Available Configurations</h2>
+    <p class="configs-intro">Select the model and length that best suits your needs. All prices are MSRP and may vary by region. Contact your local Walton dealer for current pricing and availability.</p>
+    <table class="configs-table">
+      <thead>
+        <tr>
+          <th>Model</th>
+          <th>Deck Size</th>
+          <th>Overall Size</th>
+          <th>GVWR (lbs)</th>
+          <th>Empty Weight (lbs)</th>
+          <th>Est. Payload (lbs)</th>
+          <th>MSRP</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+    <tr>
+      <td>DHV207-14B</td>
+      <td>83" × 14'</td>
+      <td>102" × 19'</td>
+      <td>14,900</td>
+      <td>4,180</td>
+      <td>~10,720</td>
+      <td class="msrp">$12,493</td>
+    </tr>
+    
+    <tr>
+      <td>DHV207-16B</td>
+      <td>83" × 16'</td>
+      <td>102" × 21'</td>
+      <td>14,900</td>
+      <td>4,430</td>
+      <td>~10,470</td>
+      <td class="msrp">$12,993</td>
+    </tr>
+    
+    <tr>
+      <td>DHV207-14G</td>
+      <td>83" × 14'</td>
+      <td>102" × 22'</td>
+      <td>15,500</td>
+      <td>5,600</td>
+      <td>~9,900</td>
+      <td class="msrp">$14,055</td>
+    </tr>
+    
+    <tr>
+      <td>DHV207-16G</td>
+      <td>83" × 16'</td>
+      <td>102" × 24'</td>
+      <td>15,500</td>
+      <td>5,850</td>
+      <td>~9,650</td>
+      <td class="msrp">$14,555</td>
+    </tr>
+    
+      </tbody>
+    </table>
+    <div class="tire-note">Standard tire: ST235/80R16 "E" 10 Ply, 8 Lug, 16" Black. Upgrade available: ST235/85R16 "G" 14 Ply, 8 Lug, 16" Black (+$665)</div>
+  </section>
+  
+  <section class="cta-banner">
+    <h2>Ready to Get Started?</h2>
+    <p>Request a quote or speak with a dealer about the DHV207.</p>
+    <a href="#" class="cta-btn">Get a Quote</a>
+  </section>
+  
+  <section class="related-section">
+    <h2>Related Models</h2>
+    <div class="related-grid">
+      
+    <a href="dhv208.html" class="related-card">
+      <div class="related-card-img">Photo</div>
+      <div class="related-card-body">
+        <div class="related-card-code">DHV208</div>
+        <div class="related-card-gvwr">16K 7' Dump</div>
+      </div>
+    </a>
+    
+    <a href="dho210.html" class="related-card">
+      <div class="related-card-img">Photo</div>
+      <div class="related-card-body">
+        <div class="related-card-code">DHO210</div>
+        <div class="related-card-gvwr">20K 8' Dump</div>
+      </div>
+    </a>
+    
+    <a href="dho212.html" class="related-card">
+      <div class="related-card-img">Photo</div>
+      <div class="related-card-body">
+        <div class="related-card-code">DHO212</div>
+        <div class="related-card-gvwr">24K 8' Dump</div>
+      </div>
+    </a>
+    
+    <a href="dho215.html" class="related-card">
+      <div class="related-card-img">Photo</div>
+      <div class="related-card-body">
+        <div class="related-card-code">DHO215</div>
+        <div class="related-card-gvwr">30K 8' Dump</div>
+      </div>
+    </a>
+    
+    </div>
+  </section>
+  
+  
+</footer>
+<script>
+/* ════════════════════════════════════════
+   SUPPORT CHAT v2
+   ─ Smarter keyword matching, typing animation,
+     conversation context, AI-ready architecture.
+   ─ To enable Claude AI replies, set AI_ENDPOINT
+     to your Cloudflare Worker URL (see chatbot-worker.js).
+════════════════════════════════════════ */
+(function() {
+  /* ── Config ─────────────────────────────────── */
+  var AI_ENDPOINT = ''; // e.g. 'https://walton-chat.YOUR-NAME.workers.dev'
+
+  var chatOpen = false;
+  var greeted  = false;
+  var history  = []; /* conversation history for AI mode */
+
+  /* Detect page depth for correct relative URLs
+     GitHub Pages: /repo/subfolder/page.html = 3 slashes
+                   /repo/page.html           = 2 slashes          */
+  var depth = (window.location.pathname.match(/\//g) || []).length;
+  var base  = depth >= 3 ? '../' : '';
+
+  /* ── Knowledge Base ── */
+  var PAGES = [
+    { title:'Gooseneck Flatbeds',    url: base+'Gooseneck/gooseneck.html',
+      tags:['gooseneck','flatbed','fbh','fbx','flat bed','flat-bed','goose neck','goosenecks'] },
+    { title:'Dump Trailers',         url: base+'dump-trailers/dump-trailers.html',
+      tags:['dump','dho','dhv','hydraulic dump','dumping','dump trailer'] },
+    { title:'Tilt Deck Trailers',    url: base+'tilt-equipment/tilt-equipment.html',
+      tags:['tilt','tsx','tmx','tilt deck','equipment trailer','tilt-deck','tilt trailers'] },
+    { title:'Deckover Equipment',    url: base+'Deckover/deckover.html',
+      tags:['deckover','deck-over','bde','wide load','deck over','deckover trailer'] },
+    { title:'Landscape Trailers',    url: base+'Landscape/landscape.html',
+      tags:['landscape','mpr','lawn','mowing','landscaping','grass','lawn care'] },
+    { title:'About Walton Trailers', url: base+'about.html',
+      tags:['about','company','history','who are you','founded','walton'] },
+    { title:'Become a Dealer',       url: base+'become-a-dealer.html',
+      tags:['become dealer','resell','partner','dealership','sell walton','dealer program'] },
+    { title:'Careers',               url: base+'careers.html',
+      tags:['job','career','hiring','work here','employment','position','apply'] },
+    { title:'Buying Guides',         url: base+'learn.html',
+      tags:['learn','guide','buying guide','how to choose','which trailer','help me choose'] },
+    { title:'Video Guides',          url: base+'video-guides.html',
+      tags:['video','watch','tutorial','how to','youtube'] },
+  ];
+
+  var FAQS = [
+    { tags:['warranty','warrant','guarantee','lifetime'],
+      answer:'Walton Trailers come with a <strong>Lifetime Structural Warranty</strong> on all models. Contact your local dealer for full warranty terms and claims.' },
+    { tags:['price','cost','how much','pricing','quote','msrp','afford'],
+      answer:'Pricing varies by model and options. Use the <strong>Get a Quote</strong> button on any product page and a dealer will follow up with current pricing.',
+      link:{ text:'Browse Models', url: base+'index.html' } },
+    { tags:['dealer','find dealer','near me','closest','local dealer','buy','purchase','where can i'],
+      answer:'Walton Trailers are sold through an authorised dealer network across the United States. Use our dealer locator to find the closest one to you.',
+      link:{ text:'Find a Dealer', url: base+'index.html#dealers' } },
+    { tags:['gvwr','weight rating','capacity','payload','how much can','load','tow rating'],
+      answer:'GVWR ranges from <strong>14,000 lbs</strong> on entry-level models up to <strong>40,000+ lbs</strong> on heavy-duty equipment trailers. Check each model page for exact specs.',
+      link:{ text:'Browse Models', url: base+'index.html' } },
+    { tags:['gooseneck vs bumper','bumper pull','difference between','which type','hitch type'],
+      answer:'<strong>Gooseneck</strong> trailers mount in the truck bed for maximum stability and heavier payloads. <strong>Bumper pull</strong> trailers use a standard receiver hitch and work with most tow vehicles. Our buying guide explains it in detail.',
+      link:{ text:'Read the Buying Guide', url: base+'learn.html' } },
+    { tags:['financing','finance','loan','monthly payment','lease','credit'],
+      answer:'Financing options are available through Walton dealer locations. Contact your nearest dealer to discuss rates and terms.',
+      link:{ text:'Find a Dealer', url: base+'index.html#dealers' } },
+    { tags:['made in','manufactured','built where','usa','american made','logan','utah'],
+      answer:'Every Walton Trailer is <strong>designed and built in Logan, Utah, USA</strong> — American-made quality with over 50 years of experience.' },
+    { tags:['color','colour','paint','customize','custom order','options','configuration','build your own'],
+      answer:'Walton Trailers can be ordered in various configurations. Hit <strong>Build Your Own</strong> on any product page to explore options, or speak to a dealer about custom builds.' },
+    { tags:['parts','accessories','replacement part','repair','service','maintenance','fix'],
+      answer:'Genuine Walton parts and service are available through our dealer network. Contact your nearest dealer for parts orders or repair scheduling.',
+      link:{ text:'Find a Dealer', url: base+'index.html#dealers' } },
+    { tags:['register','registration','owner manual','owners manual','manual'],
+      answer:"Register your trailer and download the owner's manual through our support section. Your dealer can also assist with registration." },
+    { tags:['contact','call','phone','email','reach','message','talk','speak','help','support'],
+      answer:"I'd be happy to connect you with our team. Fill out a quick message below and we'll get back to you as soon as possible.",
+      action:'contact' },
+    /* ── Product-specific FAQs ── */
+    { tags:['landscape trailer','lawn trailer','mpr','mpr205','mpr207','lawn care trailer','landscaping trailer'],
+      answer:'The <strong>MPR Series</strong> Landscape Trailers are purpose-built for lawn care and landscaping equipment. They feature rear gate ramps and integrated tie-down rails.',
+      link:{ text:'View Landscape Trailers', url: base+'Landscape/landscape.html' } },
+    { tags:['dump trailer','dho210','dho212','dho215','dhv207','dhv208','hydraulic hoist','dump body','dumping trailer'],
+      answer:'The <strong>DHO and DHV Series</strong> Dump Trailers feature heavy-duty hydraulic hoists rated for demanding work. Available in multiple lengths with scissor or cylinder lift.',
+      link:{ text:'View Dump Trailers', url: base+'dump-trailers/dump-trailers.html' } },
+    { tags:['tilt trailer','tsx207','tsx208','tsx307','tmx107','tilt equipment','tilt deck','full tilt','equipment loading'],
+      answer:'Our <strong>TSX & TMX Series</strong> Tilt Deck Equipment Trailers feature a full-tilt deck — no ramps needed to load equipment. Great for skid steers, mini excavators, and heavy machinery.',
+      link:{ text:'View Tilt Trailers', url: base+'tilt-equipment/tilt-equipment.html' } },
+    { tags:['deckover','bde207','bde208','bde210','bde212','wide deck','no wheel wells','deckover trailer','deck over equipment'],
+      answer:'The <strong>BDE Series</strong> Deckover Equipment Trailers offer a flush, full-width deck with no wheel wells — perfect for oversized equipment and wide loads.',
+      link:{ text:'View Deckover Trailers', url: base+'Deckover/deckover.html' } },
+    { tags:['gooseneck','fbh207','fbh208','fbh210','fbh307','fbx210','fbx212','fbx215','flatbed gooseneck','gooseneck flatbed','heavy hauling'],
+      answer:'Our <strong>FBH and FBX Series</strong> Gooseneck Flatbeds connect in the truck bed for maximum stability and high payload capacity. Available from 14,000 to 40,000+ lbs GVWR.',
+      link:{ text:'View Gooseneck Flatbeds', url: base+'Gooseneck/gooseneck.html' } },
+
+    /* ── Common how-to / spec questions ── */
+    { tags:['how long','length','deck length','trailer length','size','how big','dimensions','feet','foot'],
+      answer:'Trailer lengths vary by model. Most models range from <strong>20 to 40 feet</strong> of deck length. Check the individual model page for exact specs, or ask a dealer about custom lengths.',
+      link:{ text:'Browse All Models', url: base+'index.html' } },
+    { tags:['axle','dual axle','tandem','triple axle','how many axles','axle configuration'],
+      answer:'Walton Trailers are available with tandem (2-axle) and triple-axle configurations depending on the model and GVWR. Heavier loads require more axles for proper weight distribution.' },
+    { tags:['electric brake','brake controller','trailer brake','brake','braking'],
+      answer:'All Walton Trailers come equipped with <strong>electric trailer brakes</strong> on every axle. You\'ll need a compatible brake controller in your tow vehicle.' },
+    { tags:['ramp','loading ramp','beaver tail','slide-in ramp','dovetail','dove tail'],
+      answer:'Many Walton models feature built-in slide-in ramps or dovetail beavertails for easy loading. Check each product page for ramp specifications and ramp pocket details.' },
+    { tags:['steel','tube steel','construction','material','frame','build quality','how are they built'],
+      answer:'Walton Trailers use <strong>heavy-duty tube steel frames</strong>, fully welded cross-members, and treated lumber decking. Every trailer is built to commercial-grade standards in Logan, Utah.' },
+    { tags:['coupler','hitch coupler','lunette ring','pintle','ball size','2 5/16','ball hitch'],
+      answer:'Gooseneck models use a <strong>standard 2-5/16" ball</strong> coupler or a <strong>lunette ring</strong> for pintle hook setups depending on the configuration. Bumper pull models use a 2-5/16" ball.' },
+    { tags:['tie down','chain tie','d-ring','stake pocket','cargo securement','strapping'],
+      answer:'Walton Trailers include <strong>recessed D-rings and stake pockets</strong> along the deck for cargo securement. The number and placement vary by model — check the product spec page.' },
+    { tags:['spare tire','spare','flat tire','tire','tires','rubber'],
+      answer:'A spare tire mount is standard on most Walton models. Tire size varies by axle capacity — check the model page or ask your dealer about tire specs.' },
+    { tags:['wiring','lights','7-pin','electrical','led lights','trailer lights','wiring harness'],
+      answer:'All Walton Trailers use a <strong>7-pin trailer wiring harness</strong> with DOT-compliant LED lighting throughout. Plug-and-play with any standard 7-pin truck connection.' },
+    { tags:['dovetail','dove tail','self-cleaning','loading angle','approach angle'],
+      answer:'Many Walton models feature a <strong>self-cleaning dovetail</strong> to reduce the loading angle and make driving equipment on easier. Check individual model pages for dovetail specs.' },
+
+    /* ── Buying / comparison questions ── */
+    { tags:['which trailer','what trailer','best trailer','recommend','right trailer','help me pick','choose a trailer','which one should i'],
+      answer:'The right trailer depends on your load type, weight, and how it will be towed. Here are the main categories:<br><br>&bull; <strong>Gooseneck Flatbeds</strong> — heavy hauling, stacks well behind pickup<br>&bull; <strong>Dump Trailers</strong> — bulk material hauling<br>&bull; <strong>Tilt Deck</strong> — equipment with no ramps needed<br>&bull; <strong>Deckover</strong> — wide/oversized equipment<br>&bull; <strong>Landscape</strong> — lawn care and lighter equipment<br><br>A dealer can walk you through the best fit for your needs.',
+      link:{ text:'Find a Dealer', url: base+'index.html#dealers' } },
+    { tags:['bumper pull vs gooseneck','fifth wheel vs gooseneck','difference','bumper pull','compared to','versus','vs gooseneck'],
+      answer:'<strong>Gooseneck</strong> trailers hitch inside the truck bed over the rear axle — they handle heavier loads, are more stable, and can tow up to 40,000+ lbs. <strong>Bumper pull</strong> trailers use a standard receiver ball hitch and work with any tow vehicle, but are limited to lighter payloads. For work-duty use, most pros prefer gooseneck.',
+      link:{ text:'Read the Buying Guide', url: base+'learn.html' } },
+    { tags:['how much can i tow','towing capacity','can my truck pull','tow vehicle','truck requirement','what truck do i need'],
+      answer:'Your truck\'s tow rating must exceed the trailer\'s <strong>GVWR</strong> (Gross Vehicle Weight Rating). Always check your truck manufacturer\'s towing specs. For gooseneck setups, you also need the payload capacity in the truck bed. A dealer can help match the right trailer to your truck.' },
+
+    /* ── Dealer / purchase ── */
+    { tags:['how do i buy','how to order','how to purchase','ordering process','buy online','can i order online','order direct'],
+      answer:'Walton Trailers are sold exclusively through our <strong>authorized dealer network</strong> — not direct. Contact your nearest dealer to configure, price, and order your trailer.',
+      link:{ text:'Find a Dealer', url: base+'index.html#dealers' } },
+    { tags:['delivery','shipping','transport','can you deliver','delivery time','lead time','how long to get'],
+      answer:'Delivery and lead times vary by dealer location and current inventory. Contact your local Walton dealer for availability and estimated delivery timelines.',
+      link:{ text:'Find a Dealer', url: base+'index.html#dealers' } },
+    { tags:['trade in','trade-in','trade my trailer','trade old trailer'],
+      answer:'Trade-in options are handled by individual Walton dealers. Contact your nearest dealer to ask about current trade-in programs.' },
+
+    /* ── Owner support ── */
+    { tags:['owner manual','user manual','owners manual','manual download','pdf manual','operator manual'],
+      answer:'Owner\'s manuals are available in our <strong>Owner Support Hub</strong>. Find your model and download the PDF manual there.',
+      link:{ text:'Go to Owner Support', url: base+'owners.html#owners' } },
+    { tags:['warranty claim','file warranty','submit warranty','how to claim warranty','warranty process'],
+      answer:'To file a warranty claim, head to our <strong>Owner Support Hub</strong> and complete the warranty claim form. Have your trailer VIN and purchase date ready.',
+      link:{ text:'Submit Warranty Claim', url: base+'owners.html#warranty' } },
+    { tags:['register trailer','how to register','trailer registration','register my trailer'],
+      answer:'Register your Walton Trailer through our <strong>Owner Support Hub</strong>. Registration helps us keep your warranty active and notify you of any service bulletins.',
+      link:{ text:'Register Your Trailer', url: base+'owners.html#register' } },
+    { tags:['video','how to video','watch','youtube','tutorial','how to use','how to maintain','maintenance video'],
+      answer:'We have video guides covering maintenance, loading, and more. Check out our Video Guides page.',
+      link:{ text:'Watch Video Guides', url: base+'video-guides.html' } },
+    { tags:['service','repair','where to repair','service center','fix my trailer','near me repair'],
+      answer:'Repairs and service are handled through the <strong>Walton dealer network</strong>. Find your nearest dealer for service scheduling and genuine parts.',
+      link:{ text:'Find a Dealer', url: base+'index.html#dealers' } },
+
+    /* ── Dealer-specific FAQs ── */
+    { tags:['dealer program info','dealer program','authorized dealer','dealer support','dealer info'],
+      answer:'The Walton dealer program gives you access to our full line of American-made commercial trailers, co-op marketing support, and factory training. Contact us to learn more.',
+      link:{ text:'Dealer Info', url: base+'dealers.html' } },
+    { tags:['become a dealer','become dealer','how to become dealer','dealer application','sell walton trailers','want to be a dealer'],
+      answer:'Interested in carrying Walton Trailers at your location? Fill out our dealer inquiry form and our team will be in touch with program details.',
+      link:{ text:'Become a Dealer', url: base+'become-a-dealer.html' } },
+    { tags:['parts ordering','order parts','dealer parts','wholesale parts','dealer order','parts for dealers'],
+      answer:'Authorized Walton dealers can order genuine replacement parts through the dealer portal or by contacting our dealer support team directly. Reach out and we\'ll connect you.',
+      action:'contact' },
+  ];
+
+  /* ══════════════════════════════════════════
+     SCORING — handles exact phrases, partial
+     word stems, and single-word synonyms
+  ══════════════════════════════════════════ */
+  function score(input, tags) {
+    var lower = input.toLowerCase(), s = 0;
+    tags.forEach(function(tag) {
+      if (lower.indexOf(tag) !== -1) {
+        s += tag.split(' ').length * 2; // exact match = 2× word count
+      } else {
+        // partial stem match (handles plurals, -ing, -ed etc.)
+        var words = tag.split(' ');
+        var stem  = words.every(function(w) {
+          return w.length > 3 && lower.indexOf(w.substring(0, w.length - 1)) !== -1;
+        });
+        if (stem) s += words.length;
+      }
+    });
+    return s;
+  }
+
+  /* ══════════════════════════════════════════
+     LOCAL RESPOND — keyword-based answer engine
+  ══════════════════════════════════════════ */
+  function respondLocal(input) {
+    var lower = input.toLowerCase();
+
+    /* Greetings */
+    if (/^(hi|hello|hey|howdy|good morning|good afternoon|good evening|sup|yo|hiya)/.test(lower)) {
+      return "Hey there! 👋 Happy to help. I can answer questions about trailers, specs, warranty, dealers, and more. What's on your mind?";
+    }
+    /* Thanks */
+    if (/\b(thank|thanks|thx|appreciate|ty\b|ty!)/i.test(lower)) {
+      return "You're welcome! Is there anything else I can help you with?";
+    }
+
+    /* FAQ scoring */
+    var bestFaq = null, bestFaqScore = 0;
+    FAQS.forEach(function(f) {
+      var s = score(input, f.tags);
+      if (s > bestFaqScore) { bestFaqScore = s; bestFaq = f; }
+    });
+
+    /* Page scoring */
+    var hitPages = [];
+    PAGES.forEach(function(p) {
+      var s = score(input, p.tags);
+      if (s > 0) hitPages.push({ p: p, s: s });
+    });
+    hitPages.sort(function(a,b){ return b.s - a.s; });
+
+    if (bestFaqScore >= 2 && bestFaq) {
+      var html = bestFaq.answer;
+      if (bestFaq.link) html += '<br><br><a href="' + bestFaq.link.url + '">' + bestFaq.link.text + ' &rarr;</a>';
+      if (bestFaq.action === 'contact') html += '<br><br><button class="chat-qr-btn" onclick="wcContact()" style="margin-top:4px">Send a Message</button>';
+      return html;
+    }
+    if (hitPages.length) {
+      var html = "Here's what I found on our site:";
+      hitPages.slice(0,3).forEach(function(r) {
+        html += '<br>&bull; <a href="' + r.p.url + '">' + r.p.title + '</a>';
+      });
+      return html;
+    }
+    return "I'm not sure about that one — but I'm happy to connect you with someone who can help.<br><br><button class=\"chat-qr-btn\" onclick=\"wcContact()\" style=\"margin-top:4px\">Send a Message</button>";
+  }
+
+  /* ══════════════════════════════════════════
+     AI RESPOND — calls Cloudflare Worker proxy
+     Only active when AI_ENDPOINT is configured
+  ══════════════════════════════════════════ */
+  function respondAI(input, callback) {
+    history.push({ role: 'user', content: input });
+    fetch(AI_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: history })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      var reply = (data && data.reply) ? data.reply : respondLocal(input);
+      history.push({ role: 'assistant', content: reply });
+      callback(reply);
+    })
+    .catch(function() { callback(respondLocal(input)); });
+  }
+
+  /* ══════════════════════════════════════════
+     DISPATCH — routes to AI or local matcher
+  ══════════════════════════════════════════ */
+  function dispatch(input, callback) {
+    if (AI_ENDPOINT) {
+      respondAI(input, callback);
+    } else {
+      var delay = 500 + Math.random() * 400; // natural-feeling pause
+      setTimeout(function() { callback(respondLocal(input)); }, delay);
+    }
+  }
+
+  /* ══════════════════════════════════════════
+     DOM HELPERS
+  ══════════════════════════════════════════ */
+  function msgs() { return document.getElementById('wcMsgs'); }
+
+  function addMsg(role, html) {
+    var m = msgs(); if (!m) return;
+    var d = document.createElement('div');
+    d.className = 'chat-msg ' + role;
+    var b = document.createElement('div');
+    b.className = 'msg-bubble';
+    b.innerHTML  = html;
+    d.appendChild(b);
+    m.appendChild(d);
+    m.scrollTop = m.scrollHeight;
+  }
+
+  function showTyping() {
+    var m = msgs(); if (!m) return;
+    var d = document.createElement('div');
+    d.className = 'chat-msg bot';
+    d.id = 'wc-typing';
+    d.innerHTML = '<div class="msg-bubble msg-typing"><span></span><span></span><span></span></div>';
+    m.appendChild(d);
+    m.scrollTop = m.scrollHeight;
+  }
+
+  function hideTyping() {
+    var t = document.getElementById('wc-typing');
+    if (t) t.remove();
+  }
+
+  function hideQR() {
+    var qr = document.getElementById('wcQR');
+    if (qr) qr.style.display = 'none';
+  }
+
+  function handleInput(text) {
+    hideQR();
+    addMsg('user', text);
+    showTyping();
+    dispatch(text, function(reply) {
+      hideTyping();
+      addMsg('bot', reply);
+    });
+  }
+
+  /* ══════════════════════════════════════════
+     PUBLIC API
+  ══════════════════════════════════════════ */
+  window.wcToggle = function() {
+    chatOpen = !chatOpen;
+    var win = document.getElementById('wcWin');
+    if (win) win.classList.toggle('open', chatOpen);
+    if (chatOpen && !greeted) {
+      greeted = true;
+      showTyping();
+      setTimeout(function() {
+        hideTyping();
+        addMsg('bot', 'Hi! Welcome to Walton Trailers. 👋<br><br>To point you in the right direction — which of these best describes you?');
+        var qr = document.getElementById('wcQR');
+        if (qr) qr.style.display = 'flex';
+      }, 700);
+    }
+  };
+
+  /* ── Audience picker — sets context and shows tailored quick replies ── */
+  window.wcAudience = function(type) {
+    hideQR();
+    var qr = document.getElementById('wcQR');
+
+    if (type === 'buyer') {
+      addMsg('user', '🛒 Looking to buy');
+      showTyping();
+      setTimeout(function() {
+        hideTyping();
+        addMsg('bot', 'Great — let\'s find the right trailer for you! Here are some common starting points:');
+        if (qr) {
+          qr.innerHTML =
+            '<button class="chat-qr-btn" onclick="wcQuick(\'What trailers do you offer?\')">What trailers do you offer?</button>' +
+            '<button class="chat-qr-btn" onclick="wcQuick(\'What GVWR do I need?\')">What GVWR do I need?</button>' +
+            '<button class="chat-qr-btn" onclick="wcQuick(\'Gooseneck vs bumper pull difference\')">Gooseneck vs bumper pull</button>' +
+            '<button class="chat-qr-btn" onclick="wcQuick(\'Get a quote\')">Get a quote</button>' +
+            '<button class="chat-qr-btn" onclick="wcQuick(\'Find a dealer near me\')">Find a dealer near me</button>';
+          qr.style.display = 'flex';
+        }
+      }, 600);
+    }
+
+    else if (type === 'owner') {
+      addMsg('user', '🔧 I\'m an owner');
+      showTyping();
+      setTimeout(function() {
+        hideTyping();
+        addMsg('bot', 'Welcome back! Here\'s what our owner support hub covers — what do you need?');
+        if (qr) {
+          qr.innerHTML =
+            '<button class="chat-qr-btn" onclick="wcQuick(\'Download owner manual\')">Download my manual</button>' +
+            '<button class="chat-qr-btn" onclick="wcQuick(\'Warranty info\')">Warranty info</button>' +
+            '<button class="chat-qr-btn" onclick="wcQuick(\'How to file a warranty claim\')">File a warranty claim</button>' +
+            '<button class="chat-qr-btn" onclick="wcQuick(\'Register my trailer\')">Register my trailer</button>' +
+            '<button class="chat-qr-btn" onclick="wcQuick(\'Parts and service\')">Parts &amp; service</button>';
+          qr.style.display = 'flex';
+        }
+      }, 600);
+    }
+
+    else if (type === 'dealer') {
+      addMsg('user', '🤝 I\'m a dealer');
+      showTyping();
+      setTimeout(function() {
+        hideTyping();
+        addMsg('bot', 'Thanks for being part of the Walton dealer network! What can I help you with?');
+        if (qr) {
+          qr.innerHTML =
+            '<button class="chat-qr-btn" onclick="wcQuick(\'Dealer program info\')">Dealer program info</button>' +
+            '<button class="chat-qr-btn" onclick="wcQuick(\'Become a dealer\')">Becoming a dealer</button>' +
+            '<button class="chat-qr-btn" onclick="wcQuick(\'Parts ordering\')">Parts ordering</button>' +
+            '<button class="chat-qr-btn" onclick="wcContact()">Contact the team</button>';
+          qr.style.display = 'flex';
+        }
+      }, 600);
+    }
+  };
+
+  window.wcQuick = function(text) { handleInput(text); };
+
+  window.wcSend = function() {
+    var inp = document.getElementById('wcInput');
+    if (!inp) return;
+    var text = inp.value.trim();
+    if (!text) return;
+    inp.value = '';
+    handleInput(text);
+  };
+
+  window.wcKey = function(e) { if (e.key === 'Enter') wcSend(); };
+
+  window.wcContact = function() {
+    var formHtml =
+      'Fill this out and we\'ll get back to you shortly.' +
+      '<div style="display:flex;flex-direction:column;gap:8px;margin-top:10px">' +
+        '<input id="wc-name" placeholder="Your name" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:4px;padding:8px 10px;color:#f5f3ef;font-size:13px;font-family:inherit;outline:none;width:100%;box-sizing:border-box">' +
+        '<input id="wc-email" type="email" placeholder="Email address" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:4px;padding:8px 10px;color:#f5f3ef;font-size:13px;font-family:inherit;outline:none;width:100%;box-sizing:border-box">' +
+        '<textarea id="wc-msg" placeholder="Your message" rows="3" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:4px;padding:8px 10px;color:#f5f3ef;font-size:13px;font-family:inherit;outline:none;resize:none;width:100%;box-sizing:border-box"></textarea>' +
+        '<button onclick="wcSubmit()" style="background:#c0392b;color:#f5f3ef;border:none;border-radius:2px;padding:10px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;font-family:inherit">Send Message</button>' +
+      '</div>';
+    addMsg('bot', formHtml);
+  };
+
+  window.wcSubmit = function() {
+    var name  = (document.getElementById('wc-name')  || {}).value || '';
+    var email = (document.getElementById('wc-email') || {}).value || '';
+    var msg   = (document.getElementById('wc-msg')   || {}).value || '';
+    if (!name.trim() || !email.trim()) {
+      addMsg('bot', 'Please enter your name and email before sending.'); return;
+    }
+    fetch('https://formspree.io/f/xnjbrgoo', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name, email: email, message: msg, source: 'Chat Widget' })
+    }).then(function(r) {
+      if (r.ok) {
+        addMsg('bot', '<strong>Message sent!</strong> &#10003;<br>Thanks, ' + name.split(' ')[0] + '! We\'ll be in touch soon.');
+      } else {
+        addMsg('bot', 'Something went wrong. Please email us directly at <a href="mailto:info@waltontrailers.com" style="color:#f5a623">info@waltontrailers.com</a>.');
+      }
+    }).catch(function() {
+      addMsg('bot', 'Network error. Please try again or email <a href="mailto:info@waltontrailers.com" style="color:#f5a623">info@waltontrailers.com</a>.');
+    });
+  };
+})();
+
+/* ════════════════════════════════════════
+   GET A QUOTE MODAL
+════════════════════════════════════════ */
+function openQuote(category) {
+  var sel = document.getElementById('q-category');
+  if (category && sel) {
+    for (var i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].text.indexOf(category) !== -1) {
+        sel.selectedIndex = i;
+        break;
+      }
+    }
+  }
+  document.getElementById('quoteOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeQuote() {
+  document.getElementById('quoteOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function quoteOverlayClick(e) {
+  if (e.target.id === 'quoteOverlay') closeQuote();
+}
+
+function submitQuote() {
+  var first    = document.getElementById('q-first').value.trim();
+  var last     = document.getElementById('q-last').value.trim();
+  var email    = document.getElementById('q-email').value.trim();
+  var phone    = document.getElementById('q-phone').value.trim();
+  var zip      = document.getElementById('q-zip').value.trim();
+  var company  = document.getElementById('q-company').value.trim();
+  var category = document.getElementById('q-category').value;
+  var use      = document.getElementById('q-use').value.trim();
+  if (!first || !email) { alert('Please enter your name and email.'); return; }
+  var btn = document.querySelector('.quote-submit');
+  btn.disabled = true;
+  btn.textContent = 'Sending\u2026';
+  fetch('https://formspree.io/f/mbdabzpz', {
+    method: 'POST',
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      'First Name': first, 'Last Name': last, email: email,
+      'Phone': phone, 'Zip': zip, 'Company': company,
+      'Trailer Category': category, 'Planned Use': use
+    })
+  }).then(function(r) {
+    if (r.ok) {
+      document.getElementById('quoteModalBody').style.display = 'none';
+      document.getElementById('quoteSuccess').style.display = 'block';
+    } else {
+      alert('Something went wrong. Please try again or call us directly.');
+      btn.disabled = false;
+      btn.textContent = 'Request Quote \u2014 We Will Follow Up Within 1 Business Day';
+    }
+  }).catch(function() {
+    alert('Network error. Please check your connection and try again.');
+    btn.disabled = false;
+    btn.textContent = 'Request Quote \u2014 We Will Follow Up Within 1 Business Day';
+  });
+}
+
+/* ════════════════════════════════════════
+   COMPARE TRAILERS MODAL
+════════════════════════════════════════ */
+var compareData = {
+  dump_light:    { name: 'Dump Trailer - Light Duty',           gvwr: '14,000 lbs', payload: '10,000 lbs', category: 'Dump Trailers',            type: 'Dump',       axles: '2', warranty: 'Lifetime Structural' },
+  dump_medium:   { name: 'Dump Trailer - Medium Duty',          gvwr: '20,000 lbs', payload: '16,000 lbs', category: 'Dump Trailers',            type: 'Dump',       axles: '2', warranty: 'Lifetime Structural' },
+  dump_heavy:    { name: 'Dump Trailer - Heavy Duty',           gvwr: '30,000 lbs', payload: '26,000 lbs', category: 'Dump Trailers',            type: 'Dump',       axles: '3', warranty: 'Lifetime Structural' },
+  dump_deckover: { name: 'Dump Trailer - Deck-Over',            gvwr: '40,000 lbs', payload: '36,000 lbs', category: 'Dump Trailers',            type: 'Dump',       axles: '3', warranty: 'Lifetime Structural' },
+  tmx:           { name: 'Equipment Trailer - TMX',             gvwr: '14,000 lbs', payload: '10,000 lbs', category: 'Equipment and Tilt',       type: 'Equipment',  axles: '2', warranty: 'Lifetime Structural' },
+  tsx:           { name: 'Equipment Trailer - TSX',             gvwr: '24,000 lbs', payload: '20,000 lbs', category: 'Equipment and Tilt',       type: 'Equipment',  axles: '2', warranty: 'Lifetime Structural' },
+  tho:           { name: 'Tilt Trailer - THO',                  gvwr: '17,500 lbs', payload: '13,500 lbs', category: 'Equipment and Tilt',       type: 'Tilt',       axles: '2', warranty: 'Lifetime Structural' },
+  fbx:           { name: 'Flatbed - FBX',                       gvwr: '24,000 lbs', payload: '20,000 lbs', category: 'Flatbeds and Deck Overs',  type: 'Flatbed',    axles: '2', warranty: 'Lifetime Structural' },
+  fbh:           { name: 'Deck-Over Flatbed - FBH',             gvwr: '35,000 lbs', payload: '31,000 lbs', category: 'Flatbeds and Deck Overs',  type: 'Deck-Over',  axles: '3', warranty: 'Lifetime Structural' },
+  landscape:     { name: 'Landscape Trailer',                   gvwr: '7,000 lbs',  payload: '4,800 lbs',  category: 'Landscape Trailers',       type: 'Open',       axles: '1', warranty: 'Lifetime Structural' }
+};
+
+function openCompare() {
+  document.getElementById('compareOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCompare() {
+  document.getElementById('compareOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function compareOverlayClick(e) {
+  if (e.target.id === 'compareOverlay') closeCompare();
+}
+
+function renderCompare() {
+  var keyA = document.getElementById('compareA').value;
+  var keyB = document.getElementById('compareB').value;
+  var wrap = document.getElementById('compareTableWrap');
+  var actions = document.getElementById('compareActions');
+
+  if (!keyA || !keyB) {
+    wrap.innerHTML = '<div class="compare-placeholder">Select two trailers above to compare specs</div>';
+    actions.style.display = 'none';
+    return;
+  }
+
+  var a = compareData[keyA];
+  var b = compareData[keyB];
+  var rows = [
+    ['Category',     a.category, b.category],
+    ['Type',         a.type,     b.type],
+    ['GVWR',         a.gvwr,     b.gvwr],
+    ['Est. Payload', a.payload,  b.payload],
+    ['Axles',        a.axles,    b.axles],
+    ['Warranty',     a.warranty, b.warranty]
+  ];
+
+  var html = '<table class="compare-table"><thead><tr>';
+  html += '<th class="col-label">Spec</th>';
+  html += '<th>' + a.name + '</th>';
+  html += '<th>' + b.name + '</th>';
+  html += '</tr></thead><tbody>';
+
+  var boldRows = ['GVWR', 'Est. Payload'];
+  for (var i = 0; i < rows.length; i++) {
+    var isHL = boldRows.indexOf(rows[i][0]) !== -1;
+    html += '<tr>';
+    html += '<td class="row-label">' + rows[i][0] + '</td>';
+    html += '<td class="val' + (isHL ? ' highlight' : '') + '">' + rows[i][1] + '</td>';
+    html += '<td class="val' + (isHL ? ' highlight' : '') + '">' + rows[i][2] + '</td>';
+    html += '</tr>';
+  }
+  html += '</tbody></table>';
+  wrap.innerHTML = html;
+  actions.style.display = 'flex';
+}
+})();
+</script>
+<footer>
+  <div>
+    <div class="footer-brand"><img src="../Images/logos/walton-logo-white.png" alt="Walton Trailers" style="height:48px;width:auto;display:block;margin-bottom:4px;"></div>
+    <p class="footer-tagline">Built Strong. Built Right. Built Here. Manufacturing commercial trailers since 1973 in Logan, Utah.</p>
+    <div class="footer-social">
+      <a href="#" class="footer-social-btn" aria-label="Facebook">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a href="#" class="footer-social-btn" aria-label="Instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="#" class="footer-social-btn" aria-label="YouTube">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg>
+      </a>
+      <a href="#" class="footer-social-btn" aria-label="LinkedIn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-col">
+    <h4>Trailers</h4>
+    <ul>
+      <li><a href="../Gooseneck/gooseneck.html">Gooseneck Flatbeds</a></li>
+      <li><a href="../dump-trailers/dump-trailers.html">Dump Trailers</a></li>
+      <li><a href="../tilt-equipment/tilt-equipment.html">Tilt Deck Trailers</a></li>
+      <li><a href="../Deckover/deckover.html">Deckover Equipment</a></li>
+      <li><a href="../Landscape/landscape.html">Landscape Trailers</a></li>
+      <li><a href="../parts.html">Parts &amp; Accessories</a></li>
+    </ul>
+  </div>
+  
+  <div class="footer-col">
+    <h4>Owners</h4>
+    <ul>
+      <li><a href="../owners.html#owners">User Manuals</a></li>
+      <li><a href="../owners.html#warranty">Warranty Claim</a></li>
+      <li><a href="../owners.html#register">Register Your Trailer</a></li>
+      <li><a href="../video-guides.html">Video Guides</a></li>
+      <li><a href="../learn.html">FAQ &amp; Learning</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Dealers</h4>
+    <ul>
+      <li><a href="../index.html#dealers">Find a Dealer</a></li>
+      <li><a href="../become-a-dealer.html">Become a Dealer</a></li>
+      <li><a href="#">Dealer Portal</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Company</h4>
+    <ul>
+      <li><a href="../about.html">About Walton</a></li>
+      <li><a href="../careers.html">Careers</a></li>
+      <li><a href="#" onclick="toggleContactDrawer(); return false;">Contact Us</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>&copy; 2026 Walton Trailers. All rights reserved.</span>
+  <div style="display:flex;gap:24px;align-items:center;">
+    <a href="../terms.html" style="color:inherit;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#f5f3ef'" onmouseout="this.style.color=''">Terms of Service</a>
+    <span style="opacity:0.3">|</span>
+    <a href="../privacy.html" style="color:inherit;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#f5f3ef'" onmouseout="this.style.color=''">Privacy Policy</a>
+    <span style="opacity:0.3">|</span>
+    <span>150 W 2500 N &nbsp;&bull;&nbsp; Logan, Utah 84341</span>
+  </div>
+</div>
+
+<div class="chat-fab">
+  <span class="chat-fab-label">Ask a Question</span>
+  <button class="chat-fab-btn" onclick="wcToggle()" aria-label="Open support chat">
+    <div class="chat-fab-pulse"></div>
+    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+  </button>
+</div>
+
+<div class="support-chat" id="wcWin">
+  <div class="chat-header">
+    <div class="chat-header-info">
+      <div class="chat-avatar">
+        <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+      </div>
+      <div class="chat-header-text">
+        <h4>Walton Support</h4>
+        <p>Ask us anything about our trailers</p>
+      </div>
+    </div>
+    <button class="chat-close-btn" onclick="wcToggle()">&#x2715;</button>
+  </div>
+  <div class="chat-messages" id="wcMsgs"></div>
+  <div class="chat-quick-replies" id="wcQR" style="display:none">
+    <button class="chat-qr-btn" onclick="wcAudience('buyer')">🛒 Looking to buy</button>
+    <button class="chat-qr-btn" onclick="wcAudience('owner')">🔧 I'm an owner</button>
+    <button class="chat-qr-btn" onclick="wcAudience('dealer')">🤝 I'm a dealer</button>
+  </div>
+  <div class="chat-input-row">
+    <input class="chat-text-input" id="wcInput" placeholder="Ask a question..." onkeydown="wcKey(event)" />
+    <button class="chat-send-btn" onclick="wcSend()">
+      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════ GET A QUOTE MODAL ═══════════ -->
+<div class="quote-overlay" id="quoteOverlay" onclick="quoteOverlayClick(event)">
+  <div class="quote-modal" id="quoteModal">
+    <div class="quote-modal-header">
+      <div>
+        <div class="quote-modal-title">Get a Quote</div>
+        <div class="quote-modal-sub">Fill in your details and a dealer will follow up with pricing.</div>
+      </div>
+      <button class="modal-close" onclick="closeQuote()">×</button>
+    </div>
+    <div class="quote-modal-body" id="quoteModalBody">
+      <div class="quote-row">
+        <div class="quote-field">
+          <label class="quote-field-label">First Name</label>
+          <input type="text" id="q-first" placeholder="John">
+        </div>
+        <div class="quote-field">
+          <label class="quote-field-label">Last Name</label>
+          <input type="text" id="q-last" placeholder="Smith">
+        </div>
+      </div>
+      <div class="quote-row">
+        <div class="quote-field">
+          <label class="quote-field-label">Email</label>
+          <input type="email" id="q-email" placeholder="john@company.com">
+        </div>
+        <div class="quote-field">
+          <label class="quote-field-label">Phone</label>
+          <input type="tel" id="q-phone" placeholder="(555) 000-0000">
+        </div>
+      </div>
+      <div class="quote-row">
+        <div class="quote-field">
+          <label class="quote-field-label">Zip Code</label>
+          <input type="text" id="q-zip" placeholder="84341">
+        </div>
+        <div class="quote-field">
+          <label class="quote-field-label">Company (optional)</label>
+          <input type="text" id="q-company" placeholder="Your company">
+        </div>
+      </div>
+      <div class="quote-row full">
+        <div class="quote-field">
+          <label class="quote-field-label">Trailer Category</label>
+          <select id="q-category">
+            <option value="" disabled selected>Select a trailer type</option>
+            <option>Dump Trailers - Light Duty</option>
+            <option>Dump Trailers - Medium Duty</option>
+            <option>Dump Trailers - Heavy Duty</option>
+            <option>Dump Trailers - Heavy Duty Deck-Over</option>
+            <option>Equipment Trailer - TMX</option>
+            <option>Equipment Trailer - TSX</option>
+            <option>Tilt Trailer - THO</option>
+            <option>Flatbed - FBX</option>
+            <option>Deck-Over Flatbed - FBH</option>
+            <option>Landscape Trailer</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+      </div>
+      <div class="quote-row full">
+        <div class="quote-field">
+          <label class="quote-field-label">How will you use it?</label>
+          <textarea id="q-use" placeholder="Tell us about your planned use, load weights, or any specific requirements..."></textarea>
+        </div>
+      </div>
+      <button class="quote-submit" onclick="submitQuote()">Request Quote — We Will Follow Up Within 1 Business Day</button>
+    </div>
+    <div class="quote-success" id="quoteSuccess">
+      <div class="success-icon">✓</div>
+      <h3>Quote Request Sent</h3>
+      <p>Your nearest Walton dealer will follow up within one business day with pricing and availability.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ COMPARE TRAILERS MODAL ═══════════ -->
+<div class="compare-overlay" id="compareOverlay" onclick="compareOverlayClick(event)">
+  <div class="compare-modal" id="compareModal">
+    <div class="compare-modal-header">
+      <div>
+        <div class="compare-modal-title">Compare Trailers</div>
+        <div class="compare-modal-sub">Select two trailers to see specs side by side.</div>
+      </div>
+      <button class="modal-close" onclick="closeCompare()">×</button>
+    </div>
+    <div class="compare-modal-body">
+      <div class="compare-selectors">
+        <div class="compare-select-wrap">
+          <label>Trailer A</label>
+          <select id="compareA" onchange="renderCompare()">
+            <option value="">Select a trailer</option>
+            <option value="dump_light">Dump Trailer - Light Duty</option>
+            <option value="dump_medium">Dump Trailer - Medium Duty</option>
+            <option value="dump_heavy">Dump Trailer - Heavy Duty</option>
+            <option value="dump_deckover">Dump Trailer - Heavy Duty Deck-Over</option>
+            <option value="tmx">Equipment Trailer - TMX</option>
+            <option value="tsx">Equipment Trailer - TSX</option>
+            <option value="tho">Tilt Trailer - THO</option>
+            <option value="fbx">Flatbed - FBX</option>
+            <option value="fbh">Deck-Over Flatbed - FBH</option>
+            <option value="landscape">Landscape Trailer</option>
+          </select>
+        </div>
+        <div class="compare-select-wrap">
+          <label>Trailer B</label>
+          <select id="compareB" onchange="renderCompare()">
+            <option value="">Select a trailer</option>
+            <option value="dump_light">Dump Trailer - Light Duty</option>
+            <option value="dump_medium">Dump Trailer - Medium Duty</option>
+            <option value="dump_heavy">Dump Trailer - Heavy Duty</option>
+            <option value="dump_deckover">Dump Trailer - Heavy Duty Deck-Over</option>
+            <option value="tmx">Equipment Trailer - TMX</option>
+            <option value="tsx">Equipment Trailer - TSX</option>
+            <option value="tho">Tilt Trailer - THO</option>
+            <option value="fbx">Flatbed - FBX</option>
+            <option value="fbh">Deck-Over Flatbed - FBH</option>
+            <option value="landscape">Landscape Trailer</option>
+          </select>
+        </div>
+      </div>
+      <div id="compareTableWrap">
+        <div class="compare-placeholder">Select two trailers above to compare specs</div>
+      </div>
+      <div class="compare-actions" id="compareActions" style="display:none">
+        <button class="compare-get-quote" onclick="closeCompare(); openQuote('')">Get a Quote</button>
+        <button class="btn-compare" onclick="closeCompare(); openFinder()" style="padding:14px 28px;font-size:13px;">Find My Trailer</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
