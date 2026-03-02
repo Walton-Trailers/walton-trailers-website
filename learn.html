@@ -269,6 +269,10 @@
     transform: rotate(180deg);
   }
 
+  
+  /* ════ MODAL OVERLAY (finder modal) ════ */
+  .modal-overlay { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; padding: 20px; }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
   </style>
 </head>
 <body>
@@ -299,7 +303,7 @@
             <ul class="discover-col-links">
               <li><a href="owners.html#warranty">Warranty Claim</a></li>
               <li><a href="owners.html#register">Register Your Trailer</a></li>
-              <li><a href="#" onclick="toggleContactDrawer(); return false;">Contact Support</a></li>
+              <li><a href="contact.html">Contact Support</a></li>
             </ul>
           </div>
         </div>
@@ -313,14 +317,14 @@
           <div class="simple-col">
             <div class="discover-col-heading">Find &amp; Buy</div>
             <ul class="discover-col-links">
-              <li><a href="index.html#dealers">Find a Dealer</a></li>
+              <li><a href="find-a-dealer.html">Find a Dealer</a></li>
               <li><a href="become-a-dealer.html">Become a Dealer</a></li>
             </ul>
           </div>
           <div class="simple-col">
             <div class="discover-col-heading">Dealer Tools</div>
             <ul class="discover-col-links">
-              <li><a href="#" onclick="return false">Dealer Portal</a></li>
+              <li><a href="dealer-portal.html">Dealer Portal</a></li>
               <li><a href="#" onclick="return false">Dealer Resources</a></li>
             </ul>
           </div>
@@ -337,14 +341,14 @@
             <ul class="discover-col-links">
               <li><a href="about.html">About Walton</a></li>
               <li><a href="careers.html">Careers</a></li>
-              <li><a href="#" onclick="toggleContactDrawer(); return false;">Contact Us</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
             </ul>
           </div>
         </div>
       </div>
     </li>
     <!-- CTA -->
-    <li><a href="index.html#dealers" class="nav-cta">Find a Dealer</a></li>
+    <li><a href="find-a-dealer.html" class="nav-cta">Find a Dealer</a></li>
     <!-- Dealer login icon -->
     <li><a href="#" class="nav-dealer-login" title="Dealer Login" onclick="return false">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
@@ -483,7 +487,6 @@
       <li><a href="tilt-equipment/tilt-equipment.html">Tilt Deck Trailers</a></li>
       <li><a href="Deckover/deckover.html">Deckover Equipment</a></li>
       <li><a href="Landscape/landscape.html">Landscape Trailers</a></li>
-      <li><a href="parts.html">Parts &amp; Accessories</a></li>
     </ul>
   </div>
   
@@ -495,14 +498,16 @@
       <li><a href="owners.html#register">Register Your Trailer</a></li>
       <li><a href="video-guides.html">Video Guides</a></li>
       <li><a href="learn.html">FAQ &amp; Learning</a></li>
+    
+      <li><a href="parts.html">Parts &amp; Accessories</a></li>
     </ul>
   </div>
   <div class="footer-col">
     <h4>Dealers</h4>
     <ul>
-      <li><a href="index.html#dealers">Find a Dealer</a></li>
+      <li><a href="find-a-dealer.html">Find a Dealer</a></li>
       <li><a href="become-a-dealer.html">Become a Dealer</a></li>
-      <li><a href="#">Dealer Portal</a></li>
+      <li><a href="dealer-portal.html">Dealer Portal</a></li>
     </ul>
   </div>
   <div class="footer-col">
@@ -510,7 +515,7 @@
     <ul>
       <li><a href="about.html">About Walton</a></li>
       <li><a href="careers.html">Careers</a></li>
-      <li><a href="#" onclick="toggleContactDrawer(); return false;">Contact Us</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
     </ul>
   </div>
 </footer>
@@ -559,137 +564,101 @@
     </button>
   </div>
 </div>
-
-<!-- ═══════════ GET A QUOTE MODAL ═══════════ -->
-<div class="quote-overlay" id="quoteOverlay" onclick="quoteOverlayClick(event)">
-  <div class="quote-modal" id="quoteModal">
-    <div class="quote-modal-header">
-      <div>
-        <div class="quote-modal-title">Get a Quote</div>
-        <div class="quote-modal-sub">Fill in your details and a dealer will follow up with pricing.</div>
-      </div>
-      <button class="modal-close" onclick="closeQuote()">×</button>
-    </div>
-    <div class="quote-modal-body" id="quoteModalBody">
-      <div class="quote-row">
-        <div class="quote-field">
-          <label class="quote-field-label">First Name</label>
-          <input type="text" id="q-first" placeholder="John">
-        </div>
-        <div class="quote-field">
-          <label class="quote-field-label">Last Name</label>
-          <input type="text" id="q-last" placeholder="Smith">
-        </div>
-      </div>
-      <div class="quote-row">
-        <div class="quote-field">
-          <label class="quote-field-label">Email</label>
-          <input type="email" id="q-email" placeholder="john@company.com">
-        </div>
-        <div class="quote-field">
-          <label class="quote-field-label">Phone</label>
-          <input type="tel" id="q-phone" placeholder="(555) 000-0000">
-        </div>
-      </div>
-      <div class="quote-row">
-        <div class="quote-field">
-          <label class="quote-field-label">Zip Code</label>
-          <input type="text" id="q-zip" placeholder="84341">
-        </div>
-        <div class="quote-field">
-          <label class="quote-field-label">Company (optional)</label>
-          <input type="text" id="q-company" placeholder="Your company">
-        </div>
-      </div>
-      <div class="quote-row full">
-        <div class="quote-field">
-          <label class="quote-field-label">Trailer Category</label>
-          <select id="q-category">
-            <option value="" disabled selected>Select a trailer type</option>
-            <option>Dump Trailers - Light Duty</option>
-            <option>Dump Trailers - Medium Duty</option>
-            <option>Dump Trailers - Heavy Duty</option>
-            <option>Dump Trailers - Heavy Duty Deck-Over</option>
-            <option>Equipment Trailer - TMX</option>
-            <option>Equipment Trailer - TSX</option>
-            <option>Tilt Trailer - THO</option>
-            <option>Flatbed - FBX</option>
-            <option>Deck-Over Flatbed - FBH</option>
-            <option>Landscape Trailer</option>
-            <option>Not sure yet</option>
-          </select>
-        </div>
-      </div>
-      <div class="quote-row full">
-        <div class="quote-field">
-          <label class="quote-field-label">How will you use it?</label>
-          <textarea id="q-use" placeholder="Tell us about your planned use, load weights, or any specific requirements..."></textarea>
-        </div>
-      </div>
-      <button class="quote-submit" onclick="submitQuote()">Request Quote — We Will Follow Up Within 1 Business Day</button>
-    </div>
-    <div class="quote-success" id="quoteSuccess">
-      <div class="success-icon">✓</div>
-      <h3>Quote Request Sent</h3>
-      <p>Your nearest Walton dealer will follow up within one business day with pricing and availability.</p>
-    </div>
-  </div>
 </div>
 
-<!-- ═══════════ COMPARE TRAILERS MODAL ═══════════ -->
-<div class="compare-overlay" id="compareOverlay" onclick="compareOverlayClick(event)">
-  <div class="compare-modal" id="compareModal">
-    <div class="compare-modal-header">
+<!-- ═══════════ TRAILER FINDER MODAL ═══════════ -->
+<div class="modal-overlay" id="finderOverlay" onclick="overlayClick(event)">
+  <div class="modal" id="finderModal">
+    <div class="modal-header">
       <div>
-        <div class="compare-modal-title">Compare Trailers</div>
-        <div class="compare-modal-sub">Select two trailers to see specs side by side.</div>
+        <div class="modal-title">Find My Trailer</div>
+        <div class="modal-subtitle">Answer 4 quick questions — we'll match you to the right Walton trailer.</div>
       </div>
-      <button class="modal-close" onclick="closeCompare()">×</button>
+      <button class="modal-close" onclick="closeFinder()">&#x2715;</button>
     </div>
-    <div class="compare-modal-body">
-      <div class="compare-selectors">
-        <div class="compare-select-wrap">
-          <label>Trailer A</label>
-          <select id="compareA" onchange="renderCompare()">
-            <option value="">Select a trailer</option>
-            <option value="dump_light">Dump Trailer - Light Duty</option>
-            <option value="dump_medium">Dump Trailer - Medium Duty</option>
-            <option value="dump_heavy">Dump Trailer - Heavy Duty</option>
-            <option value="dump_deckover">Dump Trailer - Heavy Duty Deck-Over</option>
-            <option value="tmx">Equipment Trailer - TMX</option>
-            <option value="tsx">Equipment Trailer - TSX</option>
-            <option value="tho">Tilt Trailer - THO</option>
-            <option value="fbx">Flatbed - FBX</option>
-            <option value="fbh">Deck-Over Flatbed - FBH</option>
-            <option value="landscape">Landscape Trailer</option>
-          </select>
-        </div>
-        <div class="compare-select-wrap">
-          <label>Trailer B</label>
-          <select id="compareB" onchange="renderCompare()">
-            <option value="">Select a trailer</option>
-            <option value="dump_light">Dump Trailer - Light Duty</option>
-            <option value="dump_medium">Dump Trailer - Medium Duty</option>
-            <option value="dump_heavy">Dump Trailer - Heavy Duty</option>
-            <option value="dump_deckover">Dump Trailer - Heavy Duty Deck-Over</option>
-            <option value="tmx">Equipment Trailer - TMX</option>
-            <option value="tsx">Equipment Trailer - TSX</option>
-            <option value="tho">Tilt Trailer - THO</option>
-            <option value="fbx">Flatbed - FBX</option>
-            <option value="fbh">Deck-Over Flatbed - FBH</option>
-            <option value="landscape">Landscape Trailer</option>
-          </select>
-        </div>
+    <div class="modal-body">
+      <div class="progress-bar">
+        <div class="progress-step active" id="ps1"></div>
+        <div class="progress-step" id="ps2"></div>
+        <div class="progress-step" id="ps3"></div>
+        <div class="progress-step" id="ps4"></div>
       </div>
-      <div id="compareTableWrap">
-        <div class="compare-placeholder">Select two trailers above to compare specs</div>
+      <!-- Step 1 -->
+      <div class="step active" id="step1">
+        <div class="step-label">Step 1 of 4</div>
+        <div class="step-question">What will you primarily use your trailer for?</div>
+        <div class="option-grid cols-3">
+          <div class="option-card" onclick="selectOption(this,'use','construction')"><span class="option-icon">&#127959;</span><div class="option-title">Construction</div><div class="option-desc">Equipment, materials, job site hauling</div><div class="check">&#10003;</div></div>
+          <div class="option-card" onclick="selectOption(this,'use','agriculture')"><span class="option-icon">&#127807;</span><div class="option-title">Agriculture</div><div class="option-desc">Farming equipment, livestock, hay</div><div class="check">&#10003;</div></div>
+          <div class="option-card" onclick="selectOption(this,'use','landscaping')"><span class="option-icon">&#127807;</span><div class="option-title">Landscaping</div><div class="option-desc">Mowers, trimmers, landscape materials</div><div class="check">&#10003;</div></div>
+          <div class="option-card" onclick="selectOption(this,'use','rental')"><span class="option-icon">&#128273;</span><div class="option-title">Rental Fleet</div><div class="option-desc">High-use fleet, rental yard inventory</div><div class="check">&#10003;</div></div>
+          <div class="option-card" onclick="selectOption(this,'use','other')"><span class="option-icon">&#128230;</span><div class="option-title">General Use</div><div class="option-desc">Hauling, moving, other applications</div><div class="check">&#10003;</div></div>
+        </div>
+        <div class="modal-nav"><button class="btn-next" id="next1" disabled onclick="goToStep(2)">Next &#8594;</button></div>
       </div>
-      <div class="compare-actions" id="compareActions" style="display:none">
-        <button class="compare-get-quote" onclick="closeCompare(); openQuote('')">Get a Quote</button>
-        <button class="btn-compare" onclick="closeCompare(); openFinder()" style="padding:14px 28px;font-size:13px;">Find My Trailer</button>
+      <!-- Step 2 -->
+      <div class="step" id="step2">
+        <div class="step-label">Step 2 of 4</div>
+        <div class="step-question">How do you typically unload your cargo?</div>
+        <div class="option-grid">
+          <div class="option-card" onclick="selectOption(this,'unload','dump')"><span class="option-icon">&#11015;</span><div class="option-title">Dump / Hydraulic</div><div class="option-desc">Bulk materials, dirt, gravel, demolition debris</div><div class="check">&#10003;</div></div>
+          <div class="option-card" onclick="selectOption(this,'unload','drive-off')"><span class="option-icon">&#128668;</span><div class="option-title">Drive Off / Walk Off</div><div class="option-desc">Equipment drives or walks off under its own power</div><div class="check">&#10003;</div></div>
+          <div class="option-card" onclick="selectOption(this,'unload','crane-fork')"><span class="option-icon">&#127959;</span><div class="option-title">Crane / Forklift</div><div class="option-desc">Lifted on and off with crane, forklift, or similar equipment</div><div class="check">&#10003;</div></div>
+          <div class="option-card" onclick="selectOption(this,'unload','manual')"><span class="option-icon">&#9995;</span><div class="option-title">Manual / By Hand</div><div class="option-desc">Unloaded by hand or with small tools</div><div class="check">&#10003;</div></div>
+        </div>
+        <div class="modal-nav"><button class="btn-back" onclick="goToStep(1)">&#8592; Back</button><button class="btn-next" id="next2" disabled onclick="goToStep(3)">Next &#8594;</button></div>
+      </div>
+      <!-- Step 3 -->
+      <div class="step" id="step3">
+        <div class="step-label">Step 3 of 4</div>
+        <div class="step-question">How much weight do you typically haul?</div>
+        <div class="weight-section">
+          <h3>Search Equipment to Add</h3>
+          <div class="equipment-search"><span class="search-icon">&#128269;</span><input type="text" id="eqSearch" placeholder="Search equipment (e.g. Skid Steer, Mini Excavator...)" onkeyup="searchEquipment(this.value)" autocomplete="off"></div>
+          <div class="equipment-results" id="eqResults"></div>
+          <div class="added-equipment" id="addedEquipment"></div>
+        </div>
+        <div class="weight-section">
+          <h3>Or Enter Weight Directly</h3>
+          <div class="weight-row"><label>Equipment / Machinery Weight</label><input type="number" class="weight-input" id="loadWeight" placeholder="0" oninput="updateWeightTotal()"><span class="weight-unit">lbs</span></div>
+          <div class="weight-row"><label>Cargo / Materials Weight</label><input type="number" class="weight-input" id="cargoWeight" placeholder="0" oninput="updateWeightTotal()"><span class="weight-unit">lbs</span></div>
+          <div class="weight-total"><span class="weight-total-label">Total Estimated Load</span><span class="weight-total-value" id="totalWeight">0 lbs</span></div>
+          <div class="gvwr-warning" id="gvwrWarning">&#9888; Your load exceeds 36,000 lbs. Our largest trailer is rated up to 40,000 lbs GVWR. Please consult a dealer for custom builds.</div>
+        </div>
+        <div class="modal-nav"><button class="btn-back" onclick="goToStep(2)">&#8592; Back</button><button class="btn-next" onclick="goToStep(4)">Next &#8594;</button></div>
+      </div>
+      <!-- Step 4 -->
+      <div class="step" id="step4">
+        <div class="step-label">Step 4 of 4</div>
+        <div class="step-question">How often will you use this trailer?</div>
+        <div class="option-grid cols-3">
+          <div class="option-card" onclick="selectOption(this,'freq','daily')"><span class="option-icon">&#128197;</span><div class="option-title">Daily</div><div class="option-desc">Every working day, high-cycle use</div><div class="check">&#10003;</div></div>
+          <div class="option-card" onclick="selectOption(this,'freq','weekly')"><span class="option-icon">&#128467;</span><div class="option-title">Weekly</div><div class="option-desc">A few times per week, regular use</div><div class="check">&#10003;</div></div>
+          <div class="option-card" onclick="selectOption(this,'freq','occasional')"><span class="option-icon">&#128260;</span><div class="option-title">Occasionally</div><div class="option-desc">As needed, seasonal, or infrequent</div><div class="check">&#10003;</div></div>
+        </div>
+        <div class="modal-nav"><button class="btn-back" onclick="goToStep(3)">&#8592; Back</button><button class="btn-next" id="next4" disabled onclick="showResult()">See My Match &#8594;</button></div>
+      </div>
+      <!-- Result -->
+      <div class="step" id="stepResult">
+        <div class="step-label">Your Recommended Trailer</div>
+        <div class="result-card">
+          <div class="result-header"><div class="result-badge">Best Match</div><div class="result-name" id="resultName"></div></div>
+          <div class="result-body">
+            <p class="result-why" id="resultWhy"></p>
+            <div class="result-specs" id="resultSpecs"></div>
+            <div class="result-alt"><h4>Also Consider</h4><div class="alt-options" id="altOptions"></div></div>
+            <div class="result-actions">
+              <a href="find-a-dealer.html" class="btn-find-dealer" id="finderDealerLink">Find a Dealer Near You</a>
+              <a href="#" class="btn-learn-more" id="finderLearnLink">View Trailers</a>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center"><button class="btn-restart" onclick="restartFinder()">Start Over</button></div>
       </div>
     </div>
   </div>
 </div>
+<script src="walton-chat.js"></script>
+<script src="walton-finder.js"></script>
 </body>
 </html>

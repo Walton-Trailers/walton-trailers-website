@@ -139,7 +139,11 @@
     .resource-grid { grid-template-columns:1fr 1fr; }
     .parts-request-form { grid-template-columns:1fr; }
   }
-</style>
+
+  /* ════ MODAL OVERLAY (finder modal) ════ */
+  .modal-overlay { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; padding: 20px; }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  </style>
 </head>
 <body>
 
@@ -464,5 +468,100 @@
 })();
 </script>
 
+
+<!-- ═══════════ TRAILER FINDER MODAL ═══════════ -->
+<div class="modal-overlay" id="finderOverlay" onclick="overlayClick(event)">
+  <div class="modal" id="finderModal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title">Find My Trailer</div>
+        <div class="modal-subtitle">Answer 4 quick questions — we'll match you to the right Walton trailer.</div>
+      </div>
+      <button class="modal-close" onclick="closeFinder()">&#x2715;</button>
+    </div>
+    <div class="modal-body">
+      <div class="progress-bar">
+        <div class="progress-step active" id="ps1"></div>
+        <div class="progress-step" id="ps2"></div>
+        <div class="progress-step" id="ps3"></div>
+        <div class="progress-step" id="ps4"></div>
+      </div>
+      <!-- Step 1 -->
+      <div class="step active" id="step1">
+        <div class="step-label">Step 1 of 4</div>
+        <div class="step-question">What will you primarily use your trailer for?</div>
+        <div class="option-grid cols-3">
+          <div class="option-card" onclick="selectOption(this,'use','construction')"><span class="option-icon">&#127959;</span><div class="option-title">Construction</div><div class="option-desc">Equipment, materials, job site hauling</div><div class="check">&#10003;</div></div>
+          <div class="option-card" onclick="selectOption(this,'use','agriculture')"><span class="option-icon">&#127807;</span><div class="option-title">Agriculture</div><div class="option-desc">Farming equipment, livestock, hay</div><div class="check">&#10003;</div></div>
+          <div class="option-card" onclick="selectOption(this,'use','landscaping')"><span class="option-icon">&#127807;</span><div class="option-title">Landscaping</div><div class="option-desc">Mowers, trimmers, landscape materials</div><div class="check">&#10003;</div></div>
+          <div class="option-card" onclick="selectOption(this,'use','rental')"><span class="option-icon">&#128273;</span><div class="option-title">Rental Fleet</div><div class="option-desc">High-use fleet, rental yard inventory</div><div class="check">&#10003;</div></div>
+          <div class="option-card" onclick="selectOption(this,'use','other')"><span class="option-icon">&#128230;</span><div class="option-title">General Use</div><div class="option-desc">Hauling, moving, other applications</div><div class="check">&#10003;</div></div>
+        </div>
+        <div class="modal-nav"><button class="btn-next" id="next1" disabled onclick="goToStep(2)">Next &#8594;</button></div>
+      </div>
+      <!-- Step 2 -->
+      <div class="step" id="step2">
+        <div class="step-label">Step 2 of 4</div>
+        <div class="step-question">How do you typically unload your cargo?</div>
+        <div class="option-grid">
+          <div class="option-card" onclick="selectOption(this,'unload','dump')"><span class="option-icon">&#11015;</span><div class="option-title">Dump / Hydraulic</div><div class="option-desc">Bulk materials, dirt, gravel, demolition debris</div><div class="check">&#10003;</div></div>
+          <div class="option-card" onclick="selectOption(this,'unload','drive-off')"><span class="option-icon">&#128668;</span><div class="option-title">Drive Off / Walk Off</div><div class="option-desc">Equipment drives or walks off under its own power</div><div class="check">&#10003;</div></div>
+          <div class="option-card" onclick="selectOption(this,'unload','crane-fork')"><span class="option-icon">&#127959;</span><div class="option-title">Crane / Forklift</div><div class="option-desc">Lifted on and off with crane, forklift, or similar equipment</div><div class="check">&#10003;</div></div>
+          <div class="option-card" onclick="selectOption(this,'unload','manual')"><span class="option-icon">&#9995;</span><div class="option-title">Manual / By Hand</div><div class="option-desc">Unloaded by hand or with small tools</div><div class="check">&#10003;</div></div>
+        </div>
+        <div class="modal-nav"><button class="btn-back" onclick="goToStep(1)">&#8592; Back</button><button class="btn-next" id="next2" disabled onclick="goToStep(3)">Next &#8594;</button></div>
+      </div>
+      <!-- Step 3 -->
+      <div class="step" id="step3">
+        <div class="step-label">Step 3 of 4</div>
+        <div class="step-question">How much weight do you typically haul?</div>
+        <div class="weight-section">
+          <h3>Search Equipment to Add</h3>
+          <div class="equipment-search"><span class="search-icon">&#128269;</span><input type="text" id="eqSearch" placeholder="Search equipment (e.g. Skid Steer, Mini Excavator...)" onkeyup="searchEquipment(this.value)" autocomplete="off"></div>
+          <div class="equipment-results" id="eqResults"></div>
+          <div class="added-equipment" id="addedEquipment"></div>
+        </div>
+        <div class="weight-section">
+          <h3>Or Enter Weight Directly</h3>
+          <div class="weight-row"><label>Equipment / Machinery Weight</label><input type="number" class="weight-input" id="loadWeight" placeholder="0" oninput="updateWeightTotal()"><span class="weight-unit">lbs</span></div>
+          <div class="weight-row"><label>Cargo / Materials Weight</label><input type="number" class="weight-input" id="cargoWeight" placeholder="0" oninput="updateWeightTotal()"><span class="weight-unit">lbs</span></div>
+          <div class="weight-total"><span class="weight-total-label">Total Estimated Load</span><span class="weight-total-value" id="totalWeight">0 lbs</span></div>
+          <div class="gvwr-warning" id="gvwrWarning">&#9888; Your load exceeds 36,000 lbs. Our largest trailer is rated up to 40,000 lbs GVWR. Please consult a dealer for custom builds.</div>
+        </div>
+        <div class="modal-nav"><button class="btn-back" onclick="goToStep(2)">&#8592; Back</button><button class="btn-next" onclick="goToStep(4)">Next &#8594;</button></div>
+      </div>
+      <!-- Step 4 -->
+      <div class="step" id="step4">
+        <div class="step-label">Step 4 of 4</div>
+        <div class="step-question">How often will you use this trailer?</div>
+        <div class="option-grid cols-3">
+          <div class="option-card" onclick="selectOption(this,'freq','daily')"><span class="option-icon">&#128197;</span><div class="option-title">Daily</div><div class="option-desc">Every working day, high-cycle use</div><div class="check">&#10003;</div></div>
+          <div class="option-card" onclick="selectOption(this,'freq','weekly')"><span class="option-icon">&#128467;</span><div class="option-title">Weekly</div><div class="option-desc">A few times per week, regular use</div><div class="check">&#10003;</div></div>
+          <div class="option-card" onclick="selectOption(this,'freq','occasional')"><span class="option-icon">&#128260;</span><div class="option-title">Occasionally</div><div class="option-desc">As needed, seasonal, or infrequent</div><div class="check">&#10003;</div></div>
+        </div>
+        <div class="modal-nav"><button class="btn-back" onclick="goToStep(3)">&#8592; Back</button><button class="btn-next" id="next4" disabled onclick="showResult()">See My Match &#8594;</button></div>
+      </div>
+      <!-- Result -->
+      <div class="step" id="stepResult">
+        <div class="step-label">Your Recommended Trailer</div>
+        <div class="result-card">
+          <div class="result-header"><div class="result-badge">Best Match</div><div class="result-name" id="resultName"></div></div>
+          <div class="result-body">
+            <p class="result-why" id="resultWhy"></p>
+            <div class="result-specs" id="resultSpecs"></div>
+            <div class="result-alt"><h4>Also Consider</h4><div class="alt-options" id="altOptions"></div></div>
+            <div class="result-actions">
+              <a href="find-a-dealer.html" class="btn-find-dealer" id="finderDealerLink">Find a Dealer Near You</a>
+              <a href="#" class="btn-learn-more" id="finderLearnLink">View Trailers</a>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center"><button class="btn-restart" onclick="restartFinder()">Start Over</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="walton-chat.js"></script>
+<script src="walton-finder.js"></script>
 </body>
 </html>

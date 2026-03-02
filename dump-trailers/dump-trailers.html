@@ -729,6 +729,13 @@ footer {
     transform: rotate(180deg);
   }
 
+  
+  /* ════ MODAL OVERLAY (finder modal) ════ */
+  .modal-overlay { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; padding: 20px; }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  /* ════ QUOTE / COMPARE OVERLAY ════ */
+  .quote-overlay, .compare-overlay { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; padding: 20px; }
+  .quote-overlay.open, .compare-overlay.open { opacity: 1; pointer-events: all; }
   </style>
 </head>
 <body>
@@ -759,7 +766,7 @@ footer {
             <ul class="discover-col-links">
               <li><a href="../owners.html#warranty">Warranty Claim</a></li>
               <li><a href="../owners.html#register">Register Your Trailer</a></li>
-              <li><a href="#" onclick="toggleContactDrawer(); return false;">Contact Support</a></li>
+              <li><a href="../contact.html">Contact Support</a></li>
             </ul>
           </div>
         </div>
@@ -773,14 +780,14 @@ footer {
           <div class="simple-col">
             <div class="discover-col-heading">Find &amp; Buy</div>
             <ul class="discover-col-links">
-              <li><a href="../index.html#dealers">Find a Dealer</a></li>
+              <li><a href="../find-a-dealer.html">Find a Dealer</a></li>
               <li><a href="../become-a-dealer.html">Become a Dealer</a></li>
             </ul>
           </div>
           <div class="simple-col">
             <div class="discover-col-heading">Dealer Tools</div>
             <ul class="discover-col-links">
-              <li><a href="#" onclick="return false">Dealer Portal</a></li>
+              <li><a href="../dealer-portal.html">Dealer Portal</a></li>
               <li><a href="#" onclick="return false">Dealer Resources</a></li>
             </ul>
           </div>
@@ -797,14 +804,14 @@ footer {
             <ul class="discover-col-links">
               <li><a href="../about.html">About Walton</a></li>
               <li><a href="../careers.html">Careers</a></li>
-              <li><a href="#" onclick="toggleContactDrawer(); return false;">Contact Us</a></li>
+              <li><a href="../contact.html">Contact Us</a></li>
             </ul>
           </div>
         </div>
       </div>
     </li>
     <!-- CTA -->
-    <li><a href="../index.html#dealers" class="nav-cta">Find a Dealer</a></li>
+    <li><a href="../find-a-dealer.html" class="nav-cta">Find a Dealer</a></li>
     <!-- Dealer login icon -->
     <li><a href="#" class="nav-dealer-login" title="Dealer Login" onclick="return false">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
@@ -1119,7 +1126,7 @@ footer {
       link:{ text:'Browse Models', url: base+'index.html' } },
     { tags:['dealer','find dealer','near me','closest','local dealer','buy','purchase','where can i'],
       answer:'Walton Trailers are sold through an authorised dealer network across the United States. Use our dealer locator to find the closest one to you.',
-      link:{ text:'Find a Dealer', url: base+'index.html#dealers' } },
+      link:{ text:'Find a Dealer', url: base+'find-a-dealer.html' } },
     { tags:['gvwr','weight rating','capacity','payload','how much can','load','tow rating'],
       answer:'GVWR ranges from <strong>14,000 lbs</strong> on entry-level models up to <strong>40,000+ lbs</strong> on heavy-duty equipment trailers. Check each model page for exact specs.',
       link:{ text:'Browse Models', url: base+'index.html' } },
@@ -1128,14 +1135,14 @@ footer {
       link:{ text:'Read the Buying Guide', url: base+'learn.html' } },
     { tags:['financing','finance','loan','monthly payment','lease','credit'],
       answer:'Financing options are available through Walton dealer locations. Contact your nearest dealer to discuss rates and terms.',
-      link:{ text:'Find a Dealer', url: base+'index.html#dealers' } },
+      link:{ text:'Find a Dealer', url: base+'find-a-dealer.html' } },
     { tags:['made in','manufactured','built where','usa','american made','logan','utah'],
       answer:'Every Walton Trailer is <strong>designed and built in Logan, Utah, USA</strong> — American-made quality with over 50 years of experience.' },
     { tags:['color','colour','paint','customize','custom order','options','configuration','build your own'],
       answer:'Walton Trailers can be ordered in various configurations. Hit <strong>Build Your Own</strong> on any product page to explore options, or speak to a dealer about custom builds.' },
     { tags:['parts','accessories','replacement part','repair','service','maintenance','fix'],
       answer:'Genuine Walton parts and service are available through our dealer network. Contact your nearest dealer for parts orders or repair scheduling.',
-      link:{ text:'Find a Dealer', url: base+'index.html#dealers' } },
+      link:{ text:'Find a Dealer', url: base+'find-a-dealer.html' } },
     { tags:['register','registration','owner manual','owners manual','manual'],
       answer:"Register your trailer and download the owner's manual through our support section. Your dealer can also assist with registration." },
     { tags:['contact','call','phone','email','reach','message','talk','speak','help','support'],
@@ -1184,7 +1191,7 @@ footer {
     /* ── Buying / comparison questions ── */
     { tags:['which trailer','what trailer','best trailer','recommend','right trailer','help me pick','choose a trailer','which one should i'],
       answer:'The right trailer depends on your load type, weight, and how it will be towed. Here are the main categories:<br><br>&bull; <strong>Gooseneck Flatbeds</strong> — heavy hauling, stacks well behind pickup<br>&bull; <strong>Dump Trailers</strong> — bulk material hauling<br>&bull; <strong>Tilt Deck</strong> — equipment with no ramps needed<br>&bull; <strong>Deckover</strong> — wide/oversized equipment<br>&bull; <strong>Landscape</strong> — lawn care and lighter equipment<br><br>A dealer can walk you through the best fit for your needs.',
-      link:{ text:'Find a Dealer', url: base+'index.html#dealers' } },
+      link:{ text:'Find a Dealer', url: base+'find-a-dealer.html' } },
     { tags:['bumper pull vs gooseneck','fifth wheel vs gooseneck','difference','bumper pull','compared to','versus','vs gooseneck'],
       answer:'<strong>Gooseneck</strong> trailers hitch inside the truck bed over the rear axle — they handle heavier loads, are more stable, and can tow up to 40,000+ lbs. <strong>Bumper pull</strong> trailers use a standard receiver ball hitch and work with any tow vehicle, but are limited to lighter payloads. For work-duty use, most pros prefer gooseneck.',
       link:{ text:'Read the Buying Guide', url: base+'learn.html' } },
@@ -1194,10 +1201,10 @@ footer {
     /* ── Dealer / purchase ── */
     { tags:['how do i buy','how to order','how to purchase','ordering process','buy online','can i order online','order direct'],
       answer:'Walton Trailers are sold exclusively through our <strong>authorized dealer network</strong> — not direct. Contact your nearest dealer to configure, price, and order your trailer.',
-      link:{ text:'Find a Dealer', url: base+'index.html#dealers' } },
+      link:{ text:'Find a Dealer', url: base+'find-a-dealer.html' } },
     { tags:['delivery','shipping','transport','can you deliver','delivery time','lead time','how long to get'],
       answer:'Delivery and lead times vary by dealer location and current inventory. Contact your local Walton dealer for availability and estimated delivery timelines.',
-      link:{ text:'Find a Dealer', url: base+'index.html#dealers' } },
+      link:{ text:'Find a Dealer', url: base+'find-a-dealer.html' } },
     { tags:['trade in','trade-in','trade my trailer','trade old trailer'],
       answer:'Trade-in options are handled by individual Walton dealers. Contact your nearest dealer to ask about current trade-in programs.' },
 
@@ -1216,7 +1223,7 @@ footer {
       link:{ text:'Watch Video Guides', url: base+'video-guides.html' } },
     { tags:['service','repair','where to repair','service center','fix my trailer','near me repair'],
       answer:'Repairs and service are handled through the <strong>Walton dealer network</strong>. Find your nearest dealer for service scheduling and genuine parts.',
-      link:{ text:'Find a Dealer', url: base+'index.html#dealers' } },
+      link:{ text:'Find a Dealer', url: base+'find-a-dealer.html' } },
 
     /* ── Dealer-specific FAQs ── */
     { tags:['dealer program info','dealer program','authorized dealer','dealer support','dealer info'],
@@ -1569,16 +1576,16 @@ function submitQuote() {
    COMPARE TRAILERS MODAL
 ════════════════════════════════════════ */
 var compareData = {
-  dump_light:    { name: 'Dump Trailer - Light Duty',           gvwr: '14,000 lbs', payload: '10,000 lbs', category: 'Dump Trailers',            type: 'Dump',       axles: '2', warranty: 'Lifetime Structural' },
-  dump_medium:   { name: 'Dump Trailer - Medium Duty',          gvwr: '20,000 lbs', payload: '16,000 lbs', category: 'Dump Trailers',            type: 'Dump',       axles: '2', warranty: 'Lifetime Structural' },
-  dump_heavy:    { name: 'Dump Trailer - Heavy Duty',           gvwr: '30,000 lbs', payload: '26,000 lbs', category: 'Dump Trailers',            type: 'Dump',       axles: '3', warranty: 'Lifetime Structural' },
-  dump_deckover: { name: 'Dump Trailer - Deck-Over',            gvwr: '40,000 lbs', payload: '36,000 lbs', category: 'Dump Trailers',            type: 'Dump',       axles: '3', warranty: 'Lifetime Structural' },
-  tmx:           { name: 'Equipment Trailer - TMX',             gvwr: '14,000 lbs', payload: '10,000 lbs', category: 'Equipment and Tilt',       type: 'Equipment',  axles: '2', warranty: 'Lifetime Structural' },
-  tsx:           { name: 'Equipment Trailer - TSX',             gvwr: '24,000 lbs', payload: '20,000 lbs', category: 'Equipment and Tilt',       type: 'Equipment',  axles: '2', warranty: 'Lifetime Structural' },
-  tho:           { name: 'Tilt Trailer - THO',                  gvwr: '17,500 lbs', payload: '13,500 lbs', category: 'Equipment and Tilt',       type: 'Tilt',       axles: '2', warranty: 'Lifetime Structural' },
-  fbx:           { name: 'Flatbed - FBX',                       gvwr: '24,000 lbs', payload: '20,000 lbs', category: 'Flatbeds and Deck Overs',  type: 'Flatbed',    axles: '2', warranty: 'Lifetime Structural' },
-  fbh:           { name: 'Deck-Over Flatbed - FBH',             gvwr: '35,000 lbs', payload: '31,000 lbs', category: 'Flatbeds and Deck Overs',  type: 'Deck-Over',  axles: '3', warranty: 'Lifetime Structural' },
-  landscape:     { name: 'Landscape Trailer',                   gvwr: '7,000 lbs',  payload: '4,800 lbs',  category: 'Landscape Trailers',       type: 'Open',       axles: '1', warranty: 'Lifetime Structural' }
+  dump_light:    { url: '../dump-trailers/dump-trailers.html', name: 'Dump Trailer - Light Duty',           gvwr: '14,000 lbs', payload: '10,000 lbs', category: 'Dump Trailers',            type: 'Dump',       axles: '2', warranty: 'Lifetime Structural' },
+  dump_medium:   { url: '../dump-trailers/dump-trailers.html', name: 'Dump Trailer - Medium Duty',          gvwr: '20,000 lbs', payload: '16,000 lbs', category: 'Dump Trailers',            type: 'Dump',       axles: '2', warranty: 'Lifetime Structural' },
+  dump_heavy:    { url: '../dump-trailers/dump-trailers.html', name: 'Dump Trailer - Heavy Duty',           gvwr: '30,000 lbs', payload: '26,000 lbs', category: 'Dump Trailers',            type: 'Dump',       axles: '3', warranty: 'Lifetime Structural' },
+  dump_deckover: { url: '../dump-trailers/dump-trailers.html', name: 'Dump Trailer - Deck-Over',            gvwr: '40,000 lbs', payload: '36,000 lbs', category: 'Dump Trailers',            type: 'Dump',       axles: '3', warranty: 'Lifetime Structural' },
+  tmx:           { url: '../tilt-equipment/tilt-equipment.html', name: 'Equipment Trailer - TMX',             gvwr: '14,000 lbs', payload: '10,000 lbs', category: 'Equipment and Tilt',       type: 'Equipment',  axles: '2', warranty: 'Lifetime Structural' },
+  tsx:           { url: '../tilt-equipment/tilt-equipment.html', name: 'Equipment Trailer - TSX',             gvwr: '24,000 lbs', payload: '20,000 lbs', category: 'Equipment and Tilt',       type: 'Equipment',  axles: '2', warranty: 'Lifetime Structural' },
+  tho:           { url: '../tilt-equipment/tilt-equipment.html', name: 'Tilt Trailer - THO',                  gvwr: '17,500 lbs', payload: '13,500 lbs', category: 'Equipment and Tilt',       type: 'Tilt',       axles: '2', warranty: 'Lifetime Structural' },
+  fbx:           { url: '../Gooseneck/gooseneck.html', name: 'Flatbed - FBX',                       gvwr: '24,000 lbs', payload: '20,000 lbs', category: 'Flatbeds and Deck Overs',  type: 'Flatbed',    axles: '2', warranty: 'Lifetime Structural' },
+  fbh:           { url: '../Gooseneck/gooseneck.html', name: 'Deck-Over Flatbed - FBH',             gvwr: '35,000 lbs', payload: '31,000 lbs', category: 'Flatbeds and Deck Overs',  type: 'Deck-Over',  axles: '3', warranty: 'Lifetime Structural' },
+  landscape:     { url: '../Landscape/landscape.html', name: 'Landscape Trailer',                   gvwr: '7,000 lbs',  payload: '4,800 lbs',  category: 'Landscape Trailers',       type: 'Open',       axles: '1', warranty: 'Lifetime Structural' }
 };
 
 function openCompare() {
@@ -1610,6 +1617,7 @@ function renderCompare() {
   var a = compareData[keyA];
   var b = compareData[keyB];
   var rows = [
+    ['View Models', '<a href="'+(a.url||'#')+'" style="color:#c0392b;text-decoration:none;font-weight:500">Browse ' + (a.name.split(' - ')[0] || a.name) + ' →</a>', '<a href="'+(b.url||'#')+'" style="color:#c0392b;text-decoration:none;font-weight:500">Browse ' + (b.name.split(' - ')[0] || b.name) + ' →</a>'],
     ['Category',     a.category, b.category],
     ['Type',         a.type,     b.type],
     ['GVWR',         a.gvwr,     b.gvwr],
@@ -1666,7 +1674,6 @@ function renderCompare() {
       <li><a href="../tilt-equipment/tilt-equipment.html">Tilt Deck Trailers</a></li>
       <li><a href="../Deckover/deckover.html">Deckover Equipment</a></li>
       <li><a href="../Landscape/landscape.html">Landscape Trailers</a></li>
-      <li><a href="../parts.html">Parts &amp; Accessories</a></li>
     </ul>
   </div>
   
@@ -1678,14 +1685,16 @@ function renderCompare() {
       <li><a href="../owners.html#register">Register Your Trailer</a></li>
       <li><a href="../video-guides.html">Video Guides</a></li>
       <li><a href="../learn.html">FAQ &amp; Learning</a></li>
+    
+      <li><a href="../parts.html">Parts &amp; Accessories</a></li>
     </ul>
   </div>
   <div class="footer-col">
     <h4>Dealers</h4>
     <ul>
-      <li><a href="../index.html#dealers">Find a Dealer</a></li>
+      <li><a href="../find-a-dealer.html">Find a Dealer</a></li>
       <li><a href="../become-a-dealer.html">Become a Dealer</a></li>
-      <li><a href="#">Dealer Portal</a></li>
+      <li><a href="../dealer-portal.html">Dealer Portal</a></li>
     </ul>
   </div>
   <div class="footer-col">
@@ -1693,7 +1702,7 @@ function renderCompare() {
     <ul>
       <li><a href="../about.html">About Walton</a></li>
       <li><a href="../careers.html">Careers</a></li>
-      <li><a href="#" onclick="toggleContactDrawer(); return false;">Contact Us</a></li>
+      <li><a href="../contact.html">Contact Us</a></li>
     </ul>
   </div>
 </footer>
@@ -1874,5 +1883,99 @@ function renderCompare() {
     </div>
   </div>
 </div>
+
+<!-- ═══════════ TRAILER FINDER MODAL ═══════════ -->
+<div class="modal-overlay" id="finderOverlay" onclick="overlayClick(event)">
+  <div class="modal" id="finderModal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title">Find My Trailer</div>
+        <div class="modal-subtitle">Answer 4 quick questions — we'll match you to the right Walton trailer.</div>
+      </div>
+      <button class="modal-close" onclick="closeFinder()">&#x2715;</button>
+    </div>
+    <div class="modal-body">
+      <div class="progress-bar">
+        <div class="progress-step active" id="ps1"></div>
+        <div class="progress-step" id="ps2"></div>
+        <div class="progress-step" id="ps3"></div>
+        <div class="progress-step" id="ps4"></div>
+      </div>
+      <!-- Step 1 -->
+      <div class="step active" id="step1">
+        <div class="step-label">Step 1 of 4</div>
+        <div class="step-question">What will you primarily use your trailer for?</div>
+        <div class="option-grid cols-3">
+          <div class="option-card" onclick="selectOption(this,'use','construction')"><span class="option-icon">&#127959;</span><div class="option-title">Construction</div><div class="option-desc">Equipment, materials, job site hauling</div><div class="check">&#10003;</div></div>
+          <div class="option-card" onclick="selectOption(this,'use','agriculture')"><span class="option-icon">&#127807;</span><div class="option-title">Agriculture</div><div class="option-desc">Farming equipment, livestock, hay</div><div class="check">&#10003;</div></div>
+          <div class="option-card" onclick="selectOption(this,'use','landscaping')"><span class="option-icon">&#127807;</span><div class="option-title">Landscaping</div><div class="option-desc">Mowers, trimmers, landscape materials</div><div class="check">&#10003;</div></div>
+          <div class="option-card" onclick="selectOption(this,'use','rental')"><span class="option-icon">&#128273;</span><div class="option-title">Rental Fleet</div><div class="option-desc">High-use fleet, rental yard inventory</div><div class="check">&#10003;</div></div>
+          <div class="option-card" onclick="selectOption(this,'use','other')"><span class="option-icon">&#128230;</span><div class="option-title">General Use</div><div class="option-desc">Hauling, moving, other applications</div><div class="check">&#10003;</div></div>
+        </div>
+        <div class="modal-nav"><button class="btn-next" id="next1" disabled onclick="goToStep(2)">Next &#8594;</button></div>
+      </div>
+      <!-- Step 2 -->
+      <div class="step" id="step2">
+        <div class="step-label">Step 2 of 4</div>
+        <div class="step-question">How do you typically unload your cargo?</div>
+        <div class="option-grid">
+          <div class="option-card" onclick="selectOption(this,'unload','dump')"><span class="option-icon">&#11015;</span><div class="option-title">Dump / Hydraulic</div><div class="option-desc">Bulk materials, dirt, gravel, demolition debris</div><div class="check">&#10003;</div></div>
+          <div class="option-card" onclick="selectOption(this,'unload','drive-off')"><span class="option-icon">&#128668;</span><div class="option-title">Drive Off / Walk Off</div><div class="option-desc">Equipment drives or walks off under its own power</div><div class="check">&#10003;</div></div>
+          <div class="option-card" onclick="selectOption(this,'unload','crane-fork')"><span class="option-icon">&#127959;</span><div class="option-title">Crane / Forklift</div><div class="option-desc">Lifted on and off with crane, forklift, or similar equipment</div><div class="check">&#10003;</div></div>
+          <div class="option-card" onclick="selectOption(this,'unload','manual')"><span class="option-icon">&#9995;</span><div class="option-title">Manual / By Hand</div><div class="option-desc">Unloaded by hand or with small tools</div><div class="check">&#10003;</div></div>
+        </div>
+        <div class="modal-nav"><button class="btn-back" onclick="goToStep(1)">&#8592; Back</button><button class="btn-next" id="next2" disabled onclick="goToStep(3)">Next &#8594;</button></div>
+      </div>
+      <!-- Step 3 -->
+      <div class="step" id="step3">
+        <div class="step-label">Step 3 of 4</div>
+        <div class="step-question">How much weight do you typically haul?</div>
+        <div class="weight-section">
+          <h3>Search Equipment to Add</h3>
+          <div class="equipment-search"><span class="search-icon">&#128269;</span><input type="text" id="eqSearch" placeholder="Search equipment (e.g. Skid Steer, Mini Excavator...)" onkeyup="searchEquipment(this.value)" autocomplete="off"></div>
+          <div class="equipment-results" id="eqResults"></div>
+          <div class="added-equipment" id="addedEquipment"></div>
+        </div>
+        <div class="weight-section">
+          <h3>Or Enter Weight Directly</h3>
+          <div class="weight-row"><label>Equipment / Machinery Weight</label><input type="number" class="weight-input" id="loadWeight" placeholder="0" oninput="updateWeightTotal()"><span class="weight-unit">lbs</span></div>
+          <div class="weight-row"><label>Cargo / Materials Weight</label><input type="number" class="weight-input" id="cargoWeight" placeholder="0" oninput="updateWeightTotal()"><span class="weight-unit">lbs</span></div>
+          <div class="weight-total"><span class="weight-total-label">Total Estimated Load</span><span class="weight-total-value" id="totalWeight">0 lbs</span></div>
+          <div class="gvwr-warning" id="gvwrWarning">&#9888; Your load exceeds 36,000 lbs. Our largest trailer is rated up to 40,000 lbs GVWR. Please consult a dealer for custom builds.</div>
+        </div>
+        <div class="modal-nav"><button class="btn-back" onclick="goToStep(2)">&#8592; Back</button><button class="btn-next" onclick="goToStep(4)">Next &#8594;</button></div>
+      </div>
+      <!-- Step 4 -->
+      <div class="step" id="step4">
+        <div class="step-label">Step 4 of 4</div>
+        <div class="step-question">How often will you use this trailer?</div>
+        <div class="option-grid cols-3">
+          <div class="option-card" onclick="selectOption(this,'freq','daily')"><span class="option-icon">&#128197;</span><div class="option-title">Daily</div><div class="option-desc">Every working day, high-cycle use</div><div class="check">&#10003;</div></div>
+          <div class="option-card" onclick="selectOption(this,'freq','weekly')"><span class="option-icon">&#128467;</span><div class="option-title">Weekly</div><div class="option-desc">A few times per week, regular use</div><div class="check">&#10003;</div></div>
+          <div class="option-card" onclick="selectOption(this,'freq','occasional')"><span class="option-icon">&#128260;</span><div class="option-title">Occasionally</div><div class="option-desc">As needed, seasonal, or infrequent</div><div class="check">&#10003;</div></div>
+        </div>
+        <div class="modal-nav"><button class="btn-back" onclick="goToStep(3)">&#8592; Back</button><button class="btn-next" id="next4" disabled onclick="showResult()">See My Match &#8594;</button></div>
+      </div>
+      <!-- Result -->
+      <div class="step" id="stepResult">
+        <div class="step-label">Your Recommended Trailer</div>
+        <div class="result-card">
+          <div class="result-header"><div class="result-badge">Best Match</div><div class="result-name" id="resultName"></div></div>
+          <div class="result-body">
+            <p class="result-why" id="resultWhy"></p>
+            <div class="result-specs" id="resultSpecs"></div>
+            <div class="result-alt"><h4>Also Consider</h4><div class="alt-options" id="altOptions"></div></div>
+            <div class="result-actions">
+              <a href="find-a-dealer.html" class="btn-find-dealer" id="finderDealerLink">Find a Dealer Near You</a>
+              <a href="#" class="btn-learn-more" id="finderLearnLink">View Trailers</a>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center"><button class="btn-restart" onclick="restartFinder()">Start Over</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../walton-finder.js"></script>
 </body>
 </html>

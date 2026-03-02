@@ -1,6 +1,6 @@
 # Walton Trailers Website — Project Status
 
-**Date:** February 28, 2026 (updated)
+**Date:** March 2, 2026 (updated)
 **Live site:** https://taylor-nielsen.github.io/walton-trailers-website
 **Code location:** `/Website/` (your selected folder)
 
@@ -26,13 +26,15 @@
 - `owners.html` — Owner Resources hub
 - `terms.html` — Terms of Service
 - `privacy.html` — Privacy Policy
-- Dealer map page
+- `find-a-dealer.html` — Dealer locator with Google Maps + sidebar dealer list
+- `contact.html` — Contact page with upfront request triage (4 categories)
 
 ### Chatbot (v2)
 - Opens with audience triage: *Looking to buy / I'm an owner / I'm a dealer*
 - Each audience gets tailored responses and relevant quick reply buttons
 - 40-entry FAQ keyword engine
 - `chatbot-worker.js` ready for optional upgrade to live Claude AI responses (requires Cloudflare account + Anthropic API key — setup instructions are inside that file)
+- `walton-chat.js` — shared script, now loaded on all 37 pages
 
 ### Duplicate Content Fix
 - All 37 pages had orphaned duplicate sections (e.g., Become a Dealer, Owner Support Hub appearing twice)
@@ -47,31 +49,88 @@ Push the contents of your selected folder to the `taylor-nielsen/walton-trailers
 
 ---
 
-## Session Log — February 28, 2026
+## Session Log — March 2, 2026
 
-### Nav Consistency Fix
-- **Problem:** Trailers mega menu used JavaScript hover (mouseenter/mouseleave) that only existed on `index.html`. All 36 other pages were missing the JS, so hovering "Trailers" did nothing on subpages. The other dropdowns (Owners, Dealers, Company) used CSS `:hover` and worked everywhere.
-- **Fix:** Added a CSS `:has()` rule to all 37 pages so the Trailers mega panel shows on hover — same mechanism as all other dropdowns. Also fixed the Trailers trigger link (`href="#trailers"` / `href="../index.html#trailers"` → `href="#" onclick="return false"`) so it no longer navigates away.
-- **Files changed:** All 37 pages with nav (index, about, careers, owners, parts, learn, terms, privacy, video-guides, become-a-dealer, and all trailer category/product pages)
+### 8 Changes Requested & Implemented
 
-### Nav Audit & Bug Fixes (same session)
-- **Bug: Trailers hover bridge missing** — The invisible hover bridge (`::after`) existed for Owners/Dealers/Company but was never applied to the Trailers trigger (it wasn't wrapped in `nav-simple-wrap`). Added explicit `#trailersTrigger .nav-dropdown-trigger::after` bridge CSS to all 37 pages.
-- **Bug: "Find a Dealer" CTA broken on 9 root pages** — `href="#dealers"` only works on `index.html` (where the dealers section lives). Fixed all 9 non-index root pages (about, careers, owners, parts, learn, etc.) to use `href="index.html#dealers"`. Subdirectory pages already correctly used `../index.html#dealers`.
-- **Bug: Old JS hover conflict on index.html** — The old `showTMega`/`hideTMega` JavaScript event listeners were still running on `index.html`, conflicting with the new CSS `:has()` approach. Removed the old JS block entirely.
+**1. Chatbot on all pages**
+- Root cause: 11 root pages (about, careers, owners, learn, parts, terms, privacy, video-guides, become-a-dealer, dealer-portal, login) had chatbot HTML but zero JS.
+- Fix: Created `walton-chat.js` (shared IIFE), added `<script src="walton-chat.js">` to all 11 missing pages.
 
-### Nav Follow-up Fixes (same session)
-- **Images**: The trailersMega panel on all 36 non-index pages was showing the same placeholder photo for all 5 trailer categories. Fixed to use the correct unique image per category, with `../` path prefix on subdirectory pages.
-- **Menu hover gap**: The invisible bridge pseudo-element (`::after`) that fills the gap between the nav trigger and dropdown panel wasn't working because `nav-dropdown-trigger` had no `position: relative`. Added `position: relative` and increased bridge from 8px → 12px on all pages.
-- **Text sizing**: Subpages had duplicate conflicting CSS rules — correct 16px link / 12px heading rules were being overridden by old 13px / 10px rules. Removed the overriding rules from all 37 affected pages.
+**2. "Get a Quote" visible below footer on non-index pages**
+- Root cause: Root pages had `<div class="quote-overlay">` HTML but no CSS — rendered as visible block.
+- Fix: Removed orphaned `quoteOverlay` and `compareOverlay` HTML from all root pages via Python script.
+
+**3 & 4. New Find a Dealer page with Google Maps**
+- Created `find-a-dealer.html` with: sidebar search (city/ZIP + radius filter), dealer list panel with 12 sample dealers across the western US, Google Maps with dark theme and custom markers.
+- **To activate the map:** Replace `YOUR_GOOGLE_MAPS_API_KEY` in the `<script>` tag at the bottom of `find-a-dealer.html`. Get a free key at console.cloud.google.com → APIs & Services → Maps JavaScript API.
+- All "Find a Dealer" links across all 37 pages updated to point to `find-a-dealer.html`.
+
+**5. "Parts & Accessories" moved in footer**
+- Moved from Trailers column → Owners column in footer on all 37 pages.
+
+**6. "Help Me Choose" CTA fixed**
+- Root cause: `finderOverlay` HTML was completely missing from all pages. `openFinder()` was silently failing.
+- Fix: Created `walton-finder.js` (shared script with full finder logic). Injected complete 5-step `finderOverlay` HTML into all 37 pages.
+
+**7. "Compare Now" updated with real model links**
+- Added `url` field to all `compareData` entries in index.html.
+- Updated `renderCompare()` to show "View Models" row with links to category pages.
+
+**8. Contact Us page created**
+- Root cause: `toggleContactDrawer()` was called everywhere but was never defined.
+- Fix: Created `contact.html` with 4-option triage (Buy a Trailer, Owner Support, Dealer Inquiry, General Question). Each option reveals a tailored contact form.
+- **To activate forms:** Replace `YOUR_FORMSPREE_ID` in all 4 form `action` attributes in `contact.html`. Get a free Formspree endpoint at formspree.io.
+- All "Contact Us" links across all 37 pages updated to point to `contact.html`.
+
+### New Files Created This Session
+- `walton-chat.js` — shared chatbot IIFE (all pages)
+- `walton-finder.js` — shared Help Me Choose finder (all pages)
+- `find-a-dealer.html` — dealer locator with Google Maps
+- `contact.html` — contact page with 4-category triage forms
+- `sitewide_changes.py` — Python script that applied bulk changes across all 37 pages
+
+---
+
+## Session Log — March 2, 2026 (Continued)
+
+### 6 Additional Changes Implemented
+
+**1. Forms/overlays appearing below footer (39 pages)**
+- Root cause: `finderOverlay` HTML was injected sitewide but the `.modal-overlay { position: fixed; opacity: 0; pointer-events: none }` CSS was missing on 39 pages.
+- Fix: Python script added the overlay CSS to all 39 affected pages.
+
+**2. Find a Dealer page improvements**
+- Removed "Dealer 01, Dealer 02" numbering from the sidebar list.
+- Sidebar now shows a prompt instead of all dealers until a search is performed.
+- Replaced Google Maps default InfoWindow with a custom floating popup card (Directions / Visit Site / Phone buttons, matching the MAXX-D screenshot).
+- Fixed remaining "Find a Dealer" CTAs not pointing to `find-a-dealer.html`.
+
+**3. Favicon updated**
+- Old: white W on black background (no transparency).
+- New: black W letterform on transparent background (32px, 192px, 512px + apple-touch-icon).
+
+**4. Dealer Portal wired up**
+- All 40 pages had `href="#" onclick="return false">Dealer Portal` — replaced with `href="dealer-portal.html">` (root) and `href="../dealer-portal.html">` (sub-pages).
+
+**5. Homepage map removed**
+- Removed the Leaflet/OpenStreetMap dealer locator section entirely.
+- Replaced with a two-column "Find a Dealer" CTA section: image placeholder on the left, heading + body text + button on the right.
+
+**6. Parts & Accessories light background**
+- Wrapped the model filter and parts catalog sections in a `parts-catalog-section` div.
+- Applied light cream background (`var(--white)` = `#f5f3ef`) with scoped CSS overrides so all cards, text, and form elements remain readable on the light background.
 
 ---
 
 ## Possible Next Steps
 
+- **Activate Google Maps:** Add API key to `find-a-dealer.html` (see instructions above and in the file)
+- **Activate Contact Forms:** Add Formspree endpoint to `contact.html` (4 forms, all use `YOUR_FORMSPREE_ID`)
+- **Add real dealers:** Update the `dealers` array in `find-a-dealer.html` with actual dealer names, addresses, and lat/lng coordinates
 - Push to GitHub and verify the live site looks correct
 - Set up Cloudflare Worker for live AI-powered chatbot (instructions in `chatbot-worker.js`)
 - Add individual trailer detail/product pages
-- Any additional content, design, or feature changes
 
 ---
 
@@ -80,10 +139,14 @@ Push the contents of your selected folder to the `taylor-nielsen/walton-trailers
 | File | Purpose |
 |---|---|
 | `index.html` | Homepage — main entry point |
+| `find-a-dealer.html` | Dealer locator with Google Maps |
+| `contact.html` | Contact page with request triage |
 | `owners.html` | Owner resources (manuals, warranty, registration) |
 | `learn.html` | FAQ & Learning Center |
 | `parts.html` | Parts & Accessories |
 | `video-guides.html` | Video Guides |
 | `terms.html` | Terms of Service |
 | `privacy.html` | Privacy Policy |
+| `walton-chat.js` | Shared chatbot widget (loaded on all pages) |
+| `walton-finder.js` | Shared Help Me Choose finder (loaded on all pages) |
 | `chatbot-worker.js` | Cloudflare Worker script for AI chatbot upgrade |
