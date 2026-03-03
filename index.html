@@ -838,9 +838,10 @@
     display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px;
   }
   .compare-select-wrap label {
-    display: block; font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
-    color: rgba(245,243,239,0.45); margin-bottom: 8px;
+    display: block; font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(245,243,239,0.4); margin-bottom: 6px;
   }
+  .compare-select-wrap label.model-label { margin-top: 10px; }
   .compare-select-wrap select {
     width: 100%; background: rgba(255,255,255,0.05);
     border: 1px solid rgba(255,255,255,0.12); color: var(--white);
@@ -849,6 +850,7 @@
   }
   .compare-select-wrap select:focus { outline: none; border-color: var(--rust); }
   .compare-select-wrap select option { background: #1c2028; }
+  .compare-select-wrap select:disabled { opacity: 0.35; cursor: default; }
   .compare-table { width: 100%; border-collapse: collapse; }
   .compare-table th {
     font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 2px;
@@ -1176,7 +1178,7 @@
           <div class="simple-col">
             <div class="discover-col-heading">Owner Resources</div>
             <ul class="discover-col-links">
-              <li><a href="owners.html#owners">User Manuals</a></li>
+              <li><a href="user-manuals.html">User Manuals</a></li>
               <li><a href="parts.html">Parts &amp; Accessories</a></li>
               <li><a href="video-guides.html">Video Guides</a></li>
               <li><a href="learn.html">FAQ &amp; Learning Center</a></li>
@@ -1185,8 +1187,8 @@
           <div class="simple-col">
             <div class="discover-col-heading">Service</div>
             <ul class="discover-col-links">
-              <li><a href="owners.html#warranty">Warranty Claim</a></li>
-              <li><a href="owners.html#register">Register Your Trailer</a></li>
+              <li><a href="warranty.html">Warranty Claim</a></li>
+              <li><a href="register.html">Register Your Trailer</a></li>
               <li><a href="contact.html">Contact Support</a></li>
             </ul>
           </div>
@@ -1537,9 +1539,9 @@
   <div class="footer-col">
     <h4>Owners</h4>
     <ul>
-      <li><a href="owners.html#owners">User Manuals</a></li>
-      <li><a href="owners.html#warranty">Warranty Claim</a></li>
-      <li><a href="owners.html#register">Register Your Trailer</a></li>
+      <li><a href="user-manuals.html">User Manuals</a></li>
+      <li><a href="warranty.html">Warranty Claim</a></li>
+      <li><a href="register.html">Register Your Trailer</a></li>
       <li><a href="video-guides.html">Video Guides</a></li>
       <li><a href="learn.html">FAQ &amp; Learning</a></li>
     
@@ -2530,17 +2532,42 @@ function submitQuote() {
    COMPARE TRAILERS MODAL
 ════════════════════════════════════════ */
 var compareData = {
-  dump_light:    { url: 'dump-trailers/dump-trailers.html', name: 'Dump Trailer - Light Duty',           gvwr: '14,000 lbs', payload: '10,000 lbs', category: 'Dump Trailers',            type: 'Dump',       axles: '2', warranty: 'Lifetime Structural' },
-  dump_medium:   { url: 'dump-trailers/dump-trailers.html', name: 'Dump Trailer - Medium Duty',          gvwr: '20,000 lbs', payload: '16,000 lbs', category: 'Dump Trailers',            type: 'Dump',       axles: '2', warranty: 'Lifetime Structural' },
-  dump_heavy:    { url: 'dump-trailers/dump-trailers.html', name: 'Dump Trailer - Heavy Duty',           gvwr: '30,000 lbs', payload: '26,000 lbs', category: 'Dump Trailers',            type: 'Dump',       axles: '3', warranty: 'Lifetime Structural' },
-  dump_deckover: { url: 'dump-trailers/dump-trailers.html', name: 'Dump Trailer - Deck-Over',            gvwr: '40,000 lbs', payload: '36,000 lbs', category: 'Dump Trailers',            type: 'Dump',       axles: '3', warranty: 'Lifetime Structural' },
-  tmx:           { url: 'tilt-equipment/tilt-equipment.html', name: 'Equipment Trailer - TMX',             gvwr: '14,000 lbs', payload: '10,000 lbs', category: 'Equipment and Tilt',       type: 'Equipment',  axles: '2', warranty: 'Lifetime Structural' },
-  tsx:           { url: 'tilt-equipment/tilt-equipment.html', name: 'Equipment Trailer - TSX',             gvwr: '24,000 lbs', payload: '20,000 lbs', category: 'Equipment and Tilt',       type: 'Equipment',  axles: '2', warranty: 'Lifetime Structural' },
-  tho:           { url: 'tilt-equipment/tilt-equipment.html', name: 'Tilt Trailer - THO',                  gvwr: '17,500 lbs', payload: '13,500 lbs', category: 'Equipment and Tilt',       type: 'Tilt',       axles: '2', warranty: 'Lifetime Structural' },
-  fbx:           { url: 'Gooseneck/gooseneck.html', name: 'Flatbed - FBX',                       gvwr: '24,000 lbs', payload: '20,000 lbs', category: 'Flatbeds and Deck Overs',  type: 'Flatbed',    axles: '2', warranty: 'Lifetime Structural' },
-  fbh:           { url: 'Gooseneck/gooseneck.html', name: 'Deck-Over Flatbed - FBH',             gvwr: '35,000 lbs', payload: '31,000 lbs', category: 'Flatbeds and Deck Overs',  type: 'Deck-Over',  axles: '3', warranty: 'Lifetime Structural' },
-  landscape:     { url: 'Landscape/landscape.html', name: 'Landscape Trailer',                   gvwr: '7,000 lbs',  payload: '4,800 lbs',  category: 'Landscape Trailers',       type: 'Open',       axles: '1', warranty: 'Lifetime Structural' }
+  dump_light:    { url: 'dump-trailers/dhv207.html',        name: 'Dump — Light Duty (DHV)',       gvwr: '14,000 lbs', payload: '10,000 lbs', pull: 'Bumper Pull',  width: '82"',  cat: 'Dump Trailers' },
+  dump_medium:   { url: 'dump-trailers/dho210.html',        name: 'Dump — Medium Duty (DHO)',      gvwr: '20,000 lbs', payload: '16,000 lbs', pull: 'Gooseneck',    width: '82"',  cat: 'Dump Trailers' },
+  dump_heavy:    { url: 'dump-trailers/dho212.html',        name: 'Dump — Heavy Duty (DHO)',       gvwr: '30,000 lbs', payload: '26,000 lbs', pull: 'Gooseneck',    width: '82"',  cat: 'Dump Trailers' },
+  dump_deckover: { url: 'dump-trailers/dho215.html',        name: 'Dump — Heavy Deck-Over',        gvwr: '40,000 lbs', payload: '36,000 lbs', pull: 'Gooseneck',    width: '102"', cat: 'Dump Trailers' },
+  tmx:           { url: 'tilt-equipment/tmx107.html',       name: 'Tilt — TMX107',                 gvwr: '14,000 lbs', payload: '10,000 lbs', pull: 'Bumper Pull',  width: '82"',  cat: 'Equipment & Tilt' },
+  tsx:           { url: 'tilt-equipment/tsx207.html',       name: 'Tilt — TSX Series',             gvwr: '24,000 lbs', payload: '20,000 lbs', pull: 'Bumper Pull',  width: '82"',  cat: 'Equipment & Tilt' },
+  fbx:           { url: 'Gooseneck/fbx210.html',            name: 'Flatbed — FBX Series',          gvwr: '24,000 lbs', payload: '20,000 lbs', pull: 'Bumper Pull',  width: '83"',  cat: 'Gooseneck Flatbeds' },
+  fbh:           { url: 'Gooseneck/fbh207.html',            name: 'Flatbed — FBH (Deck-Over)',     gvwr: '35,000 lbs', payload: '31,000 lbs', pull: 'Gooseneck',    width: '102"', cat: 'Gooseneck Flatbeds' },
+  landscape:     { url: 'Landscape/mpr205.html',            name: 'Landscape — MPR Series',        gvwr: '7,000 lbs',  payload: '4,800 lbs',  pull: 'Bumper Pull',  width: '77"',  cat: 'Landscape Trailers' }
 };
+
+/* Category → models mapping */
+var compareCategories = {
+  'Dump Trailers':      ['dump_light', 'dump_medium', 'dump_heavy', 'dump_deckover'],
+  'Equipment & Tilt':   ['tmx', 'tsx'],
+  'Gooseneck Flatbeds': ['fbx', 'fbh'],
+  'Landscape Trailers': ['landscape']
+};
+
+function updateModelSelect(catSelectId, modelSelectId) {
+  var cat = document.getElementById(catSelectId).value;
+  var modelSel = document.getElementById(modelSelectId);
+  modelSel.innerHTML = '<option value="">— Select a model —</option>';
+  if (cat && compareCategories[cat]) {
+    compareCategories[cat].forEach(function(key) {
+      var opt = document.createElement('option');
+      opt.value = key;
+      opt.textContent = compareData[key].name;
+      modelSel.appendChild(opt);
+    });
+    modelSel.disabled = false;
+  } else {
+    modelSel.disabled = true;
+  }
+  renderCompare();
+}
 
 function openCompare() {
   document.getElementById('compareOverlay').classList.add('open');
@@ -2563,21 +2590,19 @@ function renderCompare() {
   var actions = document.getElementById('compareActions');
 
   if (!keyA || !keyB) {
-    wrap.innerHTML = '<div class="compare-placeholder">Select two trailers above to compare specs</div>';
+    wrap.innerHTML = '<div class="compare-placeholder">Select a category and model for each column above</div>';
     actions.style.display = 'none';
     return;
   }
 
   var a = compareData[keyA];
   var b = compareData[keyB];
+
   var rows = [
-    ['View Models', '<a href="'+(a.url||'#')+'" style="color:#c0392b;text-decoration:none;font-weight:500">Browse ' + (a.name.split(' - ')[0] || a.name) + ' →</a>', '<a href="'+(b.url||'#')+'" style="color:#c0392b;text-decoration:none;font-weight:500">Browse ' + (b.name.split(' - ')[0] || b.name) + ' →</a>'],
-    ['Category',     a.category, b.category],
-    ['Type',         a.type,     b.type],
-    ['GVWR',         a.gvwr,     b.gvwr],
-    ['Est. Payload', a.payload,  b.payload],
-    ['Axles',        a.axles,    b.axles],
-    ['Warranty',     a.warranty, b.warranty]
+    { label: 'Pull Type',    valA: a.pull,    valB: b.pull,    highlight: false },
+    { label: 'GVWR',         valA: a.gvwr,    valB: b.gvwr,    highlight: true  },
+    { label: 'Est. Payload', valA: a.payload, valB: b.payload,  highlight: true  },
+    { label: 'Width',        valA: a.width,   valB: b.width,    highlight: false }
   ];
 
   var html = '<table class="compare-table"><thead><tr>';
@@ -2586,15 +2611,21 @@ function renderCompare() {
   html += '<th>' + b.name + '</th>';
   html += '</tr></thead><tbody>';
 
-  var boldRows = ['GVWR', 'Est. Payload'];
-  for (var i = 0; i < rows.length; i++) {
-    var isHL = boldRows.indexOf(rows[i][0]) !== -1;
+  rows.forEach(function(r) {
     html += '<tr>';
-    html += '<td class="row-label">' + rows[i][0] + '</td>';
-    html += '<td class="val' + (isHL ? ' highlight' : '') + '">' + rows[i][1] + '</td>';
-    html += '<td class="val' + (isHL ? ' highlight' : '') + '">' + rows[i][2] + '</td>';
+    html += '<td class="row-label">' + r.label + '</td>';
+    html += '<td class="val' + (r.highlight ? ' highlight' : '') + '">' + r.valA + '</td>';
+    html += '<td class="val' + (r.highlight ? ' highlight' : '') + '">' + r.valB + '</td>';
     html += '</tr>';
-  }
+  });
+
+  /* View model links row */
+  html += '<tr>';
+  html += '<td class="row-label">View Models</td>';
+  html += '<td><a href="' + (a.url||'#') + '" style="color:#b7a380;text-decoration:underline;text-underline-offset:3px;font-size:13px">' + a.name + ' →</a></td>';
+  html += '<td><a href="' + (b.url||'#') + '" style="color:#b7a380;text-decoration:underline;text-underline-offset:3px;font-size:13px">' + b.name + ' →</a></td>';
+  html += '</tr>';
+
   html += '</tbody></table>';
   wrap.innerHTML = html;
   actions.style.display = 'flex';
@@ -2729,35 +2760,31 @@ function renderCompare() {
     <div class="compare-modal-body">
       <div class="compare-selectors">
         <div class="compare-select-wrap">
-          <label>Trailer A</label>
-          <select id="compareA" onchange="renderCompare()">
-            <option value="">Select a trailer</option>
-            <option value="dump_light">Dump Trailer - Light Duty</option>
-            <option value="dump_medium">Dump Trailer - Medium Duty</option>
-            <option value="dump_heavy">Dump Trailer - Heavy Duty</option>
-            <option value="dump_deckover">Dump Trailer - Heavy Duty Deck-Over</option>
-            <option value="tmx">Equipment Trailer - TMX</option>
-            <option value="tsx">Equipment Trailer - TSX</option>
-            <option value="tho">Tilt Trailer - THO</option>
-            <option value="fbx">Flatbed - FBX</option>
-            <option value="fbh">Deck-Over Flatbed - FBH</option>
-            <option value="landscape">Landscape Trailer</option>
+          <label>Trailer A — Category</label>
+          <select id="catA" onchange="updateModelSelect('catA','compareA')">
+            <option value="">— Select a category —</option>
+            <option>Dump Trailers</option>
+            <option>Equipment &amp; Tilt</option>
+            <option>Gooseneck Flatbeds</option>
+            <option>Landscape Trailers</option>
+          </select>
+          <label class="model-label">Trailer A — Model</label>
+          <select id="compareA" onchange="renderCompare()" disabled>
+            <option value="">— Select a model —</option>
           </select>
         </div>
         <div class="compare-select-wrap">
-          <label>Trailer B</label>
-          <select id="compareB" onchange="renderCompare()">
-            <option value="">Select a trailer</option>
-            <option value="dump_light">Dump Trailer - Light Duty</option>
-            <option value="dump_medium">Dump Trailer - Medium Duty</option>
-            <option value="dump_heavy">Dump Trailer - Heavy Duty</option>
-            <option value="dump_deckover">Dump Trailer - Heavy Duty Deck-Over</option>
-            <option value="tmx">Equipment Trailer - TMX</option>
-            <option value="tsx">Equipment Trailer - TSX</option>
-            <option value="tho">Tilt Trailer - THO</option>
-            <option value="fbx">Flatbed - FBX</option>
-            <option value="fbh">Deck-Over Flatbed - FBH</option>
-            <option value="landscape">Landscape Trailer</option>
+          <label>Trailer B — Category</label>
+          <select id="catB" onchange="updateModelSelect('catB','compareB')">
+            <option value="">— Select a category —</option>
+            <option>Dump Trailers</option>
+            <option>Equipment &amp; Tilt</option>
+            <option>Gooseneck Flatbeds</option>
+            <option>Landscape Trailers</option>
+          </select>
+          <label class="model-label">Trailer B — Model</label>
+          <select id="compareB" onchange="renderCompare()" disabled>
+            <option value="">— Select a model —</option>
           </select>
         </div>
       </div>

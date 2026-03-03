@@ -366,6 +366,15 @@
   /* ════ MODAL OVERLAY (finder modal) ════ */
   .modal-overlay { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; padding: 20px; }
   .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .form-dealer-cta {
+    margin-top: 16px; padding: 14px 16px;
+    background: rgba(183,163,128,0.08); border: 1px solid rgba(183,163,128,0.2);
+    border-radius: 4px; font-size: 13px; color: rgba(245,243,239,0.6);
+    display: flex; align-items: flex-start; gap: 10px; line-height: 1.6;
+  }
+  .form-dealer-cta svg { flex-shrink: 0; margin-top: 2px; stroke: var(--rust); }
+  .form-dealer-cta a { color: var(--rust); text-decoration: underline; text-underline-offset: 3px; }
+  .form-dealer-cta a:hover { color: var(--rust-dark); }
   </style>
 </head>
 <body>
@@ -382,7 +391,7 @@
           <div class="simple-col">
             <div class="discover-col-heading">Owner Resources</div>
             <ul class="discover-col-links">
-              <li><a href="owners.html#owners">User Manuals</a></li>
+              <li><a href="user-manuals.html">User Manuals</a></li>
               <li><a href="parts.html">Parts &amp; Accessories</a></li>
               <li><a href="video-guides.html">Video Guides</a></li>
               <li><a href="learn.html">FAQ &amp; Learning Center</a></li>
@@ -391,8 +400,8 @@
           <div class="simple-col">
             <div class="discover-col-heading">Service</div>
             <ul class="discover-col-links">
-              <li><a href="owners.html#warranty">Warranty Claim</a></li>
-              <li><a href="owners.html#register">Register Your Trailer</a></li>
+              <li><a href="warranty.html">Warranty Claim</a></li>
+              <li><a href="register.html">Register Your Trailer</a></li>
               <li><a href="contact.html">Contact Support</a></li>
             </ul>
           </div>
@@ -556,6 +565,10 @@
           <button type="submit" class="form-submit">Send Request &rarr;</button>
           <p class="form-note">We'll connect you with your nearest authorized Walton dealer. No spam — ever.</p>
         </form>
+        <div class="form-dealer-cta">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+          Not sure which model is right for you? <a href="find-a-dealer.html">Find an authorized Walton dealer near you</a> — they can walk you through the lineup in person.
+        </div>
         <div class="form-success" id="success-buy">
           <div class="success-icon">&#10003;</div>
           <h3>Request Sent</h3>
@@ -726,11 +739,6 @@
     </div>
   </section>
 
-  <div class="info-bar">
-    <div class="info-item">
-      <h4>Headquarters</h4>
-      <p>150 W 2500 N<br>Logan, Utah 84341</p>
-    </div>
     <div class="info-item">
       <h4>Hours</h4>
       <p>Monday – Friday<br>8:00 AM – 5:00 PM MT</p>
@@ -778,9 +786,9 @@
   <div class="footer-col">
     <h4>Owners</h4>
     <ul>
-      <li><a href="owners.html#owners">User Manuals</a></li>
-      <li><a href="owners.html#warranty">Warranty Claim</a></li>
-      <li><a href="owners.html#register">Register Your Trailer</a></li>
+      <li><a href="user-manuals.html">User Manuals</a></li>
+      <li><a href="warranty.html">Warranty Claim</a></li>
+      <li><a href="register.html">Register Your Trailer</a></li>
       <li><a href="video-guides.html">Video Guides</a></li>
       <li><a href="learn.html">FAQ &amp; Learning</a></li>
       <li><a href="parts.html">Parts &amp; Accessories</a></li>

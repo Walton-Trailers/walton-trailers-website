@@ -350,11 +350,43 @@
       padding: 80px 48px;
     }
     
-    .features-grid-section h2 {
+    /* ── FEATURES ACCORDION ── */
+    .features-toggle {
+      display: flex; align-items: center; justify-content: space-between;
+      cursor: pointer; user-select: none;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 0;
+    }
+    .features-toggle h2 {
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(36px, 4vw, 56px);
       letter-spacing: 2px;
-      margin-bottom: 40px;
+      margin: 0;
+    }
+    .features-toggle-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; font-weight: 300; color: rgba(255,255,255,0.7);
+      transition: transform 0.3s, background 0.2s;
+    }
+    .features-toggle.open .features-toggle-icon {
+      transform: rotate(45deg);
+      background: rgba(183,163,128,0.15);
+      border-color: rgba(183,163,128,0.4);
+    }
+    .features-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s ease;
+    }
+    .features-body.open {
+      max-height: 2000px;
+    }
+    .features-body .features-grid {
+      padding-top: 36px;
     }
     
     .features-grid {
@@ -544,15 +576,6 @@
       border-bottom: none;
     }
     
-    .tire-note {
-      margin-top: 28px;
-      padding: 20px 24px;
-      background: rgba(255, 255, 255, 0.03);
-      border-left: 3px solid var(--rust);
-      font-size: 13px;
-      color: rgba(245, 243, 239, 0.5);
-      line-height: 1.7;
-    }
     
     .cta-banner {
       background: var(--rust);
@@ -1145,7 +1168,11 @@ footer {
   </section>
   
   <section class="features-grid-section">
-    <h2>Standard Features</h2>
+    <div class="features-toggle" onclick="toggleFeatures(this)" aria-expanded="false">
+      <h2>Standard Features</h2>
+      <span class="features-toggle-icon">+</span>
+    </div>
+    <div class="features-body">
     <div class="features-grid">
       
     <div class="feature-item">
@@ -1218,6 +1245,7 @@ footer {
       <div class="feature-text">Removable Safety Chains with Stow Hooks</div>
     </div>
     
+    </div>
     </div>
   </section>
   
@@ -1313,7 +1341,6 @@ footer {
     
       </tbody>
     </table>
-    <div class="tire-note">Standard tire: ST235/80R16 "E" 10 Ply, 8 Lug, 16" Black. Upgrade available: ST235/85R16 "G" 14 Ply, 8 Lug, 16" Black (+$400)</div>
   </section>
   
   <section class="cta-banner">
@@ -2268,5 +2295,14 @@ function renderCompare() {
   </div>
 </div>
 <script src="../walton-finder.js"></script>
+
+<script>
+function toggleFeatures(toggle) {
+  toggle.classList.toggle('open');
+  var body = toggle.nextElementSibling;
+  body.classList.toggle('open');
+  toggle.setAttribute('aria-expanded', toggle.classList.contains('open'));
+}
+</script>
 </body>
 </html>

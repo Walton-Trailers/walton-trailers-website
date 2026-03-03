@@ -558,6 +558,20 @@
   .parts-catalog-section .cart-form-textarea::placeholder { color: rgba(10,10,10,0.35); }
   .parts-catalog-section .cart-clear-btn { border-color: rgba(0,0,0,0.15); color: rgba(10,10,10,0.5); }
   .parts-catalog-section .cart-success p { color: rgba(10,10,10,0.55); }
+  /* ── MISSING PART CTA ── */
+  .missing-part-cta { background: var(--steel); border-top: 1px solid rgba(0,0,0,0.08); }
+  .missing-part-inner { max-width: 1200px; margin: 0 auto; padding: 48px 48px;
+    display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+  .missing-part-title { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 2px; color: var(--black); margin-bottom: 8px; }
+  .missing-part-text p { font-size: 14px; color: rgba(10,10,10,0.6); line-height: 1.6; max-width: 460px; }
+  .missing-part-btn { display: inline-flex; align-items: center; gap: 8px;
+    background: var(--black); color: var(--white); padding: 14px 28px;
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
+    border-radius: 2px; white-space: nowrap; text-decoration: none; transition: background 0.2s; flex-shrink: 0; }
+  .missing-part-btn:hover { background: var(--steel); }
+  @media(max-width:768px) {
+    .missing-part-inner { flex-direction: column; align-items: flex-start; padding: 40px 24px; }
+  }
   </style>
 </head>
 <body>
@@ -579,7 +593,7 @@
           <div class="simple-col">
             <div class="discover-col-heading">Owner Resources</div>
             <ul class="discover-col-links">
-              <li><a href="owners.html#owners">User Manuals</a></li>
+              <li><a href="user-manuals.html">User Manuals</a></li>
               <li><a href="parts.html">Parts &amp; Accessories</a></li>
               <li><a href="video-guides.html">Video Guides</a></li>
               <li><a href="learn.html">FAQ &amp; Learning Center</a></li>
@@ -588,8 +602,8 @@
           <div class="simple-col">
             <div class="discover-col-heading">Service</div>
             <ul class="discover-col-links">
-              <li><a href="owners.html#warranty">Warranty Claim</a></li>
-              <li><a href="owners.html#register">Register Your Trailer</a></li>
+              <li><a href="warranty.html">Warranty Claim</a></li>
+              <li><a href="register.html">Register Your Trailer</a></li>
               <li><a href="contact.html">Contact Support</a></li>
             </ul>
           </div>
@@ -1198,6 +1212,17 @@
 
   </div><!-- end parts-layout -->
 
+
+  <!-- MISSING PART CTA -->
+  <div class="missing-part-cta">
+    <div class="missing-part-inner">
+      <div class="missing-part-text">
+        <div class="missing-part-title">Don't see your part?</div>
+        <p>Our catalog covers the most common parts, but we stock much more. If you need something specific, our team can help you source it.</p>
+      </div>
+      <a href="contact.html" class="missing-part-btn">Contact Us &rarr;</a>
+    </div>
+  </div>
   </div><!-- end parts-catalog-section -->
 </main>
 
@@ -1234,9 +1259,9 @@
   <div class="footer-col">
     <h4>Owners</h4>
     <ul>
-      <li><a href="owners.html#owners">User Manuals</a></li>
-      <li><a href="owners.html#warranty">Warranty Claim</a></li>
-      <li><a href="owners.html#register">Register Your Trailer</a></li>
+      <li><a href="user-manuals.html">User Manuals</a></li>
+      <li><a href="warranty.html">Warranty Claim</a></li>
+      <li><a href="register.html">Register Your Trailer</a></li>
       <li><a href="video-guides.html">Video Guides</a></li>
       <li><a href="learn.html">FAQ &amp; Learning</a></li>
     

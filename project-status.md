@@ -123,6 +123,74 @@ Push the contents of your selected folder to the `taylor-nielsen/walton-trailers
 
 ---
 
+---
+
+## Session Log — March 3, 2026
+
+### Round 3: 10 Additional Changes Implemented
+
+**1. Standard Features accordion (all 22 product pages)**
+- Replaced static `<h2>Standard Features</h2>` with a clickable toggle div + "+" icon.
+- Features grid collapses to `max-height: 0` by default; expands on click with smooth transition.
+- "+" icon rotates 45° (becomes ×) when open.
+
+**2. Help Me Choose tool (walton-finder.js rewrite)**
+- Removed THO (not a real model) from all data structures and alternatives arrays.
+- Fixed crane/forklift bug: crane-fork check now happens BEFORE construction check — was incorrectly routing crane+construction to dump trailer.
+- Added `trailerPageLinks` mapping to specific model pages (e.g., `dump-trailers/dhv207.html`).
+- Result button now says "View Dump Trailer →" etc. based on recommended model type.
+
+**3. Compare Models tool (index.html)**
+- Removed THO from compareData.
+- Redesigned from flat dropdown to two-step category → model flow.
+- Added `compareCategories` mapping and `updateModelSelect()` function.
+- Changed comparison fields to: Pull Type, GVWR, Est. Payload, Width (removed Axles, Warranty).
+- Modal now shows category selector first, then model selector within category.
+
+**4. Product pages — tire upgrade callout removed**
+- Removed `.tire-note` CSS block and `<div class="tire-note">` HTML from all 22 product pages.
+
+**5. About Us page**
+- Fixed "Find A Dealer" CTA: `href="#"` → `href="find-a-dealer.html"`.
+- Changed "Over 100 authorized dealers" → "40 authorized dealers".
+
+**6. Find A Dealer page**
+- Changed "Over 100 authorized dealers" → "40 authorized dealers".
+- Extended map height to match sidebar: `align-items: stretch` on grid, `min-height: 600px` on map.
+
+**7. Owners page split into 3 separate pages**
+- Created `user-manuals.html` — standalone page with User Manuals grid.
+- Created `warranty.html` — standalone page with Warranty Claim form.
+- Created `register.html` — standalone page with Register Your Trailer form.
+- Updated `owners.html` quick links and nav dropdown to point to new pages.
+- Updated nav dropdowns across 11 additional HTML pages.
+
+**8. Parts & Accessories page**
+- Added "Don't see your part?" CTA section at bottom of catalog with "Contact Us →" button linking to `contact.html`.
+
+**9. Contact Us page**
+- Removed `<div class="info-bar">` (headquarters address, hours, quick links section).
+
+**10. Contact Us — Buy a Trailer card**
+- Added Find A Dealer callout beneath the form with map pin icon and link to `find-a-dealer.html`.
+
+### New Files Created This Session
+- `user-manuals.html` — standalone User Manuals page
+- `warranty.html` — standalone Warranty Claim page
+- `register.html` — standalone Register Your Trailer page
+
+### Key Files Modified This Session
+- `walton-finder.js` — complete rewrite
+- `index.html` — compare tool redesigned
+- `find-a-dealer.html` — 40 dealers, map height, nav links
+- `about.html` — CTA link + dealer count
+- `contact.html` — removed info-bar, added Find A Dealer callout
+- `parts.html` — added "Don't see your part?" CTA
+- `owners.html` — updated quick links and nav dropdown
+- All 22 product pages — tire-note removed, Standard Features accordion added
+
+---
+
 ## Possible Next Steps
 
 - **Activate Google Maps:** Add API key to `find-a-dealer.html` (see instructions above and in the file)
