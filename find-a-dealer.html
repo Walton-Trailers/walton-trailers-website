@@ -1215,20 +1215,6 @@ function initDealerMap() {
   map = new google.maps.Map(document.getElementById('dealerMap'), {
     center: {lat: 39.5, lng: -111.5},
     zoom: 6,
-    styles: [
-      {elementType:'geometry', stylers:[{color:'#1a1e28'}]},
-      {elementType:'labels.text.stroke', stylers:[{color:'#1a1e28'}]},
-      {elementType:'labels.text.fill', stylers:[{color:'#8a9ab0'}]},
-      {featureType:'road', elementType:'geometry', stylers:[{color:'#2c3244'}]},
-      {featureType:'road', elementType:'labels.text.fill', stylers:[{color:'#8a9ab0'}]},
-      {featureType:'water', elementType:'geometry', stylers:[{color:'#0d1018'}]},
-      {featureType:'water', elementType:'labels.text.fill', stylers:[{color:'#4e6680'}]},
-      {featureType:'poi', stylers:[{visibility:'off'}]},
-      {featureType:'transit', stylers:[{visibility:'off'}]},
-      {featureType:'landscape', elementType:'geometry', stylers:[{color:'#111620'}]},
-      {featureType:'administrative', elementType:'geometry', stylers:[{color:'#2a3347'}]},
-      {featureType:'administrative', elementType:'labels.text.fill', stylers:[{color:'#6a7a90'}]}
-    ],
     disableDefaultUI: false,
     zoomControl: true,
     mapTypeControl: false,
