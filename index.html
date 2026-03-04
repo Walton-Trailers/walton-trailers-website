@@ -967,8 +967,7 @@
   .mega-img {
     width: 100%; height: 140px;
     display: flex; align-items: center; justify-content: center;
-    margin-bottom: 16px;
-  }
+    margin-bottom: 16px; mix-blend-mode: multiply; }
   .mega-img-placeholder {
     width: 85%; height: 100%;
     border: 1px dashed rgba(0,0,0,0.15);
@@ -1179,7 +1178,6 @@
             <div class="discover-col-heading">Owner Resources</div>
             <ul class="discover-col-links">
               <li><a href="user-manuals.html">User Manuals</a></li>
-              <li><a href="parts.html">Parts &amp; Accessories</a></li>
               <li><a href="video-guides.html">Video Guides</a></li>
               <li><a href="learn.html">FAQ &amp; Learning Center</a></li>
             </ul>
@@ -1187,8 +1185,8 @@
           <div class="simple-col">
             <div class="discover-col-heading">Service</div>
             <ul class="discover-col-links">
-              <li><a href="warranty.html">Warranty Claim</a></li>
-              <li><a href="register.html">Register Your Trailer</a></li>
+              <li><a href="warranty.html">Warranty Policy</a></li>
+              <li><a href="parts.html">Parts &amp; Accessories</a></li>
               <li><a href="contact.html">Contact Support</a></li>
             </ul>
           </div>
@@ -1203,7 +1201,6 @@
           <div class="simple-col">
             <div class="discover-col-heading">Find &amp; Buy</div>
             <ul class="discover-col-links">
-              <li><a href="find-a-dealer.html">Find a Dealer</a></li>
               <li><a href="become-a-dealer.html">Become a Dealer</a></li>
             </ul>
           </div>
@@ -1211,7 +1208,6 @@
             <div class="discover-col-heading">Dealer Tools</div>
             <ul class="discover-col-links">
               <li><a href="dealer-portal.html">Dealer Portal</a></li>
-              <li><a href="#" onclick="return false">Dealer Resources</a></li>
             </ul>
           </div>
         </div>
@@ -1235,10 +1231,6 @@
     </li>
     <!-- CTA -->
     <li><a href="find-a-dealer.html" class="nav-cta">Find a Dealer</a></li>
-    <!-- Dealer login icon -->
-    <li><a href="#" class="nav-dealer-login" title="Dealer Login" onclick="return false">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-    </a></li>
   </ul>
   <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -1540,9 +1532,8 @@
     <h4>Owners</h4>
     <ul>
       <li><a href="user-manuals.html">User Manuals</a></li>
-      <li><a href="warranty.html">Warranty Claim</a></li>
-      <li><a href="register.html">Register Your Trailer</a></li>
-      <li><a href="video-guides.html">Video Guides</a></li>
+      <li><a href="warranty.html">Warranty Policy</a></li>
+            <li><a href="video-guides.html">Video Guides</a></li>
       <li><a href="learn.html">FAQ &amp; Learning</a></li>
     
       <li><a href="parts.html">Parts &amp; Accessories</a></li>
@@ -2170,10 +2161,7 @@ function navGoTo(idx) {
       link:{ text:'Go to Owner Support', url: base+'owners.html#owners' } },
     { tags:['warranty claim','file warranty','submit warranty','how to claim warranty','warranty process'],
       answer:'To file a warranty claim, head to our <strong>Owner Support Hub</strong> and complete the warranty claim form. Have your trailer VIN and purchase date ready.',
-      link:{ text:'Submit Warranty Claim', url: base+'owners.html#warranty' } },
-    { tags:['register trailer','how to register','trailer registration','register my trailer'],
-      answer:'Register your Walton Trailer through our <strong>Owner Support Hub</strong>. Registration helps us keep your warranty active and notify you of any service bulletins.',
-      link:{ text:'Register Your Trailer', url: base+'owners.html#register' } },
+      link:{ text:'Warranty Policy', url: base+'warranty.html'} },
     { tags:['video','how to video','watch','youtube','tutorial','how to use','how to maintain','maintenance video'],
       answer:'We have video guides covering maintenance, loading, and more. Check out our Video Guides page.',
       link:{ text:'Watch Video Guides', url: base+'video-guides.html' } },

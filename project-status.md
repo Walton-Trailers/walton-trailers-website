@@ -191,9 +191,167 @@ Push the contents of your selected folder to the `taylor-nielsen/walton-trailers
 
 ---
 
+---
+
+## Session Log — March 3, 2026 (Continued)
+
+### Round 4: 8 More Changes Implemented
+
+**1. Section contrast on all non-product pages**
+- Added `border-top: 1px solid rgba(255,255,255,0.07)` between all sections sitewide
+- Added 2px footer top-border to clearly separate footer from content
+- Added `background: var(--steel)` to alternating sections on about, owners, learn, careers pages
+- Applied to 15 non-product pages
+
+**2. Login icon removed from nav**
+- Removed the user/dealer login icon `<li>` element from all 43 HTML pages
+
+**3. Available Configurations removed from all 22 product pages**
+- Removed entire `<section class="configs-section">` from all model pages
+
+**4. Hero header shrunk on all 22 model pages**
+- Changed `min-height: 55vh` → `min-height: 25vh`
+- Reduced bottom padding from 60px → 40px
+
+**5. LHS specs card on all 22 model pages**
+- Replaced overview text (h2 + paragraphs) with a styled specs card
+- Shows: GVWR, Length, Pull Type, Base MSRP — each with icon, red label, large white value
+- Data pulled from actual model page configs and corrected per model
+
+**6. Manual image carousel on all 22 model pages**
+- Replaced static image placeholder with a 3-slot carousel
+- Prev/next arrow buttons + dot indicators
+- Smooth CSS transform slide animation
+- Photo slots ready for real images to be dropped in
+
+**7. Full Specifications collapsible on all 22 model pages**
+- Wrapped specs section with same toggle pattern as Standard Features
+- Collapses to zero height by default, expands on click
+- `+` icon rotates to `×` when open
+
+**8. Contact page — Hours & Quick Links removed**
+- Removed the orphaned `<div class="info-item">` blocks for Hours and Quick Links
+
+---
+
+## Session Log — March 4, 2026
+
+### Round 5: Warranty & Nav Cleanup
+
+**1. warranty.html rewritten as Warranty Policy page**
+- Replaced the old owner-facing warranty claim form with a policy page
+- New content: hero, 3-card coverage overview (Structural / Components / Dealer-Only Claims), 4-step claims process, email CTA (`warranty@waltontrailers.com`), Find a Dealer rust banner
+- Only dealers can submit claims going forward
+
+**2. Dealer Resources removed from nav (all 43 pages)**
+- Removed `<li><a href="#" onclick="return false">Dealer Resources</a></li>` from the Dealers → Dealer Tools dropdown across all HTML files
+- Dealer Portal link remains; Dealer Resources will be absorbed into the portal
+
+**3. "Warranty Claim" → "Warranty Policy" updated sitewide**
+- Nav and footer links updated to say "Warranty Policy" and point to `warranty.html`
+- JS quick-action data objects on all product and category pages updated (28 files)
+- owners.html warranty section updated: old claim form removed, replaced with informational block + email CTA + Find a Dealer button
+- Meta descriptions updated to remove "warranty claims" language
+
+### Files Modified This Session
+- `warranty.html` — complete rewrite as policy page
+- `owners.html` — warranty section replaced with policy info block
+- All 43 HTML pages — Dealer Resources nav link removed, Warranty Claim text updated
+- 28 product/category pages — JS quick-link data updated to point to warranty.html
+
+---
+
+## Session Log — March 4, 2026 (Continued)
+
+### Round 6: Nav & Parts Page Fixes
+
+**1. Nav trailer images — white background removed**
+- Added `mix-blend-mode: multiply` to `.mega-img` CSS across all 28 pages that have the Trailers mega dropdown
+- White areas in the trailer photos now blend into the cream nav background
+
+**2. Find A Dealer removed from Dealers dropdown**
+- Removed `<li>Find a Dealer</li>` from the "Find & Buy" column of the Dealers nav dropdown on all 42 pages
+- Top-right nav CTA, footer links, and page CTAs are unchanged
+
+**3. Parts page — "Don't see your part?" section fixes**
+- Background changed from dark steel to tan (`var(--rust)` = #b7a380)
+- Removed `padding-bottom: 80px` from parts-catalog-section (was causing white gap before footer)
+
+---
+
+## Session Log — March 4, 2026 (Continued)
+
+### Round 7: 6 Model Page Changes (all 22 product pages)
+
+**1. Fixed Full Specifications expander (all 22 pages)**
+- Root cause: `toggleSpecs()` was called in the HTML but never defined in the JS
+- Fix: Added `toggleSpecs` function alongside `toggleFeatures` in the script block
+
+**2. Removed specs ribbon (all 22 pages)**
+- Removed `<section class="quick-specs">` from all model pages (was showing GVWR / Payload / Widths / Deck Height bar at top — duplicative of the hero specs card)
+
+**3. Light background for overview and specs sections (all 22 pages)**
+- Changed `.overview-section` and `.specs-section` from dark to light cream (`#f5f3ef`)
+- Adjusted all text, border, icon, and placeholder colors for legibility on light background
+- Carousel placeholder and specs diagram placeholder also updated to light tone
+
+**4. "Get a Quote" → "Build Now" (all 22 pages)**
+- Changed CTA button text on all model pages
+
+**5. "Full Specifications" → "Quick Overview" (all 22 pages)**
+- Renamed the collapsible specs section header on all model pages
+
+**6. Breadcrumb removed (all 22 pages)**
+- Removed `<div class="model-hero-breadcrumb">` (e.g. "Home / Trailers / Gooseneck / FBH207") from all model page hero sections
+
+---
+
+## Session Log — March 4, 2026 (Continued)
+
+### Round 9: Nav Cleanup + Google Maps API Connected
+
+**1. "Register Your Trailer" removed sitewide (all 42 HTML pages)**
+- Removed from the Service column of the Owners nav dropdown on all pages
+- Removed from the footer on all pages
+- Removed from the chatbot JS FAQ entries
+- Registration will be handled in the dealer portal going forward
+
+**2. "Parts & Accessories" moved to Service section in Owners nav dropdown (all 42 pages)**
+- Was previously in the "Owner Resources" column
+- Moved to the "Service" column (between Warranty Policy and Contact Support)
+- Applied correctly to both root pages (`href="parts.html"`) and sub-pages (`href="../parts.html"`)
+
+**3. Google Maps API connected for Find a Dealer page**
+- Created API key in Google Cloud Console (project: "Website Map")
+- Restricted key to Maps JavaScript API only
+- Replaced all 3 instances of `YOUR_GOOGLE_MAPS_API_KEY` in `find-a-dealer.html` with live key
+- Map is now fully operational on the Find a Dealer page
+
+---
+
+## Session Log — March 4, 2026 (Continued)
+
+### Round 8: Model Page Corrections (all 22 pages)
+
+**1. "Full Specifications" restored**
+- Reverted the specs accordion heading from "Quick Overview" back to "Full Specifications"
+- Changed specs-section background from `var(--black)` back to `var(--steel)` — now matches Standard Features section
+
+**2. "Quick Overview" label added to specs card section**
+- Added `<h2 class="overview-section-title">Quick Overview</h2>` as the top of the overview section (the GVWR / Length / Pull Type / Base MSRP card + carousel area)
+- Spans full grid width via CSS `grid-column: 1 / -1`
+
+**3. SEO description section added (all 22 pages)**
+- New `<section class="model-desc-section">` inserted between the model hero and the Quick Overview section
+- Light muted text on dark background; max-width 820px for readability
+- Category-appropriate placeholder text pre-filled per trailer type (Gooseneck, Deckover, Dump, Tilt, Landscape)
+- Each placeholder includes the specific model code and ends with `[Replace this with 1–2 additional sentences...]` so the team knows where to add unique copy
+
+---
+
 ## Possible Next Steps
 
-- **Activate Google Maps:** Add API key to `find-a-dealer.html` (see instructions above and in the file)
+- **Google Maps:** ✅ API key connected — map is live on `find-a-dealer.html`
 - **Activate Contact Forms:** Add Formspree endpoint to `contact.html` (4 forms, all use `YOUR_FORMSPREE_ID`)
 - **Add real dealers:** Update the `dealers` array in `find-a-dealer.html` with actual dealer names, addresses, and lat/lng coordinates
 - Push to GitHub and verify the live site looks correct

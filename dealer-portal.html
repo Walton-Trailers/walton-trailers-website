@@ -143,6 +143,11 @@
   /* ════ MODAL OVERLAY (finder modal) ════ */
   .modal-overlay { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; padding: 20px; }
   .modal-overlay.open { opacity: 1; pointer-events: all; }
+  
+  /* ── SECTION CONTRAST ── */
+  section + section { border-top: 1px solid rgba(255,255,255,0.07); }
+  footer, .main-footer { border-top: 2px solid rgba(255,255,255,0.12) !important; }
+
   </style>
 </head>
 <body>
