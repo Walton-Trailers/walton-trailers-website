@@ -205,11 +205,11 @@
     
     .model-hero {
       background: linear-gradient(135deg, #1a1e28 0%, #0d1018 100%);
-      min-height: 25vh;
+      min-height: 20vh;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 0 64px 40px;
+      padding: 0 64px 24px;
       position: relative;
       overflow: hidden;
       margin-top: 88px;
@@ -245,7 +245,7 @@
       position: relative;
       z-index: 2;
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(72px, 10vw, 130px);
+      font-size: clamp(40px, 5.5vw, 72px);
       letter-spacing: 4px;
       line-height: 0.9;
       color: var(--white);
@@ -615,7 +615,7 @@
     }
     
     .related-section {
-      background: var(--steel);
+      background: var(--white);
       padding: 80px 48px;
     }
     
@@ -624,6 +624,7 @@
       font-size: clamp(36px, 4vw, 56px);
       letter-spacing: 2px;
       margin-bottom: 40px;
+      color: var(--black);
     }
     
     .related-grid {
@@ -1018,7 +1019,7 @@ footer {
     .overview-section { border-top: 1px solid rgba(255,255,255,0.07); }
     .features-grid-section { border-top: 1px solid rgba(255,255,255,0.07); }
     .specs-section { border-top: 1px solid rgba(255,255,255,0.07); }
-    .related-section { border-top: 1px solid rgba(255,255,255,0.07); }
+    .related-section { border-top: 1px solid rgba(0,0,0,0.08); }
 
 
 
@@ -1084,7 +1085,7 @@ footer {
           <div class="simple-col">
             <div class="discover-col-heading">Owner Resources</div>
             <ul class="discover-col-links">
-              <li><a href="../owners.html#owners">User Manuals</a></li>
+              <li><a href="../user-manuals.html">User Manuals</a></li>
               <li><a href="../video-guides.html">Video Guides</a></li>
               <li><a href="../learn.html">FAQ &amp; Learning Center</a></li>
             </ul>
@@ -1614,7 +1615,7 @@ footer {
     /* ── Owner support ── */
     { tags:['owner manual','user manual','owners manual','manual download','pdf manual','operator manual'],
       answer:'Owner\'s manuals are available in our <strong>Owner Support Hub</strong>. Find your model and download the PDF manual there.',
-      link:{ text:'Go to Owner Support', url: base+'owners.html#owners' } },
+      link:{ text:'Go to Owner Resources', url: base+'user-manuals.html' } },
     { tags:['warranty claim','file warranty','submit warranty','how to claim warranty','warranty process'],
       answer:'To file a warranty claim, head to our <strong>Owner Support Hub</strong> and complete the warranty claim form. Have your trailer VIN and purchase date ready.',
       link:{ text:'Warranty Policy', url: base+'warranty.html'} },
@@ -2080,7 +2081,7 @@ function renderCompare() {
   <div class="footer-col">
     <h4>Owners</h4>
     <ul>
-      <li><a href="../owners.html#owners">User Manuals</a></li>
+      <li><a href="../user-manuals.html">User Manuals</a></li>
       <li><a href="warranty.html">Warranty Policy</a></li>
             <li><a href="../video-guides.html">Video Guides</a></li>
       <li><a href="../learn.html">FAQ &amp; Learning</a></li>

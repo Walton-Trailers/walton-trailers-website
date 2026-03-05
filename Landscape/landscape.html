@@ -220,11 +220,11 @@
     
     .cat-hero {
       background: linear-gradient(135deg, #1a1e28 0%, #0d1018 100%);
-      min-height: 56vh;
+      min-height: 32vh;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 0 64px 64px;
+      padding: 0 64px 32px;
       position: relative;
       overflow: hidden;
       margin-top: 88px;
@@ -237,30 +237,11 @@
       background: linear-gradient(to top, rgba(10, 10, 10, 0.8) 0%, transparent 60%);
     }
     
-    .cat-breadcrumb {
-      position: relative;
-      z-index: 2;
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(245, 243, 239, 0.4);
-      margin-bottom: 16px;
-    }
-    
-    .cat-breadcrumb a {
-      color: rgba(245, 243, 239, 0.4);
-      text-decoration: none;
-    }
-    
-    .cat-breadcrumb a:hover {
-      color: var(--rust);
-    }
-    
     .cat-hero-title {
       position: relative;
       z-index: 2;
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(72px, 10vw, 140px);
+      font-size: clamp(40px, 5.5vw, 72px);
       letter-spacing: 4px;
       line-height: 0.92;
       color: var(--white);
@@ -755,7 +736,7 @@ footer {
           <div class="simple-col">
             <div class="discover-col-heading">Owner Resources</div>
             <ul class="discover-col-links">
-              <li><a href="../owners.html#owners">User Manuals</a></li>
+              <li><a href="../user-manuals.html">User Manuals</a></li>
               <li><a href="../video-guides.html">Video Guides</a></li>
               <li><a href="../learn.html">FAQ &amp; Learning Center</a></li>
             </ul>
@@ -875,9 +856,6 @@ footer {
 </div>
   
   <section class="cat-hero">
-    <div class="cat-breadcrumb">
-      <a href="#">Home</a> / <a href="#">Trailers</a> / Landscape
-    </div>
     <h1 class="cat-hero-title">Landscape Trailers</h1>
     <p class="cat-hero-tag">MPR MowPro Series &mdash; Purpose-Built for Lawn &amp; Landscape Pros</p>
   </section>
@@ -887,7 +865,7 @@ footer {
   <section class="model-listing">
     
     <div class="model-card">
-      <div class="model-card-img">Add photo here</div>
+      <div class="model-card-img"><img src="Images/MowPro_Category_Image.png" alt="MPR205 MowPro Landscape Trailer" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"></div>
       <div class="model-card-info">
         <div class="model-card-code">MPR205</div>
         <div class="model-card-subtitle">MOWPRO LANDSCAPE TRAILER — 10K</div>
@@ -922,7 +900,7 @@ footer {
     </div>
     
     <div class="model-card">
-      <div class="model-card-img">Add photo here</div>
+      <div class="model-card-img"><img src="Images/MowPro_Category_Image.png" alt="MPR207 MowPro Landscape Trailer" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"></div>
       <div class="model-card-info">
         <div class="model-card-code">MPR207</div>
         <div class="model-card-subtitle">MOWPRO LANDSCAPE TRAILER — 14K</div>
@@ -1099,7 +1077,7 @@ footer {
     /* ── Owner support ── */
     { tags:['owner manual','user manual','owners manual','manual download','pdf manual','operator manual'],
       answer:'Owner\'s manuals are available in our <strong>Owner Support Hub</strong>. Find your model and download the PDF manual there.',
-      link:{ text:'Go to Owner Support', url: base+'owners.html#owners' } },
+      link:{ text:'Go to Owner Resources', url: base+'user-manuals.html' } },
     { tags:['warranty claim','file warranty','submit warranty','how to claim warranty','warranty process'],
       answer:'To file a warranty claim, head to our <strong>Owner Support Hub</strong> and complete the warranty claim form. Have your trailer VIN and purchase date ready.',
       link:{ text:'Warranty Policy', url: base+'warranty.html'} },
@@ -1565,7 +1543,7 @@ function renderCompare() {
   <div class="footer-col">
     <h4>Owners</h4>
     <ul>
-      <li><a href="../owners.html#owners">User Manuals</a></li>
+      <li><a href="../user-manuals.html">User Manuals</a></li>
       <li><a href="warranty.html">Warranty Policy</a></li>
             <li><a href="../video-guides.html">Video Guides</a></li>
       <li><a href="../learn.html">FAQ &amp; Learning</a></li>

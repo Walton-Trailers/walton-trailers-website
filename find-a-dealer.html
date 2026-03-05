@@ -133,12 +133,12 @@
 
   /* ── PAGE HERO ── */
   .page-hero {
-    padding: 140px 48px 60px;
+    padding: 68px 48px 10px;
     background: linear-gradient(180deg, #0d1018 0%, var(--black) 100%);
   }
   .page-hero-tag { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--rust); margin-bottom: 16px; }
-  .page-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 7vw, 80px); letter-spacing: 3px; line-height: 1; margin-bottom: 16px; }
-  .page-hero p { font-size: 16px; font-weight: 300; color: rgba(245,243,239,0.6); max-width: 500px; line-height: 1.8; }
+  .page-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 5vw, 56px); letter-spacing: 3px; line-height: 1; margin-bottom: 12px; }
+  .page-hero p { font-size: 15px; font-weight: 300; color: rgba(245,243,239,0.6); max-width: 500px; line-height: 1.7; }
 
   /* ── DEALER LOCATOR LAYOUT ── */
   .locator-section {
@@ -153,6 +153,8 @@
     display: flex;
     flex-direction: column;
     border-right: 1px solid rgba(255,255,255,0.06);
+    height: 700px;
+    overflow: hidden;
   }
   .sidebar-search {
     padding: 24px;
@@ -304,11 +306,12 @@
   /* ── DEALER INFO CARD (floating popup) ── */
   .dealer-popup {
     position: absolute;
-    top: 16px; right: 16px;
-    width: 300px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 320px;
     background: #fff;
     border-radius: 6px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.28);
+    box-shadow: 0 12px 48px rgba(0,0,0,0.36);
     z-index: 10;
     font-family: 'DM Sans', sans-serif;
     overflow: hidden;
@@ -367,14 +370,36 @@
   /* ── MAP ── */
   .locator-map {
     height: 700px;
-    background: #0d1018;
+    background: #ede9e3;
     display: flex;
     flex-direction: column;
+    position: relative;
   }
   #dealerMap {
     width: 100%;
     flex: 1;
   }
+  .map-reset-btn {
+    margin-left: auto;
+    background: rgba(255,255,255,0.06);
+    color: rgba(245,243,239,0.6);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 3px;
+    padding: 5px 10px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .map-reset-btn:hover { background: rgba(255,255,255,0.11); color: #f5f3ef; }
   .map-placeholder {
     width: 100%;
     height: 100%;
@@ -383,11 +408,11 @@
     align-items: center;
     justify-content: center;
     gap: 16px;
-    color: rgba(245,243,239,0.2);
-    background: #0d1018;
+    color: rgba(90,79,69,0.35);
+    background: #ede9e3;
   }
-  .map-placeholder svg { opacity: 0.15; }
-  .map-placeholder p { font-size: 13px; letter-spacing: 1px; text-transform: uppercase; }
+  .map-placeholder svg { opacity: 0.2; stroke: #5a4f45; }
+  .map-placeholder p { font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: rgba(90,79,69,0.45); }
   .map-placeholder .api-note {
     font-size: 12px;
     color: rgba(183,163,128,0.5);
@@ -631,9 +656,7 @@
 
 <main style="padding-top:92px;">
   <section class="page-hero">
-    <div class="page-hero-tag">Authorized Dealer Network</div>
     <h1>Find a Walton Dealer</h1>
-    <p>40 authorized dealers across the western United States. Search by city or ZIP code to find one near you.</p>
   </section>
 
   <div class="locator-section">
@@ -641,7 +664,7 @@
     <div class="locator-sidebar">
       <div class="sidebar-search">
         <div class="search-row">
-          <input class="search-input" id="locationInput" type="text" placeholder="City or ZIP code..." onkeydown="if(event.key==='Enter') searchDealers()" />
+          <input class="search-input" id="locationInput" type="text" placeholder="City, ZIP, or State..." onkeydown="if(event.key==='Enter') searchDealers()" />
           <button class="search-btn" onclick="searchDealers()">Search</button>
         </div>
         <div class="radius-row">
@@ -653,12 +676,16 @@
             <option value="500">500 miles</option>
             <option value="9999">All Dealers</option>
           </select>
+          <button class="map-reset-btn" onclick="resetMap()">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.5"/></svg>
+            Reset
+          </button>
         </div>
       </div>
       <div class="sidebar-results-header" id="resultsHeader" style="display:none;"></div>
       <div class="search-prompt" id="searchPrompt">
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" display="block" style="margin:0 auto 12px;"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
-        Enter a city or ZIP code above to find authorized Walton dealers near you.
+        Enter a city, ZIP code, or state to find authorized Walton dealers near you.
       </div>
       <div class="dealer-list" id="dealerList"></div>
       <div class="no-results" id="noResults">No dealers found in this area.<br>Try expanding your search radius.</div>
@@ -914,19 +941,6 @@
 ═══════════════════════════════════════════════ */
 var dealers = [
   {
-    id: 1,
-    name: "Ace Auto & Trailer Sales",
-    address: "645 North 400 East",
-    city: "Huntington",
-    state: "UT",
-    zip: "84528",
-    phone: "(435) 687-9511",
-    lat: 39.3338,
-    lng: -110.9575,
-    types: ["Authorized Dealer"],
-    website: "https://aceautoutah.com"
-  },
-  {
     id: 2,
     name: "Akins Trailer Sales",
     address: "640 Hwy 99E",
@@ -992,19 +1006,6 @@ var dealers = [
     website: "https://cal-custom.com"
   },
   {
-    id: 7,
-    name: "Century Equipment",
-    address: "4343 Century Dr",
-    city: "Salt Lake City",
-    state: "UT",
-    zip: "84123",
-    phone: "(801) 262-5761",
-    lat: 40.6775,
-    lng: -111.9054,
-    types: ["Authorized Dealer"],
-    website: "https://centuryequipment.com"
-  },
-  {
     id: 8,
     name: "Christensen Auto",
     address: "2765 So Hwy 89",
@@ -1057,19 +1058,6 @@ var dealers = [
     website: "https://frontier-trailersales.com"
   },
   {
-    id: 12,
-    name: "Grizzly Trailers",
-    address: "305 West 100 South",
-    city: "Rupert",
-    state: "ID",
-    zip: "83350",
-    phone: "(208) 678-2981",
-    lat: 42.6175,
-    lng: -113.6744,
-    types: ["Authorized Dealer"],
-    website: "https://idahogrizzlytrailersales.com"
-  },
-  {
     id: 13,
     name: "High Country Trailer Sales",
     address: "90 Industrial Park Rd",
@@ -1096,19 +1084,6 @@ var dealers = [
     website: "https://highplainstrailers.com"
   },
   {
-    id: 15,
-    name: "Inland Turf & Equipment",
-    address: "10303 W 1st St.",
-    city: "La Grande",
-    state: "OR",
-    zip: "97850",
-    phone: "(541) 963-4985",
-    lat: 45.3283,
-    lng: -118.1065,
-    types: ["Authorized Dealer"],
-    website: "https://inlandturf.net"
-  },
-  {
     id: 16,
     name: "K2 Trailers",
     address: "350 North 800 East",
@@ -1120,19 +1095,6 @@ var dealers = [
     lng: -111.8398,
     types: ["Authorized Dealer"],
     website: "https://k2-trailers.com"
-  },
-  {
-    id: 17,
-    name: "Kaveman Trailers",
-    address: "679 S Best Business Ave Suite 101",
-    city: "Kuna",
-    state: "ID",
-    zip: "83634",
-    phone: "(208) 204-4089",
-    lat: 43.4842,
-    lng: -116.4116,
-    types: ["Authorized Dealer"],
-    website: "https://kavemantrailers.com"
   },
   {
     id: 18,
@@ -1428,6 +1390,66 @@ var dealers = [
 var map = null;
 var markers = [];
 var infoWindow = null;
+var searchCircle = null;
+
+function clearSearchCircle() {
+  if (searchCircle) { searchCircle.setMap(null); searchCircle = null; }
+}
+
+function resetMap() {
+  // Clear search input and results
+  document.getElementById('locationInput').value = '';
+  document.getElementById('resultsHeader').style.display = 'none';
+  document.getElementById('dealerList').innerHTML = '';
+  document.getElementById('noResults').style.display = 'none';
+  document.getElementById('searchPrompt').style.display = 'block';
+  document.querySelectorAll('.dealer-card').forEach(function(c) { c.classList.remove('active'); });
+
+  // Clear map overlays
+  clearMarkers();
+  clearSearchCircle();
+  closePopup();
+
+  // Reset map view to continental US
+  if (map) {
+    map.setCenter({lat: 39.5, lng: -98.5});
+    map.setZoom(4);
+  }
+}
+
+/* ── STATE LOOKUP ── */
+var STATE_MAP = {
+  'AL':'Alabama','AK':'Alaska','AZ':'Arizona','AR':'Arkansas','CA':'California',
+  'CO':'Colorado','CT':'Connecticut','DE':'Delaware','FL':'Florida','GA':'Georgia',
+  'HI':'Hawaii','ID':'Idaho','IL':'Illinois','IN':'Indiana','IA':'Iowa',
+  'KS':'Kansas','KY':'Kentucky','LA':'Louisiana','ME':'Maine','MD':'Maryland',
+  'MA':'Massachusetts','MI':'Michigan','MN':'Minnesota','MS':'Mississippi','MO':'Missouri',
+  'MT':'Montana','NE':'Nebraska','NV':'Nevada','NH':'New Hampshire','NJ':'New Jersey',
+  'NM':'New Mexico','NY':'New York','NC':'North Carolina','ND':'North Dakota','OH':'Ohio',
+  'OK':'Oklahoma','OR':'Oregon','PA':'Pennsylvania','RI':'Rhode Island','SC':'South Carolina',
+  'SD':'South Dakota','TN':'Tennessee','TX':'Texas','UT':'Utah','VT':'Vermont',
+  'VA':'Virginia','WA':'Washington','WV':'West Virginia','WI':'Wisconsin','WY':'Wyoming'
+};
+
+function getStateAbbr(query) {
+  var q = query.trim().toUpperCase();
+  if (STATE_MAP[q]) return q; // matched abbreviation
+  for (var abbr in STATE_MAP) {
+    if (STATE_MAP[abbr].toUpperCase() === q) return abbr; // matched full name
+  }
+  return null;
+}
+
+function filterByState(stateAbbr) {
+  var filtered = dealers.filter(function(d) { return d.state === stateAbbr; });
+  renderDealerList(filtered);
+  if (map) {
+    clearMarkers();
+    clearSearchCircle();
+    filtered.forEach(function(d) { addMarker(d); });
+    if (filtered.length) fitMapToMarkers(filtered);
+  }
+}
 var activeCard = null;
 var shownDealers = [];
 
@@ -1530,21 +1552,28 @@ function searchDealers() {
   if (radius === 9999) {
     // Show all dealers
     renderDealerList(dealers);
-    if (map) { clearMarkers(); dealers.forEach(addMarker); fitMapToMarkers(dealers); }
+    if (map) { clearMarkers(); clearSearchCircle(); dealers.forEach(addMarker); fitMapToMarkers(dealers); }
     return;
   }
 
-  // Use Geocoding API to search if maps is loaded
+  // Check for state name or abbreviation first
+  var stateAbbr = getStateAbbr(query);
+  if (stateAbbr) {
+    filterByState(stateAbbr);
+    return;
+  }
+
+  // Use Geocoding API to search by city or ZIP
   if (window.google && window.google.maps && window.google.maps.Geocoder) {
     var geocoder = new google.maps.Geocoder();
-    geocoder.geocode({address: query}, function(results, status) {
+    geocoder.geocode({address: query + ', USA'}, function(results, status) {
       if (status === 'OK') {
         var loc = results[0].geometry.location;
         var lat = loc.lat();
         var lng = loc.lng();
         filterByDistance(lat, lng, radius);
       } else {
-        // Fallback: simple state/zip match
+        // Google geocoder failed — try Nominatim so the circle still draws
         fallbackSearch(query);
       }
     });
@@ -1556,6 +1585,30 @@ function searchDealers() {
 
 
 function fallbackSearch(query) {
+  // Use OpenStreetMap Nominatim — free geocoding, no API key needed.
+  // This gives us real lat/lng so filterByDistance (and the radius circle) always works.
+  var radius = parseInt(document.getElementById('radiusSelect').value);
+  var url = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=us&q='
+    + encodeURIComponent(query);
+
+  fetch(url, { headers: { 'Accept': 'application/json' } })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data && data.length > 0) {
+        var lat = parseFloat(data[0].lat);
+        var lng = parseFloat(data[0].lon);
+        filterByDistance(lat, lng, radius);
+      } else {
+        textOnlyFallback(query);
+      }
+    })
+    .catch(function() {
+      textOnlyFallback(query);
+    });
+}
+
+function textOnlyFallback(query) {
+  // Last resort: filter dealer list by text match, no map circle
   var q = query.toLowerCase();
   var filtered = dealers.filter(function(d) {
     return d.city.toLowerCase().includes(q) ||
@@ -1564,6 +1617,12 @@ function fallbackSearch(query) {
       d.name.toLowerCase().includes(q);
   });
   renderDealerList(filtered);
+  if (map) {
+    clearMarkers();
+    clearSearchCircle();
+    filtered.forEach(function(d) { addMarker(d); });
+    if (filtered.length) fitMapToMarkers(filtered);
+  }
 }
 
 /* ═══════════════════════════════════════════════
@@ -1582,14 +1641,34 @@ function initDealerMap() {
     zoomControl: true,
     mapTypeControl: false,
     streetViewControl: false,
-    fullscreenControl: true
+    fullscreenControl: true,
+    styles: [
+      { elementType: 'geometry',                      stylers: [{ color: '#ede9e3' }] },
+      { elementType: 'labels.text.fill',              stylers: [{ color: '#5a4f45' }] },
+      { elementType: 'labels.text.stroke',            stylers: [{ color: '#ede9e3' }] },
+      { featureType: 'water', elementType: 'geometry',stylers: [{ color: '#d6d0c8' }] },
+      { featureType: 'water', elementType: 'labels.text.fill', stylers: [{ color: '#8a7a6e' }] },
+      { featureType: 'landscape', elementType: 'geometry', stylers: [{ color: '#ede9e3' }] },
+      { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#d8cab8' }] },
+      { featureType: 'road', elementType: 'geometry.stroke', stylers: [{ color: '#c8baa8' }] },
+      { featureType: 'road.highway', elementType: 'geometry', stylers: [{ color: '#ccbba0' }] },
+      { featureType: 'road.highway', elementType: 'geometry.stroke', stylers: [{ color: '#b8a888' }] },
+      { featureType: 'road', elementType: 'labels.text.fill', stylers: [{ color: '#7a6a5e' }] },
+      { featureType: 'administrative', elementType: 'geometry.stroke', stylers: [{ color: '#9a8a7e' }] },
+      { featureType: 'administrative.country', elementType: 'geometry.stroke', stylers: [{ color: '#5a4a3e' }, { weight: 1.5 }] },
+      { featureType: 'administrative.province', elementType: 'geometry.stroke', stylers: [{ color: '#8a7a6e' }, { weight: 1 }] },
+      { featureType: 'administrative.locality', elementType: 'labels.text.fill', stylers: [{ color: '#5a4f45' }] },
+      { featureType: 'poi', elementType: 'geometry', stylers: [{ color: '#e6e2da' }] },
+      { featureType: 'poi', elementType: 'labels.text', stylers: [{ visibility: 'off' }] },
+      { featureType: 'poi.park', elementType: 'geometry', stylers: [{ color: '#e2ddd5' }] },
+      { featureType: 'transit', stylers: [{ visibility: 'simplified' }] },
+      { featureType: 'transit', elementType: 'geometry', stylers: [{ color: '#e2ddd5' }] }
+    ]
   });
 
   infoWindow = new google.maps.InfoWindow();
 
-  // Show all dealers on load
-  dealers.forEach(function(d) { addMarker(d); });
-  fitMapToMarkers(dealers);
+  // Map starts clean — markers appear only after a search
 }
 
 function filterByDistance(lat, lng, radiusMiles) {
@@ -1605,8 +1684,24 @@ function filterByDistance(lat, lng, radiusMiles) {
 
   if (map) {
     clearMarkers();
+    clearSearchCircle();
     filtered.forEach(function(d) { addMarker(d); });
-    if (filtered.length) fitMapToMarkers(filtered);
+
+    // Draw radius circle centered on search location
+    var radiusMeters = radiusMiles * 1609.34;
+    searchCircle = new google.maps.Circle({
+      map: map,
+      center: { lat: lat, lng: lng },
+      radius: radiusMeters,
+      fillColor: '#b7a380',
+      fillOpacity: 0.10,
+      strokeColor: '#b7a380',
+      strokeOpacity: 0.55,
+      strokeWeight: 1.5
+    });
+
+    // Zoom map to fit the radius circle
+    map.fitBounds(searchCircle.getBounds());
   }
 }
 

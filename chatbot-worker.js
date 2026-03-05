@@ -40,7 +40,7 @@ Key facts:
 - All trailers carry a Lifetime Structural Warranty
 - Built with heavy-duty tube steel, DOT LED lighting, 7-pin wiring
 - Sold through dealers only — not direct from the factory
-- Owner support (manuals, warranty claims, registration) is at waltontrailers.com/owners.html
+- Owner support (manuals, warranty claims, registration) is at waltontrailers.com/user-manuals.html
 - Dealer locator is at waltontrailers.com/#dealers
 
 Guidelines:

@@ -331,6 +331,29 @@ Push the contents of your selected folder to the `taylor-nielsen/walton-trailers
 
 ## Session Log — March 4, 2026 (Continued)
 
+### Round 10: Map & Favicon Bug Fixes
+
+**1. Google Maps API key typo fixed**
+- Root cause: one character was misread when copying the key — `...R2IIQ...` (two uppercase I's) instead of `...R2lIQ...` (lowercase l + uppercase I)
+- This caused `InvalidKeyMapError` on every page load
+- Fixed in `find-a-dealer.html` and pushed to GitHub
+
+**2. Map overflow into footer fixed**
+- Root cause: `.locator-map` CSS used `position: sticky; height: calc(100vh - 92px)` but the HTML had an inline `style="position:relative"` override that broke the sticky clipping
+- Fix: removed inline override; changed map to a fixed `height: 700px` (simpler and more reliable than sticky + viewport height)
+- Mobile breakpoint updated to match (`height: 400px`)
+
+**3. Favicon confirmed working**
+- Favicon files are committed to GitHub and served correctly at `/walton-trailers-website/favicon.ico`
+- If favicon doesn't appear in browser, it's a caching issue — hard refresh (Ctrl+Shift+R) clears it
+
+### Files Modified This Session
+- `find-a-dealer.html` — API key typo fixed, map height CSS updated, pushed to GitHub
+
+---
+
+## Session Log — March 4, 2026 (Continued)
+
 ### Round 8: Model Page Corrections (all 22 pages)
 
 **1. "Full Specifications" restored**

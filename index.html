@@ -1968,7 +1968,25 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   heroDots.forEach(function(d, i) {
-    d.addEventListener('click', function() { heroGoTo(i); });
+    d.addEventListener('click', function() { heroGoTo(i); resetHeroTimer(); });
+  });
+
+  /* Hero auto-rotation — 4 seconds */
+  var heroTimer;
+  function startHeroTimer() {
+    heroTimer = setInterval(function() {
+      window.heroGoTo((heroIdx + 1) % heroSlides.length);
+    }, 4000);
+  }
+  function resetHeroTimer() {
+    clearInterval(heroTimer);
+    startHeroTimer();
+  }
+  startHeroTimer();
+
+  /* Also reset timer on arrow clicks */
+  document.querySelectorAll('.hero-arrow').forEach(function(btn) {
+    btn.addEventListener('click', resetHeroTimer);
   });
 
   /* Testimonial rotation */
@@ -2158,7 +2176,7 @@ function navGoTo(idx) {
     /* ── Owner support ── */
     { tags:['owner manual','user manual','owners manual','manual download','pdf manual','operator manual'],
       answer:'Owner\'s manuals are available in our <strong>Owner Support Hub</strong>. Find your model and download the PDF manual there.',
-      link:{ text:'Go to Owner Support', url: base+'owners.html#owners' } },
+      link:{ text:'Go to Owner Resources', url: base+'user-manuals.html' } },
     { tags:['warranty claim','file warranty','submit warranty','how to claim warranty','warranty process'],
       answer:'To file a warranty claim, head to our <strong>Owner Support Hub</strong> and complete the warranty claim form. Have your trailer VIN and purchase date ready.',
       link:{ text:'Warranty Policy', url: base+'warranty.html'} },
