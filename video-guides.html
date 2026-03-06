@@ -128,11 +128,11 @@
   .footer-col a { color: rgba(245,243,239,0.75); text-decoration: none; font-size: 14px; transition: color 0.2s; }
   .footer-col a:hover { color: #f5f3ef; }
   .footer-bottom { background: var(--steel); padding: 20px 48px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: rgba(245,243,239,0.3); letter-spacing: 1px; max-width: none !important; width: 100% !important; margin: 0 !important; box-sizing: border-box !important; }
-  @media(max-width:768px) { footer { grid-template-columns: 1fr 1fr; padding: 40px 24px 32px; } .footer-bottom { flex-direction: column; gap: 8px; text-align: center; padding: 16px 24px; }
+  @media(max-width:768px) { footer { grid-template-columns: 1fr 1fr; padding: 40px 24px 32px; } .footer-bottom { flex-direction: column; gap: 8px; text-align: center; padding: 16px 24px; } }
   @media (max-width: 480px) {
     footer { grid-template-columns: 1fr; padding: 48px 24px 32px; gap: 32px; }
     .footer-tagline { font-size: 13px; }
-  } }
+  }
 
 
   .page-hero { padding: 160px 48px 80px; background: linear-gradient(180deg, #0d1018 0%, var(--black) 100%); }
@@ -416,7 +416,9 @@
   <a href="Deckover/deckover.html" class="mobile-menu-link">Deckover</a>
   <a href="dump-trailers/dump-trailers.html" class="mobile-menu-link">Dump Trailers</a>
   <a href="Landscape/landscape.html" class="mobile-menu-link">Landscape</a>
-  <a href="../find-a-dealer.html" class="mobile-menu-link">Find a Dealer</a>
+  <a href="user-manuals.html" class="mobile-menu-link">Owners</a>
+  <a href="about.html" class="mobile-menu-link">Company</a>
+  <a href="find-a-dealer.html" class="mobile-menu-link">Find a Dealer</a>
 </div>
 
 <main style="padding-top:92px;">
@@ -795,5 +797,15 @@
 </div>
 <script src="walton-chat.js"></script>
 <script src="walton-finder.js"></script>
+
+<script>
+function toggleMenu() {
+  var m = document.getElementById('mobileMenu');
+  var h = document.getElementById('hamburger');
+  m.classList.toggle('open');
+  h.classList.toggle('open');
+  document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+}
+</script>
 </body>
 </html>

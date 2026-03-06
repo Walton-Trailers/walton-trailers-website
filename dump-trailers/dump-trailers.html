@@ -866,6 +866,8 @@ footer {
   <a href="../Deckover/deckover.html" class="mobile-menu-link">Deckover</a>
   <a href="../dump-trailers/dump-trailers.html" class="mobile-menu-link">Dump Trailers</a>
   <a href="../Landscape/landscape.html" class="mobile-menu-link">Landscape</a>
+  <a href="../user-manuals.html" class="mobile-menu-link">Owners</a>
+  <a href="../about.html" class="mobile-menu-link">Company</a>
   <a href="../find-a-dealer.html" class="mobile-menu-link">Find a Dealer</a>
 </div>
   
@@ -1958,5 +1960,15 @@ function renderCompare() {
   </div>
 </div>
 <script src="../walton-finder.js"></script>
+
+<script>
+function toggleMenu() {
+  var m = document.getElementById('mobileMenu');
+  var h = document.getElementById('hamburger');
+  m.classList.toggle('open');
+  h.classList.toggle('open');
+  document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+}
+</script>
 </body>
 </html>

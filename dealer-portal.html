@@ -568,5 +568,15 @@
 </div>
 <script src="walton-chat.js"></script>
 <script src="walton-finder.js"></script>
+
+<script>
+function toggleMenu() {
+  var m = document.getElementById('mobileMenu');
+  var h = document.getElementById('hamburger');
+  m.classList.toggle('open');
+  h.classList.toggle('open');
+  document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+}
+</script>
 </body>
 </html>
