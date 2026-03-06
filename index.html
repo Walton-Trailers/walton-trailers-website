@@ -278,7 +278,9 @@
   .instagram-note { font-size: 12px; color: rgba(245,243,239,0.35); letter-spacing: 0.5px; }
   .instagram-note a { color: rgba(245,243,239,0.55); }
   .instagram-note a:hover { color: var(--rust); }
+  @media (max-width: 900px) { .instagram-grid { grid-template-columns: repeat(4, 1fr); } }
   @media (max-width: 768px) { .instagram-grid { grid-template-columns: repeat(3, 1fr); } .instagram-section { padding: 60px 24px; } }
+  @media (max-width: 480px) { .instagram-grid { grid-template-columns: repeat(2, 1fr); } .instagram-section { padding: 48px 20px; } }
 
   /* DEALER */
   .dealer-cta-section {
@@ -769,6 +771,9 @@
   .msg-typing span:nth-child(2) { animation-delay:.2s; }
   .msg-typing span:nth-child(3) { animation-delay:.4s; }
   @keyframes wcBounce { 0%,80%,100%{transform:translateY(0);opacity:.4} 40%{transform:translateY(-6px);opacity:1} }
+  @media (max-width: 768px) {
+    .support-chat { width: calc(100vw - 48px); right: 24px; }
+  }
   @media (max-width: 480px) {
     .support-chat { width: calc(100vw - 32px); right: 16px; bottom: 92px; }
     .chat-fab { bottom: 20px; right: 16px; }
@@ -1298,9 +1303,9 @@
 
 <div class="mobile-menu" id="mobileMenu">
   <div class="mobile-menu-item"><a href="#trailers" onclick="closeMenu()">Trailers</a></div>
-  <div class="mobile-menu-item"><a href="#why" onclick="closeMenu()">Discover</a></div>
-  <div class="mobile-menu-item"><a href="#parts" onclick="closeMenu()">Parts</a></div>
-  <div class="mobile-menu-item"><a href="#" onclick="closeMenu(); openFinder()">Help Me Choose</a></div>
+  <div class="mobile-menu-item"><a href="user-manuals.html" onclick="closeMenu()">Owners</a></div>
+  <div class="mobile-menu-item"><a href="find-a-dealer.html" onclick="closeMenu()">Dealers</a></div>
+  <div class="mobile-menu-item"><a href="about.html" onclick="closeMenu()">Company</a></div>
   <div class="mobile-menu-item mobile-menu-cta"><a href="find-a-dealer.html" onclick="closeMenu()">Find a Dealer →</a></div>
 </div>
 
