@@ -162,6 +162,14 @@
   .stat-label { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-top: 8px; opacity: 0.85; }
 
   /* WHY WALTON */
+  /* WHY WALTON VIDEO */
+  .why-video-section { background: #0d1018; padding: 0; line-height: 0; }
+  .why-video-wrap { width: 100%; aspect-ratio: 16/9; background: #0d1018; overflow: hidden; position: relative; }
+  .why-video-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; border: 2px dashed rgba(255,255,255,0.1); }
+  .why-video-play { width: 72px; height: 72px; border-radius: 50%; background: rgba(255,255,255,0.07); border: 2px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.3); padding-left: 4px; }
+  .why-video-label { font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.25); }
+  .why-video-hint { font-size: 11px; letter-spacing: 1px; color: rgba(255,255,255,0.12); }
+
   .pillars { background: var(--steel); padding: 100px 48px; text-align: center; }
   .section-heading { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 5vw, 72px); letter-spacing: 3px; margin-bottom: 64px; color: var(--white); }
   .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; max-width: 1100px; margin: 0 auto; }
@@ -254,6 +262,23 @@
   }
   .btn-finder { background: var(--rust); color: var(--white); padding: 18px 44px; font-size: 14px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; border: none; border-radius: 2px; cursor: pointer; font-family: 'DM Sans', sans-serif; white-space: nowrap; transition: background 0.2s; flex-shrink: 0; }
   .btn-finder:hover { background: var(--rust-dark); }
+
+  /* INSTAGRAM */
+  .instagram-section { background: var(--steel); padding: 80px 48px; text-align: center; }
+  .instagram-eyebrow { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--rust); margin-bottom: 12px; }
+  .instagram-heading { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 5vw, 60px); letter-spacing: 2px; color: var(--white); margin-bottom: 12px; }
+  .instagram-tag { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,243,239,0.5); text-decoration: none; display: inline-block; margin-bottom: 48px; transition: color 0.2s; }
+  .instagram-tag:hover { color: var(--rust); }
+  .instagram-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; max-width: 1200px; margin: 0 auto 40px; }
+  .instagram-cell { aspect-ratio: 1; overflow: hidden; }
+  .instagram-placeholder { width: 100%; height: 100%; background: rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; }
+  .instagram-footer { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .instagram-follow-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--rust); color: var(--white); padding: 12px 28px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: background 0.2s; font-family: 'DM Sans', sans-serif; }
+  .instagram-follow-btn:hover { background: var(--rust-dark, #8b3a1e); }
+  .instagram-note { font-size: 12px; color: rgba(245,243,239,0.35); letter-spacing: 0.5px; }
+  .instagram-note a { color: rgba(245,243,239,0.55); }
+  .instagram-note a:hover { color: var(--rust); }
+  @media (max-width: 768px) { .instagram-grid { grid-template-columns: repeat(3, 1fr); } .instagram-section { padding: 60px 24px; } }
 
   /* DEALER */
   .dealer-cta-section {
@@ -1455,16 +1480,26 @@
   <div class="stat"><div class="stat-number">USA</div><div class="stat-label">Made in America</div></div>
 </div>
 
-<!-- WHY WALTON -->
-<section class="pillars" id="why">
-  <h2 class="section-heading">Why Choose Walton?</h2>
-  <div class="pillars-grid">
-    <div class="pillar fade-up"><div class="pillar-num">01</div><div class="pillar-title">Lifetime Warranty</div><p class="pillar-text">Every trailer is backed by a lifetime limited structural warranty. We stand behind our work — for life.</p></div>
-    <div class="pillar fade-up"><div class="pillar-num">02</div><div class="pillar-title">Commercial Grade</div><p class="pillar-text">Premium steel. Premium components. Built to survive decades of heavy use without compromise.</p></div>
-    <div class="pillar fade-up"><div class="pillar-num">03</div><div class="pillar-title">American Made</div><p class="pillar-text">Manufactured in Logan, Utah. Every weld, every component — crafted with American labor and pride.</p></div>
-    <div class="pillar fade-up"><div class="pillar-num">04</div><div class="pillar-title">50 Years Strong</div><p class="pillar-text">Since 1973, Walton has built trailers that outlast the competition. Experience is built in.</p></div>
-    <div class="pillar fade-up"><div class="pillar-num">05</div><div class="pillar-title">Tailored Solutions</div><p class="pillar-text">No idea too extreme. No detail too small. We work with you to build exactly what the job demands.</p></div>
-    <div class="pillar fade-up"><div class="pillar-num">06</div><div class="pillar-title">Dealer Network</div><p class="pillar-text">33 dealers across the Western US — local support, expert service, and inventory near you.</p></div>
+<!-- WHY WALTON — VIDEO -->
+<section class="why-video-section" id="why">
+  <div class="why-video-wrap">
+    <!--
+      TO ADD YOUR VIDEO:
+      Option A — Upload a file: Replace the placeholder div below with:
+        <video controls poster="Images/your-thumbnail.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <source src="Videos/your-video.mp4" type="video/mp4">
+        </video>
+
+      Option B — Embed from YouTube/Vimeo: Replace the placeholder div below with:
+        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen style="width:100%;height:100%;display:block;"></iframe>
+    -->
+    <div class="why-video-placeholder">
+      <div class="why-video-play">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      </div>
+      <div class="why-video-label">Upload Your Video Here</div>
+      <div class="why-video-hint">Recommended: MP4, 16:9, 1080p or higher</div>
+    </div>
   </div>
 </section>
 
@@ -1474,6 +1509,30 @@
   <p class="testimonial-author">— Trevar Erickson, Walton Owner</p>
   <div class="testimonial-dots">
     <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  </div>
+</section>
+
+<!-- INSTAGRAM FEED -->
+<section class="instagram-section">
+  <div class="instagram-header">
+    <div class="instagram-eyebrow">Follow Along</div>
+    <h2 class="instagram-heading">Walton's in the Wild</h2>
+    <a href="https://www.instagram.com/explore/tags/waltonsintheWild/" target="_blank" class="instagram-tag">#WaltonsInTheWild</a>
+  </div>
+  <div class="instagram-grid">
+    <div class="instagram-cell"><div class="instagram-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div></div>
+    <div class="instagram-cell"><div class="instagram-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div></div>
+    <div class="instagram-cell"><div class="instagram-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div></div>
+    <div class="instagram-cell"><div class="instagram-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div></div>
+    <div class="instagram-cell"><div class="instagram-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div></div>
+    <div class="instagram-cell"><div class="instagram-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div></div>
+  </div>
+  <div class="instagram-footer">
+    <a href="https://www.instagram.com/" target="_blank" class="instagram-follow-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      Follow on Instagram
+    </a>
+    <p class="instagram-note">Connect a feed tool like <a href="https://elfsight.com" target="_blank">Elfsight</a> or <a href="https://www.curator.io" target="_blank">Curator.io</a> to pull live posts automatically.</p>
   </div>
 </section>
 
