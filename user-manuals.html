@@ -126,7 +126,7 @@
 
   .page-hero { padding: 160px 48px 80px; background: linear-gradient(180deg, #0d1018 0%, var(--black) 100%); }
   .page-hero-tag { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--rust); margin-bottom: 16px; }
-  .page-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(56px, 8vw, 100px); letter-spacing: 3px; line-height: 1; margin-bottom: 24px; }
+  .page-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 5vw, 60px); letter-spacing: 3px; line-height: 1; margin-bottom: 24px; }
   .page-hero p { font-size: 16px; font-weight: 300; color: rgba(245,243,239,0.6); max-width: 560px; line-height: 1.8; }
   .divider { height: 1px; background: rgba(255,255,255,0.06); margin: 0; }
   .story-section { padding: 96px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1200px; margin: 0 auto; }
@@ -340,6 +340,18 @@
   section + section { border-top: 1px solid rgba(255,255,255,0.07); }
   footer, .main-footer { border-top: 2px solid rgba(255,255,255,0.12) !important; }
 
+  /* ── MANUALS LIGHT BACKGROUND ── */
+  .manuals-bg { background: var(--white); }
+  .manuals-bg .owners-section + .owners-section { border-top: 1px solid rgba(0,0,0,0.07); }
+  .manuals-bg .divider-line { background: rgba(0,0,0,0.08); }
+  .manuals-bg .section-heading { color: var(--black); }
+  .manuals-bg .section-sub { color: rgba(10,10,10,0.55); }
+  .manuals-bg .manual-card { background: #fff; color: var(--black); box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  .manuals-bg .manual-card:hover { background: #ede9e2; }
+  .manuals-bg .manual-info h3 { color: var(--black); }
+  .manuals-bg .manual-info p { color: rgba(10,10,10,0.55); }
+  .manuals-bg .manual-badge { color: var(--rust-dark); border-color: rgba(158,140,109,0.4); }
+
   </style>
 </head>
 <body>
@@ -362,7 +374,7 @@
             <ul class="discover-col-links">
               <li><a href="user-manuals.html">User Manuals</a></li>
               <li><a href="video-guides.html">Video Guides</a></li>
-              <li><a href="learn.html">FAQ &amp; Learning Center</a></li>
+              <li><a href="learn.html">Learning Center</a></li>
             </ul>
           </div>
           <div class="simple-col">
@@ -456,11 +468,7 @@
       </div>
       <div class="mega-name">Parts</div>
     </a>
-    <a href="#" class="mega-item">
-      <div class="mega-img" style="background-image:url('Images/site/new-5-1024x1024.png');background-size:cover;background-position:center;border-radius:4px;"></div>
-      <div class="mega-name">Apparel</div>
-    </a>
-    <a href="#" class="mega-item">
+    <a href="find-a-dealer.html" class="mega-item">
       <div class="mega-img" style="background:#edeae4;border-radius:4px;display:flex;align-items:center;justify-content:center;">
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="13" y2="15"/></svg>
       </div>
@@ -489,65 +497,24 @@
     <p>Download the owner's manual for your trailer series. PDFs are kept up to date with the latest specifications and safety information.</p>
   </section>
 
+  <!-- MANUALS CONTENT -->
+  <div class="manuals-bg">
+
+  <!-- WALTON MANUALS -->
   <section class="owners-section" id="owners">
-    <div class="section-tag">Documentation</div>
-    <h2 class="section-heading">User Manuals</h2>
-    <p class="section-sub">Download the owner's manual for your trailer series. PDFs are kept up to date with the latest specifications and safety information.</p>
+    <h2 class="section-heading">Owner's Manual</h2>
+    <p class="section-sub">Download the official Walton Trailers owner's manual covering all series — specifications, safety information, and maintenance guidelines.</p>
     <div class="manuals-grid">
-      <a href="#" class="manual-card">
-        <div class="manual-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        </div>
+      <a href="User%20Manuals/Walton-Trailers-Owners-Manual.pdf" target="_blank" class="manual-card">
+        <div class="manual-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
         <div class="manual-info">
-          <h3>Gooseneck Flatbeds</h3>
-          <p>FBH &amp; FBX Series — all models</p>
-          <span class="manual-badge">PDF Download</span>
-        </div>
-      </a>
-      <a href="#" class="manual-card">
-        <div class="manual-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        </div>
-        <div class="manual-info">
-          <h3>Dump Trailers</h3>
-          <p>DHO &amp; DHV Series — all models</p>
-          <span class="manual-badge">PDF Download</span>
-        </div>
-      </a>
-      <a href="#" class="manual-card">
-        <div class="manual-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        </div>
-        <div class="manual-info">
-          <h3>Tilt Deck Trailers</h3>
-          <p>TSX &amp; TMX Series — all models</p>
-          <span class="manual-badge">PDF Download</span>
-        </div>
-      </a>
-      <a href="#" class="manual-card">
-        <div class="manual-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        </div>
-        <div class="manual-info">
-          <h3>Deckover Equipment</h3>
-          <p>BDE Series — all models</p>
-          <span class="manual-badge">PDF Download</span>
-        </div>
-      </a>
-      <a href="#" class="manual-card">
-        <div class="manual-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        </div>
-        <div class="manual-info">
-          <h3>Landscape Trailers</h3>
-          <p>MPR Series — all models</p>
+          <h3>Walton Trailers Owner's Manual</h3>
+          <p>All series — Gooseneck, Dump, Tilt, Deckover, Landscape</p>
           <span class="manual-badge">PDF Download</span>
         </div>
       </a>
       <a href="contact.html" class="manual-card">
-        <div class="manual-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        </div>
+        <div class="manual-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
         <div class="manual-info">
           <h3>Need a Specific Manual?</h3>
           <p>Can't find what you're looking for? Contact our support team.</p>
@@ -557,6 +524,139 @@
     </div>
   </section>
 
+  <!-- DEXTER MANUALS -->
+  <section class="owners-section" id="dexter">
+
+    <h2 class="section-heading">Dexter Axle</h2>
+    <p class="section-sub">Service and installation manuals for Dexter axle components used across Walton trailer models.</p>
+    <div class="manuals-grid">
+      <a href="User%20Manuals/Dexter/dexter-axle-600-8k-service-manual.pdf" target="_blank" class="manual-card">
+        <div class="manual-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+        <div class="manual-info">
+          <h3>Axle Service Manual (600–8K)</h3>
+          <p>Service guide for 600 lb through 8,000 lb axle assemblies</p>
+          <span class="manual-badge">PDF Download</span>
+        </div>
+      </a>
+      <a href="User%20Manuals/Dexter/dexter-axle-9k-15k-service-manual.pdf" target="_blank" class="manual-card">
+        <div class="manual-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+        <div class="manual-info">
+          <h3>Axle Service Manual (9K–15K)</h3>
+          <p>Service guide for 9,000 lb through 15,000 lb axle assemblies</p>
+          <span class="manual-badge">PDF Download</span>
+        </div>
+      </a>
+      <a href="User%20Manuals/Dexter/dexter-hydraulic-brake-actuator.pdf" target="_blank" class="manual-card">
+        <div class="manual-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+        <div class="manual-info">
+          <h3>Hydraulic Brake Actuator</h3>
+          <p>Installation and operation guide for hydraulic brake actuators</p>
+          <span class="manual-badge">PDF Download</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- KTI MANUALS -->
+  <section class="owners-section" id="kti">
+
+    <h2 class="section-heading">KTI Hydraulics</h2>
+    <p class="section-sub">Installation, operation, and troubleshooting manuals for KTI hydraulic pump systems used on Walton dump trailers.</p>
+    <div class="manuals-grid">
+      <a href="User%20Manuals/KTI/kti-hydraulics.pdf" target="_blank" class="manual-card">
+        <div class="manual-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+        <div class="manual-info">
+          <h3>Hydraulics Manual</h3>
+          <p>General hydraulic pump operation and specifications</p>
+          <span class="manual-badge">PDF Download</span>
+        </div>
+      </a>
+      <a href="User%20Manuals/KTI/kti-singleacting-install.pdf" target="_blank" class="manual-card">
+        <div class="manual-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+        <div class="manual-info">
+          <h3>Single-Acting Install Guide</h3>
+          <p>Installation instructions for single-acting hydraulic pumps</p>
+          <span class="manual-badge">PDF Download</span>
+        </div>
+      </a>
+      <a href="User%20Manuals/KTI/kti-doubleacting-install.pdf" target="_blank" class="manual-card">
+        <div class="manual-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+        <div class="manual-info">
+          <h3>Double-Acting Install Guide</h3>
+          <p>Installation instructions for double-acting hydraulic pumps</p>
+          <span class="manual-badge">PDF Download</span>
+        </div>
+      </a>
+      <a href="User%20Manuals/KTI/kti-single-double-acting-wo-circuit.pdf" target="_blank" class="manual-card">
+        <div class="manual-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+        <div class="manual-info">
+          <h3>Single/Double-Acting (No Circuit)</h3>
+          <p>Wiring guide for pumps without integrated circuit breaker</p>
+          <span class="manual-badge">PDF Download</span>
+        </div>
+      </a>
+      <a href="User%20Manuals/KTI/kti-trouble-shooting-guide.pdf" target="_blank" class="manual-card">
+        <div class="manual-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+        <div class="manual-info">
+          <h3>Troubleshooting Guide</h3>
+          <p>Diagnosing and resolving common KTI hydraulic pump issues</p>
+          <span class="manual-badge">PDF Download</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- RAM MANUALS -->
+  <section class="owners-section" id="ram">
+
+    <h2 class="section-heading">RAM</h2>
+    <p class="section-sub">Hoist manuals for RAM hydraulic hoist systems installed on Walton dump trailers.</p>
+    <div class="manuals-grid">
+      <a href="User%20Manuals/RAM/Hoist-Manual-Feb-2026.pdf" target="_blank" class="manual-card">
+        <div class="manual-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+        <div class="manual-info">
+          <h3>Hoist Manual</h3>
+          <p>Operation and maintenance guide for RAM hoist systems</p>
+          <span class="manual-badge">PDF Download</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- STILLWELL MANUALS -->
+  <section class="owners-section" id="stillwell">
+
+    <h2 class="section-heading">Stillwell</h2>
+    <p class="section-sub">Installation and plumbing guides for Stillwell Atlas jack systems used on Walton gooseneck trailers.</p>
+    <div class="manuals-grid">
+      <a href="User%20Manuals/Stillwell/Installation-Guide-Atlas-SJ001-rev.-4.pdf" target="_blank" class="manual-card">
+        <div class="manual-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+        <div class="manual-info">
+          <h3>Atlas SJ001 Installation Guide</h3>
+          <p>Step-by-step installation instructions for the Atlas SJ001 jack</p>
+          <span class="manual-badge">PDF Download</span>
+        </div>
+      </a>
+      <a href="User%20Manuals/Stillwell/6-Port-and-Dual-Jack-Plumbing-rev.-1.pdf" target="_blank" class="manual-card">
+        <div class="manual-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+        <div class="manual-info">
+          <h3>6-Port &amp; Dual Jack Plumbing</h3>
+          <p>Hydraulic plumbing diagram for 6-port and dual jack configurations</p>
+          <span class="manual-badge">PDF Download</span>
+        </div>
+      </a>
+      <a href="User%20Manuals/Stillwell/Dual-Atlas-Jack-Plumbing-rev.-1.pdf" target="_blank" class="manual-card">
+        <div class="manual-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+        <div class="manual-info">
+          <h3>Dual Atlas Jack Plumbing</h3>
+          <p>Hydraulic plumbing diagram for dual Atlas jack configurations</p>
+          <span class="manual-badge">PDF Download</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  </div><!-- end .manuals-bg -->
 
 </main>
 
@@ -596,7 +696,7 @@
       <li><a href="user-manuals.html">User Manuals</a></li>
       <li><a href="warranty.html">Warranty Policy</a></li>
       <li><a href="video-guides.html">Video Guides</a></li>
-      <li><a href="learn.html">FAQ &amp; Learning</a></li>
+      <li><a href="learn.html">Learning Center</a></li>
     
       <li><a href="parts.html">Parts &amp; Accessories</a></li>
     </ul>
@@ -771,5 +871,4 @@ function toggleMenu() {
 </script>
 </body>
 </html>
-</body>
 </html>

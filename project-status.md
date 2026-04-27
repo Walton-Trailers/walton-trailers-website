@@ -372,6 +372,83 @@ Push the contents of your selected folder to the `taylor-nielsen/walton-trailers
 
 ---
 
+## Session Log — March 6, 2026
+
+### Round 10–11: Mobile Optimization, Menu Fixes & Content Updates
+
+**1. Nav cleanup (all pages)**
+- Removed "Register Your Trailer" from nav on warranty.html, owners.html, register.html, user-manuals.html
+- Removed owners.html entirely — all links redirected to individual pages (user-manuals.html, warranty.html, register.html)
+
+**2. Category page hero shrink (all 5 category pages)**
+- Font: clamp(72px, 10vw, 140px) → clamp(40px, 5.5vw, 72px)
+- min-height: 56vh → 32vh; padding reduced
+- Breadcrumb HTML and CSS removed
+
+**3. Content cleanups**
+- Removed "Back to Owner Resources" from user-manuals.html and warranty.html
+- Removed "Genuine Walton Parts" tag from parts.html hero
+
+**4. Homepage enhancements (index.html)**
+- Added 4-second auto-rotating hero timer with resetHeroTimer() on manual arrow clicks
+- Added Instagram "Walton's in the Wild" section (between testimonials and dealer sections) with var(--steel) background
+- Replaced "Why Choose Walton" pillars with full-bleed 16:9 video placeholder
+
+**5. Category images added**
+- MPR205/MPR207 on landscape.html
+- FBX210/FBX212 on gooseneck.html
+- BDE210/BDE212 and BDE207/BDE208 on deckover.html
+- TSX207 on tilt-equipment.html
+- DHV207 on dump-trailers.html
+
+**6. Mobile optimization (sitewide)**
+- Support chat widget: 768px breakpoint on all 40 files
+- Contact triage grid: 1-column at 480px
+- Footer: single column at 480px (fixed nested CSS bracket bug)
+- Instagram grid: 900px intermediate breakpoint
+- Find-a-dealer: map height + sidebar adjustments
+- Category/model pages: hero padding + font at 480px
+
+**7. Hamburger menu fixed (all 43 pages)**
+- Added missing toggleMenu() function to 38/42 pages
+- Standardized mobile menu links sitewide (Gooseneck, Tilt Equipment, Deckover, Dump Trailers, Landscape, Owners, Company, Find a Dealer)
+- Fixed footer CSS 480px block that was nested inside 768px block
+
+**8. User manuals page rebuilt**
+- Replaced placeholder cards with real vendor-bucketed sections
+- Vendors: Walton (1 PDF), Dexter (3 PDFs), KTI (5 PDFs), RAM (1 PDF), Stillwell (3 PDFs)
+- All links use URL-encoded paths and target="_blank"
+
+---
+
+## Session Log — March 6, 2026 (Continued)
+
+### Round 12: User Manuals Cleanup + Learn Page Redesign + Sitewide Renames + Site Audit
+
+**1. User Manuals page cleanup**
+- Removed "Component Vendor" section tags from Dexter, KTI, RAM, Stillwell sections
+- Removed "Walton Trailers" section tag above Owner's Manual
+- Shrunk hero h1: `clamp(56px, 8vw, 100px)` → `clamp(36px, 5vw, 60px)`
+- Added light background to manuals sections via `.manuals-bg` wrapper class
+
+**2. Hero headers shrunk — Learn, Video Guides, Warranty, Contact Us**
+- All pages: h1 reduced to `clamp(36px, 5vw, 60px)`
+- Learn, Video Guides, Contact Us: hero padding reduced to `80px 48px 40px`
+
+**3. Learn page redesigned as blog**
+- Replaced old category card layout with blog listing layout
+- Added search bar, filter chips (All, Buying Guide, Maintenance, How-To, Models)
+- 3-column card grid, 6 pre-populated articles, JavaScript filter/search
+
+**4. "FAQ & Learning Center" renamed to "Learning Center" sitewide**
+- Python script updated nav and footer links across all 41 HTML files
+
+**5. Full site audit completed**
+- Created `site-audit-march-2026.md` with full findings
+- Key issues: 4 contact forms need Formspree IDs, register.html silently drops data, 22 product pages need real photos, all "Build Now" / "Build Your Own" buttons dead (href="#"), social links dead, video guides has no actual videos, homepage hero has placeholder backgrounds
+
+---
+
 ## Possible Next Steps
 
 - **Google Maps:** ✅ API key connected — map is live on `find-a-dealer.html`

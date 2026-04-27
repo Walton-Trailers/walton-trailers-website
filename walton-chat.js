@@ -66,8 +66,9 @@
     { tags:['parts','accessories','replacement part','repair','service','maintenance','fix'],
       answer:'Genuine Walton parts and service are available through our dealer network. Contact your nearest dealer for parts orders or repair scheduling.',
       link:{ text:'Find a Dealer', url: base+'find-a-dealer.html' } },
-    { tags:['register','registration','owner manual','owners manual','manual'],
-      answer:"Register your trailer and download the owner's manual through our support section. Your dealer can also assist with registration." },
+    { tags:['owner manual','owners manual','manual','manual download'],
+      answer:"Owner's manuals are available for download in our <strong>User Manuals</strong> section. Find your vendor and download the PDF.",
+      link:{ text:'User Manuals', url: base+'user-manuals.html' } },
     { tags:['contact','call','phone','email','reach','message','talk','speak','help','support'],
       answer:"I'd be happy to connect you with our team. Fill out a quick message below and we'll get back to you as soon as possible.",
       action:'contact' },
@@ -138,9 +139,6 @@
     { tags:['warranty claim','file warranty','submit warranty','how to claim warranty','warranty process'],
       answer:'To file a warranty claim, head to our <strong>Owner Support Hub</strong> and complete the warranty claim form. Have your trailer VIN and purchase date ready.',
       link:{ text:'Submit Warranty Claim', url: base+'warranty.html' } },
-    { tags:['register trailer','how to register','trailer registration','register my trailer'],
-      answer:'Register your Walton Trailer through our <strong>Owner Support Hub</strong>. Registration helps us keep your warranty active and notify you of any service bulletins.',
-      link:{ text:'Register Your Trailer', url: base+'register.html' } },
     { tags:['video','how to video','watch','youtube','tutorial','how to use','how to maintain','maintenance video'],
       answer:'We have video guides covering maintenance, loading, and more. Check out our Video Guides page.',
       link:{ text:'Watch Video Guides', url: base+'video-guides.html' } },
@@ -359,8 +357,7 @@
             '<button class="chat-qr-btn" onclick="wcQuick(\'Download owner manual\')">Download my manual</button>' +
             '<button class="chat-qr-btn" onclick="wcQuick(\'Warranty info\')">Warranty info</button>' +
             '<button class="chat-qr-btn" onclick="wcQuick(\'How to file a warranty claim\')">File a warranty claim</button>' +
-            '<button class="chat-qr-btn" onclick="wcQuick(\'Register my trailer\')">Register my trailer</button>' +
-            '<button class="chat-qr-btn" onclick="wcQuick(\'Parts and service\')">Parts &amp; service</button>';
+                        '<button class="chat-qr-btn" onclick="wcQuick(\'Parts and service\')">Parts &amp; service</button>';
           qr.style.display = 'flex';
         }
       }, 600);

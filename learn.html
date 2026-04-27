@@ -135,30 +135,38 @@
   }
 
 
-  .page-hero { padding: 160px 48px 80px; background: linear-gradient(180deg, #0d1018 0%, var(--black) 100%); }
+  .page-hero { padding: 80px 48px 40px; background: linear-gradient(180deg, #0d1018 0%, var(--black) 100%); }
   .page-hero-tag { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--rust); margin-bottom: 16px; }
-  .page-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(56px, 8vw, 100px); letter-spacing: 3px; line-height: 1; margin-bottom: 24px; }
-  .page-hero p { font-size: 16px; font-weight: 300; color: rgba(245,243,239,0.6); max-width: 560px; line-height: 1.8; }
-  .divider { height: 1px; background: rgba(255,255,255,0.06); }
-  .learn-section { padding: 80px 48px; max-width: 1200px; margin: 0 auto; }
-  .learn-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px,4vw,48px); letter-spacing: 2px; margin-bottom: 8px; }
-  .learn-section .section-sub { font-size: 13px; color: rgba(245,243,239,0.4); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 40px; }
-  .category-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-bottom: 80px; }
-  .cat-card { background: var(--steel); border-radius: 4px; overflow: hidden; text-decoration: none; color: var(--white); transition: transform 0.2s; display: flex; flex-direction: column; }
-  .cat-card:hover { transform: translateY(-4px); }
-  .cat-card-img { height: 160px; background: linear-gradient(135deg,#1a1e28,#0d1018); display: flex; align-items: center; justify-content: center; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.1); }
-  .cat-card-body { padding: 24px; flex: 1; }
-  .cat-card-body h3 { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 2px; margin-bottom: 10px; }
-  .cat-card-body p { font-size: 13px; color: rgba(245,243,239,0.6); line-height: 1.7; margin-bottom: 16px; }
-  .cat-card-link { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--rust); font-weight: 600; }
-  .guide-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
-  .guide-item { padding: 28px 0; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: flex-start; gap: 20px; }
-  .guide-item:nth-child(odd) { padding-right: 40px; }
-  .guide-item:nth-child(even) { padding-left: 40px; border-left: 1px solid rgba(255,255,255,0.06); }
-  .guide-icon { width: 40px; height: 40px; background: var(--rust); border-radius: 2px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 18px; }
-  .guide-text h4 { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; margin-bottom: 6px; }
-  .guide-text p { font-size: 13px; color: rgba(245,243,239,0.55); line-height: 1.7; }
-  @media(max-width:768px) { .category-grid { grid-template-columns:1fr; } .guide-list { grid-template-columns:1fr; } .guide-item:nth-child(even) { padding-left:0; border-left:none; } .learn-section { padding-left:24px; padding-right:24px; } }
+  .page-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 5vw, 60px); letter-spacing: 3px; line-height: 1; margin-bottom: 16px; }
+  .page-hero p { font-size: 15px; font-weight: 300; color: rgba(245,243,239,0.6); max-width: 560px; line-height: 1.8; }
+
+  /* ── BLOG LAYOUT ── */
+  .blog-shell { background: var(--white); padding: 56px 48px 80px; }
+  .blog-controls { max-width: 1200px; margin: 0 auto 40px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .blog-search-wrap { position: relative; flex: 1; min-width: 240px; }
+  .blog-search-wrap svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: rgba(10,10,10,0.3); }
+  .blog-search { width: 100%; padding: 10px 14px 10px 40px; background: #fff; border: 1px solid rgba(10,10,10,0.12); border-radius: 4px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--black); outline: none; transition: border-color 0.2s; }
+  .blog-search:focus { border-color: var(--rust); }
+  .blog-search::placeholder { color: rgba(10,10,10,0.35); }
+  .blog-filters { display: flex; gap: 8px; flex-wrap: wrap; }
+  .filter-chip { padding: 7px 16px; border: 1px solid rgba(10,10,10,0.15); border-radius: 20px; font-size: 12px; letter-spacing: 0.5px; color: rgba(10,10,10,0.6); cursor: pointer; background: #fff; font-family: 'DM Sans', sans-serif; transition: all 0.15s; user-select: none; }
+  .filter-chip:hover { border-color: var(--rust); color: var(--rust-dark); }
+  .filter-chip.active { background: var(--rust); border-color: var(--rust); color: var(--black); font-weight: 500; }
+  .blog-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+  .blog-card { background: #fff; border: 1px solid rgba(10,10,10,0.08); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; }
+  .blog-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .blog-card-img { height: 180px; background: linear-gradient(135deg, #1a1e28, #0d1018); display: flex; align-items: center; justify-content: center; }
+  .blog-card-img svg { opacity: 0.15; }
+  .blog-card-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+  .blog-tag { display: inline-block; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--rust-dark); background: rgba(183,163,128,0.12); padding: 3px 8px; border-radius: 2px; margin-bottom: 12px; }
+  .blog-card-body h3 { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1.5px; color: var(--black); margin-bottom: 10px; line-height: 1.2; }
+  .blog-card-body p { font-size: 13px; color: rgba(10,10,10,0.55); line-height: 1.7; flex: 1; margin-bottom: 20px; }
+  .blog-meta { font-size: 11px; color: rgba(10,10,10,0.35); letter-spacing: 0.5px; margin-bottom: 16px; }
+  .blog-read-link { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--rust-dark); font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.15s; }
+  .blog-read-link:hover { gap: 10px; }
+  .blog-empty { display: none; max-width: 1200px; margin: 0 auto; padding: 60px 0; text-align: center; color: rgba(10,10,10,0.4); font-size: 15px; }
+  @media(max-width:768px) { .blog-shell { padding: 40px 24px 60px; } .blog-grid { grid-template-columns: 1fr 1fr; } .blog-controls { flex-direction: column; align-items: stretch; } }
+  @media(max-width:480px) { .blog-grid { grid-template-columns: 1fr; } }
 
     /* ════════════════════════════════
      SUPPORT CHAT WIDGET
@@ -285,7 +293,6 @@
   section + section { border-top: 1px solid rgba(255,255,255,0.07); }
   footer, .main-footer { border-top: 2px solid rgba(255,255,255,0.12) !important; }
 
-  .learn-section { background: var(--steel); }
 
   </style>
 </head>
@@ -308,7 +315,7 @@
             <ul class="discover-col-links">
               <li><a href="user-manuals.html">User Manuals</a></li>
               <li><a href="video-guides.html">Video Guides</a></li>
-              <li><a href="learn.html">FAQ &amp; Learning Center</a></li>
+              <li><a href="learn.html">Learning Center</a></li>
             </ul>
           </div>
           <div class="simple-col">
@@ -402,11 +409,7 @@
       </div>
       <div class="mega-name">Parts</div>
     </a>
-    <a href="#" class="mega-item">
-      <div class="mega-img" style="background-image:url('Images/site/new-5-1024x1024.png');background-size:cover;background-position:center;border-radius:4px;"></div>
-      <div class="mega-name">Apparel</div>
-    </a>
-    <a href="#" class="mega-item">
+    <a href="find-a-dealer.html" class="mega-item">
       <div class="mega-img" style="background:#edeae4;border-radius:4px;display:flex;align-items:center;justify-content:center;">
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="13" y2="15"/></svg>
       </div>
@@ -427,47 +430,157 @@
 </div>
 
 <main style="padding-top:92px;">
+
+  <!-- PAGE HERO -->
   <section class="page-hero">
     <div class="page-hero-tag">Resources</div>
     <h1>Learn</h1>
-    <p>Everything you need to make a confident trailer decision — from spec comparisons to towing guides and maintenance tips.</p>
+    <p>Buying guides, maintenance tips, and how-to articles — updated every other week with fresh content to help you get the most out of your Walton trailer.</p>
   </section>
-  <div class="divider"></div>
-  <section class="learn-section">
-    <h2>Browse by Trailer Type</h2>
-    <div class="section-sub">Explore our full lineup</div>
-    <div class="category-grid">
-      <a href="Gooseneck/gooseneck.html" class="cat-card">
-        <div class="cat-card-img">Gooseneck Photo</div>
-        <div class="cat-card-body"><h3>Gooseneck Flatbeds</h3><p>Single and dual wheel gooseneck deckovers for heavy haul applications. GVWR from 15,500 to 30,000 lbs.</p><span class="cat-card-link">View Models &rarr;</span></div>
-      </a>
-      <a href="tilt-equipment/tilt-equipment.html" class="cat-card">
-        <div class="cat-card-img">Tilt Photo</div>
-        <div class="cat-card-body"><h3>Tilt Equipment</h3><p>Mini tilt and gravity tilt trailers for equipment loading without ramps. GVWR from 7,000 to 24,000 lbs.</p><span class="cat-card-link">View Models &rarr;</span></div>
-      </a>
-      <a href="Deckover/deckover.html" class="cat-card">
-        <div class="cat-card-img">Deckover Photo</div>
-        <div class="cat-card-body"><h3>I-Beam Deckover</h3><p>Heavy-duty I-beam deckover equipment trailers built for oversized loads. GVWR from 14,000 to 24,000 lbs.</p><span class="cat-card-link">View Models &rarr;</span></div>
-      </a>
-      <a href="dump-trailers/dump-trailers.html" class="cat-card">
-        <div class="cat-card-img">Dump Photo</div>
-        <div class="cat-card-body"><h3>Dump Trailers</h3><p>7-foot wide and 8-foot deckover dump trailers for material hauling. GVWR from 14,000 to 30,000 lbs.</p><span class="cat-card-link">View Models &rarr;</span></div>
-      </a>
-      <a href="Landscape/landscape.html" class="cat-card">
-        <div class="cat-card-img">Landscape Photo</div>
-        <div class="cat-card-body"><h3>Landscape Trailers</h3><p>MowPro landscape trailers designed for lawn care and grounds maintenance. GVWR from 7,000 to 14,000 lbs.</p><span class="cat-card-link">View Models &rarr;</span></div>
-      </a>
+
+  <!-- BLOG LISTING -->
+  <div class="blog-shell">
+
+    <!-- Search + Filter bar -->
+    <div class="blog-controls">
+      <div class="blog-search-wrap">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input class="blog-search" id="blogSearch" type="text" placeholder="Search articles…" oninput="filterBlog()">
+      </div>
+      <div class="blog-filters" id="blogFilters">
+        <span class="filter-chip active" data-filter="all" onclick="setFilter(this,'all')">All</span>
+        <span class="filter-chip" data-filter="buying guide" onclick="setFilter(this,'buying guide')">Buying Guide</span>
+        <span class="filter-chip" data-filter="maintenance" onclick="setFilter(this,'maintenance')">Maintenance</span>
+        <span class="filter-chip" data-filter="how-to" onclick="setFilter(this,'how-to')">How-To</span>
+        <span class="filter-chip" data-filter="models" onclick="setFilter(this,'models')">Models</span>
+      </div>
     </div>
-    <h2>Buying Guides</h2>
-    <div class="section-sub">Make a confident decision</div>
-    <div class="guide-list">
-      <div class="guide-item"><div class="guide-icon">&#x2696;</div><div class="guide-text"><h4>Understanding GVWR</h4><p>What Gross Vehicle Weight Rating means and how to use it to select the right trailer for your load.</p></div></div>
-      <div class="guide-item"><div class="guide-icon">&#x1F4CF;</div><div class="guide-text"><h4>Deck Size Guide</h4><p>How to measure your equipment and match it to the right deck length and width for safe transport.</p></div></div>
-      <div class="guide-item"><div class="guide-icon">&#x26D3;</div><div class="guide-text"><h4>Gooseneck vs. Bumper Pull</h4><p>Key differences in hitch type, weight distribution, and what truck you'll need for each configuration.</p></div></div>
-      <div class="guide-item"><div class="guide-icon">&#x1F527;</div><div class="guide-text"><h4>Maintenance Basics</h4><p>Routine inspection checklist and maintenance intervals to keep your trailer performing for decades.</p></div></div>
-    </div>
-  </section>
+
+    <!-- Article Cards -->
+    <div class="blog-grid" id="blogGrid">
+
+      <!-- Article 1 -->
+      <div class="blog-card" data-tags="buying guide">
+        <div class="blog-card-img">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-tag">Buying Guide</span>
+          <div class="blog-meta">March 6, 2026</div>
+          <h3>Understanding GVWR: What It Means and Why It Matters</h3>
+          <p>Gross Vehicle Weight Rating is the most important spec on any trailer. Learn how to calculate your load, read the rating plate, and avoid costly overload mistakes.</p>
+          <a href="#" class="blog-read-link">Read Article &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Article 2 -->
+      <div class="blog-card" data-tags="buying guide">
+        <div class="blog-card-img">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-tag">Buying Guide</span>
+          <div class="blog-meta">February 26, 2026</div>
+          <h3>Gooseneck vs. Bumper Pull: Which Hitch Is Right for You?</h3>
+          <p>The hitch type changes everything — from what truck you need to how the trailer handles under load. Here's a plain-English breakdown of the key differences.</p>
+          <a href="#" class="blog-read-link">Read Article &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Article 3 -->
+      <div class="blog-card" data-tags="models">
+        <div class="blog-card-img">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-tag">Models</span>
+          <div class="blog-meta">February 12, 2026</div>
+          <h3>Choosing the Right Dump Trailer for Your Application</h3>
+          <p>7-foot wide or full deckover? Hydraulic scissor or cylinder hoist? Walk through the real-world differences between Walton's DHV and DHO dump trailer lines.</p>
+          <a href="dump-trailers/dump-trailers.html" class="blog-read-link">View Models &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Article 4 -->
+      <div class="blog-card" data-tags="how-to">
+        <div class="blog-card-img">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M5.34 18.66l-1.41 1.41M20 12h2M2 12h2M19.07 19.07l-1.41-1.41M5.34 5.34L3.93 3.93M12 20v2M12 2v2"/></svg>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-tag">How-To</span>
+          <div class="blog-meta">January 29, 2026</div>
+          <h3>Tilt Deck vs. Ramp Trailer: Loading Equipment the Right Way</h3>
+          <p>Tilt trailers eliminate ramps entirely — but they're not always the right call. Learn which loading method works best for your equipment type and job site conditions.</p>
+          <a href="tilt-equipment/tilt-equipment.html" class="blog-read-link">View Tilt Trailers &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Article 5 -->
+      <div class="blog-card" data-tags="maintenance">
+        <div class="blog-card-img">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-tag">Maintenance</span>
+          <div class="blog-meta">January 15, 2026</div>
+          <h3>Maintenance Basics: Keeping Your Walton Trailer Ready for Work</h3>
+          <p>A simple inspection routine can prevent the most common trailer failures. Covers axle lube, brake adjustment, coupler wear, lighting, and seasonal storage tips.</p>
+          <a href="user-manuals.html" class="blog-read-link">View Owner's Manual &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Article 6 -->
+      <div class="blog-card" data-tags="buying guide">
+        <div class="blog-card-img">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-tag">Buying Guide</span>
+          <div class="blog-meta">January 1, 2026</div>
+          <h3>Deck Size Guide: Matching Your Equipment to the Right Trailer</h3>
+          <p>Measure wrong and your equipment won't fit — or worse, it'll overhang the deck. This guide walks you through width, length, and deck height considerations for common equipment types.</p>
+          <a href="#" class="blog-read-link">Read Article &rarr;</a>
+        </div>
+      </div>
+
+    </div><!-- end blog-grid -->
+
+    <div class="blog-empty" id="blogEmpty">No articles match your search. Try a different keyword or filter.</div>
+
+  </div><!-- end blog-shell -->
+
 </main>
+
+<script>
+var activeFilter = 'all';
+
+function setFilter(chip, filter) {
+  activeFilter = filter;
+  document.querySelectorAll('.filter-chip').forEach(function(c) { c.classList.remove('active'); });
+  chip.classList.add('active');
+  filterBlog();
+}
+
+function filterBlog() {
+  var query = document.getElementById('blogSearch').value.toLowerCase().trim();
+  var cards = document.querySelectorAll('.blog-card');
+  var visible = 0;
+  cards.forEach(function(card) {
+    var tags = card.getAttribute('data-tags') || '';
+    var title = card.querySelector('h3') ? card.querySelector('h3').textContent.toLowerCase() : '';
+    var excerpt = card.querySelector('p') ? card.querySelector('p').textContent.toLowerCase() : '';
+    var matchFilter = (activeFilter === 'all') || tags.indexOf(activeFilter) !== -1;
+    var matchSearch = !query || title.indexOf(query) !== -1 || excerpt.indexOf(query) !== -1 || tags.indexOf(query) !== -1;
+    if (matchFilter && matchSearch) {
+      card.style.display = '';
+      visible++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+  document.getElementById('blogEmpty').style.display = visible === 0 ? 'block' : 'none';
+}
+</script>
 <footer>
   <div>
     <div class="footer-brand"><img src="Images/logos/walton-logo-white.png" alt="Walton Trailers" style="height:48px;width:auto;display:block;margin-bottom:4px;"></div>
@@ -504,7 +617,7 @@
       <li><a href="user-manuals.html">User Manuals</a></li>
       <li><a href="warranty.html">Warranty Policy</a></li>
             <li><a href="video-guides.html">Video Guides</a></li>
-      <li><a href="learn.html">FAQ &amp; Learning</a></li>
+      <li><a href="learn.html">Learning Center</a></li>
     
       <li><a href="parts.html">Parts &amp; Accessories</a></li>
     </ul>

@@ -1209,7 +1209,7 @@
             <ul class="discover-col-links">
               <li><a href="user-manuals.html">User Manuals</a></li>
               <li><a href="video-guides.html">Video Guides</a></li>
-              <li><a href="learn.html">FAQ &amp; Learning Center</a></li>
+              <li><a href="learn.html">Learning Center</a></li>
             </ul>
           </div>
           <div class="simple-col">
@@ -1598,7 +1598,7 @@
       <li><a href="user-manuals.html">User Manuals</a></li>
       <li><a href="warranty.html">Warranty Policy</a></li>
             <li><a href="video-guides.html">Video Guides</a></li>
-      <li><a href="learn.html">FAQ &amp; Learning</a></li>
+      <li><a href="learn.html">Learning Center</a></li>
     
       <li><a href="parts.html">Parts &amp; Accessories</a></li>
     </ul>
@@ -2172,8 +2172,9 @@ function navGoTo(idx) {
     { tags:['parts','accessories','replacement part','repair','service','maintenance','fix'],
       answer:'Genuine Walton parts and service are available through our dealer network. Contact your nearest dealer for parts orders or repair scheduling.',
       link:{ text:'Find a Dealer', url: base+'find-a-dealer.html' } },
-    { tags:['register','registration','owner manual','owners manual','manual'],
-      answer:"Register your trailer and download the owner's manual through our support section. Your dealer can also assist with registration." },
+    { tags:['owner manual','owners manual','manual','manual download'],
+      answer:"Owner\'s manuals are available for download in our <strong>User Manuals</strong> section. Find your vendor and download the PDF.",
+      link:{ text:'User Manuals', url: base+'user-manuals.html' } },
     { tags:['contact','call','phone','email','reach','message','talk','speak','help','support'],
       answer:"I'd be happy to connect you with our team. Fill out a quick message below and we'll get back to you as soon as possible.",
       action:'contact' },
@@ -2462,8 +2463,7 @@ function navGoTo(idx) {
             '<button class="chat-qr-btn" onclick="wcQuick(\'Download owner manual\')">Download my manual</button>' +
             '<button class="chat-qr-btn" onclick="wcQuick(\'Warranty info\')">Warranty info</button>' +
             '<button class="chat-qr-btn" onclick="wcQuick(\'How to file a warranty claim\')">File a warranty claim</button>' +
-            '<button class="chat-qr-btn" onclick="wcQuick(\'Register my trailer\')">Register my trailer</button>' +
-            '<button class="chat-qr-btn" onclick="wcQuick(\'Parts and service\')">Parts &amp; service</button>';
+                        '<button class="chat-qr-btn" onclick="wcQuick(\'Parts and service\')">Parts &amp; service</button>';
           qr.style.display = 'flex';
         }
       }, 600);
