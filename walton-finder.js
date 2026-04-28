@@ -49,15 +49,15 @@ var equipmentDB = [
 
 /* ── TRAILER DATABASE ── */
 var trailerDB = {
-  dump_light:    { name: 'Dump Trailer',      sub: 'Light Duty (DHV)',       gvwr: '14,000 lbs', payload: '10,000 lbs', category: 'Dump Trailers' },
-  dump_medium:   { name: 'Dump Trailer',      sub: 'Medium Duty (DHO)',      gvwr: '20,000 lbs', payload: '16,000 lbs', category: 'Dump Trailers' },
-  dump_heavy:    { name: 'Dump Trailer',      sub: 'Heavy Duty (DHO)',       gvwr: '30,000 lbs', payload: '26,000 lbs', category: 'Dump Trailers' },
-  dump_deckover: { name: 'Dump Trailer',      sub: 'Heavy Duty Deck-Over',   gvwr: '40,000 lbs', payload: '36,000 lbs', category: 'Dump Trailers' },
-  tmx:           { name: 'Tilt Equipment',    sub: 'TMX107',                 gvwr: '14,000 lbs', payload: '10,000 lbs', category: 'Equipment & Tilt' },
-  tsx:           { name: 'Tilt Equipment',    sub: 'TSX Series',             gvwr: '24,000 lbs', payload: '20,000 lbs', category: 'Equipment & Tilt' },
+  dump_light:    { name: 'Dump Trailer',      sub: 'DHV207 (14K)',           gvwr: '14,000 lbs', payload: '10,000 lbs', category: 'Dump Trailers' },
+  dump_medium:   { name: 'Dump Trailer',      sub: 'Browse Dump Trailers',   gvwr: '17,200 lbs', payload: '13,000 lbs', category: 'Dump Trailers' },
+  dump_heavy:    { name: 'Dump Trailer',      sub: 'Browse Dump Trailers',   gvwr: '17,200 lbs', payload: '13,000 lbs', category: 'Dump Trailers' },
+  dump_deckover: { name: 'Dump Trailer',      sub: 'Browse Dump Trailers',   gvwr: '17,200 lbs', payload: '13,000 lbs', category: 'Dump Trailers' },
+  tmx:           { name: 'Tilt Equipment',    sub: 'Browse Tilt Trailers',   gvwr: '14,000 lbs', payload: '10,000 lbs', category: 'Equipment & Tilt' },
+  tsx:           { name: 'Tilt Equipment',    sub: 'TSX Series',             gvwr: '14,000 lbs', payload: '10,000 lbs', category: 'Equipment & Tilt' },
   fbx:           { name: 'Gooseneck Flatbed', sub: 'FBX Series',             gvwr: '24,000 lbs', payload: '20,000 lbs', category: 'Gooseneck Flatbeds' },
   fbh:           { name: 'Gooseneck Flatbed', sub: 'FBH Series (Deck-Over)', gvwr: '35,000 lbs', payload: '31,000 lbs', category: 'Gooseneck Flatbeds' },
-  landscape:     { name: 'Landscape Trailer', sub: 'MPR Series',             gvwr: '7,000 lbs',  payload: '4,800 lbs',  category: 'Landscape Trailers' }
+  landscape:     { name: 'Landscape Trailer', sub: 'MPR207',                 gvwr: '7,000 lbs',  payload: '4,800 lbs',  category: 'Landscape Trailers' }
 };
 
 /* ── RECOMMENDATION ENGINE ── */
@@ -322,12 +322,12 @@ function restartFinder() {
 /* Trailer specific model page links */
 var trailerPageLinks = {
   dump_light:    'dump-trailers/dhv207.html',
-  dump_medium:   'dump-trailers/dho210.html',
-  dump_heavy:    'dump-trailers/dho212.html',
-  dump_deckover: 'dump-trailers/dho215.html',
-  tmx:           'tilt-equipment/tmx107.html',
+  dump_medium:   'dump-trailers/dump-trailers.html',
+  dump_heavy:    'dump-trailers/dump-trailers.html',
+  dump_deckover: 'dump-trailers/dump-trailers.html',
+  tmx:           'tilt-equipment/tilt-equipment.html',
   tsx:           'tilt-equipment/tsx207.html',
   fbx:           'Gooseneck/fbx210.html',
   fbh:           'Gooseneck/fbh207.html',
-  landscape:     'Landscape/mpr205.html'
+  landscape:     'Landscape/mpr207.html'
 };
