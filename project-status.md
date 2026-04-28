@@ -6,6 +6,12 @@
 
 ---
 
+## Pending Manual Tasks (Taylor — handle when ready)
+
+- **Rotate Gmail app password** for `password-management@waltontrailers.com`. The current value is sitting in plaintext inside `configurator/Walton Trailers Configurator Website Transfer Instructions.pdf`. Generate a fresh app password in Google Account → Security → App passwords, update the configurator's `GMAIL_APP_PASSWORD` secret on Vercel, and the old one becomes worthless.
+
+---
+
 ## Completed Work
 
 ### Foundation
