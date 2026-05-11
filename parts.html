@@ -306,48 +306,10 @@
   .reason-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 2px; margin-bottom: 12px; }
   .reason-card p { font-size: 14px; color: rgba(245,243,239,0.65); line-height: 1.8; }
 
-  /* Find dealer band */
-  .find-dealer-band {
-    background: var(--rust); padding: 80px 48px; text-align: center;
-  }
-  .find-dealer-band h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 5vw, 56px); letter-spacing: 3px; color: #0a0a0a; margin-bottom: 16px; }
-  .find-dealer-band p { font-size: 16px; color: rgba(10,10,10,0.7); margin-bottom: 32px; max-width: 560px; margin-left: auto; margin-right: auto; }
-  .find-dealer-band a {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: #0a0a0a; color: #f5f3ef;
-    padding: 16px 36px; font-size: 13px; letter-spacing: 2px;
-    text-transform: uppercase; font-weight: 600;
-    border-radius: 2px; transition: background 0.2s;
-  }
-  .find-dealer-band a:hover { background: var(--steel); }
-
-  /* Help note */
-  .help-section { padding: 72px 48px; background: var(--steel); border-top: 1px solid rgba(255,255,255,0.06); }
-  .help-inner {
-    max-width: 900px; margin: 0 auto;
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 32px; flex-wrap: wrap;
-  }
-  .help-text h3 { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 2px; margin-bottom: 10px; }
-  .help-text p { font-size: 14px; color: rgba(245,243,239,0.6); line-height: 1.7; max-width: 520px; }
-  .help-btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: transparent; color: var(--white);
-    padding: 14px 28px; font-size: 12px; letter-spacing: 2px;
-    text-transform: uppercase; font-weight: 600;
-    border: 1px solid rgba(245,243,239,0.25); border-radius: 2px;
-    transition: border-color 0.2s, background 0.2s;
-    flex-shrink: 0;
-  }
-  .help-btn:hover { border-color: var(--rust); background: rgba(183,163,128,0.08); }
-
   @media(max-width:768px) {
     .parts-hero { padding: 120px 24px 64px; }
     .reasons-section { padding: 64px 24px; }
     .reasons-grid { grid-template-columns: 1fr; gap: 16px; }
-    .find-dealer-band { padding: 64px 24px; }
-    .help-section { padding: 56px 24px; }
-    .help-inner { flex-direction: column; align-items: flex-start; }
   }
 
   /* ── TRAILERS MEGA: CSS hover (consistent with other dropdowns) ── */
@@ -551,23 +513,6 @@
     </div>
   </section>
 
-  <!-- FIND DEALER CTA -->
-  <section class="find-dealer-band">
-    <h2>Find Your Walton Dealer</h2>
-    <p>Over 100 authorized dealers across the country. Find the one nearest you and get the parts, service, and support your trailer deserves.</p>
-    <a href="find-a-dealer.html">Find a Dealer &rarr;</a>
-  </section>
-
-  <!-- HELP NOTE -->
-  <section class="help-section">
-    <div class="help-inner">
-      <div class="help-text">
-        <h3>Need Help Locating a Dealer?</h3>
-        <p>If you're not sure where to start or can't find a dealer in your area, our team can point you in the right direction.</p>
-      </div>
-      <a href="contact.html" class="help-btn">Contact Walton &rarr;</a>
-    </div>
-  </section>
 </main>
 
 <footer>
