@@ -292,19 +292,20 @@
   .video-info { padding: 16px 18px; }
   .video-info h3 { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 1px; margin-bottom: 4px; }
   .video-info p { font-size: 12px; color: rgba(245,243,239,0.45); }
-  .form-section { background: #0d1018; }
+  .form-section { background: var(--white); color: var(--black); }
   .form-wrap { max-width: 700px; margin: 0 auto; padding: 80px 48px; }
   .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .form-field { display: flex; flex-direction: column; gap: 6px; }
   .form-field.full { grid-column: 1/-1; }
-  .form-field label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,243,239,0.45); }
-  .form-field input, .form-field select, .form-field textarea { background: var(--steel); border: 1px solid rgba(255,255,255,0.08); border-radius: 2px; padding: 12px 14px; color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; width: 100%; }
+  .form-field label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(10,10,10,0.55); }
+  .form-field input, .form-field select, .form-field textarea { background: #fff; border: 1px solid rgba(0,0,0,0.12); border-radius: 2px; padding: 12px 14px; color: var(--black); font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; width: 100%; }
+  .form-field input::placeholder, .form-field textarea::placeholder { color: rgba(10,10,10,0.35); }
   .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--rust); }
-  .form-field select option { background: var(--steel); }
+  .form-field select option { background: #fff; color: var(--black); }
   .form-field textarea { resize: vertical; min-height: 100px; }
-  .form-submit { margin-top: 8px; width: 100%; padding: 15px; background: var(--rust); color: var(--black); border: none; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: background 0.2s; }
-  .form-submit:hover { background: var(--rust-dark); }
-  .form-success { display: none; text-align: center; padding: 24px; color: var(--rust); font-size: 15px; }
+  .form-submit { margin-top: 8px; width: 100%; padding: 15px; background: var(--black); color: var(--white); border: none; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: background 0.2s; }
+  .form-submit:hover { background: var(--steel); }
+  .form-success { display: none; text-align: center; padding: 24px; color: var(--rust-dark); font-size: 15px; }
   @media(max-width:768px) {
     .owners-quick-links { grid-template-columns: repeat(3,1fr); }
     .manuals-grid { grid-template-columns: 1fr; }
@@ -506,8 +507,8 @@
       </div>
       <div class="form-success" id="registerSuccess">
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:12px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        <p style="font-size:18px;font-weight:500;margin-bottom:8px;">Trailer Registered!</p>
-        <p style="color:rgba(245,243,239,0.6);font-size:14px;">Your ownership record is on file. Welcome to the Walton family.</p>
+        <p style="font-size:18px;font-weight:500;margin-bottom:8px;color:var(--black);">Trailer Registered!</p>
+        <p style="color:rgba(10,10,10,0.6);font-size:14px;">Your ownership record is on file. Welcome to the Walton family.</p>
       </div>
     </div>
   </div>
@@ -523,11 +524,6 @@
     document.getElementById('registerSuccess').style.display = 'block';
   }
   </script>
-
-  <!-- BACK LINK -->
-  <div style="padding: 40px 48px; border-top: 1px solid rgba(255,255,255,0.06);">
-    <a href="user-manuals.html" style="font-size:13px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,243,239,0.45);text-decoration:none;display:inline-flex;align-items:center;gap:8px;">&#8592; Back to Owner Resources</a>
-  </div>
 
 </main>
 
