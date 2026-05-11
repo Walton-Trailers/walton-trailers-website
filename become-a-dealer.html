@@ -157,6 +157,24 @@
   .form-group select option { background: #1c2028; }
   .form-submit { width: 100%; background: var(--rust); color: #0a0a0a; border: none; padding: 16px; font-family: 'DM Sans', sans-serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; border-radius: 2px; cursor: pointer; margin-top: 8px; transition: background 0.2s; }
   .form-submit:hover { background: var(--rust-dark); }
+  .form-radio-group { margin-bottom: 18px; }
+  .form-radio-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,243,239,0.4); margin-bottom: 10px; }
+  .form-radio-options { display: flex; gap: 10px; }
+  .form-radio { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 2px; cursor: pointer; flex: 1; transition: border-color 0.2s, background 0.2s; font-size: 14px; color: rgba(245,243,239,0.85); }
+  .form-radio:hover { border-color: rgba(183,163,128,0.5); }
+  .form-radio input { accent-color: var(--rust); margin: 0; }
+  .form-radio:has(input:checked) { border-color: var(--rust); background: rgba(183,163,128,0.08); color: var(--white); }
+  .form-captcha { margin-bottom: 18px; background: rgba(0,0,0,0.25); padding: 14px 16px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.08); }
+  .form-captcha-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; gap: 12px; }
+  .form-captcha-q { font-size: 14px; color: rgba(245,243,239,0.9); font-weight: 500; }
+  .form-captcha-refresh { background: none; border: none; color: rgba(245,243,239,0.5); cursor: pointer; font-size: 16px; padding: 4px 8px; border-radius: 2px; transition: color 0.2s, transform 0.3s; }
+  .form-captcha-refresh:hover { color: var(--rust); transform: rotate(180deg); }
+  .form-captcha-input { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 2px; padding: 10px 14px; color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; width: 100%; }
+  .form-captcha-input:focus { border-color: var(--rust); }
+  .form-success { display: none; text-align: center; padding: 32px 0; }
+  .form-success svg { color: var(--rust); margin-bottom: 14px; }
+  .form-success h4 { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 2px; margin-bottom: 8px; }
+  .form-success p { font-size: 14px; color: rgba(245,243,239,0.6); line-height: 1.7; }
   @media(max-width:768px) { .two-col { grid-template-columns:1fr; } .form-row { grid-template-columns:1fr; } .page-hero,.two-col { padding-left:24px; padding-right:24px; } }
 
     /* ════════════════════════════════
@@ -443,20 +461,58 @@
     <div class="form-section">
       <h3>Express Interest</h3>
       <p>Fill out the form below and a Walton rep will be in touch within 2 business days.</p>
-      <div class="form-row">
-        <div class="form-group"><label>First Name</label><input type="text" placeholder="John"></div>
-        <div class="form-group"><label>Last Name</label><input type="text" placeholder="Smith"></div>
+      <div id="dealerForm">
+        <div class="form-row">
+          <div class="form-group"><label>First Name</label><input type="text" id="dFirst" placeholder="John"></div>
+          <div class="form-group"><label>Last Name</label><input type="text" id="dLast" placeholder="Smith"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Email</label><input type="email" id="dEmail" placeholder="john@smithtrailers.com"></div>
+          <div class="form-group"><label>Phone Number</label><input type="tel" id="dPhone" placeholder="(435) 555-0100"></div>
+        </div>
+        <div class="form-group" style="margin-bottom:16px;"><label>Dealer Name</label><input type="text" id="dDealer" placeholder="Smith Trailer Sales"></div>
+        <div class="form-group" style="margin-bottom:16px;"><label>Address</label><input type="text" id="dAddress" placeholder="123 Main St"></div>
+        <div class="form-row">
+          <div class="form-group"><label>City (optional)</label><input type="text" id="dCity" placeholder="Logan"></div>
+          <div class="form-group"><label>State</label><input type="text" id="dState" placeholder="UT"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Zip</label><input type="text" id="dZip" placeholder="84321"></div>
+          <div class="form-group"><label>Country</label><input type="text" id="dCountry" placeholder="United States" value="United States"></div>
+        </div>
+        <div class="form-group" style="margin-bottom:20px;"><label>Length of Time in Business</label><input type="text" id="dYears" placeholder="e.g. 12 years"></div>
+
+        <div class="form-radio-group">
+          <div class="form-radio-label">Do you have a parts department?</div>
+          <div class="form-radio-options">
+            <label class="form-radio"><input type="radio" name="dParts" value="yes"><span>Yes</span></label>
+            <label class="form-radio"><input type="radio" name="dParts" value="no"><span>No</span></label>
+          </div>
+        </div>
+
+        <div class="form-radio-group">
+          <div class="form-radio-label">Do you have a service department?</div>
+          <div class="form-radio-options">
+            <label class="form-radio"><input type="radio" name="dService" value="yes"><span>Yes</span></label>
+            <label class="form-radio"><input type="radio" name="dService" value="no"><span>No</span></label>
+          </div>
+        </div>
+
+        <div class="form-captcha">
+          <div class="form-captcha-row">
+            <div class="form-captcha-q" id="captchaQ">What is 0 + 0?</div>
+            <button type="button" class="form-captcha-refresh" onclick="newCaptcha()" aria-label="Refresh question">&#x21bb;</button>
+          </div>
+          <input type="text" id="captchaA" inputmode="numeric" placeholder="Your answer" class="form-captcha-input">
+        </div>
+
+        <button class="form-submit" onclick="submitDealerForm()">Submit Inquiry</button>
       </div>
-      <div class="form-row">
-        <div class="form-group"><label>Business Name</label><input type="text" placeholder="Smith Trailer Sales"></div>
-        <div class="form-group"><label>Phone</label><input type="tel" placeholder="(435) 555-0100"></div>
+      <div class="form-success" id="dealerSuccess">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <h4>Inquiry Received</h4>
+        <p>Thanks for your interest in becoming a Walton dealer. A rep will be in touch within 2 business days.</p>
       </div>
-      <div class="form-row">
-        <div class="form-group"><label>Email</label><input type="email" placeholder="john@smithtrailers.com"></div>
-        <div class="form-group"><label>State</label><select><option value="">Select State</option><option>Utah</option><option>Idaho</option><option>Nevada</option><option>Wyoming</option><option>Colorado</option><option>Montana</option><option>Arizona</option><option>Other</option></select></div>
-      </div>
-      <div class="form-group" style="margin-bottom:16px;"><label>Message (optional)</label><textarea rows="3" placeholder="Tell us about your dealership..."></textarea></div>
-      <button class="form-submit">Submit Inquiry</button>
     </div>
   </section>
 </main>
@@ -668,6 +724,37 @@ function toggleMenu() {
   h.classList.toggle('open');
   document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
 }
+
+function newCaptcha() {
+  var a = Math.floor(Math.random() * 9) + 1;
+  var b = Math.floor(Math.random() * 9) + 1;
+  document.getElementById('captchaQ').textContent = 'What is ' + a + ' + ' + b + '?';
+  var input = document.getElementById('captchaA');
+  if (input) input.value = '';
+  window._captchaAns = a + b;
+}
+
+function submitDealerForm() {
+  var required = ['dFirst','dLast','dEmail','dPhone','dDealer','dAddress','dState','dZip','dCountry','dYears'];
+  for (var i = 0; i < required.length; i++) {
+    var el = document.getElementById(required[i]);
+    if (!el || !el.value.trim()) { el && el.focus(); return; }
+  }
+  if (!document.querySelector('input[name="dParts"]:checked')) {
+    document.querySelector('input[name="dParts"]').focus(); return;
+  }
+  if (!document.querySelector('input[name="dService"]:checked')) {
+    document.querySelector('input[name="dService"]').focus(); return;
+  }
+  var captchaInput = document.getElementById('captchaA');
+  if (!captchaInput.value.trim() || parseInt(captchaInput.value, 10) !== window._captchaAns) {
+    captchaInput.focus(); newCaptcha(); return;
+  }
+  document.getElementById('dealerForm').style.display = 'none';
+  document.getElementById('dealerSuccess').style.display = 'block';
+}
+
+document.addEventListener('DOMContentLoaded', newCaptcha);
 </script>
 </body>
 </html>
