@@ -14,21 +14,21 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Parts | Walton Trailers</title>
-  <meta name="description" content="Shop genuine Walton Trailers replacement parts and accessories. Keep your trailer running strong with OEM-quality components.">
+  <title>Parts &amp; Accessories | Walton Trailers</title>
+  <meta name="description" content="Get genuine Walton Trailers parts and accessories through your local authorized Walton dealer. Find the dealer nearest you for OEM parts, service, and warranty support.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://taylor-nielsen.github.io/walton-trailers-website/parts.html">
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Walton Trailers">
-  <meta property="og:title" content="Parts | Walton Trailers">
-  <meta property="og:description" content="Shop genuine Walton Trailers replacement parts and accessories. Keep your trailer running strong with OEM-quality components.">
+  <meta property="og:title" content="Parts &amp; Accessories | Walton Trailers">
+  <meta property="og:description" content="Get genuine Walton Trailers parts and accessories through your local authorized Walton dealer. Find the dealer nearest you for OEM parts, service, and warranty support.">
   <meta property="og:url" content="https://taylor-nielsen.github.io/walton-trailers-website/parts.html">
   <meta property="og:image" content="https://taylor-nielsen.github.io/walton-trailers-website/og-image.jpg">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Parts | Walton Trailers">
-  <meta name="twitter:description" content="Shop genuine Walton Trailers replacement parts and accessories. Keep your trailer running strong with OEM-quality components.">
+  <meta name="twitter:title" content="Parts &amp; Accessories | Walton Trailers">
+  <meta name="twitter:description" content="Get genuine Walton Trailers parts and accessories through your local authorized Walton dealer. Find the dealer nearest you for OEM parts, service, and warranty support.">
   <meta name="twitter:image" content="https://taylor-nielsen.github.io/walton-trailers-website/og-image.jpg">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -266,256 +266,88 @@
   /* ── PARTS PAGE ── */
   .parts-hero {
     background: linear-gradient(to bottom, rgba(10,10,10,0.85) 0%, rgba(28,32,40,0.95) 100%), var(--steel);
-    padding: 120px 48px 64px;
+    padding: 160px 48px 96px;
     text-align: center;
   }
-  .parts-hero-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--rust); margin-bottom: 16px; }
-  .parts-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 8vw, 88px); letter-spacing: 4px; line-height: 0.95; margin-bottom: 20px; }
-  .parts-hero p { font-size: 16px; color: rgba(245,243,239,0.6); max-width: 480px; margin: 0 auto 40px; }
+  .parts-hero-tag { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--rust); margin-bottom: 18px; }
+  .parts-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 8vw, 88px); letter-spacing: 4px; line-height: 0.95; margin-bottom: 24px; }
+  .parts-hero p { font-size: 17px; color: rgba(245,243,239,0.7); max-width: 640px; margin: 0 auto 36px; line-height: 1.7; }
+  .hero-cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .hero-cta-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--rust); color: var(--white);
+    padding: 16px 32px; font-size: 13px; letter-spacing: 2px;
+    text-transform: uppercase; font-weight: 600;
+    border-radius: 2px; transition: background 0.2s;
+  }
+  .hero-cta-primary:hover { background: var(--rust-dark); }
+  .hero-cta-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--white);
+    padding: 16px 32px; font-size: 13px; letter-spacing: 2px;
+    text-transform: uppercase; font-weight: 500;
+    border: 1px solid rgba(245,243,239,0.25); border-radius: 2px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .hero-cta-secondary:hover { border-color: var(--rust); background: rgba(183,163,128,0.08); }
 
-  /* Search Bar */
-  .parts-search-wrap {
-    max-width: 640px; margin: 0 auto;
-    display: flex; gap: 0; position: relative;
+  /* Reasons grid */
+  .reasons-section { padding: 96px 48px; max-width: 1200px; margin: 0 auto; }
+  .reasons-eyebrow { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--rust); margin-bottom: 14px; text-align: center; }
+  .reasons-heading { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px, 4vw, 48px); letter-spacing: 2px; text-align: center; margin-bottom: 16px; }
+  .reasons-sub { font-size: 15px; color: rgba(245,243,239,0.6); text-align: center; max-width: 620px; margin: 0 auto 56px; line-height: 1.7; }
+  .reasons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .reason-card {
+    background: var(--steel); padding: 40px 32px; border-radius: 4px;
+    border-top: 3px solid var(--rust);
   }
-  .parts-search-input {
-    flex: 1; padding: 16px 20px; font-size: 15px;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-right: none;
-    border-radius: 2px 0 0 2px;
-    color: var(--white); font-family: 'DM Sans', sans-serif;
-    outline: none; transition: border-color 0.2s;
-  }
-  .parts-search-input:focus { border-color: var(--rust); }
-  .parts-search-input::placeholder { color: rgba(245,243,239,0.35); }
-  .parts-search-btn {
-    padding: 16px 28px; background: var(--rust); color: var(--white);
-    border: none; border-radius: 0 2px 2px 0; cursor: pointer;
-    font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase;
-    font-family: 'DM Sans', sans-serif; font-weight: 500;
-    transition: background 0.2s;
-  }
-  .parts-search-btn:hover { background: var(--rust-dark); }
+  .reason-icon { width: 44px; height: 44px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; }
+  .reason-icon svg { width: 28px; height: 28px; stroke: var(--rust); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .reason-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 2px; margin-bottom: 12px; }
+  .reason-card p { font-size: 14px; color: rgba(245,243,239,0.65); line-height: 1.8; }
 
-  /* Model Filter Pills */
-  .parts-filter-section { padding: 40px 48px 0; max-width: 1200px; margin: 0 auto; }
-  .parts-filter-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: rgba(245,243,239,0.4); margin-bottom: 14px; }
-  .model-pills { display: flex; flex-wrap: wrap; gap: 8px; }
-  .model-pill {
-    padding: 8px 18px; border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 2px; font-size: 13px; color: rgba(245,243,239,0.65);
-    cursor: pointer; transition: all 0.18s; background: transparent;
-    font-family: 'DM Sans', sans-serif; letter-spacing: 0.5px;
+  /* Find dealer band */
+  .find-dealer-band {
+    background: var(--rust); padding: 80px 48px; text-align: center;
   }
-  .model-pill:hover { border-color: var(--rust); color: var(--rust); }
-  .model-pill.active { background: var(--rust); border-color: var(--rust); color: var(--white); }
+  .find-dealer-band h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 5vw, 56px); letter-spacing: 3px; color: #0a0a0a; margin-bottom: 16px; }
+  .find-dealer-band p { font-size: 16px; color: rgba(10,10,10,0.7); margin-bottom: 32px; max-width: 560px; margin-left: auto; margin-right: auto; }
+  .find-dealer-band a {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: #0a0a0a; color: #f5f3ef;
+    padding: 16px 36px; font-size: 13px; letter-spacing: 2px;
+    text-transform: uppercase; font-weight: 600;
+    border-radius: 2px; transition: background 0.2s;
+  }
+  .find-dealer-band a:hover { background: var(--steel); }
 
-  /* Main Layout */
-  .parts-layout {
-    display: grid;
-    grid-template-columns: 1fr 340px;
-    gap: 32px;
-    max-width: 1200px;
-    margin: 40px auto 80px;
-    padding: 0 48px;
-    align-items: start;
+  /* Help note */
+  .help-section { padding: 72px 48px; background: var(--steel); border-top: 1px solid rgba(255,255,255,0.06); }
+  .help-inner {
+    max-width: 900px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 32px; flex-wrap: wrap;
   }
-
-  /* Category Cards */
-  .parts-categories { }
-  .category-section { margin-bottom: 48px; }
-  .category-header {
-    display: flex; align-items: center; gap: 14px;
-    margin-bottom: 20px; padding-bottom: 14px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
-  .category-icon {
-    width: 40px; height: 40px; background: rgba(183,163,128,0.12);
-    border-radius: 2px; display: flex; align-items: center; justify-content: center;
+  .help-text h3 { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 2px; margin-bottom: 10px; }
+  .help-text p { font-size: 14px; color: rgba(245,243,239,0.6); line-height: 1.7; max-width: 520px; }
+  .help-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--white);
+    padding: 14px 28px; font-size: 12px; letter-spacing: 2px;
+    text-transform: uppercase; font-weight: 600;
+    border: 1px solid rgba(245,243,239,0.25); border-radius: 2px;
+    transition: border-color 0.2s, background 0.2s;
     flex-shrink: 0;
   }
-  .category-icon svg { width: 20px; height: 20px; stroke: var(--rust); }
-  .category-title { font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--rust); font-weight: 500; }
-  .parts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-  .part-card {
-    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 2px; padding: 20px 16px;
-    cursor: pointer; transition: all 0.18s;
-    display: flex; flex-direction: column; gap: 8px;
-    position: relative;
-  }
-  .part-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(183,163,128,0.35); }
-  .part-card.in-cart { border-color: var(--rust); }
-  .part-card-sku { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,243,239,0.3); }
-  .part-card-name { font-size: 14px; font-weight: 500; color: var(--white); line-height: 1.3; }
-  .part-card-fits { font-size: 12px; color: rgba(245,243,239,0.4); }
-  .part-card-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
-  .part-card-add {
-    padding: 7px 14px; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
-    background: transparent; border: 1px solid rgba(183,163,128,0.4);
-    color: var(--rust); border-radius: 2px; cursor: pointer; font-family: 'DM Sans', sans-serif;
-    transition: all 0.18s;
-  }
-  .part-card-add:hover { background: var(--rust); color: var(--white); border-color: var(--rust); }
-  .part-card-add.added { background: var(--rust); color: var(--white); border-color: var(--rust); }
-  .part-card-badge {
-    position: absolute; top: 10px; right: 10px;
-    width: 18px; height: 18px; background: var(--rust);
-    border-radius: 50%; display: none; align-items: center; justify-content: center;
-    font-size: 10px; font-weight: 700; color: white;
-  }
-  .part-card.in-cart .part-card-badge { display: flex; }
+  .help-btn:hover { border-color: var(--rust); background: rgba(183,163,128,0.08); }
 
-  /* No results message */
-  .no-results {
-    text-align: center; padding: 60px 20px;
-    color: rgba(245,243,239,0.35); font-size: 15px;
-    display: none;
-  }
-
-  /* Quote Cart Sidebar */
-  .quote-cart {
-    background: rgba(28,32,40,0.8); border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 2px; padding: 28px 24px;
-    position: sticky; top: 88px;
-  }
-  .cart-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
-  .cart-title { font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--rust); font-weight: 500; }
-  .cart-count {
-    background: var(--rust); color: white; border-radius: 50%;
-    width: 22px; height: 22px; display: flex; align-items: center;
-    justify-content: center; font-size: 11px; font-weight: 700;
-  }
-  .cart-empty { text-align: center; padding: 32px 0; color: rgba(245,243,239,0.3); font-size: 14px; }
-  .cart-empty svg { width: 36px; height: 36px; stroke: rgba(245,243,239,0.15); display: block; margin: 0 auto 12px; }
-  .cart-items { list-style: none; margin-bottom: 20px; max-height: 320px; overflow-y: auto; }
-  .cart-item {
-    display: flex; align-items: flex-start; justify-content: space-between;
-    padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
-    gap: 10px;
-  }
-  .cart-item:last-child { border-bottom: none; }
-  .cart-item-info { flex: 1; }
-  .cart-item-name { font-size: 13px; font-weight: 500; color: var(--white); margin-bottom: 3px; line-height: 1.3; }
-  .cart-item-sku { font-size: 11px; color: rgba(245,243,239,0.35); }
-  .cart-item-qty {
-    display: flex; align-items: center; gap: 6px; margin-top: 6px;
-  }
-  .qty-btn {
-    width: 22px; height: 22px; background: rgba(255,255,255,0.08);
-    border: none; border-radius: 2px; color: var(--white);
-    cursor: pointer; font-size: 14px; display: flex; align-items: center;
-    justify-content: center; transition: background 0.15s;
-  }
-  .qty-btn:hover { background: rgba(255,255,255,0.15); }
-  .qty-num { font-size: 13px; min-width: 20px; text-align: center; }
-  .cart-item-remove { background: none; border: none; color: rgba(245,243,239,0.25); cursor: pointer; padding: 2px; transition: color 0.15s; flex-shrink: 0; }
-  .cart-item-remove:hover { color: #e74c3c; }
-  .cart-divider { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 16px 0; }
-  .cart-form { display: flex; flex-direction: column; gap: 10px; }
-  .cart-form-input, .cart-form-textarea {
-    padding: 10px 12px; background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.12); border-radius: 2px;
-    color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 13px;
-    outline: none; transition: border-color 0.2s; width: 100%;
-  }
-  .cart-form-input:focus, .cart-form-textarea:focus { border-color: var(--rust); }
-  .cart-form-input::placeholder, .cart-form-textarea::placeholder { color: rgba(245,243,239,0.3); }
-  .cart-form-textarea { resize: vertical; min-height: 72px; }
-  .cart-submit-btn {
-    padding: 14px; background: var(--rust); color: var(--white);
-    border: none; border-radius: 2px; cursor: pointer;
-    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
-    font-family: 'DM Sans', sans-serif; font-weight: 500;
-    transition: background 0.2s; width: 100%;
-  }
-  .cart-submit-btn:hover { background: var(--rust-dark); }
-  .cart-submit-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-  .cart-success {
-    text-align: center; padding: 24px 0;
-    display: none;
-  }
-  .cart-success-icon { font-size: 36px; margin-bottom: 10px; }
-  .cart-success h4 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
-  .cart-success p { font-size: 13px; color: rgba(245,243,239,0.5); }
-  .cart-clear-btn {
-    width: 100%; padding: 10px; background: transparent;
-    border: 1px solid rgba(255,255,255,0.12); border-radius: 2px;
-    color: rgba(245,243,239,0.5); font-family: 'DM Sans', sans-serif;
-    font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
-    cursor: pointer; margin-top: 8px; transition: all 0.2s;
-  }
-  .cart-clear-btn:hover { border-color: #e74c3c; color: #e74c3c; }
-
-  /* ── VIN SEARCH ── */
-  .vin-section {
-    background: rgba(28,32,40,0.6);
-    border-top: 1px solid rgba(255,255,255,0.06);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    padding: 36px 48px;
-  }
-  .vin-inner {
-    max-width: 1200px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
-  }
-  .vin-copy { }
-  .vin-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--rust); margin-bottom: 10px; }
-  .vin-copy h2 { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 3px; margin-bottom: 8px; }
-  .vin-copy p { font-size: 14px; color: rgba(245,243,239,0.5); line-height: 1.6; }
-  .vin-form { display: flex; flex-direction: column; gap: 10px; }
-  .vin-input-row { display: flex; gap: 0; }
-  .vin-input {
-    flex: 1; padding: 14px 16px; font-size: 14px; letter-spacing: 1px; text-transform: uppercase;
-    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); border-right: none;
-    border-radius: 2px 0 0 2px; color: var(--white); font-family: 'DM Sans', sans-serif;
-    outline: none; transition: border-color 0.2s;
-  }
-  .vin-input:focus { border-color: var(--rust); }
-  .vin-input::placeholder { color: rgba(245,243,239,0.3); text-transform: none; letter-spacing: 0; }
-  .vin-btn {
-    padding: 14px 24px; background: var(--rust); color: var(--white); border: none;
-    border-radius: 0 2px 2px 0; cursor: pointer; font-size: 12px; letter-spacing: 1.5px;
-    text-transform: uppercase; font-family: 'DM Sans', sans-serif; font-weight: 500;
-    transition: background 0.2s; white-space: nowrap;
-  }
-  .vin-btn:hover { background: var(--rust-dark); }
-  .vin-hint { font-size: 12px; color: rgba(245,243,239,0.3); }
-  .vin-hint a { color: var(--rust); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
-  .vin-result {
-    margin-top: 4px; padding: 16px; background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1); border-radius: 2px;
-    display: none;
-  }
-  .vin-result.visible { display: block; }
-  .vin-result-title { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--rust); margin-bottom: 10px; }
-  .vin-result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; }
-  .vin-result-row { font-size: 13px; }
-  .vin-result-label { color: rgba(245,243,239,0.4); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
-  .vin-result-val { color: var(--white); font-weight: 500; }
-  .vin-result-action {
-    margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.08);
-    font-size: 13px; color: rgba(245,243,239,0.6);
-  }
-  .vin-error { color: #e74c3c; font-size: 13px; margin-top: 4px; display: none; }
-  .vin-error.visible { display: block; }
   @media(max-width:768px) {
-    .vin-section { padding: 32px 24px; }
-    .vin-inner { grid-template-columns: 1fr; gap: 24px; }
-  }
-
-  @media(max-width:1024px) {
-    .parts-layout { grid-template-columns: 1fr; }
-    .quote-cart { position: static; }
-  }
-  @media(max-width:768px) {
-    .parts-hero { padding: 100px 24px 48px; }
-    .parts-filter-section { padding: 32px 24px 0; }
-    .parts-layout { padding: 0 24px; margin-bottom: 60px; }
-    .parts-grid { grid-template-columns: 1fr 1fr; }
-  }
-  @media(max-width:480px) {
-    .parts-grid { grid-template-columns: 1fr; }
+    .parts-hero { padding: 120px 24px 64px; }
+    .reasons-section { padding: 64px 24px; }
+    .reasons-grid { grid-template-columns: 1fr; gap: 16px; }
+    .find-dealer-band { padding: 64px 24px; }
+    .help-section { padding: 56px 24px; }
+    .help-inner { flex-direction: column; align-items: flex-start; }
   }
 
   /* ── TRAILERS MEGA: CSS hover (consistent with other dropdowns) ── */
@@ -536,50 +368,6 @@
   .modal-overlay { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; padding: 20px; }
   .modal-overlay.open { opacity: 1; pointer-events: all; }
 
-  /* ════ PARTS CATALOG LIGHT SECTION ════ */
-  .parts-catalog-section { background: var(--white); color: var(--black); padding-bottom: 0; }
-  .parts-catalog-section .parts-layout { margin-bottom: 0; }
-  .parts-catalog-section .parts-filter-label { color: rgba(10,10,10,0.45); }
-  .parts-catalog-section .model-pill { background: rgba(0,0,0,0.05); border-color: rgba(0,0,0,0.15); color: rgba(10,10,10,0.65); }
-  .parts-catalog-section .model-pill:hover { background: rgba(0,0,0,0.09); border-color: rgba(0,0,0,0.22); color: var(--black); }
-  .parts-catalog-section .category-header { border-bottom-color: rgba(0,0,0,0.1); }
-  .parts-catalog-section .part-card { background: #fff; border-color: rgba(0,0,0,0.1); }
-  .parts-catalog-section .part-card:hover { background: rgba(0,0,0,0.03); border-color: rgba(183,163,128,0.5); }
-  .parts-catalog-section .part-card-sku { color: rgba(10,10,10,0.35); }
-  .parts-catalog-section .part-card-name { color: var(--black); }
-  .parts-catalog-section .part-card-fits { color: rgba(10,10,10,0.5); }
-  .parts-catalog-section .no-results { color: rgba(10,10,10,0.4); }
-  .parts-catalog-section .quote-cart { background: #e8e4dc; border-color: rgba(0,0,0,0.1); }
-  .parts-catalog-section .cart-empty { color: rgba(10,10,10,0.4); }
-  .parts-catalog-section .cart-empty svg { stroke: rgba(10,10,10,0.2); }
-  .parts-catalog-section .cart-item { border-bottom-color: rgba(0,0,0,0.09); }
-  .parts-catalog-section .cart-item-name { color: var(--black); }
-  .parts-catalog-section .cart-item-sku { color: rgba(10,10,10,0.4); }
-  .parts-catalog-section .qty-btn { background: rgba(0,0,0,0.08); color: var(--black); }
-  .parts-catalog-section .qty-btn:hover { background: rgba(0,0,0,0.14); }
-  .parts-catalog-section .cart-item-remove { color: rgba(10,10,10,0.28); }
-  .parts-catalog-section .cart-divider { border-top-color: rgba(0,0,0,0.1); }
-  .parts-catalog-section .cart-form-input,
-  .parts-catalog-section .cart-form-textarea { background: rgba(255,255,255,0.75); border-color: rgba(0,0,0,0.15); color: var(--black); }
-  .parts-catalog-section .cart-form-input::placeholder,
-  .parts-catalog-section .cart-form-textarea::placeholder { color: rgba(10,10,10,0.35); }
-  .parts-catalog-section .cart-clear-btn { border-color: rgba(0,0,0,0.15); color: rgba(10,10,10,0.5); }
-  .parts-catalog-section .cart-success p { color: rgba(10,10,10,0.55); }
-  /* ── MISSING PART CTA ── */
-  .missing-part-cta { background: var(--rust); border-top: 1px solid rgba(183,163,128,0.25); }
-  .missing-part-inner { max-width: 1200px; margin: 0 auto; padding: 48px 48px;
-    display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
-  .missing-part-title { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 2px; color: var(--black); margin-bottom: 8px; }
-  .missing-part-text p { font-size: 14px; color: rgba(10,10,10,0.6); line-height: 1.6; max-width: 460px; }
-  .missing-part-btn { display: inline-flex; align-items: center; gap: 8px;
-    background: var(--black); color: var(--white); padding: 14px 28px;
-    font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
-    border-radius: 2px; white-space: nowrap; text-decoration: none; transition: background 0.2s; flex-shrink: 0; }
-  .missing-part-btn:hover { background: var(--rust-dark); }
-  @media(max-width:768px) {
-    .missing-part-inner { flex-direction: column; align-items: flex-start; padding: 40px 24px; }
-  }
-  
   /* ── SECTION CONTRAST ── */
   section + section { border-top: 1px solid rgba(255,255,255,0.07); }
   footer, .main-footer { border-top: 2px solid rgba(255,255,255,0.12) !important; }
@@ -724,507 +512,62 @@
 <main>
   <!-- HERO -->
   <section class="parts-hero">
-    <h1>Find Your Part</h1>
-    <p>Search by part name, number, or browse by category. Add items and submit a quote request — we'll get back to you fast.</p>
-    <div class="parts-search-wrap">
-      <input class="parts-search-input" id="partsSearch" type="text" placeholder="Search parts... e.g. &ldquo;LED tail light&rdquo; or &ldquo;brake assembly&rdquo;" oninput="filterParts()">
-      <button class="parts-search-btn" onclick="filterParts()">Search</button>
+    <div class="parts-hero-tag">Parts &amp; Accessories</div>
+    <h1>Parts Through Your Local Dealer</h1>
+    <p>Walton Trailers parts and accessories are available exclusively through our authorized dealer network. Your local Walton dealer is your go-to for OEM parts, service, and warranty support — they know your trailer and stock what you need.</p>
+    <div class="hero-cta-row">
+      <a href="find-a-dealer.html" class="hero-cta-primary">Find Your Nearest Dealer &rarr;</a>
+      <a href="contact.html" class="hero-cta-secondary">Contact Walton</a>
     </div>
   </section>
 
-  <!-- VIN LOOKUP -->
-  <div class="vin-section">
-    <div class="vin-inner">
-      <div class="vin-copy">
-        <div class="vin-tag">VIN Lookup</div>
-        <h2>Shop by Your Trailer</h2>
-        <p>Enter your 17-character VIN to instantly see parts that are confirmed compatible with your specific trailer — model, year, and configuration.</p>
+  <!-- WHY THROUGH YOUR DEALER -->
+  <section class="reasons-section">
+    <div class="reasons-eyebrow">Why Through Your Dealer</div>
+    <h2 class="reasons-heading">Built Right Starts With the Right Part</h2>
+    <p class="reasons-sub">Working through your local dealer means the right fit the first time, hands-on support, and warranty work handled the way it should be.</p>
+    <div class="reasons-grid">
+      <div class="reason-card">
+        <div class="reason-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M2 12h7m6 0h7"/><path d="M12 2v7m0 6v7"/></svg>
+        </div>
+        <h3>OEM Compatibility</h3>
+        <p>Your dealer matches parts to your exact model, year, and configuration — no guesswork, no returns. Just the right part, built to spec.</p>
       </div>
-      <div>
-        <div class="vin-form">
-          <div class="vin-input-row">
-            <input class="vin-input" id="vinInput" type="text" maxlength="17" placeholder="e.g. 1WKBF3425NW123456" oninput="this.value=this.value.toUpperCase()">
-            <button class="vin-btn" onclick="lookupVin()">Look Up</button>
-          </div>
-          <div class="vin-hint">
-            Your VIN is stamped on the driver-side tongue of your trailer.
-            <a onclick="showVinHelp()">Where is my VIN?</a>
-          </div>
-          <div class="vin-error" id="vinError">Please enter a valid 17-character VIN.</div>
-          <div class="vin-result" id="vinResult">
-            <div class="vin-result-title">Trailer Identified</div>
-            <div class="vin-result-grid" id="vinResultGrid"></div>
-            <div class="vin-result-action" id="vinResultAction"></div>
-          </div>
+      <div class="reason-card">
+        <div class="reason-icon">
+          <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
         </div>
+        <h3>Service &amp; Install</h3>
+        <p>Dealers handle installation, troubleshooting, and routine maintenance with techs who know Walton trailers inside and out.</p>
       </div>
-    </div>
-  </div>
-
-  <!-- PARTS CATALOG (light background section) -->
-  <div class="parts-catalog-section">
-
-  <!-- MODEL FILTER -->
-  <div class="parts-filter-section">
-    <div class="parts-filter-label">Filter by Trailer Model</div>
-    <div class="model-pills" id="modelPills">
-      <button class="model-pill active" data-model="all" onclick="setModel(this,'all')">All Models</button>
-      <button class="model-pill" data-model="gooseneck" onclick="setModel(this,'gooseneck')">Gooseneck</button>
-      <button class="model-pill" data-model="dump" onclick="setModel(this,'dump')">Dump Trailers</button>
-      <button class="model-pill" data-model="tilt" onclick="setModel(this,'tilt')">Tilt Equipment</button>
-      <button class="model-pill" data-model="deckover" onclick="setModel(this,'deckover')">Deckover</button>
-      <button class="model-pill" data-model="landscape" onclick="setModel(this,'landscape')">Landscape</button>
-      <button class="model-pill" data-model="utility" onclick="setModel(this,'utility')">Utility</button>
-    </div>
-  </div>
-
-  <!-- MAIN LAYOUT -->
-  <div class="parts-layout">
-
-    <!-- LEFT: PARTS CATALOG -->
-    <div class="parts-categories" id="partsCatalog">
-
-      <!-- HITCHES & COUPLERS -->
-      <div class="category-section" data-category="hitches">
-        <div class="category-header">
-          <div class="category-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M2 12h7m6 0h7"/><path d="M12 2v7m0 6v7"/></svg>
-          </div>
-          <div class="category-title">Hitches &amp; Couplers</div>
+      <div class="reason-card">
+        <div class="reason-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
         </div>
-        <div class="parts-grid">
-          <div class="part-card" data-sku="HC-101" data-name="Adjustable Ball Coupler 2-5/16&quot;" data-fits="all" data-tags="coupler ball hitch connect">
-            <div class="part-card-sku">WTI-HC-101</div>
-            <div class="part-card-name">Adjustable Ball Coupler 2&#x2011;5/16&quot;</div>
-            <div class="part-card-fits">Fits: All Models</div>
-            <div class="part-card-bottom">
-              <button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button>
-            </div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="HC-102" data-name="Pintle Hook Coupler" data-fits="gooseneck,dump,deckover" data-tags="pintle hook coupler hitch">
-            <div class="part-card-sku">WTI-HC-102</div>
-            <div class="part-card-name">Pintle Hook Coupler</div>
-            <div class="part-card-fits">Fits: Gooseneck, Dump, Deckover</div>
-            <div class="part-card-bottom">
-              <button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button>
-            </div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="HC-103" data-name="Safety Chain Set (2-pc)" data-fits="all" data-tags="safety chain hitch">
-            <div class="part-card-sku">WTI-HC-103</div>
-            <div class="part-card-name">Safety Chain Set (2&#x2011;pc)</div>
-            <div class="part-card-fits">Fits: All Models</div>
-            <div class="part-card-bottom">
-              <button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button>
-            </div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="HC-104" data-name="Gooseneck Ball &amp; Socket" data-fits="gooseneck" data-tags="gooseneck ball socket hitch coupler">
-            <div class="part-card-sku">WTI-HC-104</div>
-            <div class="part-card-name">Gooseneck Ball &amp; Socket</div>
-            <div class="part-card-fits">Fits: Gooseneck</div>
-            <div class="part-card-bottom">
-              <button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button>
-            </div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="HC-105" data-name="Hitch Lock Pin" data-fits="all" data-tags="lock pin hitch security">
-            <div class="part-card-sku">WTI-HC-105</div>
-            <div class="part-card-name">Hitch Lock Pin</div>
-            <div class="part-card-fits">Fits: All Models</div>
-            <div class="part-card-bottom">
-              <button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button>
-            </div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="HC-106" data-name="Lunette Eye Ring 3&quot;" data-fits="dump,deckover,tilt" data-tags="lunette eye ring hitch">
-            <div class="part-card-sku">WTI-HC-106</div>
-            <div class="part-card-name">Lunette Eye Ring 3&quot;</div>
-            <div class="part-card-fits">Fits: Dump, Deckover, Tilt</div>
-            <div class="part-card-bottom">
-              <button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button>
-            </div>
-            <div class="part-card-badge">✓</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- AXLES & SUSPENSION -->
-      <div class="category-section" data-category="axles">
-        <div class="category-header">
-          <div class="category-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="17" r="3"/><circle cx="19" cy="17" r="3"/><path d="M5 17h14M8 17V7l8 0v10"/></svg>
-          </div>
-          <div class="category-title">Axles &amp; Suspension</div>
-        </div>
-        <div class="parts-grid">
-          <div class="part-card" data-sku="AX-201" data-name="7,000 lb Torsion Axle" data-fits="gooseneck,dump,deckover" data-tags="axle torsion 7000 suspension">
-            <div class="part-card-sku">WTI-AX-201</div>
-            <div class="part-card-name">7,000 lb Torsion Axle</div>
-            <div class="part-card-fits">Fits: Gooseneck, Dump, Deckover</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="AX-202" data-name="3,500 lb Spring Axle" data-fits="landscape,utility,tilt" data-tags="axle spring 3500 suspension">
-            <div class="part-card-sku">WTI-AX-202</div>
-            <div class="part-card-name">3,500 lb Spring Axle</div>
-            <div class="part-card-fits">Fits: Landscape, Utility, Tilt</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="AX-203" data-name="Leaf Spring Pack (4-leaf)" data-fits="all" data-tags="spring leaf suspension">
-            <div class="part-card-sku">WTI-AX-203</div>
-            <div class="part-card-name">Leaf Spring Pack (4&#x2011;leaf)</div>
-            <div class="part-card-fits">Fits: All Models</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="AX-204" data-name="Hub &amp; Drum Assembly (8-bolt)" data-fits="gooseneck,dump,deckover" data-tags="hub drum assembly wheel bearing">
-            <div class="part-card-sku">WTI-AX-204</div>
-            <div class="part-card-name">Hub &amp; Drum Assembly (8&#x2011;bolt)</div>
-            <div class="part-card-fits">Fits: Gooseneck, Dump, Deckover</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="AX-205" data-name="Wheel Bearing Kit" data-fits="all" data-tags="wheel bearing kit axle">
-            <div class="part-card-sku">WTI-AX-205</div>
-            <div class="part-card-name">Wheel Bearing Kit</div>
-            <div class="part-card-fits">Fits: All Models</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="AX-206" data-name="U-Bolt Set (Spring to Axle)" data-fits="all" data-tags="u-bolt spring axle mount">
-            <div class="part-card-sku">WTI-AX-206</div>
-            <div class="part-card-name">U&#x2011;Bolt Set (Spring to Axle)</div>
-            <div class="part-card-fits">Fits: All Models</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- BRAKES -->
-      <div class="category-section" data-category="brakes">
-        <div class="category-header">
-          <div class="category-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v3m0 12v3M3 12h3m12 0h3"/></svg>
-          </div>
-          <div class="category-title">Brakes</div>
-        </div>
-        <div class="parts-grid">
-          <div class="part-card" data-sku="BR-301" data-name="Electric Brake Assembly 12&quot;" data-fits="all" data-tags="brake electric assembly drum">
-            <div class="part-card-sku">WTI-BR-301</div>
-            <div class="part-card-name">Electric Brake Assembly 12&quot;</div>
-            <div class="part-card-fits">Fits: All Models</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="BR-302" data-name="Brake Magnet" data-fits="all" data-tags="brake magnet electric">
-            <div class="part-card-sku">WTI-BR-302</div>
-            <div class="part-card-name">Brake Magnet</div>
-            <div class="part-card-fits">Fits: All Models</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="BR-303" data-name="Breakaway Kit w/ Battery" data-fits="all" data-tags="breakaway kit battery safety">
-            <div class="part-card-sku">WTI-BR-303</div>
-            <div class="part-card-name">Breakaway Kit w/ Battery</div>
-            <div class="part-card-fits">Fits: All Models</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="BR-304" data-name="Brake Shoes (pair)" data-fits="all" data-tags="brake shoes lining drum">
-            <div class="part-card-sku">WTI-BR-304</div>
-            <div class="part-card-name">Brake Shoes (pair)</div>
-            <div class="part-card-fits">Fits: All Models</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="BR-305" data-name="7-Way Brake Controller Plug" data-fits="all" data-tags="brake controller plug 7-way wiring">
-            <div class="part-card-sku">WTI-BR-305</div>
-            <div class="part-card-name">7&#x2011;Way Brake Controller Plug</div>
-            <div class="part-card-fits">Fits: All Models</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="BR-306" data-name="Hydraulic Surge Coupler" data-fits="dump,deckover,gooseneck" data-tags="hydraulic surge coupler brake">
-            <div class="part-card-sku">WTI-BR-306</div>
-            <div class="part-card-name">Hydraulic Surge Coupler</div>
-            <div class="part-card-fits">Fits: Dump, Deckover, Gooseneck</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- LIGHTING & ELECTRICAL -->
-      <div class="category-section" data-category="lighting">
-        <div class="category-header">
-          <div class="category-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/></svg>
-          </div>
-          <div class="category-title">Lighting &amp; Electrical</div>
-        </div>
-        <div class="parts-grid">
-          <div class="part-card" data-sku="LT-401" data-name="LED Tail Light Set (pair)" data-fits="all" data-tags="led tail light rear electrical">
-            <div class="part-card-sku">WTI-LT-401</div>
-            <div class="part-card-name">LED Tail Light Set (pair)</div>
-            <div class="part-card-fits">Fits: All Models</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="LT-402" data-name="Side Marker Lights (set of 4)" data-fits="all" data-tags="marker side light amber">
-            <div class="part-card-sku">WTI-LT-402</div>
-            <div class="part-card-name">Side Marker Lights (set of 4)</div>
-            <div class="part-card-fits">Fits: All Models</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="LT-403" data-name="7-Way Wiring Harness" data-fits="all" data-tags="wiring harness 7-way electrical plug">
-            <div class="part-card-sku">WTI-LT-403</div>
-            <div class="part-card-name">7&#x2011;Way Wiring Harness</div>
-            <div class="part-card-fits">Fits: All Models</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="LT-404" data-name="LED Clearance Light Bar" data-fits="gooseneck,dump,deckover" data-tags="led clearance bar light top">
-            <div class="part-card-sku">WTI-LT-404</div>
-            <div class="part-card-name">LED Clearance Light Bar</div>
-            <div class="part-card-fits">Fits: Gooseneck, Dump, Deckover</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="LT-405" data-name="Wiring Junction Box" data-fits="all" data-tags="junction box wiring electrical">
-            <div class="part-card-sku">WTI-LT-405</div>
-            <div class="part-card-name">Wiring Junction Box</div>
-            <div class="part-card-fits">Fits: All Models</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="LT-406" data-name="Reverse Light Kit" data-fits="dump,deckover" data-tags="reverse light backup white">
-            <div class="part-card-sku">WTI-LT-406</div>
-            <div class="part-card-name">Reverse Light Kit</div>
-            <div class="part-card-fits">Fits: Dump, Deckover</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- DECKING & FLOORING -->
-      <div class="category-section" data-category="decking">
-        <div class="category-header">
-          <div class="category-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="1"/><path d="M7 6v12M12 6v12M17 6v12"/></svg>
-          </div>
-          <div class="category-title">Decking &amp; Flooring</div>
-        </div>
-        <div class="parts-grid">
-          <div class="part-card" data-sku="DK-501" data-name="Treated Pine Decking (8 ft)" data-fits="all" data-tags="pine deck wood floor board 8ft">
-            <div class="part-card-sku">WTI-DK-501</div>
-            <div class="part-card-name">Treated Pine Decking (8 ft)</div>
-            <div class="part-card-fits">Fits: All Models</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="DK-502" data-name="Aluminum Tread Plate (8 ft)" data-fits="tilt,deckover,gooseneck" data-tags="aluminum tread plate floor metal deck">
-            <div class="part-card-sku">WTI-DK-502</div>
-            <div class="part-card-name">Aluminum Tread Plate (8 ft)</div>
-            <div class="part-card-fits">Fits: Tilt, Deckover, Gooseneck</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="DK-503" data-name="Rubber Non-Slip Matting (per ft)" data-fits="landscape,utility" data-tags="rubber mat non-slip matting floor">
-            <div class="part-card-sku">WTI-DK-503</div>
-            <div class="part-card-name">Rubber Non&#x2011;Slip Matting</div>
-            <div class="part-card-fits">Fits: Landscape, Utility</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="DK-504" data-name="Steel Diamond Plate Sheets" data-fits="dump,deckover" data-tags="steel diamond plate floor sheet">
-            <div class="part-card-sku">WTI-DK-504</div>
-            <div class="part-card-name">Steel Diamond Plate Sheets</div>
-            <div class="part-card-fits">Fits: Dump, Deckover</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="DK-505" data-name="Ramp Board Brackets" data-fits="landscape,utility,tilt" data-tags="ramp board bracket mount">
-            <div class="part-card-sku">WTI-DK-505</div>
-            <div class="part-card-name">Ramp Board Brackets</div>
-            <div class="part-card-fits">Fits: Landscape, Utility, Tilt</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="DK-506" data-name="Deck Board Carriage Bolts (50-pk)" data-fits="all" data-tags="bolt carriage fastener deck hardware">
-            <div class="part-card-sku">WTI-DK-506</div>
-            <div class="part-card-name">Deck Board Carriage Bolts (50&#x2011;pk)</div>
-            <div class="part-card-fits">Fits: All Models</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- TIE-DOWNS & CARGO -->
-      <div class="category-section" data-category="tiedowns">
-        <div class="category-header">
-          <div class="category-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l10-10M5 12V7h5"/><path d="M19 12v5h-5"/></svg>
-          </div>
-          <div class="category-title">Tie&#x2011;Downs &amp; Cargo</div>
-        </div>
-        <div class="parts-grid">
-          <div class="part-card" data-sku="TD-601" data-name="D-Ring Tie-Down (recessed)" data-fits="all" data-tags="d-ring tie down recessed floor cargo">
-            <div class="part-card-sku">WTI-TD-601</div>
-            <div class="part-card-name">D&#x2011;Ring Tie&#x2011;Down (recessed)</div>
-            <div class="part-card-fits">Fits: All Models</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="TD-602" data-name="E-Track Rail (5 ft)" data-fits="landscape,utility,deckover" data-tags="e-track rail cargo strap 5ft">
-            <div class="part-card-sku">WTI-TD-602</div>
-            <div class="part-card-name">E&#x2011;Track Rail (5 ft)</div>
-            <div class="part-card-fits">Fits: Landscape, Utility, Deckover</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="TD-603" data-name="Ratchet Strap Set (4-pk)" data-fits="all" data-tags="ratchet strap tie down cargo 4 pack">
-            <div class="part-card-sku">WTI-TD-603</div>
-            <div class="part-card-name">Ratchet Strap Set (4&#x2011;pk)</div>
-            <div class="part-card-fits">Fits: All Models</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="TD-604" data-name="Chain Binder (grab hook)" data-fits="all" data-tags="chain binder grab hook tie cargo">
-            <div class="part-card-sku">WTI-TD-604</div>
-            <div class="part-card-name">Chain Binder (grab hook)</div>
-            <div class="part-card-fits">Fits: All Models</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="TD-605" data-name="Pipe Stake Pockets (10-pk)" data-fits="deckover,gooseneck,dump" data-tags="stake pocket pipe cargo side">
-            <div class="part-card-sku">WTI-TD-605</div>
-            <div class="part-card-name">Pipe Stake Pockets (10&#x2011;pk)</div>
-            <div class="part-card-fits">Fits: Deckover, Gooseneck, Dump</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="TD-606" data-name="Corner Tie-Down Ring" data-fits="all" data-tags="corner tie ring anchor cargo">
-            <div class="part-card-sku">WTI-TD-606</div>
-            <div class="part-card-name">Corner Tie&#x2011;Down Ring</div>
-            <div class="part-card-fits">Fits: All Models</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- JACKS & STANDS -->
-      <div class="category-section" data-category="jacks">
-        <div class="category-header">
-          <div class="category-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M8 6h8M6 10h12M8 14h8M10 18h4"/></svg>
-          </div>
-          <div class="category-title">Jacks &amp; Stands</div>
-        </div>
-        <div class="parts-grid">
-          <div class="part-card" data-sku="JK-701" data-name="A-Frame Tongue Jack 5,000 lb" data-fits="all" data-tags="a-frame tongue jack 5000 lb stand">
-            <div class="part-card-sku">WTI-JK-701</div>
-            <div class="part-card-name">A&#x2011;Frame Tongue Jack 5,000 lb</div>
-            <div class="part-card-fits">Fits: All Models</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="JK-702" data-name="Crank Jack 7,000 lb" data-fits="gooseneck,dump,deckover" data-tags="crank jack 7000 lb stand heavy duty">
-            <div class="part-card-sku">WTI-JK-702</div>
-            <div class="part-card-name">Crank Jack 7,000 lb</div>
-            <div class="part-card-fits">Fits: Gooseneck, Dump, Deckover</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="JK-703" data-name="Electric Jack 12V 3,500 lb" data-fits="gooseneck,deckover" data-tags="electric jack 12v motor power stand">
-            <div class="part-card-sku">WTI-JK-703</div>
-            <div class="part-card-name">Electric Jack 12V 3,500 lb</div>
-            <div class="part-card-fits">Fits: Gooseneck, Deckover</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="JK-704" data-name="Side-Wind Bolt-On Jack" data-fits="landscape,utility" data-tags="side wind bolt on jack stand small">
-            <div class="part-card-sku">WTI-JK-704</div>
-            <div class="part-card-name">Side&#x2011;Wind Bolt&#x2011;On Jack</div>
-            <div class="part-card-fits">Fits: Landscape, Utility</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="JK-705" data-name="Jack Foot Pad (5&quot; x 5&quot;)" data-fits="all" data-tags="jack foot pad plate stand">
-            <div class="part-card-sku">WTI-JK-705</div>
-            <div class="part-card-name">Jack Foot Pad (5&quot; &times; 5&quot;)</div>
-            <div class="part-card-fits">Fits: All Models</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-          <div class="part-card" data-sku="JK-706" data-name="Spare Tire Carrier (bolt-on)" data-fits="all" data-tags="spare tire carrier mount bolt">
-            <div class="part-card-sku">WTI-JK-706</div>
-            <div class="part-card-name">Spare Tire Carrier (bolt&#x2011;on)</div>
-            <div class="part-card-fits">Fits: All Models</div>
-            <div class="part-card-bottom"><button class="part-card-add" onclick="addToCart(this)">+ Add to Quote</button></div>
-            <div class="part-card-badge">✓</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- No results -->
-      <div class="no-results" id="noResults">
-        No parts matched your search. Try different keywords or clear your filters.
-      </div>
-
-    </div><!-- end parts-categories -->
-
-    <!-- RIGHT: QUOTE CART -->
-    <div class="quote-cart" id="quoteCart">
-      <div class="cart-header">
-        <div class="cart-title">Quote Request</div>
-        <div class="cart-count" id="cartCount">0</div>
-      </div>
-      <div id="cartEmptyState" class="cart-empty">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
-        Add parts above to start your quote request.
-      </div>
-      <ul class="cart-items" id="cartItems" style="display:none"></ul>
-      <div id="cartFormWrap" style="display:none">
-        <hr class="cart-divider">
-        <div class="cart-form">
-          <input class="cart-form-input" id="cfName" type="text" placeholder="Your name *">
-          <input class="cart-form-input" id="cfEmail" type="email" placeholder="Email address *">
-          <input class="cart-form-input" id="cfPhone" type="tel" placeholder="Phone number">
-          <input class="cart-form-input" id="cfTrailer" type="text" placeholder="Trailer model / serial # (if known)">
-          <textarea class="cart-form-textarea" id="cfNotes" placeholder="Additional notes or questions..."></textarea>
-          <button class="cart-submit-btn" id="cartSubmitBtn" onclick="submitQuote()">Submit Quote Request</button>
-          <button class="cart-clear-btn" onclick="clearCart()">Clear All Items</button>
-        </div>
-      </div>
-      <div class="cart-success" id="cartSuccess">
-        <div class="cart-success-icon">✓</div>
-        <h4>Quote Request Sent!</h4>
-        <p>We&rsquo;ll reach out within 1&ndash;2 business days with pricing and availability.</p>
+        <h3>Warranty-Backed</h3>
+        <p>Repairs and replacements through your dealer keep your warranty intact — parts are documented, registered, and covered.</p>
       </div>
     </div>
+  </section>
 
-  </div><!-- end parts-layout -->
+  <!-- FIND DEALER CTA -->
+  <section class="find-dealer-band">
+    <h2>Find Your Walton Dealer</h2>
+    <p>Over 100 authorized dealers across the country. Find the one nearest you and get the parts, service, and support your trailer deserves.</p>
+    <a href="find-a-dealer.html">Find a Dealer &rarr;</a>
+  </section>
 
-
-  <!-- MISSING PART CTA -->
-  <div class="missing-part-cta">
-    <div class="missing-part-inner">
-      <div class="missing-part-text">
-        <div class="missing-part-title">Don't see your part?</div>
-        <p>Our catalog covers the most common parts, but we stock much more. If you need something specific, our team can help you source it.</p>
+  <!-- HELP NOTE -->
+  <section class="help-section">
+    <div class="help-inner">
+      <div class="help-text">
+        <h3>Need Help Locating a Dealer?</h3>
+        <p>If you're not sure where to start or can't find a dealer in your area, our team can point you in the right direction.</p>
       </div>
-      <a href="contact.html" class="missing-part-btn">Contact Us &rarr;</a>
+      <a href="contact.html" class="help-btn">Contact Walton &rarr;</a>
     </div>
-  </div>
-  </div><!-- end parts-catalog-section -->
+  </section>
 </main>
 
 <footer>
