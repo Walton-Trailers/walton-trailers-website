@@ -491,24 +491,16 @@
         <div class="form-grid">
           <div class="form-field"><label>First Name</label><input type="text" id="rFirst" placeholder="John"></div>
           <div class="form-field"><label>Last Name</label><input type="text" id="rLast" placeholder="Smith"></div>
-          <div class="form-field"><label>Email</label><input type="email" id="rEmail" placeholder="john@email.com"></div>
-          <div class="form-field"><label>Phone</label><input type="tel" id="rPhone" placeholder="(555) 000-0000"></div>
-          <div class="form-field"><label>Trailer Serial Number</label><input type="text" id="rSerial" placeholder="e.g. WTF123456"></div>
+          <div class="form-field full"><label>Email</label><input type="email" id="rEmail" placeholder="john@email.com"></div>
+          <div class="form-field full"><label>Phone (optional)</label><input type="tel" id="rPhone" placeholder="(555) 000-0000"></div>
+          <div class="form-field full"><label>Address</label><input type="text" id="rAddress" placeholder="123 Main St"></div>
+          <div class="form-field"><label>State</label><input type="text" id="rState" placeholder="UT"></div>
+          <div class="form-field"><label>Zip Code</label><input type="text" id="rZip" placeholder="84321"></div>
+          <div class="form-field"><label>Country</label><input type="text" id="rCountry" placeholder="United States" value="United States"></div>
           <div class="form-field"><label>Purchase Date</label><input type="date" id="rDate"></div>
-          <div class="form-field full"><label>Trailer Model</label>
-            <select id="rModel">
-              <option value="">Select a trailer series...</option>
-              <option>Gooseneck Flatbed &mdash; FBH Series</option>
-              <option>Gooseneck Flatbed &mdash; FBX Series</option>
-              <option>Dump Trailer &mdash; DHO Series</option>
-              <option>Dump Trailer &mdash; DHV Series</option>
-              <option>Tilt Deck &mdash; TSX Series</option>
-              <option>Tilt Deck &mdash; TMX Series</option>
-              <option>Deckover &mdash; BDE Series</option>
-              <option>Landscape &mdash; MPR Series</option>
-            </select>
-          </div>
-          <div class="form-field full"><label>Purchasing Dealer (optional)</label><input type="text" id="rDealer" placeholder="Dealer name or location"></div>
+          <div class="form-field full"><label>VIN Number</label><input type="text" id="rVin" placeholder="17-character VIN" maxlength="17"></div>
+          <div class="form-field full"><label>Model</label><input type="text" id="rModel" placeholder="e.g. FBH 25+5 25K Gooseneck"></div>
+          <div class="form-field full"><label>Dealer</label><input type="text" id="rDealer" placeholder="Dealer name or location"></div>
         </div>
         <button class="form-submit" onclick="submitRegistration()">Register My Trailer</button>
       </div>
@@ -522,7 +514,7 @@
 
   <script>
   function submitRegistration() {
-    var required = ['rFirst','rLast','rEmail','rSerial','rModel'];
+    var required = ['rFirst','rLast','rEmail','rAddress','rState','rZip','rCountry','rVin','rModel','rDealer','rDate'];
     for (var i=0; i<required.length; i++) {
       var el = document.getElementById(required[i]);
       if (!el || !el.value.trim()) { el && el.focus(); return; }
