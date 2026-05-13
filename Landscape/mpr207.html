@@ -1265,13 +1265,25 @@ footer {
   <div class="overview-carousel">
       <div class="carousel-inner">
         <div class="carousel-slide active">
-          <div class="carousel-img-placeholder">Photo Slot 1 — Add image here</div>
+          <img src="Images/mpr207_20ft_angled.jpg" alt="MPR207 — Angled view" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
         <div class="carousel-slide">
-          <div class="carousel-img-placeholder">Photo Slot 2 — Add image here</div>
+          <img src="Images/mpr207_20ft_side.jpg" alt="MPR207 — Side view" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
         <div class="carousel-slide">
-          <div class="carousel-img-placeholder">Photo Slot 3 — Add image here</div>
+          <img src="Images/mpr207_20ft_front.jpg" alt="MPR207 — Front view" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="carousel-slide">
+          <img src="Images/mpr207_20ft_rear.jpg" alt="MPR207 — Rear view" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="carousel-slide">
+          <img src="Images/mpr207_20ft_gate.jpg" alt="MPR207 — Rear gate detail" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="carousel-slide">
+          <img src="Images/mpr207_20ft_box-tilt.jpg" alt="MPR207 — Box tilt detail" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="carousel-slide">
+          <img src="Images/mpr207_20ft_toolbox.jpg" alt="MPR207 — Toolbox detail" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
       </div>
       <button class="carousel-btn carousel-prev" onclick="carouselMove(this.closest('.overview-carousel'),-1)" aria-label="Previous">&#8249;</button>
@@ -1280,6 +1292,10 @@ footer {
         <button class="carousel-dot active" onclick="carouselGoTo(this.closest('.overview-carousel'),0)"></button>
         <button class="carousel-dot" onclick="carouselGoTo(this.closest('.overview-carousel'),1)"></button>
         <button class="carousel-dot" onclick="carouselGoTo(this.closest('.overview-carousel'),2)"></button>
+        <button class="carousel-dot" onclick="carouselGoTo(this.closest('.overview-carousel'),3)"></button>
+        <button class="carousel-dot" onclick="carouselGoTo(this.closest('.overview-carousel'),4)"></button>
+        <button class="carousel-dot" onclick="carouselGoTo(this.closest('.overview-carousel'),5)"></button>
+        <button class="carousel-dot" onclick="carouselGoTo(this.closest('.overview-carousel'),6)"></button>
       </div>
     </div>
   </section>
@@ -2399,6 +2415,29 @@ function toggleMenu() {
   m.classList.toggle('open');
   h.classList.toggle('open');
   document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+}
+
+function carouselMove(el, dir) {
+  var slides = el.querySelectorAll('.carousel-slide');
+  var idx = -1;
+  for (var i = 0; i < slides.length; i++) {
+    if (slides[i].classList.contains('active')) { idx = i; break; }
+  }
+  if (idx < 0) idx = 0;
+  var next = (idx + dir + slides.length) % slides.length;
+  carouselGoTo(el, next);
+}
+function carouselGoTo(el, idx) {
+  var slides = el.querySelectorAll('.carousel-slide');
+  var dots = el.querySelectorAll('.carousel-dot');
+  for (var i = 0; i < slides.length; i++) {
+    slides[i].classList.toggle('active', i === idx);
+  }
+  for (var i = 0; i < dots.length; i++) {
+    dots[i].classList.toggle('active', i === idx);
+  }
+  var inner = el.querySelector('.carousel-inner');
+  if (inner) inner.style.transform = 'translateX(-' + (idx * 100) + '%)';
 }
 </script>
 </body>
