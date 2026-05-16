@@ -17,19 +17,19 @@
   <title>Contact Us | Walton Trailers</title>
   <meta name="description" content="Contact Walton Trailers — get help buying a trailer, owner support, dealer inquiries, or general questions.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://taylor-nielsen.github.io/walton-trailers-website/contact.html">
+  <link rel="canonical" href="https://www.waltontrailers.com/contact.html">
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Walton Trailers">
   <meta property="og:title" content="Contact Us | Walton Trailers">
   <meta property="og:description" content="Contact Walton Trailers — get help buying a trailer, owner support, dealer inquiries, or general questions.">
-  <meta property="og:url" content="https://taylor-nielsen.github.io/walton-trailers-website/contact.html">
-  <meta property="og:image" content="https://taylor-nielsen.github.io/walton-trailers-website/og-image.jpg">
+  <meta property="og:url" content="https://www.waltontrailers.com/contact.html">
+  <meta property="og:image" content="https://www.waltontrailers.com/og-image.jpg">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Contact Us | Walton Trailers">
   <meta name="twitter:description" content="Contact Walton Trailers — get help buying a trailer, owner support, dealer inquiries, or general questions.">
-  <meta name="twitter:image" content="https://taylor-nielsen.github.io/walton-trailers-website/og-image.jpg">
+  <meta name="twitter:image" content="https://www.waltontrailers.com/og-image.jpg">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
 
@@ -535,8 +535,10 @@
       <div class="form-container">
         <div class="form-section-title">Get a Quote</div>
         <div class="form-section-sub">Tell us what you need and a dealer will follow up within 1 business day.</div>
-        <form id="form-buy" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" onsubmit="handleSubmit(event,'buy')">
+        <form id="form-buy" action="https://formspree.io/f/xwvygnnq" method="POST" onsubmit="handleSubmit(event,'buy')">
           <input type="hidden" name="inquiry_type" value="Buy a Trailer / Quote Request">
+          <input type="hidden" name="_subject" value="Walton Contact — Buy a Trailer (Quote Request)">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
           <div class="form-row">
             <div class="form-group">
               <label for="buy-fname">First Name</label>
@@ -593,8 +595,10 @@
       <div class="form-container">
         <div class="form-section-title">Owner Support</div>
         <div class="form-section-sub">We're here to help. Describe your issue and our support team will follow up promptly.</div>
-        <form id="form-owner" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" onsubmit="handleSubmit(event,'owner')">
+        <form id="form-owner" action="https://formspree.io/f/xwvygnnq" method="POST" onsubmit="handleSubmit(event,'owner')">
           <input type="hidden" name="inquiry_type" value="Owner Support">
+          <input type="hidden" name="_subject" value="Walton Contact — Owner Support">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
           <div class="form-row">
             <div class="form-group">
               <label for="own-fname">First Name</label>
@@ -653,8 +657,10 @@
       <div class="form-container">
         <div class="form-section-title">Dealer Inquiry</div>
         <div class="form-section-sub">Interested in carrying Walton Trailers? Tell us about your business and we'll be in touch.</div>
-        <form id="form-dealer" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" onsubmit="handleSubmit(event,'dealer')">
+        <form id="form-dealer" action="https://formspree.io/f/xwvygnnq" method="POST" onsubmit="handleSubmit(event,'dealer')">
           <input type="hidden" name="inquiry_type" value="Dealer Inquiry">
+          <input type="hidden" name="_subject" value="Walton Contact — Dealer Inquiry">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
           <div class="form-row">
             <div class="form-group">
               <label for="dlr-fname">First Name</label>
@@ -705,8 +711,10 @@
       <div class="form-container">
         <div class="form-section-title">General Question</div>
         <div class="form-section-sub">Have a question that doesn't fit the other categories? We're still happy to help.</div>
-        <form id="form-general" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" onsubmit="handleSubmit(event,'general')">
+        <form id="form-general" action="https://formspree.io/f/xwvygnnq" method="POST" onsubmit="handleSubmit(event,'general')">
           <input type="hidden" name="inquiry_type" value="General Question">
+          <input type="hidden" name="_subject" value="Walton Contact — General Question">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
           <div class="form-row">
             <div class="form-group">
               <label for="gen-fname">First Name</label>
@@ -988,14 +996,20 @@ function handleSubmit(event, type) {
     headers: { 'Accept': 'application/json' }
   })
   .then(function(response) {
-    if (response.ok) {
+    return response.json().then(function(body) { return { ok: response.ok, status: response.status, body: body }; });
+  })
+  .then(function(result) {
+    if (result.ok) {
       form.style.display = 'none';
       document.getElementById('success-' + type).style.display = 'block';
     } else {
-      alert('Something went wrong. Please try again or email us directly.');
+      console.error('Formspree submission failed:', result);
+      var msg = (result.body && (result.body.error || (result.body.errors && result.body.errors.map(function(e){return e.message;}).join(', ')))) || ('HTTP ' + result.status);
+      alert('Submission failed: ' + msg + '\n\nPlease try again or email us at sales@waltontrailers.com.');
     }
   })
-  .catch(function() {
+  .catch(function(err) {
+    console.error('Formspree network error:', err);
     alert('Something went wrong. Please check your connection and try again.');
   });
 }
