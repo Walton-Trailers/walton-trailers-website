@@ -1978,76 +1978,7 @@ function submitQuote() {
 /* ════════════════════════════════════════
    COMPARE TRAILERS MODAL
 ════════════════════════════════════════ */
-var compareData = {
-  dump_light:    { url: '../dump-trailers/dump-trailers.html', name: 'Dump Trailer - Light Duty',           gvwr: '14,000 lbs', payload: '10,000 lbs', category: 'Dump Trailers',            type: 'Dump',       axles: '2', warranty: 'Lifetime Structural' },
-  dump_medium:   { url: '../dump-trailers/dump-trailers.html', name: 'Dump Trailer - Medium Duty',          gvwr: '20,000 lbs', payload: '16,000 lbs', category: 'Dump Trailers',            type: 'Dump',       axles: '2', warranty: 'Lifetime Structural' },
-  dump_heavy:    { url: '../dump-trailers/dump-trailers.html', name: 'Dump Trailer - Heavy Duty',           gvwr: '30,000 lbs', payload: '26,000 lbs', category: 'Dump Trailers',            type: 'Dump',       axles: '3', warranty: 'Lifetime Structural' },
-  dump_deckover: { url: '../dump-trailers/dump-trailers.html', name: 'Dump Trailer - Deck-Over',            gvwr: '40,000 lbs', payload: '36,000 lbs', category: 'Dump Trailers',            type: 'Dump',       axles: '3', warranty: 'Lifetime Structural' },
-  tmx:           { url: '../tilt-equipment/tilt-equipment.html', name: 'Equipment Trailer - TMX',             gvwr: '14,000 lbs', payload: '10,000 lbs', category: 'Equipment and Tilt',       type: 'Equipment',  axles: '2', warranty: 'Lifetime Structural' },
-  tsx:           { url: '../tilt-equipment/tilt-equipment.html', name: 'Equipment Trailer - TSX',             gvwr: '24,000 lbs', payload: '20,000 lbs', category: 'Equipment and Tilt',       type: 'Equipment',  axles: '2', warranty: 'Lifetime Structural' },
-  tho:           { url: '../tilt-equipment/tilt-equipment.html', name: 'Tilt Trailer - THO',                  gvwr: '17,500 lbs', payload: '13,500 lbs', category: 'Equipment and Tilt',       type: 'Tilt',       axles: '2', warranty: 'Lifetime Structural' },
-  fbx:           { url: '../Gooseneck/gooseneck.html', name: 'Flatbed - FBX',                       gvwr: '24,000 lbs', payload: '20,000 lbs', category: 'Flatbeds and Deck Overs',  type: 'Flatbed',    axles: '2', warranty: 'Lifetime Structural' },
-  fbh:           { url: '../Gooseneck/gooseneck.html', name: 'Deck-Over Flatbed - FBH',             gvwr: '35,000 lbs', payload: '31,000 lbs', category: 'Flatbeds and Deck Overs',  type: 'Deck-Over',  axles: '3', warranty: 'Lifetime Structural' },
-  landscape:     { url: '../Landscape/landscape.html', name: 'Landscape Trailer',                   gvwr: '7,000 lbs',  payload: '4,800 lbs',  category: 'Landscape Trailers',       type: 'Open',       axles: '1', warranty: 'Lifetime Structural' }
-};
 
-function openCompare() {
-  document.getElementById('compareOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeCompare() {
-  document.getElementById('compareOverlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function compareOverlayClick(e) {
-  if (e.target.id === 'compareOverlay') closeCompare();
-}
-
-function renderCompare() {
-  var keyA = document.getElementById('compareA').value;
-  var keyB = document.getElementById('compareB').value;
-  var wrap = document.getElementById('compareTableWrap');
-  var actions = document.getElementById('compareActions');
-
-  if (!keyA || !keyB) {
-    wrap.innerHTML = '<div class="compare-placeholder">Select two trailers above to compare specs</div>';
-    actions.style.display = 'none';
-    return;
-  }
-
-  var a = compareData[keyA];
-  var b = compareData[keyB];
-  var rows = [
-    ['View Models', '<a href="'+(a.url||'#')+'" style="color:#c0392b;text-decoration:none;font-weight:500">Browse ' + (a.name.split(' - ')[0] || a.name) + ' →</a>', '<a href="'+(b.url||'#')+'" style="color:#c0392b;text-decoration:none;font-weight:500">Browse ' + (b.name.split(' - ')[0] || b.name) + ' →</a>'],
-    ['Category',     a.category, b.category],
-    ['Type',         a.type,     b.type],
-    ['GVWR',         a.gvwr,     b.gvwr],
-    ['Est. Payload', a.payload,  b.payload],
-    ['Axles',        a.axles,    b.axles],
-    ['Warranty',     a.warranty, b.warranty]
-  ];
-
-  var html = '<table class="compare-table"><thead><tr>';
-  html += '<th class="col-label">Spec</th>';
-  html += '<th>' + a.name + '</th>';
-  html += '<th>' + b.name + '</th>';
-  html += '</tr></thead><tbody>';
-
-  var boldRows = ['GVWR', 'Est. Payload'];
-  for (var i = 0; i < rows.length; i++) {
-    var isHL = boldRows.indexOf(rows[i][0]) !== -1;
-    html += '<tr>';
-    html += '<td class="row-label">' + rows[i][0] + '</td>';
-    html += '<td class="val' + (isHL ? ' highlight' : '') + '">' + rows[i][1] + '</td>';
-    html += '<td class="val' + (isHL ? ' highlight' : '') + '">' + rows[i][2] + '</td>';
-    html += '</tr>';
-  }
-  html += '</tbody></table>';
-  wrap.innerHTML = html;
-  actions.style.display = 'flex';
-}
 })();
 </script>
 <footer>
@@ -2245,33 +2176,13 @@ function renderCompare() {
         <div class="compare-select-wrap">
           <label>Trailer A</label>
           <select id="compareA" onchange="renderCompare()">
-            <option value="">Select a trailer</option>
-            <option value="dump_light">Dump Trailer - Light Duty</option>
-            <option value="dump_medium">Dump Trailer - Medium Duty</option>
-            <option value="dump_heavy">Dump Trailer - Heavy Duty</option>
-            <option value="dump_deckover">Dump Trailer - Heavy Duty Deck-Over</option>
-            <option value="tmx">Equipment Trailer - TMX</option>
-            <option value="tsx">Equipment Trailer - TSX</option>
-            <option value="tho">Tilt Trailer - THO</option>
-            <option value="fbx">Flatbed - FBX</option>
-            <option value="fbh">Deck-Over Flatbed - FBH</option>
-            <option value="landscape">Landscape Trailer</option>
+            <!-- populated by walton-compare.js -->
           </select>
         </div>
         <div class="compare-select-wrap">
           <label>Trailer B</label>
           <select id="compareB" onchange="renderCompare()">
-            <option value="">Select a trailer</option>
-            <option value="dump_light">Dump Trailer - Light Duty</option>
-            <option value="dump_medium">Dump Trailer - Medium Duty</option>
-            <option value="dump_heavy">Dump Trailer - Heavy Duty</option>
-            <option value="dump_deckover">Dump Trailer - Heavy Duty Deck-Over</option>
-            <option value="tmx">Equipment Trailer - TMX</option>
-            <option value="tsx">Equipment Trailer - TSX</option>
-            <option value="tho">Tilt Trailer - THO</option>
-            <option value="fbx">Flatbed - FBX</option>
-            <option value="fbh">Deck-Over Flatbed - FBH</option>
-            <option value="landscape">Landscape Trailer</option>
+            <!-- populated by walton-compare.js -->
           </select>
         </div>
       </div>
@@ -2379,6 +2290,7 @@ function renderCompare() {
   </div>
 </div>
 <script src="../walton-finder.js"></script>
+<script src="../walton-compare.js"></script>
 
 <script>
 function toggleFeatures(toggle) {

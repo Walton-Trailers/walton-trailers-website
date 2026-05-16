@@ -2628,15 +2628,6 @@ function submitQuote() {
 /* ════════════════════════════════════════
    COMPARE TRAILERS MODAL
 ════════════════════════════════════════ */
-var compareData = {
-  dump_light:    { url: 'dump-trailers/dhv207.html',        name: 'Dump — DHV207 (14K)',           gvwr: '14,000 lbs', payload: '10,000 lbs', pull: 'Bumper Pull',  width: '82"',  cat: 'Dump Trailers' },
-  dump_med:      { url: 'dump-trailers/dhv208.html',        name: 'Dump — DHV208 (16K)',           gvwr: '17,200 lbs', payload: '13,000 lbs', pull: 'Bumper Pull',  width: '82"',  cat: 'Dump Trailers' },
-  tsx:           { url: 'tilt-equipment/tsx207.html',       name: 'Tilt — TSX207',                 gvwr: '14,000 lbs', payload: '10,000 lbs', pull: 'Bumper Pull',  width: '82"',  cat: 'Equipment & Tilt' },
-  tsx208:        { url: 'tilt-equipment/tsx208.html',       name: 'Tilt — TSX208',                 gvwr: '17,200 lbs', payload: '13,000 lbs', pull: 'Bumper Pull',  width: '82"',  cat: 'Equipment & Tilt' },
-  fbx:           { url: 'Gooseneck/fbx210.html',            name: 'Flatbed — FBX Series',          gvwr: '24,000 lbs', payload: '20,000 lbs', pull: 'Bumper Pull',  width: '83"',  cat: 'Gooseneck Flatbeds' },
-  fbh:           { url: 'Gooseneck/fbh207.html',            name: 'Flatbed — FBH (Deck-Over)',     gvwr: '35,000 lbs', payload: '31,000 lbs', pull: 'Gooseneck',    width: '102"', cat: 'Gooseneck Flatbeds' },
-  landscape:     { url: 'Landscape/mpr207.html',            name: 'Landscape — MPR207',            gvwr: '7,000 lbs',  payload: '4,800 lbs',  pull: 'Bumper Pull',  width: '77"',  cat: 'Landscape Trailers' }
-};
 
 /* Category → models mapping */
 var compareCategories = {
@@ -2662,68 +2653,6 @@ function updateModelSelect(catSelectId, modelSelectId) {
     modelSel.disabled = true;
   }
   renderCompare();
-}
-
-function openCompare() {
-  document.getElementById('compareOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeCompare() {
-  document.getElementById('compareOverlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function compareOverlayClick(e) {
-  if (e.target.id === 'compareOverlay') closeCompare();
-}
-
-function renderCompare() {
-  var keyA = document.getElementById('compareA').value;
-  var keyB = document.getElementById('compareB').value;
-  var wrap = document.getElementById('compareTableWrap');
-  var actions = document.getElementById('compareActions');
-
-  if (!keyA || !keyB) {
-    wrap.innerHTML = '<div class="compare-placeholder">Select a category and model for each column above</div>';
-    actions.style.display = 'none';
-    return;
-  }
-
-  var a = compareData[keyA];
-  var b = compareData[keyB];
-
-  var rows = [
-    { label: 'Pull Type',    valA: a.pull,    valB: b.pull,    highlight: false },
-    { label: 'GVWR',         valA: a.gvwr,    valB: b.gvwr,    highlight: true  },
-    { label: 'Est. Payload', valA: a.payload, valB: b.payload,  highlight: true  },
-    { label: 'Width',        valA: a.width,   valB: b.width,    highlight: false }
-  ];
-
-  var html = '<table class="compare-table"><thead><tr>';
-  html += '<th class="col-label">Spec</th>';
-  html += '<th>' + a.name + '</th>';
-  html += '<th>' + b.name + '</th>';
-  html += '</tr></thead><tbody>';
-
-  rows.forEach(function(r) {
-    html += '<tr>';
-    html += '<td class="row-label">' + r.label + '</td>';
-    html += '<td class="val' + (r.highlight ? ' highlight' : '') + '">' + r.valA + '</td>';
-    html += '<td class="val' + (r.highlight ? ' highlight' : '') + '">' + r.valB + '</td>';
-    html += '</tr>';
-  });
-
-  /* View model links row */
-  html += '<tr>';
-  html += '<td class="row-label">View Models</td>';
-  html += '<td><a href="' + (a.url||'#') + '" style="color:#b7a380;text-decoration:underline;text-underline-offset:3px;font-size:13px">' + a.name + ' →</a></td>';
-  html += '<td><a href="' + (b.url||'#') + '" style="color:#b7a380;text-decoration:underline;text-underline-offset:3px;font-size:13px">' + b.name + ' →</a></td>';
-  html += '</tr>';
-
-  html += '</tbody></table>';
-  wrap.innerHTML = html;
-  actions.style.display = 'flex';
 }
 
 /* ── TRAILERS MEGA — handled inside DOMContentLoaded below ── */
@@ -2865,7 +2794,7 @@ function renderCompare() {
           </select>
           <label class="model-label">Trailer A — Model</label>
           <select id="compareA" onchange="renderCompare()" disabled>
-            <option value="">— Select a model —</option>
+            <!-- populated by walton-compare.js -->
           </select>
         </div>
         <div class="compare-select-wrap">
@@ -2879,7 +2808,7 @@ function renderCompare() {
           </select>
           <label class="model-label">Trailer B — Model</label>
           <select id="compareB" onchange="renderCompare()" disabled>
-            <option value="">— Select a model —</option>
+            <!-- populated by walton-compare.js -->
           </select>
         </div>
       </div>
@@ -2986,5 +2915,6 @@ function renderCompare() {
     </div>
   </div>
 </div>
+<script src="walton-compare.js"></script>
 </body>
 </html>
