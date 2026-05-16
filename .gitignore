@@ -13,3 +13,7 @@ node_modules/
 # macOS
 .DS_Store
 .gstack/
+
+# Dealer roster — business address data, not for public repo
+Customer List - Sheet1.csv
+dealer-list.csv
