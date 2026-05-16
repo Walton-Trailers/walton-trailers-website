@@ -49,15 +49,15 @@ var equipmentDB = [
 
 /* ── TRAILER DATABASE ── */
 var trailerDB = {
-  dump_light:    { name: 'Dump Trailer',      sub: 'DHV207 (14K)',           gvwr: '14,000 lbs', payload: '10,000 lbs', category: 'Dump Trailers' },
-  dump_medium:   { name: 'Dump Trailer',      sub: 'Browse Dump Trailers',   gvwr: '17,200 lbs', payload: '13,000 lbs', category: 'Dump Trailers' },
-  dump_heavy:    { name: 'Dump Trailer',      sub: 'Browse Dump Trailers',   gvwr: '17,200 lbs', payload: '13,000 lbs', category: 'Dump Trailers' },
-  dump_deckover: { name: 'Dump Trailer',      sub: 'Browse Dump Trailers',   gvwr: '17,200 lbs', payload: '13,000 lbs', category: 'Dump Trailers' },
-  tmx:           { name: 'Tilt Equipment',    sub: 'Browse Tilt Trailers',   gvwr: '14,000 lbs', payload: '10,000 lbs', category: 'Equipment & Tilt' },
-  tsx:           { name: 'Tilt Equipment',    sub: 'TSX Series',             gvwr: '14,000 lbs', payload: '10,000 lbs', category: 'Equipment & Tilt' },
-  fbx:           { name: 'Gooseneck Flatbed', sub: 'FBX Series',             gvwr: '24,000 lbs', payload: '20,000 lbs', category: 'Gooseneck Flatbeds' },
-  fbh:           { name: 'Gooseneck Flatbed', sub: 'FBH Series (Deck-Over)', gvwr: '35,000 lbs', payload: '31,000 lbs', category: 'Gooseneck Flatbeds' },
-  landscape:     { name: 'Landscape Trailer', sub: 'MPR207',                 gvwr: '7,000 lbs',  payload: '4,800 lbs',  category: 'Landscape Trailers' }
+  dump_light:    { name: 'Dump Trailer',         sub: 'DHV207 (14K)',                      gvwr: '14,000 lbs', payload: '10,000 lbs', category: 'Dump Trailers' },
+  dump_med:      { name: 'Dump Trailer',         sub: 'DHV208 (18K)',                      gvwr: '18,000 lbs', payload: '13,500 lbs', category: 'Dump Trailers' },
+  tmx:           { name: 'Tilt Equipment',       sub: 'TMX107 (7K)',                       gvwr: '7,000 lbs',  payload: '4,800 lbs',  category: 'Equipment & Tilt' },
+  tsx:           { name: 'Tilt Equipment',       sub: 'TSX Series (up to 18K)',            gvwr: '18,000 lbs', payload: '13,500 lbs', category: 'Equipment & Tilt' },
+  bde:           { name: 'Deckover (Tag-Along)', sub: 'BDE Series (up to 24K)',            gvwr: '24,000 lbs', payload: '19,000 lbs', category: 'Deckover' },
+  fbh:           { name: 'Gooseneck Flatbed',    sub: 'FBH Series Deck-Over (up to 23K)',  gvwr: '23,000 lbs', payload: '18,000 lbs', category: 'Gooseneck Flatbeds' },
+  fbx:           { name: 'Gooseneck Flatbed',    sub: 'FBX Series (up to 25.5K)',          gvwr: '25,500 lbs', payload: '21,000 lbs', category: 'Gooseneck Flatbeds' },
+  landscape:     { name: 'Landscape Trailer',    sub: 'MPR207 (up to 14K)',                gvwr: '14,000 lbs', payload: '11,000 lbs', category: 'Landscape Trailers' },
+  custom:        { name: 'Custom Build',         sub: 'Talk to a Walton dealer',           gvwr: 'Custom',     payload: 'Custom',     category: 'Custom / Contact Dealer' }
 };
 
 /* ── RECOMMENDATION ENGINE ── */
@@ -65,77 +65,94 @@ function recommend(use, unload, lbs, freq) {
   var match, alts, why;
   alts = [];
 
-  /* ── Crane / Forklift loading always means an open flatbed ── */
+  /* ── Over capacity — direct to dealer for custom build ── */
+  if (lbs > 25500) {
+    return {
+      match: 'custom',
+      alts: ['fbx', 'bde'],
+      why: 'Your load exceeds our standard lineup\'s 25,500 lbs maximum GVWR. For custom builds and heavier specifications, contact a Walton dealer to discuss your requirements.'
+    };
+  }
+
+  /* ── Crane / Forklift loading — open flatbed deck ── */
   if (unload === 'crane-fork') {
-    if (lbs > 30000) {
-      match = 'fbh'; alts = ['fbx', 'tsx'];
-      why = 'The FBH Gooseneck Deck-Over gives you maximum open deck space and the highest flatbed payload in the Walton lineup — ideal for crane or forklift unloading of very heavy loads.';
+    if (lbs > 23000) {
+      match = 'fbx'; alts = ['bde', 'fbh'];
+      why = 'The FBX Gooseneck Flatbed is Walton\'s highest-capacity open deck — ideal for crane or forklift loading of heavy commercial payloads up to 25,500 lbs GVWR.';
+    } else if (lbs > 18000) {
+      match = 'fbh'; alts = ['fbx', 'bde'];
+      why = 'The FBH Gooseneck Deck-Over gives you a wide flat deck for crane or forklift loading of heavy loads up to 23,000 lbs GVWR.';
     } else {
-      match = 'fbx'; alts = ['fbh', 'tsx'];
-      why = 'The FBX Gooseneck Flatbed provides a clean, open deck that\'s purpose-built for forklift or crane loading and unloading. Strong, flat, and rated for serious commercial payloads.';
+      match = 'bde'; alts = ['fbh', 'fbx'];
+      why = 'The BDE Deckover (Tag-Along) gives you a flat open deck for crane or forklift loading without a gooseneck setup. Rated up to 24,000 lbs GVWR.';
     }
 
   /* ── Landscaping or light manual unloading ── */
   } else if (use === 'landscaping' || (unload === 'manual' && lbs < 5000)) {
     match = 'landscape';
     alts  = ['dump_light', 'tmx'];
-    why   = 'For landscaping crews hauling mowers, tools, and debris daily, the Landscape Trailer is purpose-built. Low deck height makes loading fast and the open design handles your full equipment range.';
+    why   = 'For landscaping crews hauling mowers, tools, and debris, the MPR207 Landscape Trailer is purpose-built. Low deck height, fast loading, and rated up to 14,000 lbs GVWR.';
 
-  /* ── Dump / Hydraulic unloading (or bulk construction materials) ── */
+  /* ── Dump / Hydraulic unloading ── */
   } else if (unload === 'dump') {
-    if (lbs > 26000) {
-      match = 'dump_deckover'; alts = ['dump_heavy', 'fbh'];
-      why = 'Your load requires maximum lifting capacity. The Heavy Duty Deck-Over handles your largest job site loads with the highest GVWR in the Walton dump lineup.';
-    } else if (lbs > 16000) {
-      match = 'dump_heavy'; alts = ['dump_deckover', 'dump_medium'];
-      why = 'For heavy-duty construction dumps, the Heavy Duty Dump Trailer delivers the frame strength and payload rating your job demands.';
-    } else if (lbs > 10000) {
-      match = 'dump_medium'; alts = ['dump_light', 'dump_heavy'];
-      why = 'The Medium Duty Dump Trailer is the workhorse for mid-range construction loads: gravel, topsoil, demo debris.';
+    if (lbs > 14000) {
+      match = 'dump_med'; alts = ['dump_light', 'bde'];
+      why = 'The DHV208 Dump Trailer gives you 18,000 lbs GVWR for heavier construction and bulk-material jobs — gravel, demo debris, topsoil.';
     } else {
-      match = 'dump_light'; alts = ['dump_medium', 'landscape'];
-      why = 'For lighter dump loads such as mulch, small debris, and landscaping material, the Light Duty Dump Trailer gives you hydraulic convenience at a compact size.';
+      match = 'dump_light'; alts = ['dump_med', 'landscape'];
+      why = 'The DHV207 Dump Trailer handles lighter dump loads — mulch, small debris, and landscaping material — with hydraulic convenience at 14,000 lbs GVWR.';
     }
 
   /* ── Equipment drives or walks off under its own power ── */
   } else if (unload === 'drive-off') {
-    if (lbs > 20000) {
-      match = 'tsx'; alts = ['fbh', 'tmx'];
-      why = 'The TSX Tilt Equipment Trailer is built for heavy machinery that drives on under its own power. High GVWR and a fully tilting bed handle your largest equipment safely — no ramps required.';
+    if (lbs > 18000) {
+      match = 'bde'; alts = ['fbx', 'fbh'];
+      why = 'For heavier self-propelled equipment, the BDE Deckover (Tag-Along) offers 24,000 lbs GVWR with a flat open deck. Drive on, drive off — no gooseneck setup needed.';
+    } else if (lbs > 7000) {
+      match = 'tsx'; alts = ['bde', 'tmx'];
+      why = 'The TSX Tilt Equipment Trailer is built for machinery that drives on under its own power. Gravity tilt eliminates ramp setup. Rated up to 18,000 lbs GVWR.';
     } else {
-      match = 'tmx'; alts = ['tsx', 'fbx'];
-      why = 'The TMX Tilt Trailer is excellent for smaller self-propelled equipment. The tilting bed eliminates ramp setup for fast, safe loading.';
+      match = 'tmx'; alts = ['tsx', 'landscape'];
+      why = 'The TMX107 Tilt Trailer is great for smaller self-propelled equipment. Gravity tilt = no ramps, fast load and unload. 7,000 lbs GVWR.';
     }
 
   /* ── Construction use without a specific unload method chosen ── */
   } else if (use === 'construction') {
-    if (lbs > 20000) {
-      match = 'fbx'; alts = ['fbh', 'dump_heavy'];
-    } else if (lbs > 10000) {
-      match = 'tsx'; alts = ['tmx', 'fbx'];
+    if (lbs > 18000) {
+      match = 'fbx'; alts = ['fbh', 'bde'];
+    } else if (lbs > 14000) {
+      match = 'bde'; alts = ['fbh', 'tsx'];
+    } else if (lbs > 7000) {
+      match = 'tsx'; alts = ['dump_med', 'tmx'];
     } else {
-      match = 'dump_medium'; alts = ['dump_light', 'tmx'];
+      match = 'dump_light'; alts = ['tmx', 'landscape'];
     }
     why = 'For construction use, the right trailer depends on how you\'re loading and unloading. Based on your weight estimate, this is your best Walton match. Talk to a dealer to confirm the right configuration for your job.';
 
   /* ── Agriculture ── */
   } else if (use === 'agriculture') {
-    match = (lbs > 15000) ? 'tsx' : 'tmx';
-    alts  = ['fbx', 'dump_medium'];
-    why   = 'For farm and ag use you need a trailer that handles rugged terrain, heavy equipment, and seasonal abuse. Walton equipment trailers are engineered for exactly that.';
+    if (lbs > 15000) {
+      match = 'bde'; alts = ['tsx', 'fbh'];
+    } else if (lbs > 7000) {
+      match = 'tsx'; alts = ['tmx', 'fbx'];
+    } else {
+      match = 'tmx'; alts = ['landscape', 'tsx'];
+    }
+    why = 'For farm and ag use you need a trailer that handles rugged terrain, heavy equipment, and seasonal abuse. Walton equipment trailers are engineered for exactly that.';
 
   /* ── Rental fleet ── */
   } else if (use === 'rental') {
-    match = (freq === 'daily') ? 'dump_heavy' : 'dump_medium';
-    alts  = ['tsx', 'fbx'];
+    match = (freq === 'daily') ? 'dump_med' : 'dump_light';
+    alts  = ['tsx', 'bde'];
     why   = 'Rental fleet operators need trailers that hold up through constant use. Walton commercial-grade build and lifetime structural warranty make them the smart fleet investment.';
 
   /* ── General / other ── */
   } else {
-    if (lbs > 20000)      { match = 'fbx';       alts = ['tsx', 'fbh']; }
-    else if (lbs > 10000) { match = 'tsx';        alts = ['tmx', 'fbx']; }
-    else if (lbs > 5000)  { match = 'tmx';        alts = ['tsx', 'dump_light']; }
-    else                  { match = 'landscape';  alts = ['tmx', 'dump_light']; }
+    if (lbs > 18000)      { match = 'fbx';       alts = ['bde', 'fbh']; }
+    else if (lbs > 14000) { match = 'bde';       alts = ['fbh', 'tsx']; }
+    else if (lbs > 7000)  { match = 'tsx';       alts = ['tmx', 'dump_med']; }
+    else if (lbs > 3000)  { match = 'tmx';       alts = ['landscape', 'dump_light']; }
+    else                  { match = 'landscape'; alts = ['tmx', 'dump_light']; }
     why = 'Based on your planned use and load requirements, this is the best Walton match for you. Every trailer carries a lifetime limited structural warranty and is built to commercial grade standards.';
   }
 
@@ -249,7 +266,7 @@ function updateWeightTotal() {
   if (!isNaN(v1)) total += v1;
   if (!isNaN(v2)) total += v2;
   document.getElementById('totalWeight').textContent = total.toLocaleString() + ' lbs';
-  document.getElementById('gvwrWarning').classList.toggle('show', total > 36000);
+  document.getElementById('gvwrWarning').classList.toggle('show', total > 25500);
   finderAnswers.totalLbs = total;
 }
 
@@ -278,7 +295,7 @@ function showResult() {
   var ll = document.getElementById('finderLearnLink');
   if (ll && trailerPageLinks[r.match]) {
     ll.href = base + trailerPageLinks[r.match];
-    ll.textContent = 'View ' + t.name + ' →';
+    ll.textContent = (r.match === 'custom') ? 'Find a Dealer →' : ('View ' + t.name + ' →');
   }
   var dl = document.getElementById('finderDealerLink');
   if (dl) dl.href = base + 'find-a-dealer.html';
@@ -299,7 +316,7 @@ function swapResult(key) {
   var ll = document.getElementById('finderLearnLink');
   if (ll && trailerPageLinks[key]) {
     ll.href = base + trailerPageLinks[key];
-    ll.textContent = 'View ' + t.name + ' →';
+    ll.textContent = (key === 'custom') ? 'Find a Dealer →' : ('View ' + t.name + ' →');
   }
 }
 
@@ -321,13 +338,13 @@ function restartFinder() {
 
 /* Trailer specific model page links */
 var trailerPageLinks = {
-  dump_light:    'dump-trailers/dhv207.html',
-  dump_medium:   'dump-trailers/dump-trailers.html',
-  dump_heavy:    'dump-trailers/dump-trailers.html',
-  dump_deckover: 'dump-trailers/dump-trailers.html',
-  tmx:           'tilt-equipment/tilt-equipment.html',
-  tsx:           'tilt-equipment/tsx207.html',
-  fbx:           'Gooseneck/fbx210.html',
-  fbh:           'Gooseneck/fbh207.html',
-  landscape:     'Landscape/mpr207.html'
+  dump_light: 'dump-trailers/dhv207.html',
+  dump_med:   'dump-trailers/dhv208.html',
+  tmx:        'tilt-equipment/tmx107.html',
+  tsx:        'tilt-equipment/tsx208.html',
+  bde:        'Deckover/bde212.html',
+  fbh:        'Gooseneck/fbh210.html',
+  fbx:        'Gooseneck/fbx212.html',
+  landscape:  'Landscape/mpr207.html',
+  custom:     'find-a-dealer.html'
 };
