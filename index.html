@@ -2663,12 +2663,13 @@ function submitQuote() {
    COMPARE TRAILERS MODAL
 ════════════════════════════════════════ */
 
-/* Category → models mapping */
+/* Category → models mapping. Keys must match walton-compare.js compareData. */
 var compareCategories = {
-  'Dump Trailers':      ['dump_light', 'dump_med'],
-  'Equipment & Tilt':   ['tsx', 'tsx208'],
-  'Gooseneck Flatbeds': ['fbx', 'fbh'],
-  'Landscape Trailers': ['landscape']
+  'Dump Trailers':         ['dhv207', 'dhv208'],
+  'Equipment & Tilt':      ['tmx107', 'tsx207', 'tsx208'],
+  'Deckover (Tag-Along)':  ['bde207', 'bde208', 'bde210', 'bde212'],
+  'Gooseneck Flatbeds':    ['fbh207', 'fbh208', 'fbh210', 'fbx210', 'fbx212'],
+  'Landscape Trailers':    ['mpr207']
 };
 
 function updateModelSelect(catSelectId, modelSelectId) {
@@ -2823,6 +2824,7 @@ function updateModelSelect(catSelectId, modelSelectId) {
             <option value="">— Select a category —</option>
             <option>Dump Trailers</option>
             <option>Equipment &amp; Tilt</option>
+            <option>Deckover (Tag-Along)</option>
             <option>Gooseneck Flatbeds</option>
             <option>Landscape Trailers</option>
           </select>
@@ -2837,6 +2839,7 @@ function updateModelSelect(catSelectId, modelSelectId) {
             <option value="">— Select a category —</option>
             <option>Dump Trailers</option>
             <option>Equipment &amp; Tilt</option>
+            <option>Deckover (Tag-Along)</option>
             <option>Gooseneck Flatbeds</option>
             <option>Landscape Trailers</option>
           </select>

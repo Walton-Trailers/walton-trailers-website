@@ -36,8 +36,12 @@ function _wcRelPath() {
   return depth >= 3 ? '../' : '';
 }
 
-/* ── DROPDOWN POPULATION (runs on DOMContentLoaded) ── */
+/* ── DROPDOWN POPULATION (runs on DOMContentLoaded) ──
+   Skipped if the page uses the two-step Category → Model UI (presence of #catA).
+   On that UI, the inline updateModelSelect() populates #compareA/#compareB after
+   the user picks a category, using compareCategories + compareData. */
 function _wcPopulateDropdowns() {
+  if (document.getElementById('catA')) return; // two-step UI handles its own population
   var a = document.getElementById('compareA');
   var b = document.getElementById('compareB');
   if (!a || !b) return;
@@ -49,7 +53,6 @@ function _wcPopulateDropdowns() {
   }
   a.innerHTML = html;
   b.innerHTML = html;
-  // index.html ships the selects disabled; enable now that options are loaded
   a.disabled = false;
   b.disabled = false;
 }
