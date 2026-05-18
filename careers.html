@@ -166,7 +166,7 @@
   .life-section { padding: 80px 48px; max-width: 1200px; margin: 0 auto; }
   .life-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px,4vw,48px); letter-spacing: 2px; margin-bottom: 16px; }
   .life-section .life-sub { font-size: 16px; font-weight: 300; color: rgba(245,243,239,0.5); margin-bottom: 40px; max-width: 560px; line-height: 1.7; }
-  .life-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 24px; }
+  .life-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin-bottom: 24px; }
   .life-tile { background: var(--steel); border-radius: 4px; overflow: hidden; }
   .life-tile-img { aspect-ratio: 4/3; background: linear-gradient(135deg,#1a1f28 0%,#0f1218 100%); display: flex; align-items: center; justify-content: center; padding: 24px; text-align: center; background-size: cover; background-position: center; }
   .life-tile-placeholder { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,243,239,0.35); line-height: 1.8; }
@@ -460,15 +460,11 @@
     <p class="life-sub">Inside our Logan, Utah factory &mdash; the people, the process, and the trailers we build by hand every day.</p>
     <div class="life-grid">
       <div class="life-tile">
-        <div class="life-tile-img"><span class="life-tile-placeholder">Replace with photo<br>Welding / Fabrication</span></div>
+        <div class="life-tile-img" style="background-image:url('Images/welder_careers.jpg');"></div>
         <div class="life-tile-caption">Heavy steel, hand-built by our welders.</div>
       </div>
       <div class="life-tile">
-        <div class="life-tile-img"><span class="life-tile-placeholder">Replace with photo<br>Assembly line / Final build</span></div>
-        <div class="life-tile-caption">Where every Walton comes together.</div>
-      </div>
-      <div class="life-tile">
-        <div class="life-tile-img"><span class="life-tile-placeholder">Replace with photo<br>Team / Group shot</span></div>
+        <div class="life-tile-img" style="background-image:url('Images/welders.jpg');"></div>
         <div class="life-tile-caption">The people behind every trailer.</div>
       </div>
     </div>
@@ -478,24 +474,8 @@
     </div>
   </section>
   <div class="divider"></div>
-  <section class="jobs-section">
-    <h2>Open Positions</h2>
-    <div class="job-card">
-      <div><div class="job-title">Welder / Fabricator</div><div class="job-meta"><span class="job-tag">Location: <strong>Logan, UT</strong></span><span class="job-tag">Type: <strong>Full Time</strong></span></div></div>
-      <a href="mailto:jobs@waltontrailers.com" class="job-apply">Apply Now &rarr;</a>
-    </div>
-    <div class="job-card">
-      <div><div class="job-title">Assembly Line Technician</div><div class="job-meta"><span class="job-tag">Location: <strong>Logan, UT</strong></span><span class="job-tag">Type: <strong>Full Time</strong></span></div></div>
-      <a href="mailto:jobs@waltontrailers.com" class="job-apply">Apply Now &rarr;</a>
-    </div>
-    <div class="job-card">
-      <div><div class="job-title">Dealer Sales Representative</div><div class="job-meta"><span class="job-tag">Location: <strong>Remote / Travel</strong></span><span class="job-tag">Type: <strong>Full Time</strong></span></div></div>
-      <a href="mailto:jobs@waltontrailers.com" class="job-apply">Apply Now &rarr;</a>
-    </div>
-    <div class="job-card">
-      <div><div class="job-title">Powder Coat Technician</div><div class="job-meta"><span class="job-tag">Location: <strong>Logan, UT</strong></span><span class="job-tag">Type: <strong>Full Time</strong></span></div></div>
-      <a href="mailto:jobs@waltontrailers.com" class="job-apply">Apply Now &rarr;</a>
-    </div>
+  <section class="jobs-section" style="text-align:center;">
+    <a href="mailto:careers@waltontrailers.com" style="display:inline-flex;align-items:center;gap:10px;background:var(--rust);color:#0a0a0a;padding:18px 40px;font-size:14px;letter-spacing:3px;text-transform:uppercase;font-weight:600;border-radius:2px;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='var(--rust-dark)'" onmouseout="this.style.background='var(--rust)'">Current Openings &rarr;</a>
   </section>
   <div class="cta-band">
     <h2>Don't See Your Role?</h2>
