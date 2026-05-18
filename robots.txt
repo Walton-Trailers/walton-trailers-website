@@ -1,2 +1,7 @@
 User-agent: *
 Disallow: /_archive/
+Disallow: /Dealer Portal/
+Disallow: /dealer-portal.html
+Disallow: /login.html
+
+Sitemap: https://www.waltontrailers.com/sitemap.xml

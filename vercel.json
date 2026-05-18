@@ -1,0 +1,116 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": false,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/locate-a-dealer/:path*",                 "destination": "/find-a-dealer.html",                  "permanent": true },
+    { "source": "/find-dealer/:path*",                     "destination": "/find-a-dealer.html",                  "permanent": true },
+    { "source": "/dealers/:path*",                         "destination": "/find-a-dealer.html",                  "permanent": true },
+    { "source": "/stores/:path*",                          "destination": "/find-a-dealer.html",                  "permanent": true },
+
+    { "source": "/about/:path*",                           "destination": "/about.html",                          "permanent": true },
+    { "source": "/about-us/:path*",                        "destination": "/about.html",                          "permanent": true },
+
+    { "source": "/contact/:path*",                         "destination": "/contact.html",                        "permanent": true },
+    { "source": "/contact-us/:path*",                      "destination": "/contact.html",                        "permanent": true },
+
+    { "source": "/careers/:path*",                         "destination": "/careers.html",                        "permanent": true },
+    { "source": "/jobs/:path*",                            "destination": "/careers.html",                        "permanent": true },
+
+    { "source": "/parts/:path*",                           "destination": "/parts.html",                          "permanent": true },
+    { "source": "/parts-and-accessories/:path*",           "destination": "/parts.html",                          "permanent": true },
+    { "source": "/accessories/:path*",                     "destination": "/parts.html",                          "permanent": true },
+    { "source": "/shop/:path*",                            "destination": "/parts.html",                          "permanent": true },
+
+    { "source": "/become-a-dealer/:path*",                 "destination": "/become-a-dealer.html",                "permanent": true },
+    { "source": "/dealer-application/:path*",              "destination": "/become-a-dealer.html",                "permanent": true },
+
+    { "source": "/dealer-portal/:path*",                   "destination": "/dealer-portal.html",                  "permanent": true },
+    { "source": "/dealer-login/:path*",                    "destination": "/dealer-portal.html",                  "permanent": true },
+    { "source": "/login/:path*",                           "destination": "/dealer-portal.html",                  "permanent": true },
+
+    { "source": "/privacy/:path*",                         "destination": "/privacy.html",                        "permanent": true },
+    { "source": "/privacy-policy/:path*",                  "destination": "/privacy.html",                        "permanent": true },
+
+    { "source": "/terms/:path*",                           "destination": "/terms.html",                          "permanent": true },
+    { "source": "/terms-of-service/:path*",                "destination": "/terms.html",                          "permanent": true },
+    { "source": "/terms-and-conditions/:path*",            "destination": "/terms.html",                          "permanent": true },
+
+    { "source": "/warranty/:path*",                        "destination": "/warranty.html",                       "permanent": true },
+    { "source": "/warranty-claim/:path*",                  "destination": "/warranty.html",                       "permanent": true },
+    { "source": "/warranty-claim-forms/:path*",            "destination": "/warranty.html",                       "permanent": true },
+    { "source": "/walton-trailers-manufacturers-warranty-policy/:path*", "destination": "/warranty-policy.html",  "permanent": true },
+    { "source": "/warranty-policy/:path*",                 "destination": "/warranty-policy.html",                "permanent": true },
+
+    { "source": "/owners-resources/manuals/:path*",        "destination": "/user-manuals.html",                   "permanent": true },
+    { "source": "/owners-resources/trailer-registration/:path*", "destination": "/register.html",                 "permanent": true },
+    { "source": "/owners-resources/warranty-claim-forms/:path*", "destination": "/warranty.html",                 "permanent": true },
+    { "source": "/owners-resources/:path*",                "destination": "/user-manuals.html",                   "permanent": true },
+    { "source": "/user-manuals/:path*",                    "destination": "/user-manuals.html",                   "permanent": true },
+    { "source": "/manuals/:path*",                         "destination": "/user-manuals.html",                   "permanent": true },
+    { "source": "/owners-manuals/:path*",                  "destination": "/user-manuals.html",                   "permanent": true },
+
+    { "source": "/video-guides/:path*",                    "destination": "/video-guides.html",                   "permanent": true },
+    { "source": "/videos/:path*",                          "destination": "/video-guides.html",                   "permanent": true },
+
+    { "source": "/register/:path*",                        "destination": "/register.html",                       "permanent": true },
+    { "source": "/register-trailer/:path*",                "destination": "/register.html",                       "permanent": true },
+    { "source": "/trailer-registration/:path*",            "destination": "/register.html",                       "permanent": true },
+
+    { "source": "/equipment-tilt-trailers/:path*",         "destination": "/tilt-equipment/tilt-equipment.html",  "permanent": true },
+    { "source": "/trailers/tilt/:path*",                   "destination": "/tilt-equipment/tilt-equipment.html",  "permanent": true },
+    { "source": "/trailers/tilt-equipment/:path*",         "destination": "/tilt-equipment/tilt-equipment.html",  "permanent": true },
+    { "source": "/tilt/:path*",                            "destination": "/tilt-equipment/tilt-equipment.html",  "permanent": true },
+    { "source": "/equipment-trailers/:path*",              "destination": "/tilt-equipment/tilt-equipment.html",  "permanent": true },
+    { "source": "/trailers/deckovertilt.html",             "destination": "/tilt-equipment/tilt-equipment.html",  "permanent": true },
+    { "source": "/trailers/skidsteertilt.html",            "destination": "/tilt-equipment/tilt-equipment.html",  "permanent": true },
+
+    { "source": "/flatbeds-deck-overs/:path*",             "destination": "/Gooseneck/gooseneck.html",            "permanent": true },
+    { "source": "/product-category/gooseneck-trailers/:path*", "destination": "/Gooseneck/gooseneck.html",        "permanent": true },
+    { "source": "/trailers/gooseneck/:path*",              "destination": "/Gooseneck/gooseneck.html",            "permanent": true },
+    { "source": "/gooseneck/:path*",                       "destination": "/Gooseneck/gooseneck.html",            "permanent": true },
+    { "source": "/gooseneck-trailers/:path*",              "destination": "/Gooseneck/gooseneck.html",            "permanent": true },
+    { "source": "/flatbed-trailers/:path*",                "destination": "/Gooseneck/gooseneck.html",            "permanent": true },
+
+    { "source": "/dump-trailers/dst/:path*",               "destination": "/dump-trailers/dump-trailers.html",    "permanent": true },
+    { "source": "/dump-trailers/dho/:path*",               "destination": "/dump-trailers/dump-trailers.html",    "permanent": true },
+    { "source": "/dump-trailers/dhv/:path*",               "destination": "/dump-trailers/dump-trailers.html",    "permanent": true },
+    { "source": "/trailers/dump/:path*",                   "destination": "/dump-trailers/dump-trailers.html",    "permanent": true },
+    { "source": "/dump/:path*",                            "destination": "/dump-trailers/dump-trailers.html",    "permanent": true },
+
+    { "source": "/utility-landscapes/:path*",              "destination": "/Landscape/landscape.html",            "permanent": true },
+    { "source": "/trailers/landscape/:path*",              "destination": "/Landscape/landscape.html",            "permanent": true },
+    { "source": "/landscape/:path*",                       "destination": "/Landscape/landscape.html",            "permanent": true },
+    { "source": "/landscape-trailers/:path*",              "destination": "/Landscape/landscape.html",            "permanent": true },
+
+    { "source": "/trailers/deckover/:path*",               "destination": "/Deckover/deckover.html",              "permanent": true },
+    { "source": "/deckover/:path*",                        "destination": "/Deckover/deckover.html",              "permanent": true },
+    { "source": "/tag-along/:path*",                       "destination": "/Deckover/deckover.html",              "permanent": true },
+    { "source": "/tag-along-trailers/:path*",              "destination": "/Deckover/deckover.html",              "permanent": true },
+
+    { "source": "/wp-content/uploads/2024/07/Walton-Trailers-Warranty-Rev-4.24.pdf", "destination": "/warranty-policy.html", "permanent": true },
+    { "source": "/wp-content/uploads/:path*",              "destination": "/user-manuals.html",                   "permanent": true },
+
+    { "source": "/product/:path*",                         "destination": "/",                                    "permanent": true },
+    { "source": "/product-category/:path*",                "destination": "/",                                    "permanent": true },
+    { "source": "/category/:path*",                        "destination": "/",                                    "permanent": true },
+    { "source": "/hello-world/:path*",                     "destination": "/",                                    "permanent": true },
+    { "source": "/wp-admin/:path*",                        "destination": "/",                                    "permanent": true },
+    { "source": "/wp-content/:path*",                      "destination": "/",                                    "permanent": true },
+    { "source": "/wp-includes/:path*",                     "destination": "/",                                    "permanent": true },
+    { "source": "/wp-login.php",                           "destination": "/",                                    "permanent": true },
+    { "source": "/trailers.php",                           "destination": "/",                                    "permanent": true },
+    { "source": "/performance-tools/:path*",               "destination": "/",                                    "permanent": true },
+    { "source": "/integration-tools/:path*",               "destination": "/",                                    "permanent": true },
+    { "source": "/marker-listing/:path*",                  "destination": "/",                                    "permanent": true },
+    { "source": "/datatables/:path*",                      "destination": "/",                                    "permanent": true },
+
+    { "source": "/trailers/:path*",                        "destination": "/",                                    "permanent": true },
+    { "source": "/products/:path*",                        "destination": "/",                                    "permanent": true },
+    { "source": "/lineup/:path*",                          "destination": "/",                                    "permanent": true },
+
+    { "source": "/",                                       "has": [{ "type": "query", "key": "p"         }],      "destination": "/", "permanent": true },
+    { "source": "/",                                       "has": [{ "type": "query", "key": "post_type" }],      "destination": "/", "permanent": true },
+    { "source": "/",                                       "has": [{ "type": "query", "key": "page_id"   }],      "destination": "/", "permanent": true }
+  ]
+}
