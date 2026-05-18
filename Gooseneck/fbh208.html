@@ -1712,7 +1712,8 @@ footer {
     })
     .then(function(r) { return r.json(); })
     .then(function(data) {
-      var reply = (data && data.reply) ? data.reply : respondLocal(input);
+      var raw = (data && data.reply) ? data.reply : respondLocal(input);
+      var reply = sanitizeUntrustedHTML(raw);
       history.push({ role: 'assistant', content: reply });
       callback(reply);
     })
@@ -1736,16 +1737,57 @@ footer {
   ══════════════════════════════════════════ */
   function msgs() { return document.getElementById('wcMsgs'); }
 
-  function addMsg(role, html) {
+  /* User-supplied input is rendered as plain text (textContent) to prevent
+     XSS. Bot replies render as HTML — local FAQ content is Walton-controlled;
+     AI Worker replies are run through sanitizeUntrustedHTML() before reaching
+     this function (see respondAI). */
+  function addMsg(role, content) {
     var m = msgs(); if (!m) return;
     var d = document.createElement('div');
     d.className = 'chat-msg ' + role;
     var b = document.createElement('div');
     b.className = 'msg-bubble';
-    b.innerHTML  = html;
+    if (role === 'user') {
+      b.textContent = content;
+    } else {
+      b.innerHTML = content;
+    }
     d.appendChild(b);
     m.appendChild(d);
     m.scrollTop = m.scrollHeight;
+  }
+
+  /* Defense-in-depth sanitizer for untrusted bot content (AI Worker replies).
+     Removes <script>, <iframe>, <object>, <embed>, <form>, <style>, <link>,
+     <meta>, every on* event handler, and javascript:/data:/vbscript: URLs. */
+  function sanitizeUntrustedHTML(html) {
+    if (typeof html !== 'string') return '';
+    var tpl = document.createElement('template');
+    tpl.innerHTML = html;
+    var killTags = /^(script|style|iframe|object|embed|form|link|meta)$/i;
+    function clean(node) {
+      var kids = Array.prototype.slice.call(node.childNodes);
+      for (var i = 0; i < kids.length; i++) {
+        var c = kids[i];
+        if (c.nodeType !== 1) continue;
+        if (killTags.test(c.tagName)) {
+          node.removeChild(c);
+          continue;
+        }
+        var attrs = Array.prototype.slice.call(c.attributes);
+        for (var j = 0; j < attrs.length; j++) {
+          var n = attrs[j].name.toLowerCase();
+          if (n.indexOf('on') === 0) c.removeAttribute(attrs[j].name);
+          if ((n === 'href' || n === 'src' || n === 'action' || n === 'formaction') &&
+              /^\s*(javascript|data|vbscript):/i.test(attrs[j].value)) {
+            c.removeAttribute(attrs[j].name);
+          }
+        }
+        clean(c);
+      }
+    }
+    clean(tpl.content);
+    return tpl.innerHTML;
   }
 
   function showTyping() {
