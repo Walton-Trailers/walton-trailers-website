@@ -141,49 +141,49 @@
   .page-hero p { font-size: 16px; font-weight: 300; color: rgba(245,243,239,0.6); max-width: 560px; line-height: 1.8; }
   .divider { height: 1px; background: rgba(255,255,255,0.06); }
   .dealer-form-section { background: var(--white); color: var(--black); }
-  .two-col { padding: 96px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: stretch; max-width: 1200px; margin: 0 auto; }
+  .two-col { padding: 96px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; max-width: 1200px; margin: 0 auto; }
   .two-col h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px,4vw,48px); letter-spacing: 2px; margin-bottom: 24px; color: var(--black); }
   .dealer-image-placeholder {
-    width: 100%; min-height: 100%; aspect-ratio: 4/5;
+    width: 100%; aspect-ratio: 4/3;
     background: #e8e2d6; border-radius: 4px;
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
     gap: 12px; color: rgba(10,10,10,0.3);
     font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
     border: 2px dashed rgba(10,10,10,0.12);
+    position: sticky; top: 110px;
   }
-  .dealer-image-placeholder svg { width: 48px; height: 48px; opacity: 0.4; }
-  .form-section { background: #fff; padding: 48px; border-radius: 4px; border: 1px solid rgba(10,10,10,0.08); box-shadow: 0 2px 12px rgba(10,10,10,0.04); }
-  .form-section h3 { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 2px; margin-bottom: 8px; color: var(--black); }
-  .form-section p { font-size: 13px; color: rgba(10,10,10,0.55); margin-bottom: 32px; }
+  .dealer-image-placeholder svg { width: 44px; height: 44px; opacity: 0.4; }
+  .form-section { background: var(--steel); padding: 48px; border-radius: 4px; }
+  .form-section h3 { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 2px; margin-bottom: 8px; color: var(--white); }
+  .form-section p { font-size: 13px; color: rgba(245,243,239,0.45); margin-bottom: 32px; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
   .form-group { display: flex; flex-direction: column; gap: 8px; }
-  .form-group label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(10,10,10,0.55); }
-  .form-group input, .form-group select, .form-group textarea { background: #fff; border: 1px solid rgba(10,10,10,0.12); border-radius: 2px; padding: 12px 14px; color: var(--black); font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; width: 100%; }
-  .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(10,10,10,0.35); }
+  .form-group label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,243,239,0.4); }
+  .form-group input, .form-group select, .form-group textarea { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 2px; padding: 12px 14px; color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; width: 100%; }
   .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--rust); }
-  .form-group select option { background: #fff; color: var(--black); }
-  .form-submit { width: 100%; background: var(--black); color: var(--white); border: none; padding: 16px; font-family: 'DM Sans', sans-serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; border-radius: 2px; cursor: pointer; margin-top: 8px; transition: background 0.2s; }
-  .form-submit:hover { background: var(--steel); }
+  .form-group select option { background: #1c2028; }
+  .form-submit { width: 100%; background: var(--rust); color: #0a0a0a; border: none; padding: 16px; font-family: 'DM Sans', sans-serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; border-radius: 2px; cursor: pointer; margin-top: 8px; transition: background 0.2s; }
+  .form-submit:hover { background: var(--rust-dark); }
   .form-radio-group { margin-bottom: 18px; }
-  .form-radio-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(10,10,10,0.55); margin-bottom: 10px; }
+  .form-radio-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,243,239,0.4); margin-bottom: 10px; }
   .form-radio-options { display: flex; gap: 10px; }
-  .form-radio { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: #fafaf7; border: 1px solid rgba(10,10,10,0.12); border-radius: 2px; cursor: pointer; flex: 1; transition: border-color 0.2s, background 0.2s; font-size: 14px; color: rgba(10,10,10,0.75); }
-  .form-radio:hover { border-color: rgba(183,163,128,0.7); }
+  .form-radio { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 2px; cursor: pointer; flex: 1; transition: border-color 0.2s, background 0.2s; font-size: 14px; color: rgba(245,243,239,0.85); }
+  .form-radio:hover { border-color: rgba(183,163,128,0.5); }
   .form-radio input { accent-color: var(--rust); margin: 0; }
-  .form-radio:has(input:checked) { border-color: var(--rust); background: rgba(183,163,128,0.12); color: var(--black); }
-  .form-captcha { margin-bottom: 18px; background: #fafaf7; padding: 14px 16px; border-radius: 2px; border: 1px solid rgba(10,10,10,0.1); }
+  .form-radio:has(input:checked) { border-color: var(--rust); background: rgba(183,163,128,0.08); color: var(--white); }
+  .form-captcha { margin-bottom: 18px; background: rgba(0,0,0,0.25); padding: 14px 16px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.08); }
   .form-captcha-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; gap: 12px; }
-  .form-captcha-q { font-size: 14px; color: rgba(10,10,10,0.85); font-weight: 500; }
-  .form-captcha-refresh { background: none; border: none; color: rgba(10,10,10,0.45); cursor: pointer; font-size: 16px; padding: 4px 8px; border-radius: 2px; transition: color 0.2s, transform 0.3s; }
+  .form-captcha-q { font-size: 14px; color: rgba(245,243,239,0.9); font-weight: 500; }
+  .form-captcha-refresh { background: none; border: none; color: rgba(245,243,239,0.5); cursor: pointer; font-size: 16px; padding: 4px 8px; border-radius: 2px; transition: color 0.2s, transform 0.3s; }
   .form-captcha-refresh:hover { color: var(--rust); transform: rotate(180deg); }
-  .form-captcha-input { background: #fff; border: 1px solid rgba(10,10,10,0.12); border-radius: 2px; padding: 10px 14px; color: var(--black); font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; width: 100%; }
+  .form-captcha-input { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 2px; padding: 10px 14px; color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; width: 100%; }
   .form-captcha-input:focus { border-color: var(--rust); }
   .form-success { display: none; text-align: center; padding: 32px 0; }
   .form-success svg { color: var(--rust); margin-bottom: 14px; }
-  .form-success h4 { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 2px; margin-bottom: 8px; color: var(--black); }
-  .form-success p { font-size: 14px; color: rgba(10,10,10,0.55); line-height: 1.7; }
-  @media(max-width:768px) { .two-col { grid-template-columns:1fr; } .form-row { grid-template-columns:1fr; } .page-hero,.two-col { padding-left:24px; padding-right:24px; } .dealer-image-placeholder { aspect-ratio: 4/3; } }
+  .form-success h4 { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 2px; margin-bottom: 8px; color: var(--white); }
+  .form-success p { font-size: 14px; color: rgba(245,243,239,0.6); line-height: 1.7; }
+  @media(max-width:768px) { .two-col { grid-template-columns:1fr; } .form-row { grid-template-columns:1fr; } .page-hero,.two-col { padding-left:24px; padding-right:24px; } .dealer-image-placeholder { position: static; } }
 
     /* ════════════════════════════════
      SUPPORT CHAT WIDGET
