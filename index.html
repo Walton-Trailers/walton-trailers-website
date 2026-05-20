@@ -1517,10 +1517,9 @@
     <h2 class="instagram-heading">Walton's in the Wild</h2>
     <a href="https://www.instagram.com/explore/tags/waltonsintheWild/" target="_blank" class="instagram-tag">#WaltonsInTheWild</a>
   </div>
-  <!-- Curator.io feed container. The Curator script (loaded below) targets the
-       element with id="curator-feed-default-feed-layout" and injects the live
-       Instagram feed. Replace YOUR_FEED_ID below with the feed ID Curator
-       generated for waltontrailers (looks like a UUID). -->
+  <!-- Curator.io feed container. The Curator loader script below targets the
+       #curator-feed-default-feed-layout element and injects the live Walton
+       Trailers Instagram grid. Feed ID is configured at curator.io. -->
   <div id="curator-feed-default-feed-layout" class="curator-feed-container">
     <a href="https://curator.io" target="_blank" class="crt-logo crt-tag">Powered by Curator.io</a>
   </div>
@@ -1530,24 +1529,18 @@
       Follow on Instagram
     </a>
   </div>
-  <!--
-    Curator.io feed loader. Uncomment + replace YOUR_FEED_ID with the feed ID
-    from your Curator dashboard (Settings → Embed Code). Until that's done the
-    container above just shows the "Powered by Curator.io" attribution link
-    instead of generating 404s on every page load.
-
-    <script type="text/javascript">
-    (function () {
-      var d = document, s = "script";
-      var i = d.createElement(s);
-      i.async = 1;
-      i.charset = "UTF-8";
-      i.src = "https://cdn.curator.io/published/YOUR_FEED_ID.js";
-      var e = d.getElementsByTagName(s)[0];
-      e.parentNode.insertBefore(i, e);
-    })();
-    </script>
-  -->
+  <script type="text/javascript">
+  /* curator-feed-default-feed-layout */
+  (function () {
+    var d = document, s = "script";
+    var i = d.createElement(s);
+    i.async = 1;
+    i.charset = "UTF-8";
+    i.src = "https://cdn.curator.io/published/83632df4-29d2-48af-9629-80c858dac4c3.js";
+    var e = d.getElementsByTagName(s)[0];
+    e.parentNode.insertBefore(i, e);
+  })();
+  </script>
 </section>
 
 <!-- DEALER -->
