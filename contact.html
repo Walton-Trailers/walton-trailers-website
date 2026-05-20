@@ -15,20 +15,20 @@
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Us | Walton Trailers</title>
-  <meta name="description" content="Contact Walton Trailers — get help buying a trailer, owner support, dealer inquiries, or general questions.">
+  <meta name="description" content="Contact Walton Trailers — get help buying a trailer, owner support, or dealer inquiries.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.waltontrailers.com/contact.html">
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Walton Trailers">
   <meta property="og:title" content="Contact Us | Walton Trailers">
-  <meta property="og:description" content="Contact Walton Trailers — get help buying a trailer, owner support, dealer inquiries, or general questions.">
+  <meta property="og:description" content="Contact Walton Trailers — get help buying a trailer, owner support, or dealer inquiries.">
   <meta property="og:url" content="https://www.waltontrailers.com/contact.html">
   <meta property="og:image" content="https://www.waltontrailers.com/og-image.jpg">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Contact Us | Walton Trailers">
-  <meta name="twitter:description" content="Contact Walton Trailers — get help buying a trailer, owner support, dealer inquiries, or general questions.">
+  <meta name="twitter:description" content="Contact Walton Trailers — get help buying a trailer, owner support, or dealer inquiries.">
   <meta name="twitter:image" content="https://www.waltontrailers.com/og-image.jpg">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -153,7 +153,7 @@
   }
   .triage-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 16px;
     margin-bottom: 64px;
   }
@@ -523,11 +523,6 @@
         <div class="triage-title">Dealer Inquiry</div>
         <div class="triage-desc">Becoming a dealer, dealer programs, or dealer account support</div>
       </div>
-      <div class="triage-card" onclick="selectTriage('general')" id="tcard-general">
-        <span class="triage-icon">&#128172;</span>
-        <div class="triage-title">General Question</div>
-        <div class="triage-desc">Careers, media, partnerships, or anything else</div>
-      </div>
     </div>
 
     <!-- ── FORM: Buy a Trailer ── -->
@@ -707,55 +702,6 @@
     </div>
 
     <!-- ── FORM: General Question ── -->
-    <div class="form-panel" id="fpanel-general">
-      <div class="form-container">
-        <div class="form-section-title">General Question</div>
-        <div class="form-section-sub">Have a question that doesn't fit the other categories? We're still happy to help.</div>
-        <form id="form-general" action="https://formspree.io/f/xwvygnnq" method="POST" onsubmit="handleSubmit(event,'general')">
-          <input type="hidden" name="inquiry_type" value="General Question">
-          <input type="hidden" name="_subject" value="Walton Contact — General Question">
-          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="gen-fname">First Name</label>
-              <input type="text" id="gen-fname" name="first_name" placeholder="John" required>
-            </div>
-            <div class="form-group">
-              <label for="gen-lname">Last Name</label>
-              <input type="text" id="gen-lname" name="last_name" placeholder="Smith" required>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="gen-email">Email</label>
-              <input type="email" id="gen-email" name="email" placeholder="john@example.com" required>
-            </div>
-            <div class="form-group">
-              <label for="gen-subject">Subject</label>
-              <select id="gen-subject" name="subject">
-                <option value="">— Select —</option>
-                <option>Careers / Employment</option>
-                <option>Media / Press</option>
-                <option>Partnership Opportunity</option>
-                <option>Website Feedback</option>
-                <option>Other</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="gen-message">Your Message</label>
-            <textarea id="gen-message" name="message" placeholder="How can we help?" required></textarea>
-          </div>
-          <button type="submit" class="form-submit">Send Message &rarr;</button>
-          <p class="form-note">We aim to respond to all messages within 2 business days.</p>
-        </form>
-        <div class="form-success" id="success-general">
-          <div class="success-icon">&#10003;</div>
-          <h3>Message Sent</h3>
-          <p>Thanks for reaching out. We'll get back to you within 2 business days.</p>
-        </div>
-      </div>
-    </div>
   </section>
 </main>
 
@@ -962,7 +908,7 @@ var activeType = null;
 
 function selectTriage(type) {
   // Update card states
-  ['buy','owner','dealer','general'].forEach(function(t) {
+  ['buy','owner','dealer'].forEach(function(t) {
     var card = document.getElementById('tcard-' + t);
     var panel = document.getElementById('fpanel-' + t);
     if (t === type) {
@@ -1017,7 +963,7 @@ function handleSubmit(event, type) {
 /* ── AUTO-SELECT TRIAGE FROM URL HASH ── */
 window.addEventListener('DOMContentLoaded', function() {
   var hash = window.location.hash.replace('#','');
-  if (['buy','owner','dealer','general'].indexOf(hash) !== -1) {
+  if (['buy','owner','dealer'].indexOf(hash) !== -1) {
     selectTriage(hash);
   }
 });
