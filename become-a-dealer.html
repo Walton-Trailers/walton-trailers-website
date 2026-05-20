@@ -140,42 +140,50 @@
   .page-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 5vw, 60px); letter-spacing: 3px; line-height: 1; margin-bottom: 24px; }
   .page-hero p { font-size: 16px; font-weight: 300; color: rgba(245,243,239,0.6); max-width: 560px; line-height: 1.8; }
   .divider { height: 1px; background: rgba(255,255,255,0.06); }
-  .two-col { padding: 96px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; max-width: 1200px; margin: 0 auto; }
-  .two-col h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px,4vw,48px); letter-spacing: 2px; margin-bottom: 24px; }
-  .two-col p { font-size: 14px; color: rgba(245,243,239,0.7); line-height: 1.9; margin-bottom: 16px; }
-  .benefit-list { list-style: none; display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
-  .benefit-list li { display: flex; gap: 14px; align-items: flex-start; font-size: 14px; color: rgba(245,243,239,0.75); line-height: 1.6; }
-  .benefit-list li::before { content: '✓'; color: var(--rust); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
-  .form-section { background: var(--steel); padding: 48px; border-radius: 4px; }
-  .form-section h3 { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 2px; margin-bottom: 8px; }
-  .form-section p { font-size: 13px; color: rgba(245,243,239,0.45); margin-bottom: 32px; }
+  .dealer-form-section { background: var(--white); color: var(--black); }
+  .two-col { padding: 96px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: stretch; max-width: 1200px; margin: 0 auto; }
+  .two-col h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px,4vw,48px); letter-spacing: 2px; margin-bottom: 24px; color: var(--black); }
+  .dealer-image-placeholder {
+    width: 100%; min-height: 100%; aspect-ratio: 4/5;
+    background: #e8e2d6; border-radius: 4px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 12px; color: rgba(10,10,10,0.3);
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    border: 2px dashed rgba(10,10,10,0.12);
+  }
+  .dealer-image-placeholder svg { width: 48px; height: 48px; opacity: 0.4; }
+  .form-section { background: #fff; padding: 48px; border-radius: 4px; border: 1px solid rgba(10,10,10,0.08); box-shadow: 0 2px 12px rgba(10,10,10,0.04); }
+  .form-section h3 { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 2px; margin-bottom: 8px; color: var(--black); }
+  .form-section p { font-size: 13px; color: rgba(10,10,10,0.55); margin-bottom: 32px; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
   .form-group { display: flex; flex-direction: column; gap: 8px; }
-  .form-group label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,243,239,0.4); }
-  .form-group input, .form-group select, .form-group textarea { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 2px; padding: 12px 14px; color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; width: 100%; }
+  .form-group label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(10,10,10,0.55); }
+  .form-group input, .form-group select, .form-group textarea { background: #fff; border: 1px solid rgba(10,10,10,0.12); border-radius: 2px; padding: 12px 14px; color: var(--black); font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; width: 100%; }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(10,10,10,0.35); }
   .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--rust); }
-  .form-group select option { background: #1c2028; }
-  .form-submit { width: 100%; background: var(--rust); color: #0a0a0a; border: none; padding: 16px; font-family: 'DM Sans', sans-serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; border-radius: 2px; cursor: pointer; margin-top: 8px; transition: background 0.2s; }
-  .form-submit:hover { background: var(--rust-dark); }
+  .form-group select option { background: #fff; color: var(--black); }
+  .form-submit { width: 100%; background: var(--black); color: var(--white); border: none; padding: 16px; font-family: 'DM Sans', sans-serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; border-radius: 2px; cursor: pointer; margin-top: 8px; transition: background 0.2s; }
+  .form-submit:hover { background: var(--steel); }
   .form-radio-group { margin-bottom: 18px; }
-  .form-radio-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,243,239,0.4); margin-bottom: 10px; }
+  .form-radio-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(10,10,10,0.55); margin-bottom: 10px; }
   .form-radio-options { display: flex; gap: 10px; }
-  .form-radio { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 2px; cursor: pointer; flex: 1; transition: border-color 0.2s, background 0.2s; font-size: 14px; color: rgba(245,243,239,0.85); }
-  .form-radio:hover { border-color: rgba(183,163,128,0.5); }
+  .form-radio { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: #fafaf7; border: 1px solid rgba(10,10,10,0.12); border-radius: 2px; cursor: pointer; flex: 1; transition: border-color 0.2s, background 0.2s; font-size: 14px; color: rgba(10,10,10,0.75); }
+  .form-radio:hover { border-color: rgba(183,163,128,0.7); }
   .form-radio input { accent-color: var(--rust); margin: 0; }
-  .form-radio:has(input:checked) { border-color: var(--rust); background: rgba(183,163,128,0.08); color: var(--white); }
-  .form-captcha { margin-bottom: 18px; background: rgba(0,0,0,0.25); padding: 14px 16px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.08); }
+  .form-radio:has(input:checked) { border-color: var(--rust); background: rgba(183,163,128,0.12); color: var(--black); }
+  .form-captcha { margin-bottom: 18px; background: #fafaf7; padding: 14px 16px; border-radius: 2px; border: 1px solid rgba(10,10,10,0.1); }
   .form-captcha-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; gap: 12px; }
-  .form-captcha-q { font-size: 14px; color: rgba(245,243,239,0.9); font-weight: 500; }
-  .form-captcha-refresh { background: none; border: none; color: rgba(245,243,239,0.5); cursor: pointer; font-size: 16px; padding: 4px 8px; border-radius: 2px; transition: color 0.2s, transform 0.3s; }
+  .form-captcha-q { font-size: 14px; color: rgba(10,10,10,0.85); font-weight: 500; }
+  .form-captcha-refresh { background: none; border: none; color: rgba(10,10,10,0.45); cursor: pointer; font-size: 16px; padding: 4px 8px; border-radius: 2px; transition: color 0.2s, transform 0.3s; }
   .form-captcha-refresh:hover { color: var(--rust); transform: rotate(180deg); }
-  .form-captcha-input { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 2px; padding: 10px 14px; color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; width: 100%; }
+  .form-captcha-input { background: #fff; border: 1px solid rgba(10,10,10,0.12); border-radius: 2px; padding: 10px 14px; color: var(--black); font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; width: 100%; }
   .form-captcha-input:focus { border-color: var(--rust); }
   .form-success { display: none; text-align: center; padding: 32px 0; }
   .form-success svg { color: var(--rust); margin-bottom: 14px; }
-  .form-success h4 { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 2px; margin-bottom: 8px; }
-  .form-success p { font-size: 14px; color: rgba(245,243,239,0.6); line-height: 1.7; }
-  @media(max-width:768px) { .two-col { grid-template-columns:1fr; } .form-row { grid-template-columns:1fr; } .page-hero,.two-col { padding-left:24px; padding-right:24px; } }
+  .form-success h4 { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 2px; margin-bottom: 8px; color: var(--black); }
+  .form-success p { font-size: 14px; color: rgba(10,10,10,0.55); line-height: 1.7; }
+  @media(max-width:768px) { .two-col { grid-template-columns:1fr; } .form-row { grid-template-columns:1fr; } .page-hero,.two-col { padding-left:24px; padding-right:24px; } .dealer-image-placeholder { aspect-ratio: 4/3; } }
 
     /* ════════════════════════════════
      SUPPORT CHAT WIDGET
@@ -428,20 +436,11 @@
     <h1>Become a<br>Walton Dealer</h1>
     <p>Join a network of dealers carrying one of the most recognized trailer brands in the western United States.</p>
   </section>
-  <div class="divider"></div>
-  <section class="two-col">
-    <div>
-      <h2>Why Partner With Walton</h2>
-      <p>Walton Trailers has been manufacturing in the USA since 1973. Our dealer network is built on strong margins, reliable inventory, and a product that sells itself.</p>
-      <ul class="benefit-list">
-        <li>Competitive dealer pricing and margin structure</li>
-        <li>Direct factory support and dedicated rep</li>
-        <li>Full product training and onboarding</li>
-        <li>Co-op marketing materials and digital assets</li>
-        <li>Access to the dealer portal and ordering system</li>
-        <li>Priority inventory allocation during peak season</li>
-        <li>Warranty support handled directly by the factory</li>
-      </ul>
+  <section class="dealer-form-section">
+  <div class="two-col">
+    <div class="dealer-image-placeholder" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <span>Image Placeholder</span>
     </div>
     <div class="form-section">
       <h3>Express Interest</h3>
@@ -499,6 +498,7 @@
         <p>Thanks for your interest in becoming a Walton dealer. A rep will be in touch within 2 business days.</p>
       </div>
     </div>
+  </div>
   </section>
 </main>
 <footer>
