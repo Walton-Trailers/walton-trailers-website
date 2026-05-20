@@ -1482,22 +1482,25 @@
 </div>
 
 <!-- WHY WALTON — VIDEO -->
+<!-- YouTube embed uses the privacy-enhanced youtube-nocookie.com host so the
+     iframe doesn't drop tracking cookies until a visitor presses play. The
+     parent CSP frame-src must allow this host (see vercel.json).
+     Source video: https://youtu.be/W9IC3yegU1A (visibility must be Public or
+     Unlisted — Private videos can't be embedded).
+     loading="lazy" defers the iframe until the section approaches the
+     viewport so it doesn't compete with the homepage's first paint. -->
 <section class="why-video-section" id="why">
   <div class="why-video-wrap">
-    <!--
-      TO ADD YOUR VIDEO:
-      Option A — Upload a file: Replace the placeholder div below with:
-        <video controls poster="Images/your-thumbnail.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
-          <source src="Videos/your-video.mp4" type="video/mp4">
-        </video>
-
-      Option B — Embed from YouTube/Vimeo: Replace the placeholder div below with:
-        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen style="width:100%;height:100%;display:block;"></iframe>
-    -->
-    <video controls playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;">
-      <source src="Videos/walton-website.mp4" type="video/mp4">
-      Your browser doesn't support embedded video. <a href="Videos/walton-website.mp4" style="color:var(--rust);">Download the video</a>.
-    </video>
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/W9IC3yegU1A?rel=0&modestbranding=1"
+      title="Why Walton Trailers"
+      loading="lazy"
+      frameborder="0"
+      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+      referrerpolicy="strict-origin-when-cross-origin"
+      style="width:100%;height:100%;display:block;border:0;"
+    ></iframe>
   </div>
 </section>
 
