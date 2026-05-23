@@ -14,20 +14,20 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Walton Trailers — Built Strong. Built Right. Built Here.</title>
+<title>Walton Trailers — Not your first trailer. Probably your last.</title>
   <meta name="description" content="Walton Trailers builds heavy-duty gooseneck, dump, tilt, deckover, and landscape trailers. Proudly made in the USA — find a dealer near you today.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.waltontrailers.com/">
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Walton Trailers">
-  <meta property="og:title" content="Walton Trailers — Built Strong. Built Right. Built Here.">
+  <meta property="og:title" content="Walton Trailers — Not your first trailer. Probably your last.">
   <meta property="og:description" content="Walton Trailers builds heavy-duty gooseneck, dump, tilt, deckover, and landscape trailers. Proudly made in the USA — find a dealer near you today.">
   <meta property="og:url" content="https://www.waltontrailers.com/">
   <meta property="og:image" content="https://www.waltontrailers.com/og-image.jpg">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Walton Trailers — Built Strong. Built Right. Built Here.">
+  <meta name="twitter:title" content="Walton Trailers — Not your first trailer. Probably your last.">
   <meta name="twitter:description" content="Walton Trailers builds heavy-duty gooseneck, dump, tilt, deckover, and landscape trailers. Proudly made in the USA — find a dealer near you today.">
   <meta name="twitter:image" content="https://www.waltontrailers.com/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1125,49 +1125,38 @@
   .nav-dealer-login:hover { color: var(--white) !important; background: rgba(255,255,255,0.1); }
 
 
-  /* ── HERO CAROUSEL ── */
-  .hero-slides { position: absolute; inset: 0; }
-  .hero-slide {
-    position: absolute; inset: 0;
-    opacity: 0; transition: opacity 0.9s ease;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: flex-end;
-    padding-bottom: 100px;
+  /* ── HERO (static, homepage only) ── */
+  /* Scoped to #heroSection so other pages keep their existing hero styling. */
+  /* TODO: swap solid #1a1d1c background-color for a working photograph of a
+     Walton trailer in use (dirt, job site — not a studio shot). When you do,
+     remove the background-color line and add a background-image instead;
+     the existing ::before overlay handles legibility. */
+  #heroSection .hero-bg-placeholder { background: #1a1d1c; }
+  #heroSection .hero-bg-placeholder::after { content: none; }
+  #heroSection .hero-bg-placeholder::before {
+    content: ''; position: absolute; inset: 0;
+    background: rgba(0,0,0,0.45);
   }
-  .hero-slide.active { opacity: 1; }
-  .hero-slide .hero-bg-placeholder { position: absolute; inset: 0; }
-  .hero-slide .hero-content {
-    position: relative; z-index: 2;
-    text-align: center;
+  #heroSection .hero { justify-content: center; padding-bottom: 0; }
+  #heroSection .hero-content { padding: 0 24px; max-width: 1100px; }
+  #heroSection .hero-eyebrow {
+    text-transform: none; letter-spacing: 2px; font-size: 13px;
+    color: rgba(245,243,239,0.7);
   }
-  .hero-dots {
-    position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
-    display: flex; gap: 10px; z-index: 10;
+  #heroSection .hero-title {
+    font-size: clamp(48px, 7vw, 104px);
+    line-height: 1.05; letter-spacing: -0.015em;
+    margin-bottom: 28px;
   }
-  .hero-dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: rgba(255,255,255,0.3); cursor: pointer;
-    transition: background 0.3s, transform 0.3s;
+  #heroSection .hero-sub {
+    max-width: 640px; margin-left: auto; margin-right: auto;
+    color: rgba(245,243,239,0.8);
   }
-  .hero-dot.active { background: var(--white); transform: scale(1.4); }
-
-
-  .hero-arrow {
-    position: absolute; top: 50%; transform: translateY(-50%);
-    z-index: 10;
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.25);
-    color: var(--white);
-    width: 52px; height: 52px; border-radius: 50%;
-    font-size: 22px; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    backdrop-filter: blur(6px);
-    transition: background 0.2s, border-color 0.2s;
+  @media (max-width: 480px) {
+    #heroSection .hero-actions { flex-direction: column; align-items: stretch; }
+    #heroSection .hero-actions .btn-primary,
+    #heroSection .hero-actions .btn-secondary { text-align: center; }
   }
-  .hero-arrow:hover { background: rgba(255,255,255,0.28); border-color: rgba(255,255,255,0.5); }
-  .hero-arrow-prev { left: 32px; }
-  .hero-arrow-next { right: 32px; }
-  @media (max-width: 768px) { .hero-arrow { display: none; } }
 
 
   /* Remove mega-links space now that Learn/Build are gone */
@@ -1312,61 +1301,16 @@
 
 <!-- HERO CAROUSEL -->
 <section class="hero" id="heroSection">
-  <!-- Slides -->
-  <div class="hero-slides" id="heroSlides">
-
-    <div class="hero-slide active">
-      <div class="hero-bg-placeholder"></div>
-      <div class="hero-content">
-        <p class="hero-eyebrow">Built in the USA since 1973</p>
-        <h1 class="hero-title">Built to<br>Last.</h1>
-        <p class="hero-sub">Commercial-grade trailers. Lifetime structural warranty.</p>
-        <div class="hero-actions">
-          <a href="#trailers" class="btn-primary">View Inventory</a>
-          <button class="btn-secondary" onclick="openFinder()">Help Me Choose</button>
-        </div>
-      </div>
+  <div class="hero-bg-placeholder"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">built in logan, utah since 1973</p>
+    <h1 class="hero-title">Not your first trailer.<br>Probably your last.</h1>
+    <p class="hero-sub">Dump, flatbed, tilt, and specialty trailers — built in Utah, sold through dealers across the West.</p>
+    <div class="hero-actions">
+      <a href="find-a-dealer.html" class="btn-primary">Find a dealer &rarr;</a>
+      <a href="#trailers" class="btn-secondary">Browse trailers</a>
     </div>
-
-    <div class="hero-slide">
-      <div class="hero-bg-placeholder" style="background:linear-gradient(135deg,#0f1a12 0%,#0a1208 50%,#0f1a10 100%)"></div>
-      <div class="hero-content">
-        <p class="hero-eyebrow">Engineered for the Job Site</p>
-        <h2 class="hero-title">Dump<br>Trailers.</h2>
-        <p class="hero-sub">Hydraulic power. Heavy-duty frames. Built for daily punishment.</p>
-        <div class="hero-actions">
-          <button class="btn-primary" onclick="navGoTo(1)">View Dump Trailers</button>
-          <button class="btn-secondary" onclick="openQuote('Dump Trailers')">Get a Quote</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero-slide">
-      <div class="hero-bg-placeholder" style="background:linear-gradient(135deg,#1a1208 0%,#120e06 50%,#1a1410 100%)"></div>
-      <div class="hero-content">
-        <p class="hero-eyebrow">Move Any Machine</p>
-        <h2 class="hero-title">Equipment<br>Trailers.</h2>
-        <p class="hero-sub">Low decks. Maximum payload. Ready for your heaviest equipment.</p>
-        <div class="hero-actions">
-          <button class="btn-primary" onclick="navGoTo(2)">View Equipment Trailers</button>
-          <button class="btn-secondary" onclick="openQuote('Tilt Deck Trailers')">Get a Quote</button>
-        </div>
-      </div>
-    </div>
-
   </div>
-
-  <!-- Hero arrows -->
-  <button class="hero-arrow hero-arrow-prev" onclick="heroMove(-1)">&#8592;</button>
-  <button class="hero-arrow hero-arrow-next" onclick="heroMove(1)">&#8594;</button>
-
-  <!-- Hero nav dots -->
-  <div class="hero-dots">
-    <div class="hero-dot active" onclick="heroGoTo(0)"></div>
-    <div class="hero-dot" onclick="heroGoTo(1)"></div>
-    <div class="hero-dot" onclick="heroGoTo(2)"></div>
-  </div>
-
   <div class="scroll-hint"></div>
 </section>
 
@@ -2049,43 +1993,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-  /* ── HERO CAROUSEL ── */
-  var heroSlides = document.querySelectorAll('.hero-slide');
-  var heroDots   = document.querySelectorAll('.hero-dot');
-  var heroIdx    = 0;
-  window.heroGoTo = function(i) {
-    heroSlides[heroIdx].classList.remove('active');
-    heroDots[heroIdx].classList.remove('active');
-    heroIdx = i;
-    heroSlides[heroIdx].classList.add('active');
-    heroDots[heroIdx].classList.add('active');
-  };
-
-  window.heroMove = function(dir) {
-    window.heroGoTo((heroIdx + dir + heroSlides.length) % heroSlides.length);
-  };
-
-  heroDots.forEach(function(d, i) {
-    d.addEventListener('click', function() { heroGoTo(i); resetHeroTimer(); });
-  });
-
-  /* Hero auto-rotation — 4 seconds */
-  var heroTimer;
-  function startHeroTimer() {
-    heroTimer = setInterval(function() {
-      window.heroGoTo((heroIdx + 1) % heroSlides.length);
-    }, 4000);
-  }
-  function resetHeroTimer() {
-    clearInterval(heroTimer);
-    startHeroTimer();
-  }
-  startHeroTimer();
-
-  /* Also reset timer on arrow clicks */
-  document.querySelectorAll('.hero-arrow').forEach(function(btn) {
-    btn.addEventListener('click', resetHeroTimer);
-  });
+  /* Hero is now a single static section — rotation logic removed. */
 
   /* Testimonial rotation */
   var testimonials = [
