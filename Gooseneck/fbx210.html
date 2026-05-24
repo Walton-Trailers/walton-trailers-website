@@ -386,6 +386,12 @@
     .features-body.open {
       max-height: 2000px;
     }
+    /* Desktop: features are visible by default — collapse only on mobile. */
+    @media (min-width: 769px) {
+      .features-body { max-height: none !important; }
+      .features-toggle-icon { display: none; }
+      .features-toggle { cursor: default; }
+    }
     .features-body .features-grid {
       padding-top: 36px;
     }
@@ -2312,6 +2318,23 @@ function carouselGoTo(el, idx) {
   var inner = el.querySelector('.carousel-inner');
   if (inner) inner.style.transform = 'translateX(-' + (idx * 100) + '%)';
 }
+</script>
+<script>
+/* AUTO-HIDE empty carousels — if every slide only carries a placeholder
+   (no <img>), hide the whole carousel + the prev/next/dots, since
+   displaying "Photo Slot N — Add image here" to visitors looks broken.
+   When content authors drop real photos in, the carousel automatically
+   re-appears. */
+(function(){
+  document.querySelectorAll(".overview-carousel").forEach(function(c){
+    var slides = c.querySelectorAll(".carousel-slide");
+    if (!slides.length) return;
+    var allEmpty = Array.prototype.every.call(slides, function(s){
+      return !s.querySelector("img") && s.querySelector(".carousel-img-placeholder");
+    });
+    if (allEmpty) c.style.display = "none";
+  });
+})();
 </script>
 </body>
 </html>

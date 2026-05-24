@@ -460,13 +460,13 @@
     .page-hero { padding: 120px 24px 48px; }
     .locator-section { grid-template-columns: 1fr; }
     .locator-sidebar { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); height: auto; max-height: 420px; }
-    .locator-map { height: 420px; }
+    .locator-map { height: 60vh; min-height: 380px; }
     .dealer-popup { width: 280px; }
   }
   @media(max-width:480px) {
     .page-hero { padding: 100px 20px 32px; }
     .locator-sidebar { max-height: 360px; }
-    .locator-map { height: 320px; }
+    .locator-map { height: 60vh; min-height: 320px; }
     .search-row { flex-wrap: wrap; }
     .search-btn { width: 100%; }
     .radius-row { flex-wrap: wrap; gap: 8px; }
@@ -1627,6 +1627,12 @@ function selectDealer(d, card) {
 
   // Show popup
   showDealerPopup(d);
+
+  // On mobile, pull the map into view so the dealer card and pin appear together.
+  if (window.matchMedia('(max-width: 768px)').matches) {
+    var mapEl = document.getElementById('dealerMap');
+    if (mapEl) mapEl.scrollIntoView({behavior: 'smooth', block: 'start'});
+  }
 
   // Pan map if available
   if (map && d.lat) {
