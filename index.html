@@ -338,7 +338,7 @@
   .footer-brand { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 3px; margin-bottom: 16px; }
   .footer-tagline { font-size: 13px; color: rgba(245,243,239,0.4); line-height: 1.6; max-width: 220px; }
   .footer-social { display: flex; gap: 12px; margin-top: 20px; }
-  .footer-social-btn { width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.12); color: rgba(245,243,239,0.5) !important; display: flex; align-items: center; justify-content: center; text-decoration: none !important; transition: border-color 0.2s, color 0.2s, background 0.2s; }
+  .footer-social-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.12); color: rgba(245,243,239,0.5) !important; display: flex; align-items: center; justify-content: center; text-decoration: none !important; transition: border-color 0.2s, color 0.2s, background 0.2s; }
   .footer-social-btn:hover { border-color: var(--rust); color: var(--white); background: rgba(192,57,43,0.15); }
   .footer-col h4 { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: rgba(245,243,239,0.4); margin-bottom: 20px; }
   .footer-col ul { list-style: none; }
@@ -452,7 +452,7 @@
     flex-direction: column;
     justify-content: center;
     gap: 5px;
-    width: 36px; height: 36px;
+    width: 44px; height: 44px;
     cursor: pointer; background: none; border: none; padding: 4px;
     z-index: 300;
   }
@@ -656,10 +656,12 @@
 
   @media (max-width: 768px) {
     nav { padding: 16px 24px; }
+    /* Bump tap targets to Apple HIG / Material 44px minimum. */
+    .btn-primary, .btn-secondary, .model-card-actions a { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
     .nav-links { display: none; }
     .hamburger { display: flex; }
     .hero-title { font-size: 60px; }
-    .stats-bar { gap: 40px; padding: 40px 24px; }
+    .stats-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 16px; padding: 40px 24px; }
     .pillars-grid { grid-template-columns: 1fr; }
     footer { grid-template-columns: 1fr 1fr; }
     .carousel-slide { padding: 80px 24px 60px; }
@@ -702,6 +704,14 @@
     transition: opacity 0.2s, transform 0.2s; pointer-events: none;
   }
   .chat-fab:hover .chat-fab-label { opacity: 1; transform: translateX(0); }
+  /* Mobile: shrink the FAB and drop the always-empty-but-reserves-space label. */
+  @media (max-width: 768px) {
+    .chat-fab { gap: 0; bottom: 16px; right: 16px; }
+    .chat-fab-label { display: none; }
+    .chat-fab-btn { width: 52px; height: 52px; }
+    .chat-fab-btn svg { width: 22px; height: 22px; }
+    .chat-fab-pulse { display: none; }
+  }
 
   /* Chat window */
   .support-chat {
@@ -721,7 +731,7 @@
   }
   .chat-header-info { display: flex; align-items: center; gap: 12px; }
   .chat-avatar {
-    width: 36px; height: 36px; background: #c0392b; border-radius: 50%;
+    width: 44px; height: 44px; background: #c0392b; border-radius: 50%;
     display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
   .chat-avatar svg { width: 18px; height: 18px; fill: white; }
@@ -1149,7 +1159,7 @@
   #heroSection .hero-title {
     font-family: 'DM Sans', sans-serif;
     font-weight: 600;
-    font-size: clamp(40px, 5.2vw, 76px);
+    font-size: clamp(28px, 6vw, 76px);
     line-height: 1.05; letter-spacing: -0.025em;
     margin-bottom: 24px;
   }
