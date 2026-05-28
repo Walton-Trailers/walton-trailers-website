@@ -704,6 +704,7 @@
     </div>
   </div>
 </div>
+<script src="walton-supabase.js"></script>
 <script src="walton-chat.js"></script>
 <script src="walton-finder.js"></script>
 
@@ -743,7 +744,7 @@ function resetDealerForm() {
   if (firstInput) firstInput.focus();
 }
 
-function submitDealerForm() {
+async function submitDealerForm() {
   var required = ['dFirst','dLast','dEmail','dPhone','dDealer','dAddress','dState','dZip','dCountry','dYears'];
   for (var i = 0; i < required.length; i++) {
     var el = document.getElementById(required[i]);
@@ -759,8 +760,36 @@ function submitDealerForm() {
   if (!captchaInput.value.trim() || parseInt(captchaInput.value, 10) !== window._captchaAns) {
     captchaInput.focus(); newCaptcha(); return;
   }
-  document.getElementById('dealerForm').style.display = 'none';
-  document.getElementById('dealerSuccess').style.display = 'block';
+
+  // Submit to Supabase (public.dealer_inquiries). On failure, leave the
+  // form intact so the user can retry without losing their entries.
+  var submitBtn = document.querySelector('#dealerForm .form-submit');
+  if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Submitting…'; }
+  try {
+    await WaltonSupabase.insert('dealer_inquiries', {
+      first_name:  document.getElementById('dFirst').value.trim(),
+      last_name:   document.getElementById('dLast').value.trim(),
+      email:       document.getElementById('dEmail').value.trim(),
+      phone:       document.getElementById('dPhone').value.trim(),
+      dealer_name: document.getElementById('dDealer').value.trim(),
+      address:     document.getElementById('dAddress').value.trim(),
+      city:        (document.getElementById('dCity') || {}).value || null,
+      state:       document.getElementById('dState').value.trim(),
+      zip:         document.getElementById('dZip').value.trim(),
+      country:     document.getElementById('dCountry').value.trim() || 'United States',
+      years_in_business: document.getElementById('dYears').value.trim(),
+      parts_program:   document.querySelector('input[name="dParts"]:checked').value,
+      service_program: document.querySelector('input[name="dService"]:checked').value,
+      user_agent:  navigator.userAgent,
+      source:      'become-a-dealer.html'
+    });
+    document.getElementById('dealerForm').style.display = 'none';
+    document.getElementById('dealerSuccess').style.display = 'block';
+  } catch (err) {
+    console.error('Dealer inquiry submission failed:', err);
+    alert('We couldn\'t save your inquiry. Please try again or email dealers@waltontrailers.com.');
+    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Submit Inquiry'; }
+  }
 }
 
 document.addEventListener('DOMContentLoaded', newCaptcha);

@@ -481,8 +481,11 @@
 
   <div class="form-section" style="padding-bottom:1px;">
     <div class="form-wrap">
-      <form id="registerForm" action="https://formspree.io/f/xdabqllb" method="POST" enctype="multipart/form-data" onsubmit="submitRegistration(event)">
-        <input type="hidden" name="_subject" value="Walton Trailer Registration">
+      <!-- Submits directly to Supabase via walton-supabase.js — no
+           Formspree dependency. File upload lands in the
+           proof-of-purchase Storage bucket; metadata row goes into
+           public.trailer_registrations. -->
+      <form id="registerForm" onsubmit="submitRegistration(event)">
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
         <div class="form-grid">
           <div class="form-field"><label>First Name</label><input type="text" id="rFirst" name="first_name" placeholder="John" required></div>
@@ -528,42 +531,66 @@
     if (firstInput) firstInput.focus();
   }
 
-  function submitRegistration(event) {
+  async function submitRegistration(event) {
     event.preventDefault();
     var form = document.getElementById('registerForm');
+    var submitBtn = form.querySelector('button[type="submit"]');
     var proof = document.getElementById('rProof');
     if (!proof || !proof.files || proof.files.length === 0) {
       alert('Please attach a proof of purchase (bill of sale or dealer invoice) to register your trailer.');
       proof && proof.focus();
       return;
     }
-    if (proof.files[0].size > 10 * 1024 * 1024) {
+    var file = proof.files[0];
+    if (file.size > 10 * 1024 * 1024) {
       alert('Proof of purchase file is too large. Please attach a file under 10MB.');
       return;
     }
-    var data = new FormData(form);
-    fetch(form.action, {
-      method: 'POST',
-      body: data,
-      headers: { 'Accept': 'application/json' }
-    })
-    .then(function(response) {
-      return response.json().then(function(body) { return { ok: response.ok, status: response.status, body: body }; });
-    })
-    .then(function(result) {
-      if (result.ok) {
-        form.style.display = 'none';
-        document.getElementById('registerSuccess').style.display = 'block';
-      } else {
-        console.error('Formspree submission failed:', result);
-        var msg = (result.body && (result.body.error || (result.body.errors && result.body.errors.map(function(e){return e.message;}).join(', ')))) || ('HTTP ' + result.status);
-        alert('Submission failed: ' + msg + '\n\nPlease try again or email us at sales@waltontrailers.com.');
-      }
-    })
-    .catch(function(err) {
-      console.error('Formspree network error:', err);
-      alert('Something went wrong. Please check your connection and try again.');
-    });
+    // Honeypot — bots fill this hidden field; humans don't.
+    var gotcha = form.querySelector('input[name="_gotcha"]');
+    if (gotcha && gotcha.value) return;
+
+    submitBtn.disabled = true;
+    var originalLabel = submitBtn.textContent;
+    submitBtn.textContent = 'Submitting…';
+
+    try {
+      var vin = (document.getElementById('rVin').value || '').trim().toUpperCase();
+      // Object key inside the bucket: <vin>/<timestamp>-<original-name>.
+      // VIN prefix groups proofs per trailer; timestamp dedupes if the
+      // same trailer is re-registered.
+      var safeName = file.name.replace(/[^a-zA-Z0-9._-]+/g, '_');
+      var objectPath = (vin || 'unknown-vin') + '/' + Date.now() + '-' + safeName;
+
+      await WaltonSupabase.uploadFile('proof-of-purchase', objectPath, file);
+
+      await WaltonSupabase.insert('trailer_registrations', {
+        first_name: document.getElementById('rFirst').value.trim(),
+        last_name:  document.getElementById('rLast').value.trim(),
+        email:      document.getElementById('rEmail').value.trim(),
+        phone:      document.getElementById('rPhone').value.trim() || null,
+        address:    document.getElementById('rAddress').value.trim(),
+        state:      document.getElementById('rState').value.trim(),
+        zip:        document.getElementById('rZip').value.trim(),
+        country:    document.getElementById('rCountry').value.trim() || 'United States',
+        purchase_date: document.getElementById('rDate').value || null,
+        vin:        vin || null,
+        model:      document.getElementById('rModel').value.trim(),
+        dealer:     document.getElementById('rDealer').value.trim(),
+        proof_url:  objectPath,
+        user_agent: navigator.userAgent,
+        source:     'register.html'
+      });
+
+      form.style.display = 'none';
+      document.getElementById('registerSuccess').style.display = 'block';
+    } catch (err) {
+      console.error('Registration failed:', err);
+      var hint = err && err.status === 0 ? 'Check your internet connection.' : 'Please try again or email registrations@waltontrailers.com.';
+      alert('We couldn\'t save your registration. ' + hint);
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalLabel;
+    }
   }
   </script>
 
@@ -767,6 +794,7 @@
     </div>
   </div>
 </div>
+<script src="walton-supabase.js"></script>
 <script src="walton-chat.js"></script>
 <script src="walton-finder.js"></script>
 
