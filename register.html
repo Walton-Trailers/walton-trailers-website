@@ -509,11 +509,25 @@
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:12px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
         <p style="font-size:18px;font-weight:500;margin-bottom:8px;color:var(--black);">Trailer Registered!</p>
         <p style="color:rgba(10,10,10,0.6);font-size:14px;">Your ownership record is on file. Welcome to the Walton family.</p>
+        <button type="button" class="form-reset-btn" onclick="resetRegisterForm()" style="margin-top:24px;background:transparent;border:1px solid var(--rust);color:var(--rust);padding:10px 24px;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;cursor:pointer;transition:background 0.18s,color 0.18s;">Register another trailer</button>
       </div>
     </div>
   </div>
 
   <script>
+  // Reset the registration form after a successful submission so the
+  // dealer can record another trailer without reloading the page.
+  function resetRegisterForm() {
+    var form = document.getElementById('registerForm');
+    var success = document.getElementById('registerSuccess');
+    if (!form || !success) return;
+    form.reset();
+    success.style.display = 'none';
+    form.style.display = '';
+    var firstInput = form.querySelector('input:not([type="hidden"]):not([type="file"])');
+    if (firstInput) firstInput.focus();
+  }
+
   function submitRegistration(event) {
     event.preventDefault();
     var form = document.getElementById('registerForm');

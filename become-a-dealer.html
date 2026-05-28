@@ -500,6 +500,7 @@
         <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
         <h4>Inquiry Received</h4>
         <p>Thanks for your interest in becoming a Walton dealer. A rep will be in touch within 2 business days.</p>
+        <button type="button" onclick="resetDealerForm()" style="margin-top:24px;background:transparent;border:1px solid var(--rust);color:var(--rust);padding:10px 24px;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;cursor:pointer;transition:background 0.18s,color 0.18s;">Submit another inquiry</button>
       </div>
     </div>
   </div>
@@ -722,6 +723,24 @@ function newCaptcha() {
   var input = document.getElementById('captchaA');
   if (input) input.value = '';
   window._captchaAns = a + b;
+}
+
+// Reset the dealer inquiry form after a successful submission so the
+// user can fill it out again from the same page. The form is a <div>
+// (not a real <form>) so we manually clear each input.
+function resetDealerForm() {
+  var formDiv = document.getElementById('dealerForm');
+  var success = document.getElementById('dealerSuccess');
+  if (!formDiv || !success) return;
+  formDiv.querySelectorAll('input, select, textarea').forEach(function (el) {
+    if (el.type === 'checkbox' || el.type === 'radio') el.checked = false;
+    else el.value = '';
+  });
+  success.style.display = 'none';
+  formDiv.style.display = '';
+  newCaptcha(); // Refresh the captcha so the next submit isn't pre-answered.
+  var firstInput = formDiv.querySelector('input:not([type="hidden"]), textarea, select');
+  if (firstInput) firstInput.focus();
 }
 
 function submitDealerForm() {

@@ -284,6 +284,20 @@
     max-width: 380px;
     margin: 0 auto;
   }
+  .form-reset-btn {
+    margin-top: 24px;
+    background: transparent;
+    border: 1px solid var(--rust);
+    color: var(--rust);
+    padding: 10px 24px;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s;
+  }
+  .form-reset-btn:hover { background: var(--rust); color: var(--white); }
 
   /* ── INFO BAR ── */
   .info-bar {
@@ -585,6 +599,7 @@
           <div class="success-icon">&#10003;</div>
           <h3>Request Sent</h3>
           <p>Thanks! A dealer will be in touch within 1 business day to discuss your trailer needs.</p>
+          <button type="button" class="form-reset-btn" onclick="resetContactForm('buy')">Submit another request</button>
         </div>
       </div>
     </div>
@@ -647,6 +662,7 @@
           <div class="success-icon">&#10003;</div>
           <h3>Support Request Submitted</h3>
           <p>Our support team will review your request and get back to you as soon as possible.</p>
+          <button type="button" class="form-reset-btn" onclick="resetContactForm('owner')">Submit another request</button>
         </div>
       </div>
     </div>
@@ -701,6 +717,7 @@
           <div class="success-icon">&#10003;</div>
           <h3>Inquiry Received</h3>
           <p>Thanks for your interest in the Walton dealer program. Our dealer development team will reach out within 2 business days.</p>
+          <button type="button" class="form-reset-btn" onclick="resetContactForm('dealer')">Submit another request</button>
         </div>
       </div>
     </div>
@@ -933,6 +950,20 @@ function selectTriage(type) {
       panel.scrollIntoView({behavior: 'smooth', block: 'start'});
     }, 80);
   }
+}
+
+/* Reset the contact form after a successful submission so users
+   can submit another inquiry without reloading the page. */
+function resetContactForm(type) {
+  var form = document.getElementById('form-' + type);
+  var success = document.getElementById('success-' + type);
+  if (!form || !success) return;
+  form.reset();
+  success.style.display = 'none';
+  form.style.display = '';
+  // Scroll back to the form's first field so the user has something to do.
+  var firstInput = form.querySelector('input:not([type="hidden"]), textarea, select');
+  if (firstInput) firstInput.focus();
 }
 
 /* ── FORM SUBMISSION ── */
