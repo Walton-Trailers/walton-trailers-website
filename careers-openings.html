@@ -14,21 +14,21 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Careers | Walton Trailers</title>
-  <meta name="description" content="Join the Walton Trailers team. We're hiring motivated people who take pride in building world-class trailers.">
+  <title>Current Openings | Walton Trailers</title>
+  <meta name="description" content="Open positions at Walton Trailers in Logan, Utah. Welders, fabricators, mechanics, and more.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://www.waltontrailers.com/careers.html">
+  <link rel="canonical" href="https://www.waltontrailers.com/careers-openings.html">
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Walton Trailers">
-  <meta property="og:title" content="Careers | Walton Trailers">
-  <meta property="og:description" content="Join the Walton Trailers team. We're hiring motivated people who take pride in building world-class trailers.">
-  <meta property="og:url" content="https://www.waltontrailers.com/careers.html">
+  <meta property="og:title" content="Current Openings | Walton Trailers">
+  <meta property="og:description" content="Open positions at Walton Trailers in Logan, Utah. Welders, fabricators, mechanics, and more.">
+  <meta property="og:url" content="https://www.waltontrailers.com/careers-openings.html">
   <meta property="og:image" content="https://www.waltontrailers.com/og-image.jpg">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Careers | Walton Trailers">
-  <meta name="twitter:description" content="Join the Walton Trailers team. We're hiring motivated people who take pride in building world-class trailers.">
+  <meta name="twitter:title" content="Current Openings | Walton Trailers">
+  <meta name="twitter:description" content="Open positions at Walton Trailers in Logan, Utah. Welders, fabricators, mechanics, and more.">
   <meta name="twitter:image" content="https://www.waltontrailers.com/og-image.jpg">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -315,6 +315,76 @@
 
   .jobs-section { background: var(--steel); }
 
+  /* ── OPENINGS LIST ── */
+  .openings-section { padding: 80px 24px; background: var(--black); }
+  .openings-wrap { max-width: 880px; margin: 0 auto; }
+  .openings-list { display: flex; flex-direction: column; gap: 20px; }
+  .openings-loading,
+  .openings-empty {
+    text-align: center;
+    padding: 64px 24px;
+    color: rgba(245,243,239,0.5);
+    font-size: 15px;
+    border: 1px dashed rgba(245,243,239,0.15);
+    border-radius: 4px;
+  }
+  .openings-empty h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--rust);
+    margin-bottom: 8px;
+  }
+  .opening-card {
+    background: rgba(245,243,239,0.04);
+    border: 1px solid rgba(245,243,239,0.10);
+    border-radius: 4px;
+    padding: 28px 32px;
+    transition: background 0.18s, border-color 0.18s, transform 0.18s;
+  }
+  .opening-card:hover {
+    background: rgba(245,243,239,0.07);
+    border-color: rgba(183,163,128,0.45);
+    transform: translateY(-2px);
+  }
+  .opening-card-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap; margin-bottom: 8px;
+  }
+  .opening-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: var(--white);
+  }
+  .opening-meta {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
+    color: rgba(245,243,239,0.6);
+  }
+  .opening-meta span {
+    background: rgba(183,163,128,0.12);
+    border: 1px solid rgba(183,163,128,0.25);
+    border-radius: 999px;
+    padding: 4px 12px;
+    color: var(--rust);
+  }
+  .opening-summary {
+    color: rgba(245,243,239,0.75);
+    line-height: 1.7;
+    margin-bottom: 18px;
+  }
+  .opening-apply {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--rust);
+    font-size: 13px; letter-spacing: 1px; text-transform: uppercase;
+    font-weight: 500;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+    transition: color 0.18s;
+  }
+  .opening-apply:hover { color: var(--white); }
+
   </style>
 </head>
 <body>
@@ -433,44 +503,27 @@
 
 <main style="padding-top:92px;">
   <section class="page-hero">
-    <div class="page-hero-tag">Join the Team</div>
-    <h1>Build Something<br>That Lasts</h1>
-    <p>Walton Trailers is a locally-owned American manufacturer based in Logan, Utah. We're always looking for dedicated people who take pride in their craft.</p>
+    <div class="page-hero-tag">Now Hiring</div>
+    <h1>Current<br>Openings</h1>
+    <p>Open positions in Logan, Utah. Click any role to apply by email.</p>
+    <div style="margin-top:24px;">
+      <a href="careers.html" style="color: var(--rust); text-decoration: underline; text-underline-offset: 4px; font-size: 13px; letter-spacing: 1px; text-transform: uppercase;">&larr; Back to Careers Overview</a>
+    </div>
   </section>
   <div class="divider"></div>
-  <div class="perks-section-wrap">
-  <section class="perks-section">
-    <h2>Why Work Here</h2>
-    <div class="perks-grid">
-      <div class="perk-card"><div class="perk-icon">&#x1F1FA;&#x1F1F8;</div><h4>Made in the USA</h4><p>Work for a company that still builds everything in America, by hand, with pride.</p></div>
-      <div class="perk-card"><div class="perk-icon">&#x1F4B0;</div><h4>Competitive Pay</h4><p>Market-rate wages with performance reviews and opportunities for advancement.</p></div>
-      <div class="perk-card"><div class="perk-icon">&#x2695;</div><h4>Benefits</h4><p>Health, dental, and vision coverage for full-time employees and eligible dependents.</p></div>
-      <div class="perk-card"><div class="perk-icon">&#x1F3CB;</div><h4>Good Culture</h4><p>A team that shows up, supports each other, and takes pride in what they build.</p></div>
-    </div>
-    <div class="perks-cta-wrap">
-      <a href="careers-openings.html" class="perks-cta">Current Openings &rarr;</a>
-    </div>
-  </section>
-  </div>
-  <div class="divider"></div>
-  <section class="life-section">
-    <h2>Life at Walton</h2>
-    <p class="life-sub">Inside our Logan, Utah factory &mdash; the people, the process, and the trailers we build by hand every day.</p>
-    <div class="life-grid">
-      <div class="life-tile">
-        <div class="life-tile-img" style="background-image:url('Images/welder_careers.jpg');"></div>
-        <div class="life-tile-caption">Heavy steel, hand-built by our welders.</div>
-      </div>
-      <div class="life-tile">
-        <div class="life-tile-img" style="background-image:url('Images/welders.jpg');"></div>
-        <div class="life-tile-caption">The people behind every trailer.</div>
+
+  <!-- Openings list. Cards are rendered from jobs.json at load time so
+       HR can update postings by editing a single JSON file (no HTML
+       churn). Each entry: { id, title, location, type, summary,
+       description?, applyEmail? }. -->
+  <section class="openings-section">
+    <div class="openings-wrap">
+      <div id="openingsList" class="openings-list">
+        <div class="openings-loading">Loading openings&hellip;</div>
       </div>
     </div>
-    <div class="life-video-wrap">
-      <div class="life-video-placeholder">Add Recruiting Video Here</div>
-      <div class="life-video-sub">Replace with embedded YouTube/Vimeo or MP4 &mdash; a 60&ndash;90 second look at a typical day on the Walton shop floor.</div>
-    </div>
   </section>
+
   <div class="cta-band">
     <h2>Don't See Your Role?</h2>
     <p>Send us your resume and we'll keep it on file for future openings.</p>
@@ -686,6 +739,80 @@ function toggleMenu() {
   h.classList.toggle('open');
   document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
 }
+
+/**
+ * Load jobs.json and render the openings list. HR updates the JSON
+ * file (and commits to the repo) to add/remove postings — no HTML
+ * churn. Empty state appears automatically when the array is [].
+ *
+ * Schema per job (jobs.json is an array of these):
+ *   id          string  (slug, used for the mailto subject)
+ *   title       string  e.g. "MIG Welder"
+ *   location    string  e.g. "Logan, UT"
+ *   type        string  e.g. "Full-time" / "Part-time" / "Seasonal"
+ *   summary     string  short pitch shown on the card
+ *   applyEmail  string? defaults to careers@waltontrailers.com
+ *   active      bool?   set false to hide a posting without deleting
+ */
+(function () {
+  function escapeHtml(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  function render(jobs) {
+    var list = document.getElementById('openingsList');
+    if (!list) return;
+    var active = (jobs || []).filter(function (j) { return j && j.active !== false; });
+    if (active.length === 0) {
+      list.innerHTML = '<div class="openings-empty">'
+        + '<h3>No open roles right now</h3>'
+        + '<p>We’re not actively hiring at the moment. Send your resume to <a href="mailto:careers@waltontrailers.com" style="color:var(--rust);text-decoration:underline;">careers@waltontrailers.com</a> and we’ll reach out when something opens up.</p>'
+        + '</div>';
+      return;
+    }
+    list.innerHTML = active.map(function (job) {
+      var email = job.applyEmail || 'careers@waltontrailers.com';
+      var subject = 'Application: ' + (job.title || job.id || 'Walton Trailers role');
+      var mailto = 'mailto:' + email + '?subject=' + encodeURIComponent(subject);
+      return ''
+        + '<article class="opening-card">'
+        + '  <div class="opening-card-head">'
+        + '    <h2 class="opening-title">' + escapeHtml(job.title) + '</h2>'
+        + '    <div class="opening-meta">'
+        + (job.type ? '<span>' + escapeHtml(job.type) + '</span>' : '')
+        + (job.location ? '<span>' + escapeHtml(job.location) + '</span>' : '')
+        + '    </div>'
+        + '  </div>'
+        + (job.summary ? '<p class="opening-summary">' + escapeHtml(job.summary) + '</p>' : '')
+        + '  <a class="opening-apply" href="' + mailto + '">Apply by Email &rarr;</a>'
+        + '</article>';
+    }).join('');
+  }
+
+  function showError(msg) {
+    var list = document.getElementById('openingsList');
+    if (!list) return;
+    list.innerHTML = '<div class="openings-empty">'
+      + '<h3>Couldn’t load openings</h3>'
+      + '<p>' + escapeHtml(msg) + ' Please email <a href="mailto:careers@waltontrailers.com" style="color:var(--rust);text-decoration:underline;">careers@waltontrailers.com</a>.</p>'
+      + '</div>';
+  }
+
+  // Cache-bust during dev with a date query so updates show up
+  // immediately. Vercel honors cache headers separately for prod.
+  fetch('jobs.json?ts=' + Date.now())
+    .then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
+    .then(render)
+    .catch(function (err) {
+      console.error('jobs.json load failed:', err);
+      showError('Something went wrong fetching the openings.');
+    });
+})();
 </script>
 <script src="walton-phone-format.js" defer></script>
 </body>

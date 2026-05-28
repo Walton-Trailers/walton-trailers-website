@@ -1,0 +1,20 @@
+[
+  {
+    "id": "mig-welder",
+    "title": "MIG Welder",
+    "location": "Logan, UT",
+    "type": "Full-time",
+    "summary": "Join our welding team building commercial trailers from the ground up. MIG experience required; we'll train you on our processes. Day shift, climate-controlled shop.",
+    "applyEmail": "careers@waltontrailers.com",
+    "active": true
+  },
+  {
+    "id": "fabricator",
+    "title": "Steel Fabricator",
+    "location": "Logan, UT",
+    "type": "Full-time",
+    "summary": "Cut, shape, and prep steel components for assembly. Experience reading blueprints and operating shop equipment a plus.",
+    "applyEmail": "careers@waltontrailers.com",
+    "active": true
+  }
+]
