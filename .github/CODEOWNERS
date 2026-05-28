@@ -1,0 +1,13 @@
+# Walton Trailers Website — code ownership
+# Every PR touching anything here will request review from the listed accounts.
+# Docs: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-security/customizing-your-repository/about-code-owners
+
+# Default owners for everything in the repo
+*                          @taylor-nielsen @Jwill2026
+
+# Security-sensitive / infrastructure files require Jordan's review
+/vercel.json               @Jwill2026
+/.github/                  @Jwill2026
+/robots.txt                @Jwill2026
+/sitemap.xml               @Jwill2026
+/.gitignore                @Jwill2026
