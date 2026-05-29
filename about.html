@@ -140,10 +140,14 @@
   .page-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 5vw, 60px); letter-spacing: 3px; line-height: 1; margin-bottom: 24px; }
   .page-hero p { font-size: 16px; font-weight: 300; color: rgba(245,243,239,0.6); max-width: 560px; line-height: 1.8; }
   .divider { height: 1px; background: rgba(255,255,255,0.06); margin: 0; }
-  .story-section { padding: 96px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1200px; margin: 0 auto; }
-  .story-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px,4vw,56px); letter-spacing: 2px; margin-bottom: 24px; }
-  .story-section p { font-size: 14px; font-weight: 300; color: rgba(245,243,239,0.7); line-height: 1.9; margin-bottom: 16px; }
-  .story-img { background: linear-gradient(135deg, #1a1e28, #0d1018); aspect-ratio: 4/3; border-radius: 4px; border: 1px dashed rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.1); }
+  /* Heritage section runs as a light band — full-width white with the
+     content centered inside .story-section-inner so the visible background
+     spans the viewport like .values-section further down. */
+  .story-section { padding: 96px 48px; background: var(--white); color: var(--black); }
+  .story-section-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .story-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px,4vw,56px); letter-spacing: 2px; margin-bottom: 24px; color: var(--black); }
+  .story-section p { font-size: 14px; font-weight: 300; color: rgba(10,10,10,0.7); line-height: 1.9; margin-bottom: 16px; }
+  .story-img { background: linear-gradient(135deg, #ece9e0, #d8d4c8); aspect-ratio: 4/3; border-radius: 4px; border: 1px dashed rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(0,0,0,0.25); }
   .stats-strip { background: var(--steel); padding: 56px 48px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: center; }
   .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 56px; letter-spacing: 2px; color: var(--rust); }
   .stat-lbl { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: rgba(245,243,239,0.4); margin-top: 4px; }
@@ -159,7 +163,7 @@
   .cta-band p { font-size: 15px; color: rgba(10,10,10,0.65); margin-bottom: 32px; }
   .cta-band a { display: inline-flex; align-items: center; gap: 8px; background: #0a0a0a; color: #f5f3ef; padding: 14px 32px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; border-radius: 2px; transition: background 0.2s; }
   .cta-band a:hover { background: #1c2028; }
-  @media(max-width:768px) { .story-section { grid-template-columns:1fr; } .stats-strip { grid-template-columns:1fr 1fr; } .values-grid { grid-template-columns:1fr; } .page-hero, .story-section, .values-section { padding-left:24px; padding-right:24px; } }
+  @media(max-width:768px) { .story-section-inner { grid-template-columns:1fr; } .stats-strip { grid-template-columns:1fr 1fr; } .values-grid { grid-template-columns:1fr; } .page-hero, .story-section, .values-section { padding-left:24px; padding-right:24px; } }
 
     /* ════════════════════════════════
      SUPPORT CHAT WIDGET
@@ -418,13 +422,15 @@
   </section>
   <div class="divider"></div>
   <section class="story-section">
-    <div>
-      <h2>Our Heritage</h2>
-      <p>Walton Trailers was founded in 1973 in Logan, Utah with a simple mission: build the toughest, most dependable trailers on the market. What started as a small family operation has grown into one of the most trusted names in commercial trailer manufacturing.</p>
-      <p>Every trailer that leaves our facility is built by hand in the USA, using domestic steel and backed by a team that takes pride in what they build. We don't cut corners — on materials, on welds, or on the people we hire.</p>
-      <p>Today we manufacture 7 trailer series, from our single-axle mini tilt to heavy-duty gooseneck deckovers, all designed to work as hard as the people who use them.</p>
+    <div class="story-section-inner">
+      <div>
+        <h2>Our Heritage</h2>
+        <p>Walton Trailers was founded in 1973 in Logan, Utah with a simple mission: build the toughest, most dependable trailers on the market. What started as a small family operation has grown into one of the most trusted names in commercial trailer manufacturing.</p>
+        <p>Every trailer that leaves our facility is built by hand in the USA, using domestic steel and backed by a team that takes pride in what they build. We don't cut corners — on materials, on welds, or on the people we hire.</p>
+        <p>Today we manufacture 7 trailer series, from our single-axle mini tilt to heavy-duty gooseneck deckovers, all designed to work as hard as the people who use them.</p>
+      </div>
+      <div class="story-img">Factory Photo</div>
     </div>
-    <div class="story-img">Factory Photo</div>
   </section>
   <div class="divider"></div>
   <div class="stats-strip">
