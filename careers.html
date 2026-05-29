@@ -170,15 +170,37 @@
   .life-section { padding: 80px 48px; max-width: 1200px; margin: 0 auto; }
   .life-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px,4vw,48px); letter-spacing: 2px; margin-bottom: 16px; }
   .life-section .life-sub { font-size: 16px; font-weight: 300; color: rgba(245,243,239,0.5); margin-bottom: 40px; max-width: 560px; line-height: 1.7; }
-  .life-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin-bottom: 24px; }
-  .life-tile { background: var(--steel); border-radius: 4px; overflow: hidden; }
-  .life-tile-img { aspect-ratio: 4/3; background: linear-gradient(135deg,#1a1f28 0%,#0f1218 100%); display: flex; align-items: center; justify-content: center; padding: 24px; text-align: center; background-size: cover; background-position: center; }
-  .life-tile-placeholder { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,243,239,0.35); line-height: 1.8; }
-  .life-tile-caption { padding: 16px 20px; font-size: 13px; color: rgba(245,243,239,0.7); line-height: 1.6; }
-  .life-video-wrap { background: var(--steel); border-radius: 4px; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; padding: 24px; text-align: center; }
-  .life-video-placeholder { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: rgba(245,243,239,0.4); }
-  .life-video-sub { font-size: 12px; color: rgba(245,243,239,0.3); max-width: 360px; line-height: 1.6; }
-  @media(max-width:768px) { .perks-grid { grid-template-columns:1fr 1fr; } .job-card { flex-direction:column; align-items:flex-start; gap:20px; } .page-hero,.perks-section,.jobs-section,.life-section { padding-left:24px; padding-right:24px; } .life-grid { grid-template-columns: 1fr; } }
+  /* Life-at-Walton carousel. Slides translate horizontally; arrows
+     overlay the image edges; dots auto-rendered by JS so adding a
+     <div class="life-slide">…</div> requires no other markup. */
+  .life-carousel { position: relative; background: var(--steel); border-radius: 4px; overflow: hidden; margin-bottom: 24px; }
+  .life-carousel-track { display: flex; transition: transform 0.45s ease; }
+  .life-slide { flex: 0 0 100%; min-width: 0; }
+  .life-slide-img { aspect-ratio: 16/9; background: linear-gradient(135deg,#1a1f28 0%,#0f1218 100%); background-size: cover; background-position: center; }
+  .life-slide-caption { padding: 16px 24px; font-size: 13px; color: rgba(245,243,239,0.7); line-height: 1.6; }
+  .life-carousel-arrow {
+    position: absolute; top: calc(50% - 28px); transform: translateY(-50%);
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(10,10,10,0.55); color: var(--white);
+    border: 1px solid rgba(245,243,239,0.25);
+    font-size: 24px; line-height: 1; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .life-carousel-arrow:hover { background: rgba(10,10,10,0.85); border-color: rgba(245,243,239,0.5); }
+  .life-carousel-prev { left: 16px; }
+  .life-carousel-next { right: 16px; }
+  .life-carousel-dots { position: absolute; left: 0; right: 0; bottom: 56px; display: flex; gap: 8px; justify-content: center; pointer-events: auto; }
+  .life-carousel-dot { width: 8px; height: 8px; border-radius: 50%; border: none; padding: 0; background: rgba(245,243,239,0.35); cursor: pointer; transition: background 0.2s, transform 0.2s; }
+  .life-carousel-dot.active { background: var(--white); transform: scale(1.25); }
+  @media(max-width:768px) {
+    .perks-grid { grid-template-columns:1fr 1fr; }
+    .job-card { flex-direction:column; align-items:flex-start; gap:20px; }
+    .page-hero,.perks-section,.jobs-section,.life-section { padding-left:24px; padding-right:24px; }
+    .life-carousel-arrow { width: 36px; height: 36px; font-size: 20px; }
+    .life-carousel-prev { left: 8px; }
+    .life-carousel-next { right: 8px; }
+  }
 
     /* ════════════════════════════════
      SUPPORT CHAT WIDGET
@@ -444,7 +466,7 @@
     <div class="perks-grid">
       <div class="perk-card"><div class="perk-icon">&#x1F1FA;&#x1F1F8;</div><h4>Made in the USA</h4><p>Work for a company that still builds everything in America, by hand, with pride.</p></div>
       <div class="perk-card"><div class="perk-icon">&#x1F4B0;</div><h4>Competitive Pay</h4><p>Market-rate wages with performance reviews and opportunities for advancement.</p></div>
-      <div class="perk-card"><div class="perk-icon">&#x2695;</div><h4>Benefits</h4><p>Health, dental, and vision coverage for full-time employees and eligible dependents.</p></div>
+      <div class="perk-card"><div class="perk-icon">&#x2695;</div><h4>Benefits</h4><p>Generous PTO policy and 401(k) eligibility beginning after 90 days on the team. We do not offer health insurance benefits at this time.</p></div>
       <div class="perk-card"><div class="perk-icon">&#x1F3CB;</div><h4>Good Culture</h4><p>A team that shows up, supports each other, and takes pride in what they build.</p></div>
     </div>
     <div class="perks-cta-wrap">
@@ -456,19 +478,24 @@
   <section class="life-section">
     <h2>Life at Walton</h2>
     <p class="life-sub">Inside our Logan, Utah factory &mdash; the people, the process, and the trailers we build by hand every day.</p>
-    <div class="life-grid">
-      <div class="life-tile">
-        <div class="life-tile-img" style="background-image:url('Images/welder_careers.jpg');"></div>
-        <div class="life-tile-caption">Heavy steel, hand-built by our welders.</div>
+    <!-- Carousel — add more slides by duplicating a .life-slide block.
+         Dots are generated automatically by the JS at the bottom of the
+         page based on the number of .life-slide children, so no other
+         markup needs to change when adding photos. -->
+    <div class="life-carousel" data-life-carousel>
+      <div class="life-carousel-track">
+        <div class="life-slide">
+          <div class="life-slide-img" style="background-image:url('Images/welder_careers.jpg');"></div>
+          <div class="life-slide-caption">Heavy steel, hand-built by our welders.</div>
+        </div>
+        <div class="life-slide">
+          <div class="life-slide-img" style="background-image:url('Images/welders.jpg');"></div>
+          <div class="life-slide-caption">The people behind every trailer.</div>
+        </div>
       </div>
-      <div class="life-tile">
-        <div class="life-tile-img" style="background-image:url('Images/welders.jpg');"></div>
-        <div class="life-tile-caption">The people behind every trailer.</div>
-      </div>
-    </div>
-    <div class="life-video-wrap">
-      <div class="life-video-placeholder">Add Recruiting Video Here</div>
-      <div class="life-video-sub">Replace with embedded YouTube/Vimeo or MP4 &mdash; a 60&ndash;90 second look at a typical day on the Walton shop floor.</div>
+      <button type="button" class="life-carousel-arrow life-carousel-prev" aria-label="Previous photo">&#x2039;</button>
+      <button type="button" class="life-carousel-arrow life-carousel-next" aria-label="Next photo">&#x203A;</button>
+      <div class="life-carousel-dots" aria-hidden="true"></div>
     </div>
   </section>
   <div class="cta-band">
@@ -688,5 +715,75 @@ function toggleMenu() {
 }
 </script>
 <script src="walton-phone-format.js" defer></script>
+<script>
+  /* Life-at-Walton carousel — vanilla JS, no deps.
+     Reads slides from .life-carousel-track, auto-generates dot
+     buttons, handles arrow + dot clicks, and auto-advances every
+     7s (pausing when the user is interacting with the controls). */
+  (function () {
+    var carousel = document.querySelector('[data-life-carousel]');
+    if (!carousel) return;
+    var track = carousel.querySelector('.life-carousel-track');
+    var slides = carousel.querySelectorAll('.life-slide');
+    var dotsWrap = carousel.querySelector('.life-carousel-dots');
+    var prev = carousel.querySelector('.life-carousel-prev');
+    var next = carousel.querySelector('.life-carousel-next');
+    var index = 0;
+    var autoTimer = null;
+    var AUTO_MS = 7000;
+
+    if (!track || slides.length === 0) return;
+
+    // Single slide → hide controls entirely so the carousel reads
+    // as a plain image when Taylor only has one photo loaded.
+    if (slides.length === 1) {
+      if (prev) prev.style.display = 'none';
+      if (next) next.style.display = 'none';
+      if (dotsWrap) dotsWrap.style.display = 'none';
+      return;
+    }
+
+    // Build dots from slide count.
+    for (var i = 0; i < slides.length; i++) {
+      (function (i) {
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'life-carousel-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Show photo ' + (i + 1));
+        dot.addEventListener('click', function () { go(i, true); });
+        dotsWrap.appendChild(dot);
+      })(i);
+    }
+
+    function go(i, fromUser) {
+      index = ((i % slides.length) + slides.length) % slides.length;
+      track.style.transform = 'translateX(-' + (index * 100) + '%)';
+      var dots = dotsWrap.querySelectorAll('.life-carousel-dot');
+      dots.forEach(function (d, di) {
+        d.classList.toggle('active', di === index);
+      });
+      if (fromUser) restartAuto();
+    }
+
+    function restartAuto() {
+      if (autoTimer) clearInterval(autoTimer);
+      autoTimer = setInterval(function () { go(index + 1, false); }, AUTO_MS);
+    }
+
+    if (prev) prev.addEventListener('click', function () { go(index - 1, true); });
+    if (next) next.addEventListener('click', function () { go(index + 1, true); });
+
+    // Pause auto-advance when the tab is hidden.
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+      } else {
+        restartAuto();
+      }
+    });
+
+    restartAuto();
+  })();
+</script>
 </body>
 </html>
