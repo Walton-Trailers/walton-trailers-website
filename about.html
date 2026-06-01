@@ -147,7 +147,10 @@
   .story-section-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
   .story-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px,4vw,56px); letter-spacing: 2px; margin-bottom: 24px; color: var(--black); }
   .story-section p { font-size: 14px; font-weight: 300; color: rgba(10,10,10,0.7); line-height: 1.9; margin-bottom: 16px; }
-  .story-img { background: linear-gradient(135deg, #ece9e0, #d8d4c8); aspect-ratio: 4/3; border-radius: 4px; border: 1px dashed rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(0,0,0,0.25); }
+  /* Factory photo on the Heritage row. aspect-ratio keeps the grid
+     cell at 4:3 regardless of the source image's native ratio; the
+     image fills that box via object-fit: cover. */
+  .story-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 4px; display: block; }
   .stats-strip { background: var(--steel); padding: 56px 48px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: center; }
   .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 56px; letter-spacing: 2px; color: var(--rust); }
   .stat-lbl { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: rgba(245,243,239,0.4); margin-top: 4px; }
@@ -429,7 +432,7 @@
         <p>Every trailer that leaves our facility is built by hand in the USA, using domestic steel and backed by a team that takes pride in what they build. We don't cut corners — on materials, on welds, or on the people we hire.</p>
         <p>Today we manufacture 7 trailer series, from our single-axle mini tilt to heavy-duty gooseneck deckovers, all designed to work as hard as the people who use them.</p>
       </div>
-      <div class="story-img">Factory Photo</div>
+      <img src="Images/About_us.jpg" alt="Walton Trailers Logan, Utah manufacturing facility" class="story-img" />
     </div>
   </section>
   <div class="divider"></div>
