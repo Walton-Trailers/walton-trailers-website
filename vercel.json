@@ -21,52 +21,52 @@
     { "source": "/dealers/:path*",                         "destination": "/find-a-dealer.html",                  "permanent": true },
     { "source": "/stores/:path*",                          "destination": "/find-a-dealer.html",                  "permanent": true },
 
-    { "source": "/about/:path*",                           "destination": "/about.html",                          "permanent": true },
+    { "source": "/about/:path+",                           "destination": "/about.html",                          "permanent": true },
     { "source": "/about-us/:path*",                        "destination": "/about.html",                          "permanent": true },
 
-    { "source": "/contact/:path*",                         "destination": "/contact.html",                        "permanent": true },
+    { "source": "/contact/:path+",                         "destination": "/contact.html",                        "permanent": true },
     { "source": "/contact-us/:path*",                      "destination": "/contact.html",                        "permanent": true },
 
-    { "source": "/careers/:path*",                         "destination": "/careers.html",                        "permanent": true },
+    { "source": "/careers/:path+",                         "destination": "/careers.html",                        "permanent": true },
     { "source": "/jobs/:path*",                            "destination": "/careers.html",                        "permanent": true },
 
-    { "source": "/parts/:path*",                           "destination": "/parts.html",                          "permanent": true },
+    { "source": "/parts/:path+",                           "destination": "/parts.html",                          "permanent": true },
     { "source": "/parts-and-accessories/:path*",           "destination": "/parts.html",                          "permanent": true },
     { "source": "/accessories/:path*",                     "destination": "/parts.html",                          "permanent": true },
     { "source": "/shop/:path*",                            "destination": "/parts.html",                          "permanent": true },
 
-    { "source": "/become-a-dealer/:path*",                 "destination": "/become-a-dealer.html",                "permanent": true },
+    { "source": "/become-a-dealer/:path+",                 "destination": "/become-a-dealer.html",                "permanent": true },
     { "source": "/dealer-application/:path*",              "destination": "/become-a-dealer.html",                "permanent": true },
 
-    { "source": "/dealer-portal/:path*",                   "destination": "/dealer-portal.html",                  "permanent": true },
+    { "source": "/dealer-portal/:path+",                   "destination": "/dealer-portal.html",                  "permanent": true },
     { "source": "/dealer-login/:path*",                    "destination": "/dealer-portal.html",                  "permanent": true },
     { "source": "/login/:path*",                           "destination": "/dealer-portal.html",                  "permanent": true },
 
-    { "source": "/privacy/:path*",                         "destination": "/privacy.html",                        "permanent": true },
+    { "source": "/privacy/:path+",                         "destination": "/privacy.html",                        "permanent": true },
     { "source": "/privacy-policy/:path*",                  "destination": "/privacy.html",                        "permanent": true },
 
-    { "source": "/terms/:path*",                           "destination": "/terms.html",                          "permanent": true },
+    { "source": "/terms/:path+",                           "destination": "/terms.html",                          "permanent": true },
     { "source": "/terms-of-service/:path*",                "destination": "/terms.html",                          "permanent": true },
     { "source": "/terms-and-conditions/:path*",            "destination": "/terms.html",                          "permanent": true },
 
-    { "source": "/warranty/:path*",                        "destination": "/warranty.html",                       "permanent": true },
+    { "source": "/warranty/:path+",                        "destination": "/warranty.html",                       "permanent": true },
     { "source": "/warranty-claim/:path*",                  "destination": "/warranty.html",                       "permanent": true },
     { "source": "/warranty-claim-forms/:path*",            "destination": "/warranty.html",                       "permanent": true },
     { "source": "/walton-trailers-manufacturers-warranty-policy/:path*", "destination": "/warranty-policy.html",  "permanent": true },
-    { "source": "/warranty-policy/:path*",                 "destination": "/warranty-policy.html",                "permanent": true },
+    { "source": "/warranty-policy/:path+",                 "destination": "/warranty-policy.html",                "permanent": true },
 
     { "source": "/owners-resources/manuals/:path*",        "destination": "/user-manuals.html",                   "permanent": true },
     { "source": "/owners-resources/trailer-registration/:path*", "destination": "/register.html",                 "permanent": true },
     { "source": "/owners-resources/warranty-claim-forms/:path*", "destination": "/warranty.html",                 "permanent": true },
     { "source": "/owners-resources/:path*",                "destination": "/user-manuals.html",                   "permanent": true },
-    { "source": "/user-manuals/:path*",                    "destination": "/user-manuals.html",                   "permanent": true },
+    { "source": "/user-manuals/:path+",                    "destination": "/user-manuals.html",                   "permanent": true },
     { "source": "/manuals/:path*",                         "destination": "/user-manuals.html",                   "permanent": true },
     { "source": "/owners-manuals/:path*",                  "destination": "/user-manuals.html",                   "permanent": true },
 
-    { "source": "/video-guides/:path*",                    "destination": "/video-guides.html",                   "permanent": true },
+    { "source": "/video-guides/:path+",                    "destination": "/video-guides.html",                   "permanent": true },
     { "source": "/videos/:path*",                          "destination": "/video-guides.html",                   "permanent": true },
 
-    { "source": "/register/:path*",                        "destination": "/register.html",                       "permanent": true },
+    { "source": "/register/:path+",                        "destination": "/register.html",                       "permanent": true },
     { "source": "/register-trailer/:path*",                "destination": "/register.html",                       "permanent": true },
     { "source": "/trailer-registration/:path*",            "destination": "/register.html",                       "permanent": true },
 
