@@ -1937,6 +1937,15 @@ function submitQuote() {
   var btn = document.querySelector('.quote-submit');
   btn.disabled = true;
   btn.textContent = 'Sending\u2026';
+  fetch('https://walton-trailers-configurator.vercel.app/api/quotes', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      firstName: first, lastName: last, email: email,
+      mobile: phone, zipCode: zip, company: company,
+      categoryName: category, comments: use
+    })
+  }).catch(function(){});
   fetch('https://formspree.io/f/mbdabzpz', {
     method: 'POST',
     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
