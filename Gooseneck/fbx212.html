@@ -2343,7 +2343,28 @@ function carouselGoTo(el, idx) {
   }
   var inner = el.querySelector('.carousel-inner');
   if (inner) inner.style.transform = 'translateX(-' + (idx * 100) + '%)';
+  // Force-load the target slide's image. Native lazy-loading does not fire
+  // for transform-based carousel slides (they sit off the viewport), so the
+  // image would otherwise never load when navigated to.
+  var img = slides[idx] && slides[idx].querySelector('img');
+  if (img && img.getAttribute('loading') === 'lazy') img.setAttribute('loading', 'eager');
 }
+/* Preload all carousel images shortly after first paint, so navigation is
+   instant and no slide shows blank. Keeps initial load light (only the
+   eager hero loads up front) while guaranteeing every photo appears. */
+(function(){
+  function preloadCarousels(){
+    document.querySelectorAll('.overview-carousel .carousel-slide img').forEach(function(img){
+      if (img.getAttribute('loading') === 'lazy') img.setAttribute('loading', 'eager');
+    });
+  }
+  var schedule = window.requestIdleCallback || function(cb){ return setTimeout(cb, 200); };
+  if (document.readyState === 'complete') {
+    schedule(preloadCarousels);
+  } else {
+    window.addEventListener('load', function(){ schedule(preloadCarousels); });
+  }
+})();
 </script>
 <script>
 /* AUTO-HIDE empty carousels — if every slide only carries a placeholder
