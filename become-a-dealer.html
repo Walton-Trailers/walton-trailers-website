@@ -766,7 +766,7 @@ async function submitDealerForm() {
   var submitBtn = document.querySelector('#dealerForm .form-submit');
   if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Submitting…'; }
   try {
-    await WaltonSupabase.insert('dealer_inquiries', {
+    var inquiry = {
       first_name:  document.getElementById('dFirst').value.trim(),
       last_name:   document.getElementById('dLast').value.trim(),
       email:       document.getElementById('dEmail').value.trim(),
@@ -782,7 +782,26 @@ async function submitDealerForm() {
       service_program: document.querySelector('input[name="dService"]:checked').value,
       user_agent:  navigator.userAgent,
       source:      'become-a-dealer.html'
-    });
+    };
+    await WaltonSupabase.insert('dealer_inquiries', inquiry);
+    // Notification email — best-effort; the inquiry is already saved,
+    // so a Formspree hiccup must not fail the submission.
+    fetch('https://formspree.io/f/xwvygnnq', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        _subject: 'New Dealer Inquiry — ' + inquiry.dealer_name,
+        'Form': 'Become a Dealer (become-a-dealer.html)',
+        'Name': inquiry.first_name + ' ' + inquiry.last_name,
+        email: inquiry.email,
+        'Phone': inquiry.phone,
+        'Dealership': inquiry.dealer_name,
+        'Address': inquiry.address + (inquiry.city ? ', ' + inquiry.city : '') + ', ' + inquiry.state + ' ' + inquiry.zip + ', ' + inquiry.country,
+        'Years in Business': inquiry.years_in_business,
+        'Parts Program': inquiry.parts_program,
+        'Service Program': inquiry.service_program
+      })
+    }).catch(function(){});
     document.getElementById('dealerForm').style.display = 'none';
     document.getElementById('dealerSuccess').style.display = 'block';
   } catch (err) {
