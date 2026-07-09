@@ -564,7 +564,7 @@
 
       await WaltonSupabase.uploadFile('proof-of-purchase', objectPath, file);
 
-      await WaltonSupabase.insert('trailer_registrations', {
+      var registration = {
         first_name: document.getElementById('rFirst').value.trim(),
         last_name:  document.getElementById('rLast').value.trim(),
         email:      document.getElementById('rEmail').value.trim(),
@@ -580,7 +580,28 @@
         proof_url:  objectPath,
         user_agent: navigator.userAgent,
         source:     'register.html'
-      });
+      };
+      await WaltonSupabase.insert('trailer_registrations', registration);
+
+      // Notification email — best-effort; the registration is already
+      // saved, so a Formspree hiccup must not fail the submission.
+      fetch('https://formspree.io/f/xwvygnnq', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          _subject: 'New Trailer Registration — ' + (registration.vin || registration.model),
+          'Form': 'Register Your Trailer (register.html)',
+          'Name': registration.first_name + ' ' + registration.last_name,
+          email: registration.email,
+          'Phone': registration.phone || '—',
+          'Address': registration.address + ', ' + registration.state + ' ' + registration.zip + ', ' + registration.country,
+          'Purchase Date': registration.purchase_date || '—',
+          'VIN': registration.vin || '—',
+          'Model': registration.model,
+          'Dealer': registration.dealer,
+          'Proof of Purchase': 'Supabase storage → proof-of-purchase / ' + registration.proof_url
+        })
+      }).catch(function(){});
 
       form.style.display = 'none';
       document.getElementById('registerSuccess').style.display = 'block';
