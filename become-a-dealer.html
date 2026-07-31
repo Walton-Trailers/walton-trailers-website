@@ -141,19 +141,7 @@
   .page-hero p { font-size: 16px; font-weight: 300; color: rgba(245,243,239,0.6); max-width: 560px; line-height: 1.8; }
   .divider { height: 1px; background: rgba(255,255,255,0.06); }
   .dealer-form-section { background: var(--white); color: var(--black); }
-  .two-col { padding: 96px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; max-width: 1200px; margin: 0 auto; }
-  .two-col h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px,4vw,48px); letter-spacing: 2px; margin-bottom: 24px; color: var(--black); }
-  .dealer-image-placeholder {
-    width: 100%; aspect-ratio: 4/3;
-    background: #e8e2d6; border-radius: 4px;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 12px; color: rgba(10,10,10,0.3);
-    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-    border: 2px dashed rgba(10,10,10,0.12);
-    position: sticky; top: 110px;
-  }
-  .dealer-image-placeholder svg { width: 44px; height: 44px; opacity: 0.4; }
+  .two-col { padding: 96px 48px; max-width: 720px; margin: 0 auto; }
   .form-section { background: var(--steel); padding: 48px; border-radius: 4px; }
   .form-section h3 { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 2px; margin-bottom: 8px; color: var(--white); }
   .form-section p { font-size: 13px; color: rgba(245,243,239,0.45); margin-bottom: 32px; }
@@ -183,7 +171,7 @@
   .form-success svg { color: var(--rust); margin-bottom: 14px; }
   .form-success h4 { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 2px; margin-bottom: 8px; color: var(--white); }
   .form-success p { font-size: 14px; color: rgba(245,243,239,0.6); line-height: 1.7; }
-  @media(max-width:768px) { .two-col { grid-template-columns:1fr; } .form-row { grid-template-columns:1fr; } .page-hero,.two-col { padding-left:24px; padding-right:24px; } .dealer-image-placeholder { position: static; } }
+  @media(max-width:768px) { .form-row { grid-template-columns:1fr; } .page-hero,.two-col { padding-left:24px; padding-right:24px; } }
 
     /* ════════════════════════════════
      SUPPORT CHAT WIDGET
@@ -442,10 +430,6 @@
   </section>
   <section class="dealer-form-section">
   <div class="two-col">
-    <div class="dealer-image-placeholder" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-      <span>Image Placeholder</span>
-    </div>
     <div class="form-section">
       <h3>Express Interest</h3>
       <p>Fill out the form below and a Walton rep will be in touch within 2 business days.</p>
