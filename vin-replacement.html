@@ -474,6 +474,20 @@
   .label-info-tip { display: none; position: absolute; bottom: calc(100% + 10px); left: -10px; width: min(300px, calc(100vw - 64px)); background: var(--black); border: 1px solid rgba(183,163,128,0.35); color: rgba(245,243,239,0.9); font-size: 12px; letter-spacing: 0.2px; text-transform: none; line-height: 1.6; padding: 12px 14px; border-radius: 4px; box-shadow: 0 6px 24px rgba(0,0,0,0.45); z-index: 20; }
   .label-info-tip::after { content: ''; position: absolute; top: 100%; left: 14px; border: 6px solid transparent; border-top-color: var(--black); }
   .label-info:hover .label-info-tip, .label-info:focus-within .label-info-tip { display: block; }
+  .form-error {
+    display: none;
+    margin-top: 16px;
+    background: rgba(192,57,43,0.12);
+    border: 1px solid rgba(192,57,43,0.5);
+    border-left: 4px solid #c0392b;
+    border-radius: 4px;
+    padding: 14px 16px;
+    font-size: 13px;
+    color: #f2c4be;
+    line-height: 1.6;
+  }
+  .form-error.show { display: block; }
+  .form-error strong { color: #f5f3ef; }
   .vin-radio-group { display: flex; flex-direction: column; gap: 10px; }
   .vin-radio-option { display: flex; align-items: center; gap: 10px; font-size: 14px; color: rgba(245,243,239,0.8); cursor: pointer; text-transform: none; letter-spacing: 0; }
   .vin-radio-option input[type="radio"] { accent-color: var(--rust); width: 16px; height: 16px; cursor: pointer; }
@@ -691,23 +705,23 @@
         <p class="vin-hint" style="margin:-8px 0 16px;">Your documents are used only to verify ownership, are stored privately, and are never shared. See our <a href="privacy" style="color:var(--rust);">Privacy Policy</a>.</p>
         <div class="form-group">
           <label for="vin-file-id">Attachment 1: Government-Issued Photo ID</label>
-          <input type="file" id="vin-file-id" name="attachment_1_photo_id" accept="image/*,.pdf,.heic" required>
-          <span class="vin-hint">PDF, JPG, PNG, or HEIC &mdash; max 10MB.</span>
+          <input type="file" id="vin-file-id" name="attachment_1_photo_id" accept=".jpg,.jpeg,.png,.webp,.heic,.heif,.pdf" onchange="vinCheckFile(this)" required>
+          <span class="vin-hint">JPG, PNG, WEBP, HEIC, or PDF &mdash; max 10MB.</span>
         </div>
         <div class="form-group">
           <label for="vin-file-ownership">Attachment 2: Proof of Ownership (Title, Registration, or MSO)</label>
-          <input type="file" id="vin-file-ownership" name="attachment_2_proof_of_ownership" accept="image/*,.pdf,.heic" required>
-          <span class="vin-hint">PDF, JPG, PNG, or HEIC &mdash; max 10MB.</span>
+          <input type="file" id="vin-file-ownership" name="attachment_2_proof_of_ownership" accept=".jpg,.jpeg,.png,.webp,.heic,.heif,.pdf" onchange="vinCheckFile(this)" required>
+          <span class="vin-hint">JPG, PNG, WEBP, HEIC, or PDF &mdash; max 10MB.</span>
         </div>
         <div class="form-group">
           <label for="vin-file-stamped">Attachment 3: Close-Up Photo of the Welded VIN Digits on the Frame</label>
-          <input type="file" id="vin-file-stamped" name="attachment_3_stamped_vin_photo" accept="image/*,.heic" required>
-          <span class="vin-hint">JPG, PNG, or HEIC &mdash; max 10MB.</span>
+          <input type="file" id="vin-file-stamped" name="attachment_3_stamped_vin_photo" accept=".jpg,.jpeg,.png,.webp,.heic,.heif,.pdf" onchange="vinCheckFile(this)" required>
+          <span class="vin-hint">JPG, PNG, WEBP, HEIC, or PDF &mdash; max 10MB.</span>
         </div>
         <div class="form-group">
           <label for="vin-file-trailer">Attachment 4: Photo of the Complete Trailer (Side View)</label>
-          <input type="file" id="vin-file-trailer" name="attachment_4_full_trailer_photo" accept="image/*,.heic" required>
-          <span class="vin-hint">JPG, PNG, or HEIC &mdash; max 10MB.</span>
+          <input type="file" id="vin-file-trailer" name="attachment_4_full_trailer_photo" accept=".jpg,.jpeg,.png,.webp,.heic,.heif,.pdf" onchange="vinCheckFile(this)" required>
+          <span class="vin-hint">JPG, PNG, WEBP, HEIC, or PDF &mdash; max 10MB.</span>
         </div>
 
         <div class="vin-form-section-heading">Section D: Owner Attestation</div>
@@ -730,6 +744,7 @@
           </div>
         </div>
 
+        <div class="form-error" id="vin-error" role="alert"></div>
         <button type="submit" class="form-submit">Submit VIN Replacement Request &rarr;</button>
         <p class="form-note">Incomplete submissions will be automatically rejected. Replacement stickers ship only to the address listed on your ID/Registration.</p>
       </form>
@@ -899,9 +914,66 @@ window.addEventListener('DOMContentLoaded', function () {
 /* ── FORM SUBMISSION ──
    Kept in its own script block so a parse failure on an old browser
    doesn't take down the nav/menu helpers above. */
+
+/* Mirrors the server-side bucket allowlist (vin-replacement-docs). */
+var VIN_OK_TYPES = { 'image/jpeg': 1, 'image/png': 1, 'image/webp': 1, 'image/heic': 1, 'image/heif': 1, 'application/pdf': 1 };
+var VIN_OK_EXT = /\.(jpe?g|png|webp|heic|heif|pdf)$/i;
+
+function vinShowError(html, focusEl) {
+  var box = document.getElementById('vin-error');
+  box.innerHTML = html;
+  box.classList.add('show');
+  box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  if (focusEl) focusEl.focus();
+}
+
+function vinClearError() {
+  var box = document.getElementById('vin-error');
+  box.classList.remove('show');
+  box.innerHTML = '';
+}
+
+/* Returns a human-readable problem string for a file, or null if it's fine. */
+function vinFileProblem(file) {
+  if (file.size > 10 * 1024 * 1024) {
+    return '<strong>&ldquo;' + vinEscape(file.name) + '&rdquo; is larger than 10MB.</strong> Please resize or compress it and attach it again.';
+  }
+  if (file.type && VIN_OK_TYPES[file.type]) return null;
+  if (!file.type && VIN_OK_EXT.test(file.name)) return null; // HEIC and friends often report no type
+  return '<strong>&ldquo;' + vinEscape(file.name) + '&rdquo; isn&rsquo;t a supported file type.</strong> Please attach a JPG, PNG, WEBP, or HEIC photo &mdash; or a PDF.';
+}
+
+function vinEscape(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+/* Instant feedback the moment a file is picked. */
+function vinCheckFile(input) {
+  vinClearError();
+  if (!input.files || input.files.length === 0) return;
+  var problem = vinFileProblem(input.files[0]);
+  if (problem) {
+    vinShowError(problem, input);
+    input.value = '';
+  }
+}
+
+/* Translate a WaltonSupabase upload error into plain English. */
+function vinUploadErrorHtml(label, fileName, err) {
+  var body = (err && err.body) || '';
+  if (/invalid_mime_type|mime type .* is not supported/i.test(body)) {
+    return '<strong>&ldquo;' + vinEscape(fileName) + '&rdquo; (' + label + ') isn&rsquo;t a supported file type.</strong> Please attach a JPG, PNG, WEBP, or HEIC photo &mdash; or a PDF &mdash; and submit again.';
+  }
+  if ((err && err.status === 413) || /exceed|too large|entity.?too.?large|payload/i.test(body)) {
+    return '<strong>&ldquo;' + vinEscape(fileName) + '&rdquo; (' + label + ') is too large.</strong> Files must be under 10MB. Please resize or compress it and submit again.';
+  }
+  return '<strong>We couldn&rsquo;t upload &ldquo;' + vinEscape(fileName) + '&rdquo; (' + label + ').</strong> Please try again in a moment, or email us at <a href="mailto:sales@waltontrailers.com" style="color:var(--rust);">sales@waltontrailers.com</a>.';
+}
+
 async function handleVinSubmit(event) {
   event.preventDefault();
   var form = document.getElementById('form-vin');
+  vinClearError();
 
   // Honeypot — bots fill this hidden field; humans don't. Show the success
   // state so autofill-extension victims aren't left with a dead button.
@@ -912,39 +984,30 @@ async function handleVinSubmit(event) {
     return;
   }
 
-  // Belt-and-suspenders: the bucket enforces 10MB + image/PDF server-side,
-  // but fail fast here with a friendlier message.
+  // Validate all four attachments up front with specific messages.
   var attachments = [
-    { id: 'vin-file-id',        slug: 'photo-id' },
-    { id: 'vin-file-ownership', slug: 'proof-of-ownership' },
-    { id: 'vin-file-stamped',   slug: 'stamped-vin' },
-    { id: 'vin-file-trailer',   slug: 'full-trailer' }
+    { id: 'vin-file-id',        slug: 'photo-id',           label: 'Photo ID' },
+    { id: 'vin-file-ownership', slug: 'proof-of-ownership', label: 'Proof of Ownership' },
+    { id: 'vin-file-stamped',   slug: 'stamped-vin',        label: 'Welded VIN Photo' },
+    { id: 'vin-file-trailer',   slug: 'full-trailer',       label: 'Trailer Photo' }
   ];
   for (var i = 0; i < attachments.length; i++) {
     var input = document.getElementById(attachments[i].id);
     if (!input.files || input.files.length === 0) {
-      alert('All 4 attachments are required. Incomplete submissions will be automatically rejected.');
-      input.focus();
+      vinShowError('<strong>Attachment missing: ' + attachments[i].label + '.</strong> All 4 attachments are required &mdash; incomplete submissions are automatically rejected.', input);
       return;
     }
-    var f = input.files[0];
-    if (f.size > 10 * 1024 * 1024) {
-      alert('Each attachment must be under 10MB. Please resize "' + f.name + '" and try again.');
-      input.focus();
+    var problem = vinFileProblem(input.files[0]);
+    if (problem) {
+      vinShowError(problem + ' (' + attachments[i].label + ')', input);
       return;
     }
-    if (f.type === 'image/svg+xml' || /\.svg$/i.test(f.name)) {
-      alert('SVG files are not accepted. Please attach a photo (JPG, PNG, HEIC) or PDF.');
-      input.focus();
-      return;
-    }
-    attachments[i].file = f;
+    attachments[i].file = input.files[0];
   }
 
   var sigDate = document.getElementById('vin-sig-date').value;
   if (!/^\d{4}-\d{2}-\d{2}$/.test(sigDate)) {
-    alert('Please enter the date as YYYY-MM-DD.');
-    document.getElementById('vin-sig-date').focus();
+    vinShowError('<strong>Please enter the signature date as YYYY-MM-DD.</strong>', document.getElementById('vin-sig-date'));
     return;
   }
 
@@ -952,8 +1015,9 @@ async function handleVinSubmit(event) {
   submitBtn.disabled = true;
   submitBtn.textContent = 'Uploading\u2026';
 
+  var last3 = (document.getElementById('vin-last3').value || '').trim();
+
   try {
-    var last3 = (document.getElementById('vin-last3').value || '').trim();
     // Per-request folder: vin-<last3>/<request-id>/<doc>-<name>. The random id
     // keeps one request's four documents unambiguous even if the same trailer
     // submits twice.
@@ -961,13 +1025,20 @@ async function handleVinSubmit(event) {
                   : Date.now() + '-' + Math.random().toString(36).slice(2, 10);
     var folder = (last3 ? 'vin-' + last3 : 'unknown-vin') + '/' + requestId;
 
+    // Upload sequentially so a failure can name the exact file that broke.
     var paths = {};
-    await Promise.all(attachments.map(function (a) {
+    for (var j = 0; j < attachments.length; j++) {
+      var a = attachments[j];
       var safeName = a.file.name.replace(/[^a-zA-Z0-9._-]+/g, '_');
-      var objectPath = folder + '/' + a.slug + '-' + safeName;
-      return WaltonSupabase.uploadFile('vin-replacement-docs', objectPath, a.file)
-        .then(function (p) { paths[a.slug] = p; });
-    }));
+      try {
+        paths[a.slug] = await WaltonSupabase.uploadFile('vin-replacement-docs', folder + '/' + a.slug + '-' + safeName, a.file);
+      } catch (uploadErr) {
+        console.error('VIN replacement upload failed (' + a.label + '):', uploadErr);
+        if (uploadErr instanceof TypeError) throw uploadErr; // network — handled below
+        vinShowError(vinUploadErrorHtml(a.label, a.file.name, uploadErr), document.getElementById(a.id));
+        return;
+      }
+    }
 
     var reasonEl = form.querySelector('input[name="replacement_reason"]:checked');
     var request = {
@@ -992,7 +1063,15 @@ async function handleVinSubmit(event) {
       user_agent:               navigator.userAgent,
       source:                   'vin-replacement.html'
     };
-    await WaltonSupabase.insert('vin_replacement_requests', request);
+
+    try {
+      await WaltonSupabase.insert('vin_replacement_requests', request);
+    } catch (insertErr) {
+      console.error('VIN replacement insert failed:', insertErr);
+      if (insertErr instanceof TypeError) throw insertErr; // network — handled below
+      vinShowError('<strong>Your documents uploaded, but we couldn&rsquo;t save your request details.</strong> Please try submitting again, or email us at <a href="mailto:sales@waltontrailers.com" style="color:var(--rust);">sales@waltontrailers.com</a>.');
+      return;
+    }
 
     // Notification email — best-effort; the request is already saved,
     // so a Formspree hiccup must not fail the submission.
@@ -1022,9 +1101,11 @@ async function handleVinSubmit(event) {
     document.getElementById('success-vin').style.display = 'block';
   } catch (err) {
     console.error('VIN replacement submission failed:', err);
-    var hint = (err instanceof TypeError) ? 'Check your internet connection.'
-             : 'Please try again or email us at sales@waltontrailers.com.';
-    alert('We couldn\'t save your request. ' + hint);
+    if (err instanceof TypeError) {
+      vinShowError('<strong>We couldn&rsquo;t reach the server.</strong> Please check your internet connection and try again.');
+    } else {
+      vinShowError('<strong>Something went wrong saving your request.</strong> Please try again, or email us at <a href="mailto:sales@waltontrailers.com" style="color:var(--rust);">sales@waltontrailers.com</a>.');
+    }
   } finally {
     submitBtn.disabled = false;
     submitBtn.innerHTML = 'Submit VIN Replacement Request &rarr;';
