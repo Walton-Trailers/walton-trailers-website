@@ -120,8 +120,11 @@ create table if not exists public.vin_replacement_requests (
   phone                    text not null,
   email                    text not null,
   shipping_address         text not null,
-  vin                      text not null,
-  trailer_year_model       text not null,
+  shipping_city            text not null default '',
+  shipping_state           text not null default '',
+  shipping_zip             text not null default '',
+  vin_last3                text not null,   -- last 3 digits of the VIN, as welded on the frame
+  trailer_model            text,            -- optional
   replacement_reason       text not null,
   replacement_reason_other text,
   photo_id_path            text not null,
@@ -156,8 +159,9 @@ create policy "auth read vin_replacement_requests"
 -- anyone with the (public) anon key could pin `id` values to break the
 -- sequence, backdate `created_at`, or pre-fill staff `notes`.
 revoke insert on public.vin_replacement_requests from anon;
-grant insert (full_name, phone, email, shipping_address, vin,
-              trailer_year_model, replacement_reason, replacement_reason_other,
+grant insert (full_name, phone, email, shipping_address, shipping_city,
+              shipping_state, shipping_zip, vin_last3, trailer_model,
+              replacement_reason, replacement_reason_other,
               photo_id_path, proof_of_ownership_path, stamped_vin_photo_path,
               trailer_photo_path, attestation_agreed, digital_signature,
               signature_date, source, user_agent)
