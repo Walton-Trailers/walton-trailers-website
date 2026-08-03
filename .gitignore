@@ -17,3 +17,4 @@ node_modules/
 # Dealer roster — business address data, not for public repo
 Customer List - Sheet1.csv
 dealer-list.csv
+supabase/.temp/

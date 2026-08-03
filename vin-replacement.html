@@ -14,21 +14,21 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us | Walton Trailers</title>
-  <meta name="description" content="Contact Walton Trailers — get help buying a trailer, owner support, or a VIN replacement.">
+  <title>VIN Replacement | Walton Trailers</title>
+  <meta name="description" content="Request a replacement VIN sticker for your Walton trailer. Proof of ownership, photo ID, and photos of the stamped VIN and trailer are required.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://www.waltontrailers.com/contact.html">
+  <link rel="canonical" href="https://www.waltontrailers.com/vin-replacement.html">
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Walton Trailers">
-  <meta property="og:title" content="Contact Us | Walton Trailers">
-  <meta property="og:description" content="Contact Walton Trailers — get help buying a trailer, owner support, or a VIN replacement.">
-  <meta property="og:url" content="https://www.waltontrailers.com/contact.html">
+  <meta property="og:title" content="VIN Replacement | Walton Trailers">
+  <meta property="og:description" content="Request a replacement VIN sticker for your Walton trailer. Proof of ownership, photo ID, and photos of the stamped VIN and trailer are required.">
+  <meta property="og:url" content="https://www.waltontrailers.com/vin-replacement.html">
   <meta property="og:image" content="https://www.waltontrailers.com/og-image.jpg">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Contact Us | Walton Trailers">
-  <meta name="twitter:description" content="Contact Walton Trailers — get help buying a trailer, owner support, or a VIN replacement.">
+  <meta name="twitter:title" content="VIN Replacement | Walton Trailers">
+  <meta name="twitter:description" content="Request a replacement VIN sticker for your Walton trailer. Proof of ownership, photo ID, and photos of the stamped VIN and trailer are required.">
   <meta name="twitter:image" content="https://www.waltontrailers.com/og-image.jpg">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -412,6 +412,77 @@
   section + section { border-top: 1px solid rgba(255,255,255,0.07); }
   footer, .main-footer { border-top: 2px solid rgba(255,255,255,0.12) !important; }
 
+  /* ── VIN REPLACEMENT PAGE ── */
+  .vin-section { padding: 56px 48px 80px; max-width: 820px; margin: 0 auto; }
+  .vin-warning {
+    background: rgba(192,57,43,0.10);
+    border: 1px solid rgba(192,57,43,0.45);
+    border-left: 4px solid #c0392b;
+    border-radius: 4px;
+    padding: 28px 32px;
+    margin-bottom: 40px;
+  }
+  .vin-warning h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 2px;
+    color: #e74c3c;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+  .vin-warning p { font-size: 14px; color: rgba(245,243,239,0.85); margin-bottom: 16px; line-height: 1.7; }
+  .vin-warning ol { margin: 0 0 0 20px; padding: 0; }
+  .vin-warning ol li { font-size: 14px; color: rgba(245,243,239,0.85); margin-bottom: 10px; line-height: 1.6; }
+  .vin-warning ol li strong { color: var(--white); }
+  .vin-form-section-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: var(--rust);
+    border-bottom: 1px solid rgba(183,163,128,0.3);
+    padding-bottom: 8px;
+    margin: 36px 0 20px;
+  }
+  .vin-form-section-heading:first-of-type { margin-top: 0; }
+  input[type="date"], input[type="file"] {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    padding: 12px 16px;
+    color: var(--white);
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  input[type="date"]:focus, input[type="file"]:focus { border-color: var(--rust); }
+  input[type="date"] { color-scheme: dark; }
+  input[type="file"] { padding: 10px 12px; cursor: pointer; }
+  input[type="file"]::file-selector-button {
+    background: var(--rust); border: none; border-radius: 2px; color: var(--white);
+    font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+    padding: 8px 14px; margin-right: 12px; cursor: pointer; font-family: 'DM Sans', sans-serif;
+    transition: background 0.2s;
+  }
+  input[type="file"]::file-selector-button:hover { background: var(--rust-dark); }
+  #vin-number { font-family: 'SF Mono', Menlo, Consolas, monospace; letter-spacing: 4px; text-transform: uppercase; }
+  .vin-hint { font-size: 12px; color: rgba(245,243,239,0.35); line-height: 1.5; }
+  .vin-radio-group { display: flex; flex-direction: column; gap: 10px; }
+  .vin-radio-option { display: flex; align-items: center; gap: 10px; font-size: 14px; color: rgba(245,243,239,0.8); cursor: pointer; text-transform: none; letter-spacing: 0; }
+  .vin-radio-option input[type="radio"] { accent-color: var(--rust); width: 16px; height: 16px; cursor: pointer; }
+  .vin-attest {
+    background: rgba(183,163,128,0.08);
+    border: 1px solid rgba(183,163,128,0.25);
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+  }
+  .vin-attest p { font-size: 13px; font-style: italic; color: rgba(245,243,239,0.75); line-height: 1.7; margin-bottom: 14px; }
+  .vin-attest-check { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--white); cursor: pointer; text-transform: none; letter-spacing: 0; line-height: 1.5; }
+  .vin-attest-check input[type="checkbox"] { accent-color: var(--rust); width: 16px; height: 16px; margin-top: 2px; flex-shrink: 0; cursor: pointer; }
+  @media(max-width:768px) { .vin-section { padding: 40px 24px 64px; } .vin-warning { padding: 20px 20px; } }
+
   </style>
 </head>
 <body>
@@ -518,156 +589,131 @@
 
 <main style="padding-top:92px;">
   <section class="page-hero">
-    <div class="page-hero-tag">We're Here to Help</div>
-    <h1>Contact Us</h1>
-    <p>Select the option that best describes your question and we'll get you to the right team.</p>
+    <div class="page-hero-tag">Owner Services</div>
+    <h1>VIN Replacement</h1>
+    <p>Request a replacement VIN sticker for your Walton trailer.</p>
   </section>
 
-  <section class="triage-section">
-    <div class="triage-label">What can we help you with?</div>
-    <div class="triage-grid">
-      <div class="triage-card" onclick="selectTriage('buy')" id="tcard-buy">
-        <span class="triage-icon">&#128722;</span>
-        <div class="triage-title">Buy a Trailer</div>
-        <div class="triage-desc">Questions about models, pricing, specs, or getting a quote</div>
-      </div>
-      <div class="triage-card" onclick="selectTriage('owner')" id="tcard-owner">
-        <span class="triage-icon">&#128295;</span>
-        <div class="triage-title">Owner Support</div>
-        <div class="triage-desc">Help with your existing trailer — parts, warranty, or repairs</div>
-      </div>
-      <a class="triage-card" href="vin-replacement" id="tcard-vin" style="display:block;">
-        <span class="triage-icon">&#127380;</span>
-        <div class="triage-title">VIN Replacement</div>
-        <div class="triage-desc">Request a replacement VIN sticker for your Walton trailer</div>
-      </a>
+  <section class="vin-section">
+    <div class="vin-warning">
+      <h2>&#128721; STOP: Read Before Submitting Your Request</h2>
+      <p>To prevent vehicle theft and comply with legal requirements, <strong>all 4 items below are required</strong>. Incomplete submissions will be automatically rejected.</p>
+      <ol>
+        <li><strong>Proof of Ownership</strong> (Clear copy of Title, Active Registration, or MSO)</li>
+        <li><strong>Government-Issued Photo ID</strong> (Must match the name on the ownership document)</li>
+        <li><strong>Photo of Stamped VIN</strong> (Location: Usually stamped directly into the inner side of the metal frame on the passenger side)</li>
+        <li><strong>Photo of the Full Trailer</strong> (Side view showing the entire trailer)</li>
+      </ol>
     </div>
 
-    <!-- ── FORM: Buy a Trailer ── -->
-    <div class="form-panel" id="fpanel-buy">
-      <div class="form-container">
-        <div class="form-section-title">Get a Quote</div>
-        <div class="form-section-sub">Tell us what you need and a dealer will follow up within 1 business day.</div>
-        <form id="form-buy" action="https://formspree.io/f/xwvygnnq" method="POST" onsubmit="handleSubmit(event,'buy')">
-          <input type="hidden" name="inquiry_type" value="Buy a Trailer / Quote Request">
-          <input type="hidden" name="_subject" value="Walton Contact — Buy a Trailer (Quote Request)">
-          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="buy-fname">First Name</label>
-              <input type="text" id="buy-fname" name="first_name" placeholder="John" required>
-            </div>
-            <div class="form-group">
-              <label for="buy-lname">Last Name</label>
-              <input type="text" id="buy-lname" name="last_name" placeholder="Smith" required>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="buy-email">Email</label>
-              <input type="email" id="buy-email" name="email" placeholder="john@example.com" required>
-            </div>
-            <div class="form-group">
-              <label for="buy-phone">Phone</label>
-              <input type="tel" id="buy-phone" name="phone" placeholder="(435) 000-0000">
-            </div>
+    <div class="form-container">
+      <div class="form-section-title">VIN Replacement Request</div>
+      <div class="form-section-sub">All fields are required. Your request cannot be submitted without the four attachments.</div>
+      <!-- Submits directly to Supabase via walton-supabase.js (same
+           pattern as register.html). The four documents land in the
+           private vin-replacement-docs Storage bucket; the metadata row
+           goes into public.vin_replacement_requests. Formspree is only
+           used for a best-effort notification email. -->
+      <form id="form-vin" method="post" onsubmit="handleVinSubmit(event)">
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+
+        <div class="vin-form-section-heading">Section A: Customer Information</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="vin-name">Full Name</label>
+            <input type="text" id="vin-name" name="full_name" placeholder="John Smith" autocomplete="name" maxlength="120" required>
           </div>
           <div class="form-group">
-            <label for="buy-trailer">Trailer of Interest</label>
-            <select id="buy-trailer" name="trailer_interest">
-              <option value="">— Select a trailer type —</option>
-              <option>Gooseneck Flatbeds</option>
-              <option>Dump Trailers</option>
-              <option>Tilt Deck Trailers</option>
-              <option>Deckover Equipment</option>
-              <option>Landscape Trailers</option>
-              <option>Not sure yet</option>
-            </select>
+            <label for="vin-phone">Phone Number</label>
+            <input type="tel" id="vin-phone" name="phone" placeholder="(435) 000-0000" autocomplete="tel" maxlength="40" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="vin-email">Email Address</label>
+          <input type="email" id="vin-email" name="email" placeholder="john@example.com" autocomplete="email" maxlength="254" required>
+        </div>
+        <div class="form-group">
+          <label for="vin-address">Shipping Address</label>
+          <textarea id="vin-address" name="shipping_address" placeholder="Street, City, State, ZIP" autocomplete="street-address" maxlength="500" style="min-height:80px;" required></textarea>
+          <span class="vin-hint">Note: The sticker will ONLY be shipped to the address listed on your ID/Registration.</span>
+        </div>
+
+        <div class="vin-form-section-heading">Section B: Trailer Specifications</div>
+        <div class="form-group">
+          <label for="vin-number">17-Digit VIN</label>
+          <input type="text" id="vin-number" name="vin" placeholder="17 characters" minlength="17"
+                 pattern="[A-HJ-NPR-Za-hj-npr-z0-9]{17}"
+                 title="Enter the full 17-character VIN. The letters I, O and Q are never used in a VIN."
+                 oninput="var v=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,17); if(v!==this.value)this.value=v;" required>
+          <span class="vin-hint">All 17 characters, exactly as stamped on the frame. VINs never contain the letters I, O or Q.</span>
+        </div>
+        <div class="form-group">
+          <label for="vin-yearmodel">Trailer Year &amp; Model</label>
+          <input type="text" id="vin-yearmodel" name="trailer_year_model" placeholder="e.g. 2021 Gooseneck GN2440" maxlength="120" required>
+        </div>
+        <div class="form-group">
+          <label>Reason for Replacement</label>
+          <div class="vin-radio-group">
+            <label class="vin-radio-option"><input type="radio" name="replacement_reason" value="Original tag missing / damaged" onchange="vinReasonChanged()" required> Original tag missing / damaged</label>
+            <label class="vin-radio-option"><input type="radio" name="replacement_reason" value="Restoring / repainting trailer" onchange="vinReasonChanged()"> Restoring / repainting trailer</label>
+            <label class="vin-radio-option"><input type="radio" name="replacement_reason" value="Other" id="vin-reason-other" onchange="vinReasonChanged()"> Other</label>
+            <input type="text" id="vin-reason-other-text" name="replacement_reason_other" placeholder="Please describe" maxlength="300" disabled>
+          </div>
+        </div>
+
+        <div class="vin-form-section-heading">Section C: Required Document Uploads</div>
+        <p class="vin-hint" style="margin:-8px 0 16px;">Your documents are used only to verify ownership, are stored privately, and are never shared. See our <a href="privacy" style="color:var(--rust);">Privacy Policy</a>.</p>
+        <div class="form-group">
+          <label for="vin-file-id">Attachment 1: Government-Issued Photo ID</label>
+          <input type="file" id="vin-file-id" name="attachment_1_photo_id" accept="image/*,.pdf,.heic" required>
+          <span class="vin-hint">PDF, JPG, PNG, or HEIC &mdash; max 10MB.</span>
+        </div>
+        <div class="form-group">
+          <label for="vin-file-ownership">Attachment 2: Proof of Ownership (Title, Registration, or MSO)</label>
+          <input type="file" id="vin-file-ownership" name="attachment_2_proof_of_ownership" accept="image/*,.pdf,.heic" required>
+          <span class="vin-hint">PDF, JPG, PNG, or HEIC &mdash; max 10MB.</span>
+        </div>
+        <div class="form-group">
+          <label for="vin-file-stamped">Attachment 3: Close-Up Photo of the Metal-Stamped VIN on the Frame</label>
+          <input type="file" id="vin-file-stamped" name="attachment_3_stamped_vin_photo" accept="image/*,.heic" required>
+          <span class="vin-hint">JPG, PNG, or HEIC &mdash; max 10MB.</span>
+        </div>
+        <div class="form-group">
+          <label for="vin-file-trailer">Attachment 4: Photo of the Complete Trailer (Side View)</label>
+          <input type="file" id="vin-file-trailer" name="attachment_4_full_trailer_photo" accept="image/*,.heic" required>
+          <span class="vin-hint">JPG, PNG, or HEIC &mdash; max 10MB.</span>
+        </div>
+
+        <div class="vin-form-section-heading">Section D: Owner Attestation</div>
+        <div class="vin-attest">
+          <p>&ldquo;I certify under penalty of perjury that I am the legal owner (or authorized agent of the owner) of the trailer identified above. I confirm that the information provided is accurate and that this replacement tag is requested for legitimate identification purposes only.&rdquo;</p>
+          <label class="vin-attest-check">
+            <input type="checkbox" name="attestation_agreed" value="Yes — owner attestation accepted" required>
+            I have read and agree to the attestation above.
+          </label>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="vin-signature">Digital Signature</label>
+            <input type="text" id="vin-signature" name="digital_signature" placeholder="Type your full legal name" autocomplete="name" maxlength="120" required>
           </div>
           <div class="form-group">
-            <label for="buy-message">Tell Us About Your Needs</label>
-            <textarea id="buy-message" name="message" placeholder="What will you be hauling? Any specific requirements?"></textarea>
+            <label for="vin-sig-date">Date</label>
+            <input type="date" id="vin-sig-date" name="signature_date" required>
+            <span class="vin-hint">Today’s date.</span>
           </div>
-          <button type="submit" class="form-submit">Send Request &rarr;</button>
-          <p class="form-note">We'll connect you with your nearest authorized Walton dealer. No spam — ever.</p>
-        </form>
-        <div class="form-dealer-cta">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
-          Not sure which model is right for you? <a href="find-a-dealer">Find an authorized Walton dealer near you</a> — they can walk you through the lineup in person.
         </div>
-        <div class="form-success" id="success-buy">
-          <div class="success-icon">&#10003;</div>
-          <h3>Request Sent</h3>
-          <p>Thanks! A dealer will be in touch within 1 business day to discuss your trailer needs.</p>
-          <button type="button" class="form-reset-btn" onclick="resetContactForm('buy')">Submit another request</button>
-        </div>
+
+        <button type="submit" class="form-submit">Submit VIN Replacement Request &rarr;</button>
+        <p class="form-note">Incomplete submissions will be automatically rejected. Replacement stickers ship only to the address listed on your ID/Registration.</p>
+      </form>
+      <div class="form-success" id="success-vin">
+        <div class="success-icon">&#10003;</div>
+        <h3>Request Submitted</h3>
+        <p>Thanks! Our team will verify your documents and follow up by email. Your replacement sticker will ship only to the address listed on your ID/Registration.</p>
+        <button type="button" class="form-reset-btn" onclick="resetVinForm()">Submit another request</button>
       </div>
     </div>
-
-    <!-- ── FORM: Owner Support ── -->
-    <div class="form-panel" id="fpanel-owner">
-      <div class="form-container">
-        <div class="form-section-title">Owner Support</div>
-        <div class="form-section-sub">We're here to help. Describe your issue and our support team will follow up promptly.</div>
-        <form id="form-owner" action="https://formspree.io/f/xwvygnnq" method="POST" onsubmit="handleSubmit(event,'owner')">
-          <input type="hidden" name="inquiry_type" value="Owner Support">
-          <input type="hidden" name="_subject" value="Walton Contact — Owner Support">
-          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="own-fname">First Name</label>
-              <input type="text" id="own-fname" name="first_name" placeholder="John" required>
-            </div>
-            <div class="form-group">
-              <label for="own-lname">Last Name</label>
-              <input type="text" id="own-lname" name="last_name" placeholder="Smith" required>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="own-email">Email</label>
-              <input type="email" id="own-email" name="email" placeholder="john@example.com" required>
-            </div>
-            <div class="form-group">
-              <label for="own-phone">Phone</label>
-              <input type="tel" id="own-phone" name="phone" placeholder="(435) 000-0000">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="own-serial">Trailer Serial Number</label>
-              <input type="text" id="own-serial" name="serial_number" placeholder="e.g. WTR-2021-00142">
-            </div>
-            <div class="form-group">
-              <label for="own-type">Issue Type</label>
-              <select id="own-type" name="issue_type">
-                <option value="">— Select —</option>
-                <option>Warranty Claim</option>
-                <option>Parts Inquiry</option>
-                <option>Repair / Service</option>
-                <option>Registration Help</option>
-                <option>User Manual Request</option>
-                <option>Other</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="own-message">Describe the Issue</label>
-            <textarea id="own-message" name="message" placeholder="Please describe what's happening..." required></textarea>
-          </div>
-          <button type="submit" class="form-submit">Submit Support Request &rarr;</button>
-          <p class="form-note">You can also visit our <a href="user-manuals" style="color:var(--rust);">Owner Resources hub</a> for manuals, FAQs, and self-service options.</p>
-        </form>
-        <div class="form-success" id="success-owner">
-          <div class="success-icon">&#10003;</div>
-          <h3>Support Request Submitted</h3>
-          <p>Our support team will review your request and get back to you as soon as possible.</p>
-          <button type="button" class="form-reset-btn" onclick="resetContactForm('owner')">Submit another request</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── FORM: General Question ── -->
   </section>
 </main>
 
@@ -774,94 +820,6 @@
   </div>
 </div>
 
-<!-- ═══════════ TRAILER FINDER MODAL ═══════════ -->
-<div class="modal-overlay" id="finderOverlay" onclick="overlayClick(event)">
-  <div class="modal" id="finderModal">
-    <div class="modal-header">
-      <div>
-        <div class="modal-title">Find My Trailer</div>
-        <div class="modal-subtitle">Answer 4 quick questions — we'll match you to the right Walton trailer.</div>
-      </div>
-      <button class="modal-close" onclick="closeFinder()">&#x2715;</button>
-    </div>
-    <div class="modal-body">
-      <div class="progress-bar">
-        <div class="progress-step active" id="ps1"></div>
-        <div class="progress-step" id="ps2"></div>
-        <div class="progress-step" id="ps3"></div>
-        <div class="progress-step" id="ps4"></div>
-      </div>
-      <div class="step active" id="step1">
-        <div class="step-label">Step 1 of 4</div>
-        <div class="step-question">What will you primarily use your trailer for?</div>
-        <div class="option-grid cols-3">
-          <div class="option-card" onclick="selectOption(this,'use','construction')"><span class="option-icon">&#127959;</span><div class="option-title">Construction</div><div class="option-desc">Equipment, materials, job site hauling</div><div class="check">&#10003;</div></div>
-          <div class="option-card" onclick="selectOption(this,'use','agriculture')"><span class="option-icon">&#127807;</span><div class="option-title">Agriculture</div><div class="option-desc">Farming equipment, livestock, hay</div><div class="check">&#10003;</div></div>
-          <div class="option-card" onclick="selectOption(this,'use','landscaping')"><span class="option-icon">&#127807;</span><div class="option-title">Landscaping</div><div class="option-desc">Mowers, trimmers, landscape materials</div><div class="check">&#10003;</div></div>
-          <div class="option-card" onclick="selectOption(this,'use','rental')"><span class="option-icon">&#128273;</span><div class="option-title">Rental Fleet</div><div class="option-desc">High-use fleet, rental yard inventory</div><div class="check">&#10003;</div></div>
-          <div class="option-card" onclick="selectOption(this,'use','other')"><span class="option-icon">&#128230;</span><div class="option-title">General Use</div><div class="option-desc">Hauling, moving, other applications</div><div class="check">&#10003;</div></div>
-        </div>
-        <div class="modal-nav"><button class="btn-next" id="next1" disabled onclick="goToStep(2)">Next &#8594;</button></div>
-      </div>
-      <div class="step" id="step2">
-        <div class="step-label">Step 2 of 4</div>
-        <div class="step-question">How do you typically unload your cargo?</div>
-        <div class="option-grid">
-          <div class="option-card" onclick="selectOption(this,'unload','dump')"><span class="option-icon">&#11015;</span><div class="option-title">Dump / Hydraulic</div><div class="option-desc">Bulk materials, dirt, gravel, demolition debris</div><div class="check">&#10003;</div></div>
-          <div class="option-card" onclick="selectOption(this,'unload','drive-off')"><span class="option-icon">&#128668;</span><div class="option-title">Drive Off / Walk Off</div><div class="option-desc">Equipment drives or walks off under its own power</div><div class="check">&#10003;</div></div>
-          <div class="option-card" onclick="selectOption(this,'unload','crane-fork')"><span class="option-icon">&#127959;</span><div class="option-title">Crane / Forklift</div><div class="option-desc">Lifted on and off with crane, forklift, or similar equipment</div><div class="check">&#10003;</div></div>
-          <div class="option-card" onclick="selectOption(this,'unload','manual')"><span class="option-icon">&#9995;</span><div class="option-title">Manual / By Hand</div><div class="option-desc">Unloaded by hand or with small tools</div><div class="check">&#10003;</div></div>
-        </div>
-        <div class="modal-nav"><button class="btn-back" onclick="goToStep(1)">&#8592; Back</button><button class="btn-next" id="next2" disabled onclick="goToStep(3)">Next &#8594;</button></div>
-      </div>
-      <div class="step" id="step3">
-        <div class="step-label">Step 3 of 4</div>
-        <div class="step-question">How much weight do you typically haul?</div>
-        <div class="weight-section">
-          <h3>Search Equipment to Add</h3>
-          <div class="equipment-search"><span class="search-icon">&#128269;</span><input type="text" id="eqSearch" placeholder="Search equipment (e.g. Skid Steer, Mini Excavator...)" onkeyup="searchEquipment(this.value)" autocomplete="off"></div>
-          <div class="equipment-results" id="eqResults"></div>
-          <div class="added-equipment" id="addedEquipment"></div>
-        </div>
-        <div class="weight-section">
-          <h3>Or Enter Weight Directly</h3>
-          <div class="weight-row"><label>Equipment / Machinery Weight</label><input type="number" class="weight-input" id="loadWeight" placeholder="0" oninput="updateWeightTotal()"><span class="weight-unit">lbs</span></div>
-          <div class="weight-row"><label>Cargo / Materials Weight</label><input type="number" class="weight-input" id="cargoWeight" placeholder="0" oninput="updateWeightTotal()"><span class="weight-unit">lbs</span></div>
-          <div class="weight-total"><span class="weight-total-label">Total Estimated Load</span><span class="weight-total-value" id="totalWeight">0 lbs</span></div>
-          <div class="gvwr-warning" id="gvwrWarning">&#9888; Your load exceeds 25,500 lbs. For loads beyond our standard lineup, contact a Walton dealer about custom builds.</div>
-        </div>
-        <div class="modal-nav"><button class="btn-back" onclick="goToStep(2)">&#8592; Back</button><button class="btn-next" onclick="goToStep(4)">Next &#8594;</button></div>
-      </div>
-      <div class="step" id="step4">
-        <div class="step-label">Step 4 of 4</div>
-        <div class="step-question">How often will you use this trailer?</div>
-        <div class="option-grid cols-3">
-          <div class="option-card" onclick="selectOption(this,'freq','daily')"><span class="option-icon">&#128197;</span><div class="option-title">Daily</div><div class="option-desc">Every working day, high-cycle use</div><div class="check">&#10003;</div></div>
-          <div class="option-card" onclick="selectOption(this,'freq','weekly')"><span class="option-icon">&#128467;</span><div class="option-title">Weekly</div><div class="option-desc">A few times per week, regular use</div><div class="check">&#10003;</div></div>
-          <div class="option-card" onclick="selectOption(this,'freq','occasional')"><span class="option-icon">&#128260;</span><div class="option-title">Occasionally</div><div class="option-desc">As needed, seasonal, or infrequent</div><div class="check">&#10003;</div></div>
-        </div>
-        <div class="modal-nav"><button class="btn-back" onclick="goToStep(3)">&#8592; Back</button><button class="btn-next" id="next4" disabled onclick="showResult()">See My Match &#8594;</button></div>
-      </div>
-      <div class="step" id="stepResult">
-        <div class="step-label">Your Recommended Trailer</div>
-        <div class="result-card">
-          <div class="result-header"><div class="result-badge">Best Match</div><div class="result-name" id="resultName"></div></div>
-          <div class="result-body">
-            <p class="result-why" id="resultWhy"></p>
-            <div class="result-specs" id="resultSpecs"></div>
-            <div class="result-alt"><h4>Also Consider</h4><div class="alt-options" id="altOptions"></div></div>
-            <div class="result-actions">
-              <a href="find-a-dealer" class="btn-find-dealer" id="finderDealerLink">Find a Dealer Near You</a>
-              <a href="#" class="btn-learn-more" id="finderLearnLink">View Trailers</a>
-            </div>
-          </div>
-        </div>
-        <div style="text-align:center"><button class="btn-restart" onclick="restartFinder()">Start Over</button></div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <script>
 function toggleMenu() {
   var m = document.getElementById('mobileMenu');
@@ -870,92 +828,182 @@ function toggleMenu() {
   h.classList.toggle('open');
 }
 
-/* ── TRIAGE LOGIC ── */
-var activeType = null;
-
-function selectTriage(type) {
-  // Update card states
-  ['buy','owner'].forEach(function(t) {
-    var card = document.getElementById('tcard-' + t);
-    var panel = document.getElementById('fpanel-' + t);
-    if (t === type) {
-      card.classList.add('active');
-      panel.classList.add('active');
-    } else {
-      card.classList.remove('active');
-      panel.classList.remove('active');
-    }
-  });
-  activeType = type;
-
-  // Scroll to form
-  var panel = document.getElementById('fpanel-' + type);
-  if (panel) {
-    setTimeout(function() {
-      panel.scrollIntoView({behavior: 'smooth', block: 'start'});
-    }, 80);
-  }
+/* ── VIN FORM LOGIC ── */
+function vinReasonChanged() {
+  var other = document.getElementById('vin-reason-other');
+  var otherText = document.getElementById('vin-reason-other-text');
+  var isOther = other && other.checked;
+  otherText.disabled = !isOther;
+  otherText.required = isOther;
+  if (!isOther) otherText.value = '';
 }
 
-/* Reset the contact form after a successful submission so users
-   can submit another inquiry without reloading the page. */
-function resetContactForm(type) {
-  var form = document.getElementById('form-' + type);
-  var success = document.getElementById('success-' + type);
-  if (!form || !success) return;
+function resetVinForm() {
+  var form = document.getElementById('form-vin');
+  var success = document.getElementById('success-vin');
   form.reset();
+  vinInitDate();
+  vinReasonChanged();
   success.style.display = 'none';
   form.style.display = '';
-  // Scroll back to the form's first field so the user has something to do.
-  var firstInput = form.querySelector('input:not([type="hidden"]):not([name="_gotcha"]), textarea, select');
+  var firstInput = form.querySelector('input:not([type="hidden"]):not([type="file"]):not([name="_gotcha"]), textarea, select');
   if (firstInput) firstInput.focus();
 }
 
-/* ── FORM SUBMISSION ── */
-function handleSubmit(event, type) {
-  event.preventDefault();
-  var form = document.getElementById('form-' + type);
-  var data = new FormData(form);
-
-  fetch(form.action, {
-    method: 'POST',
-    body: data,
-    headers: { 'Accept': 'application/json' }
-  })
-  .then(function(response) {
-    return response.json().then(function(body) { return { ok: response.ok, status: response.status, body: body }; });
-  })
-  .then(function(result) {
-    if (result.ok) {
-      form.style.display = 'none';
-      document.getElementById('success-' + type).style.display = 'block';
-    } else {
-      console.error('Formspree submission failed:', result);
-      var msg = (result.body && (result.body.error || (result.body.errors && result.body.errors.map(function(e){return e.message;}).join(', ')))) || ('HTTP ' + result.status);
-      alert('Submission failed: ' + msg + '\n\nPlease try again or email us at sales@waltontrailers.com.');
-    }
-  })
-  .catch(function(err) {
-    console.error('Formspree network error:', err);
-    alert('Something went wrong. Please check your connection and try again.');
-  });
+/* The attestation is signed "today" — pin the date field to today. */
+function vinInitDate() {
+  var d = document.getElementById('vin-sig-date');
+  if (!d) return;
+  var now = new Date();
+  var iso = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
+  d.value = iso;
+  d.min = iso;
+  d.max = iso;
 }
 
-/* ── AUTO-SELECT TRIAGE FROM URL HASH ── */
-window.addEventListener('DOMContentLoaded', function() {
-  var hash = window.location.hash.replace('#','');
-  if (['buy','owner'].indexOf(hash) !== -1) {
-    selectTriage(hash);
-  } else if (hash === 'dealer') {
-    // The Dealer Inquiry panel was replaced by the VIN Replacement card;
-    // send any old #dealer links to the dealer program page instead.
-    window.location.replace('become-a-dealer');
-  }
+window.addEventListener('DOMContentLoaded', function () {
+  vinInitDate();
+  // Browser form-state restoration (back button / reload) can restore the
+  // "Other" radio without firing change — re-sync the dependent text field.
+  vinReasonChanged();
 });
 </script>
 
+<script>
+/* ── FORM SUBMISSION ──
+   Kept in its own script block so a parse failure on an old browser
+   doesn't take down the nav/menu helpers above. */
+async function handleVinSubmit(event) {
+  event.preventDefault();
+  var form = document.getElementById('form-vin');
+
+  // Honeypot — bots fill this hidden field; humans don't. Show the success
+  // state so autofill-extension victims aren't left with a dead button.
+  var gotcha = form.querySelector('input[name="_gotcha"]');
+  if (gotcha && gotcha.value) {
+    form.style.display = 'none';
+    document.getElementById('success-vin').style.display = 'block';
+    return;
+  }
+
+  // Belt-and-suspenders: the bucket enforces 10MB + image/PDF server-side,
+  // but fail fast here with a friendlier message.
+  var attachments = [
+    { id: 'vin-file-id',        slug: 'photo-id' },
+    { id: 'vin-file-ownership', slug: 'proof-of-ownership' },
+    { id: 'vin-file-stamped',   slug: 'stamped-vin' },
+    { id: 'vin-file-trailer',   slug: 'full-trailer' }
+  ];
+  for (var i = 0; i < attachments.length; i++) {
+    var input = document.getElementById(attachments[i].id);
+    if (!input.files || input.files.length === 0) {
+      alert('All 4 attachments are required. Incomplete submissions will be automatically rejected.');
+      input.focus();
+      return;
+    }
+    var f = input.files[0];
+    if (f.size > 10 * 1024 * 1024) {
+      alert('Each attachment must be under 10MB. Please resize "' + f.name + '" and try again.');
+      input.focus();
+      return;
+    }
+    if (f.type === 'image/svg+xml' || /\.svg$/i.test(f.name)) {
+      alert('SVG files are not accepted. Please attach a photo (JPG, PNG, HEIC) or PDF.');
+      input.focus();
+      return;
+    }
+    attachments[i].file = f;
+  }
+
+  var sigDate = document.getElementById('vin-sig-date').value;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(sigDate)) {
+    alert('Please enter the date as YYYY-MM-DD.');
+    document.getElementById('vin-sig-date').focus();
+    return;
+  }
+
+  var submitBtn = form.querySelector('.form-submit');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Uploading\u2026';
+
+  try {
+    var vin = (document.getElementById('vin-number').value || '').trim().toUpperCase();
+    // Per-request folder: <vin>/<request-id>/<doc>-<name>. The random id keeps
+    // one request's four documents unambiguous even if the same VIN submits twice.
+    var requestId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID()
+                  : Date.now() + '-' + Math.random().toString(36).slice(2, 10);
+    var folder = (vin || 'unknown-vin') + '/' + requestId;
+
+    var paths = {};
+    await Promise.all(attachments.map(function (a) {
+      var safeName = a.file.name.replace(/[^a-zA-Z0-9._-]+/g, '_');
+      var objectPath = folder + '/' + a.slug + '-' + safeName;
+      return WaltonSupabase.uploadFile('vin-replacement-docs', objectPath, a.file)
+        .then(function (p) { paths[a.slug] = p; });
+    }));
+
+    var reasonEl = form.querySelector('input[name="replacement_reason"]:checked');
+    var request = {
+      full_name:                document.getElementById('vin-name').value.trim(),
+      phone:                    document.getElementById('vin-phone').value.trim(),
+      email:                    document.getElementById('vin-email').value.trim(),
+      shipping_address:         document.getElementById('vin-address').value.trim(),
+      vin:                      vin,
+      trailer_year_model:       document.getElementById('vin-yearmodel').value.trim(),
+      replacement_reason:       reasonEl ? reasonEl.value : '',
+      replacement_reason_other: document.getElementById('vin-reason-other-text').value.trim() || null,
+      photo_id_path:            paths['photo-id'],
+      proof_of_ownership_path:  paths['proof-of-ownership'],
+      stamped_vin_photo_path:   paths['stamped-vin'],
+      trailer_photo_path:       paths['full-trailer'],
+      attestation_agreed:       form.querySelector('input[name="attestation_agreed"]').checked,
+      digital_signature:        document.getElementById('vin-signature').value.trim(),
+      signature_date:           sigDate,
+      user_agent:               navigator.userAgent,
+      source:                   'vin-replacement.html'
+    };
+    await WaltonSupabase.insert('vin_replacement_requests', request);
+
+    // Notification email — best-effort; the request is already saved,
+    // so a Formspree hiccup must not fail the submission.
+    fetch('https://formspree.io/f/xwvygnnq', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        _subject: 'VIN Replacement Request — ' + vin,
+        'Form': 'VIN Replacement (vin-replacement.html)',
+        'Name': request.full_name,
+        email: request.email,
+        'Phone': request.phone,
+        'Shipping Address': request.shipping_address,
+        'VIN': vin,
+        'Trailer Year & Model': request.trailer_year_model,
+        'Reason': request.replacement_reason + (request.replacement_reason_other ? ' — ' + request.replacement_reason_other : ''),
+        'Digital Signature': request.digital_signature + ' (' + request.signature_date + ')',
+        'Documents (bucket vin-replacement-docs)':
+          'ID: ' + request.photo_id_path +
+          ' | Ownership: ' + request.proof_of_ownership_path +
+          ' | Stamped VIN: ' + request.stamped_vin_photo_path +
+          ' | Trailer: ' + request.trailer_photo_path
+      })
+    }).catch(function () {});
+
+    form.style.display = 'none';
+    document.getElementById('success-vin').style.display = 'block';
+  } catch (err) {
+    console.error('VIN replacement submission failed:', err);
+    var hint = (err instanceof TypeError) ? 'Check your internet connection.'
+             : 'Please try again or email us at sales@waltontrailers.com.';
+    alert('We couldn\'t save your request. ' + hint);
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = 'Submit VIN Replacement Request &rarr;';
+  }
+}
+</script>
+
+<script src="walton-supabase.js"></script>
 <script src="walton-chat.js"></script>
-<script src="walton-finder.js"></script>
 <script src="walton-phone-format.js" defer></script>
 </body>
 </html>
