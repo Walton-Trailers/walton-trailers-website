@@ -615,7 +615,7 @@
   </section>
 
   <section class="vin-section">
-    <div class="vin-warning">
+    <div class="vin-warning" id="vin-warning-box">
       <h2>&#128721; STOP: Read Before Submitting Your Request</h2>
       <p>To prevent vehicle theft and comply with legal requirements, <strong>all 4 items below are required</strong>. Incomplete submissions will be automatically rejected.</p>
       <ol>
@@ -627,8 +627,8 @@
     </div>
 
     <div class="form-container">
-      <div class="form-section-title">VIN Replacement Request</div>
-      <div class="form-section-sub">All fields are required except Trailer Model. Your request cannot be submitted without the four attachments.</div>
+      <div class="form-section-title" id="vin-form-title">VIN Replacement Request</div>
+      <div class="form-section-sub" id="vin-form-sub">All fields are required except Trailer Model. Your request cannot be submitted without the four attachments.</div>
       <!-- Submits directly to Supabase via walton-supabase.js (same
            pattern as register.html). The four documents land in the
            private vin-replacement-docs Storage bucket; the metadata row
@@ -879,6 +879,18 @@ function vinReasonChanged() {
   if (!isOther) otherText.value = '';
 }
 
+/* Success state: hide everything except the confirmation card so the
+   STOP warning and form header don't linger behind the checkmark. */
+function vinShowSuccess() {
+  document.getElementById('form-vin').style.display = 'none';
+  document.getElementById('vin-warning-box').style.display = 'none';
+  document.getElementById('vin-form-title').style.display = 'none';
+  document.getElementById('vin-form-sub').style.display = 'none';
+  var success = document.getElementById('success-vin');
+  success.style.display = 'block';
+  success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
 function resetVinForm() {
   var form = document.getElementById('form-vin');
   var success = document.getElementById('success-vin');
@@ -887,6 +899,10 @@ function resetVinForm() {
   vinReasonChanged();
   success.style.display = 'none';
   form.style.display = '';
+  document.getElementById('vin-warning-box').style.display = '';
+  document.getElementById('vin-form-title').style.display = '';
+  document.getElementById('vin-form-sub').style.display = '';
+  document.getElementById('vin-warning-box').scrollIntoView({ behavior: 'smooth', block: 'start' });
   var firstInput = form.querySelector('input:not([type="hidden"]):not([type="file"]):not([name="_gotcha"]), textarea, select');
   if (firstInput) firstInput.focus();
 }
@@ -979,8 +995,7 @@ async function handleVinSubmit(event) {
   // state so autofill-extension victims aren't left with a dead button.
   var gotcha = form.querySelector('input[name="_gotcha"]');
   if (gotcha && gotcha.value) {
-    form.style.display = 'none';
-    document.getElementById('success-vin').style.display = 'block';
+    vinShowSuccess();
     return;
   }
 
@@ -1097,8 +1112,7 @@ async function handleVinSubmit(event) {
       })
     }).catch(function () {});
 
-    form.style.display = 'none';
-    document.getElementById('success-vin').style.display = 'block';
+    vinShowSuccess();
   } catch (err) {
     console.error('VIN replacement submission failed:', err);
     if (err instanceof TypeError) {
