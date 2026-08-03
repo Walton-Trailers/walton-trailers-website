@@ -9,7 +9,7 @@
 
 ## 1. What this repo is
 
-`walton-trailers-website` is the **public marketing site** for Walton Trailers — `waltontrailers.com`. It's a **static HTML site** (no framework, no build step beyond Vercel's static serving). The repo contains 15 active HTML pages, a handful of vendored JS files (`walton-chat.js`, `walton-finder.js`, `walton-compare.js`, `chatbot-worker.js`), category subfolders for trailer model pages (`Gooseneck/`, `Deckover/`, `Landscape/`, `dump-trailers/`, `tilt-equipment/`), and a `_archive/` folder of retired pages (robots-disallowed).
+`walton-trailers-website` is the **public marketing site** for Walton Trailers — `waltontrailers.com`. It's a **static HTML site** (no framework, no build step beyond Vercel's static serving). The repo contains 17 active HTML pages, a handful of vendored JS files (`walton-chat.js`, `walton-finder.js`, `walton-compare.js`, `chatbot-worker.js`, `walton-supabase.js`), category subfolders for trailer model pages (`Gooseneck/`, `Deckover/`, `Landscape/`, `dump-trailers/`, `tilt-equipment/`), and a `_archive/` folder of retired pages (robots-disallowed).
 
 **Deploy target:** Vercel, project `walton-trailers-website` (ID `prj_v8JxUWYIDqAYXKHdvfHTF6aMgw0d`), Walton Trailers team (`team_nRfHWxUw9f8qXQp0EOgR0bHH`). Every push to `main` triggers a production deploy. Feature branches get preview deploys automatically.
 
@@ -58,16 +58,16 @@ In each of 15 HTML files, in 2 nav locations per file, this `<li>` appears immed
 - `rel="noopener noreferrer"` — security-correct for an external link (prevents reverse tabnabbing, suppresses referrer leak)
 - Indentation matches the surrounding `<li>` items per location (14 spaces in the mega-menu, 6 spaces in the footer/mobile menu)
 
-### Files affected (15)
+### Files affected (17)
 
-`about.html`, `become-a-dealer.html`, `careers.html`, `contact.html`, `dealer-portal.html`, `find-a-dealer.html`, `index.html`, `parts.html`, `privacy.html`, `register.html`, `terms.html`, `user-manuals.html`, `video-guides.html`, `warranty.html`, `warranty-policy.html`
+`about.html`, `become-a-dealer.html`, `careers.html`, `careers-openings.html`, `contact.html`, `dealer-portal.html`, `find-a-dealer.html`, `index.html`, `parts.html`, `privacy.html`, `register.html`, `terms.html`, `user-manuals.html`, `video-guides.html`, `vin-replacement.html`, `warranty.html`, `warranty-policy.html`
 
 ### Locations within each file (2 per file)
 
 - **Mega-menu** — inside the "Dealer Tools" column of the header dropdown, after `<li><a href="dealer-portal.html">Dealer Portal</a></li>`
 - **Footer / mobile menu** — inside the dealer-area `<ul>` near the bottom of each page, after the same Dealer Portal anchor
 
-To find every occurrence: `grep -n 'walton-parts-catalog.vercel.app' *.html` — should return 30 matches across 15 files.
+To find every occurrence: `grep -n 'walton-parts-catalog.vercel.app' *.html` — should return 34 matches across 17 files (2 per page).
 
 ### Why the marketing site links to it
 
@@ -101,7 +101,7 @@ A short and avoidable list:
 
 1. **Deleting or renaming the `walton-parts-catalog` Vercel project** — URL stops resolving. Don't do this without first updating this repo.
 2. **Moving the dealer entry away from the root path `/`** — if the catalog root becomes, say, a product browse page and the dealer login moves to `/dealer-login`, the link still resolves but lands dealers in the wrong place. Either keep something dealer-useful at `/` or update this repo's link target.
-3. **Custom domain cutover that retires the vercel.app URL** — if `parts.waltontrailers.com` becomes the canonical URL and the vercel.app URL is decommissioned, this repo needs the URL updated in 30 places.
+3. **Custom domain cutover that retires the vercel.app URL** — if `parts.waltontrailers.com` becomes the canonical URL and the vercel.app URL is decommissioned, this repo needs the URL updated in 34 places.
 4. **Extended downtime / broken catalog main** — if catalog main is broken for hours, dealers clicking the link hit an error page. Vercel preview-then-merge discipline avoids this.
 
 If any of those four are about to happen, coordinate with Jordan before or in lockstep — see §6.
@@ -190,10 +190,10 @@ Automated (optional — see future-proofing in §8):
 ### How to verify the markup hasn't drifted in this repo
 
 ```bash
-# Should output exactly 2 per file, total 30
+# Should output exactly 2 per file, total 34
 grep -c 'walton-parts-catalog.vercel.app' *.html
 
-# Should show 15 files, all returning 2
+# Should show 17 files, all returning 2
 grep -c 'walton-parts-catalog.vercel.app' *.html | grep -v ':0$'
 
 # Locate every occurrence
