@@ -15,20 +15,20 @@
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VIN Replacement | Walton Trailers</title>
-  <meta name="description" content="Request a replacement VIN sticker for your Walton trailer. Proof of ownership, photo ID, and photos of the stamped VIN and trailer are required.">
+  <meta name="description" content="Request a replacement VIN sticker for your Walton trailer. Proof of ownership, photo ID, and photos of the welded VIN digits and trailer are required.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.waltontrailers.com/vin-replacement.html">
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Walton Trailers">
   <meta property="og:title" content="VIN Replacement | Walton Trailers">
-  <meta property="og:description" content="Request a replacement VIN sticker for your Walton trailer. Proof of ownership, photo ID, and photos of the stamped VIN and trailer are required.">
+  <meta property="og:description" content="Request a replacement VIN sticker for your Walton trailer. Proof of ownership, photo ID, and photos of the welded VIN digits and trailer are required.">
   <meta property="og:url" content="https://www.waltontrailers.com/vin-replacement.html">
   <meta property="og:image" content="https://www.waltontrailers.com/og-image.jpg">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="VIN Replacement | Walton Trailers">
-  <meta name="twitter:description" content="Request a replacement VIN sticker for your Walton trailer. Proof of ownership, photo ID, and photos of the stamped VIN and trailer are required.">
+  <meta name="twitter:description" content="Request a replacement VIN sticker for your Walton trailer. Proof of ownership, photo ID, and photos of the welded VIN digits and trailer are required.">
   <meta name="twitter:image" content="https://www.waltontrailers.com/og-image.jpg">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -468,6 +468,12 @@
   input[type="file"]::file-selector-button:hover { background: var(--rust-dark); }
   #vin-number { font-family: 'SF Mono', Menlo, Consolas, monospace; letter-spacing: 4px; text-transform: uppercase; }
   .vin-hint { font-size: 12px; color: rgba(245,243,239,0.35); line-height: 1.5; }
+  .label-info { position: relative; display: inline-flex; align-items: center; margin-left: 6px; vertical-align: -2px; }
+  .label-info-btn { background: none; border: none; padding: 0; margin: 0; cursor: help; color: rgba(245,243,239,0.4); display: inline-flex; transition: color 0.2s; }
+  .label-info-btn:hover, .label-info-btn:focus { color: var(--rust); outline: none; }
+  .label-info-tip { display: none; position: absolute; bottom: calc(100% + 10px); left: -10px; width: min(300px, calc(100vw - 64px)); background: var(--black); border: 1px solid rgba(183,163,128,0.35); color: rgba(245,243,239,0.9); font-size: 12px; letter-spacing: 0.2px; text-transform: none; line-height: 1.6; padding: 12px 14px; border-radius: 4px; box-shadow: 0 6px 24px rgba(0,0,0,0.45); z-index: 20; }
+  .label-info-tip::after { content: ''; position: absolute; top: 100%; left: 14px; border: 6px solid transparent; border-top-color: var(--black); }
+  .label-info:hover .label-info-tip, .label-info:focus-within .label-info-tip { display: block; }
   .vin-radio-group { display: flex; flex-direction: column; gap: 10px; }
   .vin-radio-option { display: flex; align-items: center; gap: 10px; font-size: 14px; color: rgba(245,243,239,0.8); cursor: pointer; text-transform: none; letter-spacing: 0; }
   .vin-radio-option input[type="radio"] { accent-color: var(--rust); width: 16px; height: 16px; cursor: pointer; }
@@ -601,14 +607,14 @@
       <ol>
         <li><strong>Proof of Ownership</strong> (Clear copy of Title, Active Registration, or MSO)</li>
         <li><strong>Government-Issued Photo ID</strong> (Must match the name on the ownership document)</li>
-        <li><strong>Photo of Stamped VIN</strong> (Location: Usually stamped directly into the inner side of the metal frame on the passenger side)</li>
+        <li><strong>Photo of Welded VIN Digits</strong> (Location: The last 3 digits of the VIN are welded onto the inner side of the metal frame on the passenger side)</li>
         <li><strong>Photo of the Full Trailer</strong> (Side view showing the entire trailer)</li>
       </ol>
     </div>
 
     <div class="form-container">
       <div class="form-section-title">VIN Replacement Request</div>
-      <div class="form-section-sub">All fields are required. Your request cannot be submitted without the four attachments.</div>
+      <div class="form-section-sub">All fields are required except Trailer Model. Your request cannot be submitted without the four attachments.</div>
       <!-- Submits directly to Supabase via walton-supabase.js (same
            pattern as register.html). The four documents land in the
            private vin-replacement-docs Storage bucket; the metadata row
@@ -633,23 +639,43 @@
           <input type="email" id="vin-email" name="email" placeholder="john@example.com" autocomplete="email" maxlength="254" required>
         </div>
         <div class="form-group">
-          <label for="vin-address">Shipping Address</label>
-          <textarea id="vin-address" name="shipping_address" placeholder="Street, City, State, ZIP" autocomplete="street-address" maxlength="500" style="min-height:80px;" required></textarea>
+          <label for="vin-address">Street Address</label>
+          <input type="text" id="vin-address" name="shipping_address" placeholder="123 Main St" autocomplete="street-address" maxlength="200" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="vin-city">City</label>
+            <input type="text" id="vin-city" name="shipping_city" placeholder="Logan" autocomplete="address-level2" maxlength="100" required>
+          </div>
+          <div class="form-group">
+            <label for="vin-state">State</label>
+            <input type="text" id="vin-state" name="shipping_state" placeholder="UT" autocomplete="address-level1" maxlength="30" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="vin-zip">ZIP Code</label>
+          <input type="text" id="vin-zip" name="shipping_zip" placeholder="84321" autocomplete="postal-code" inputmode="numeric" maxlength="10" required>
           <span class="vin-hint">Note: The sticker will ONLY be shipped to the address listed on your ID/Registration.</span>
         </div>
 
         <div class="vin-form-section-heading">Section B: Trailer Specifications</div>
         <div class="form-group">
-          <label for="vin-number">17-Digit VIN</label>
-          <input type="text" id="vin-number" name="vin" placeholder="17 characters" minlength="17"
-                 pattern="[A-HJ-NPR-Za-hj-npr-z0-9]{17}"
-                 title="Enter the full 17-character VIN. The letters I, O and Q are never used in a VIN."
-                 oninput="var v=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,17); if(v!==this.value)this.value=v;" required>
-          <span class="vin-hint">All 17 characters, exactly as stamped on the frame. VINs never contain the letters I, O or Q.</span>
+          <label for="vin-last3">Last 3 Digits of VIN
+            <span class="label-info">
+              <button type="button" class="label-info-btn" aria-describedby="vinLast3Tip" aria-label="Where to find the last 3 digits of your VIN">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              </button>
+              <span class="label-info-tip" id="vinLast3Tip" role="tooltip">The last 3 digits of your VIN are welded onto the inner side of the metal frame on the passenger side. We only need these 3 digits &mdash; and they must match the last 3 digits of the VIN on your registration or title.</span>
+            </span>
+          </label>
+          <input type="text" id="vin-last3" name="vin_last3" placeholder="e.g. 142" inputmode="numeric" minlength="3" pattern="[0-9]{3}"
+                 title="Enter the last 3 digits of your VIN, as welded on the frame."
+                 oninput="var v=this.value.replace(/[^0-9]/g,'').slice(0,3); if(v!==this.value)this.value=v;" required>
+          <span class="vin-hint">Only the last 3 digits, as welded on the frame &mdash; they must match the last 3 digits of the VIN on your registration or title.</span>
         </div>
         <div class="form-group">
-          <label for="vin-yearmodel">Trailer Year &amp; Model</label>
-          <input type="text" id="vin-yearmodel" name="trailer_year_model" placeholder="e.g. 2021 Gooseneck GN2440" maxlength="120" required>
+          <label for="vin-model">Trailer Model <span style="text-transform:none;letter-spacing:0;">(optional)</span></label>
+          <input type="text" id="vin-model" name="trailer_model" placeholder="e.g. DHV207-14B" maxlength="120">
         </div>
         <div class="form-group">
           <label>Reason for Replacement</label>
@@ -674,7 +700,7 @@
           <span class="vin-hint">PDF, JPG, PNG, or HEIC &mdash; max 10MB.</span>
         </div>
         <div class="form-group">
-          <label for="vin-file-stamped">Attachment 3: Close-Up Photo of the Metal-Stamped VIN on the Frame</label>
+          <label for="vin-file-stamped">Attachment 3: Close-Up Photo of the Welded VIN Digits on the Frame</label>
           <input type="file" id="vin-file-stamped" name="attachment_3_stamped_vin_photo" accept="image/*,.heic" required>
           <span class="vin-hint">JPG, PNG, or HEIC &mdash; max 10MB.</span>
         </div>
@@ -927,12 +953,13 @@ async function handleVinSubmit(event) {
   submitBtn.textContent = 'Uploading\u2026';
 
   try {
-    var vin = (document.getElementById('vin-number').value || '').trim().toUpperCase();
-    // Per-request folder: <vin>/<request-id>/<doc>-<name>. The random id keeps
-    // one request's four documents unambiguous even if the same VIN submits twice.
+    var last3 = (document.getElementById('vin-last3').value || '').trim();
+    // Per-request folder: vin-<last3>/<request-id>/<doc>-<name>. The random id
+    // keeps one request's four documents unambiguous even if the same trailer
+    // submits twice.
     var requestId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID()
                   : Date.now() + '-' + Math.random().toString(36).slice(2, 10);
-    var folder = (vin || 'unknown-vin') + '/' + requestId;
+    var folder = (last3 ? 'vin-' + last3 : 'unknown-vin') + '/' + requestId;
 
     var paths = {};
     await Promise.all(attachments.map(function (a) {
@@ -948,8 +975,11 @@ async function handleVinSubmit(event) {
       phone:                    document.getElementById('vin-phone').value.trim(),
       email:                    document.getElementById('vin-email').value.trim(),
       shipping_address:         document.getElementById('vin-address').value.trim(),
-      vin:                      vin,
-      trailer_year_model:       document.getElementById('vin-yearmodel').value.trim(),
+      shipping_city:            document.getElementById('vin-city').value.trim(),
+      shipping_state:           document.getElementById('vin-state').value.trim(),
+      shipping_zip:             document.getElementById('vin-zip').value.trim(),
+      vin_last3:                last3,
+      trailer_model:            document.getElementById('vin-model').value.trim() || null,
       replacement_reason:       reasonEl ? reasonEl.value : '',
       replacement_reason_other: document.getElementById('vin-reason-other-text').value.trim() || null,
       photo_id_path:            paths['photo-id'],
@@ -970,14 +1000,14 @@ async function handleVinSubmit(event) {
       method: 'POST',
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        _subject: 'VIN Replacement Request — ' + vin,
+        _subject: 'VIN Replacement Request — VIN ending ' + last3,
         'Form': 'VIN Replacement (vin-replacement.html)',
         'Name': request.full_name,
         email: request.email,
         'Phone': request.phone,
-        'Shipping Address': request.shipping_address,
-        'VIN': vin,
-        'Trailer Year & Model': request.trailer_year_model,
+        'Shipping Address': request.shipping_address + ', ' + request.shipping_city + ', ' + request.shipping_state + ' ' + request.shipping_zip,
+        'VIN (last 3)': last3,
+        'Trailer Model': request.trailer_model || '—',
         'Reason': request.replacement_reason + (request.replacement_reason_other ? ' — ' + request.replacement_reason_other : ''),
         'Digital Signature': request.digital_signature + ' (' + request.signature_date + ')',
         'Documents (bucket vin-replacement-docs)':
