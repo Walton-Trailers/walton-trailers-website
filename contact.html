@@ -15,20 +15,20 @@
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Us | Walton Trailers</title>
-  <meta name="description" content="Contact Walton Trailers — get help buying a trailer, owner support, or dealer inquiries.">
+  <meta name="description" content="Contact Walton Trailers — get help buying a trailer, owner support, or a VIN replacement.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.waltontrailers.com/contact.html">
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Walton Trailers">
   <meta property="og:title" content="Contact Us | Walton Trailers">
-  <meta property="og:description" content="Contact Walton Trailers — get help buying a trailer, owner support, or dealer inquiries.">
+  <meta property="og:description" content="Contact Walton Trailers — get help buying a trailer, owner support, or a VIN replacement.">
   <meta property="og:url" content="https://www.waltontrailers.com/contact.html">
   <meta property="og:image" content="https://www.waltontrailers.com/og-image.jpg">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Contact Us | Walton Trailers">
-  <meta name="twitter:description" content="Contact Walton Trailers — get help buying a trailer, owner support, or dealer inquiries.">
+  <meta name="twitter:description" content="Contact Walton Trailers — get help buying a trailer, owner support, or a VIN replacement.">
   <meta name="twitter:image" content="https://www.waltontrailers.com/og-image.jpg">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -536,11 +536,11 @@
         <div class="triage-title">Owner Support</div>
         <div class="triage-desc">Help with your existing trailer — parts, warranty, or repairs</div>
       </div>
-      <div class="triage-card" onclick="selectTriage('dealer')" id="tcard-dealer">
-        <span class="triage-icon">&#127970;</span>
-        <div class="triage-title">Dealer Inquiry</div>
-        <div class="triage-desc">Becoming a dealer, dealer programs, or dealer account support</div>
-      </div>
+      <a class="triage-card" href="vin-replacement" id="tcard-vin" style="display:block;">
+        <span class="triage-icon">&#127380;</span>
+        <div class="triage-title">VIN Replacement</div>
+        <div class="triage-desc">Request a replacement VIN sticker for your Walton trailer</div>
+      </a>
     </div>
 
     <!-- ── FORM: Buy a Trailer ── -->
@@ -663,61 +663,6 @@
           <h3>Support Request Submitted</h3>
           <p>Our support team will review your request and get back to you as soon as possible.</p>
           <button type="button" class="form-reset-btn" onclick="resetContactForm('owner')">Submit another request</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── FORM: Dealer Inquiry ── -->
-    <div class="form-panel" id="fpanel-dealer">
-      <div class="form-container">
-        <div class="form-section-title">Dealer Inquiry</div>
-        <div class="form-section-sub">Interested in carrying Walton Trailers? Tell us about your business and we'll be in touch.</div>
-        <form id="form-dealer" action="https://formspree.io/f/xwvygnnq" method="POST" onsubmit="handleSubmit(event,'dealer')">
-          <input type="hidden" name="inquiry_type" value="Dealer Inquiry">
-          <input type="hidden" name="_subject" value="Walton Contact — Dealer Inquiry">
-          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="dlr-fname">First Name</label>
-              <input type="text" id="dlr-fname" name="first_name" placeholder="John" required>
-            </div>
-            <div class="form-group">
-              <label for="dlr-lname">Last Name</label>
-              <input type="text" id="dlr-lname" name="last_name" placeholder="Smith" required>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="dlr-email">Email</label>
-              <input type="email" id="dlr-email" name="email" placeholder="john@dealership.com" required>
-            </div>
-            <div class="form-group">
-              <label for="dlr-phone">Phone</label>
-              <input type="tel" id="dlr-phone" name="phone" placeholder="(435) 000-0000">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="dlr-biz">Business Name</label>
-              <input type="text" id="dlr-biz" name="business_name" placeholder="Your Dealership Name">
-            </div>
-            <div class="form-group">
-              <label for="dlr-location">Business Location</label>
-              <input type="text" id="dlr-location" name="location" placeholder="City, State">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="dlr-message">Tell Us About Your Business</label>
-            <textarea id="dlr-message" name="message" placeholder="Current brands you carry, years in business, lot size, etc."></textarea>
-          </div>
-          <button type="submit" class="form-submit">Submit Inquiry &rarr;</button>
-          <p class="form-note">You can also visit our <a href="become-a-dealer" style="color:var(--rust);">Become a Dealer</a> page for more information about the program.</p>
-        </form>
-        <div class="form-success" id="success-dealer">
-          <div class="success-icon">&#10003;</div>
-          <h3>Inquiry Received</h3>
-          <p>Thanks for your interest in the Walton dealer program. Our dealer development team will reach out within 2 business days.</p>
-          <button type="button" class="form-reset-btn" onclick="resetContactForm('dealer')">Submit another request</button>
         </div>
       </div>
     </div>
@@ -930,7 +875,7 @@ var activeType = null;
 
 function selectTriage(type) {
   // Update card states
-  ['buy','owner','dealer'].forEach(function(t) {
+  ['buy','owner'].forEach(function(t) {
     var card = document.getElementById('tcard-' + t);
     var panel = document.getElementById('fpanel-' + t);
     if (t === type) {
@@ -962,7 +907,7 @@ function resetContactForm(type) {
   success.style.display = 'none';
   form.style.display = '';
   // Scroll back to the form's first field so the user has something to do.
-  var firstInput = form.querySelector('input:not([type="hidden"]), textarea, select');
+  var firstInput = form.querySelector('input:not([type="hidden"]):not([name="_gotcha"]), textarea, select');
   if (firstInput) firstInput.focus();
 }
 
@@ -999,8 +944,12 @@ function handleSubmit(event, type) {
 /* ── AUTO-SELECT TRIAGE FROM URL HASH ── */
 window.addEventListener('DOMContentLoaded', function() {
   var hash = window.location.hash.replace('#','');
-  if (['buy','owner','dealer'].indexOf(hash) !== -1) {
+  if (['buy','owner'].indexOf(hash) !== -1) {
     selectTriage(hash);
+  } else if (hash === 'dealer') {
+    // The Dealer Inquiry panel was replaced by the VIN Replacement card;
+    // send any old #dealer links to the dealer program page instead.
+    window.location.replace('become-a-dealer');
   }
 });
 </script>
