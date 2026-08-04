@@ -503,6 +503,46 @@
   .vin-attest-check input[type="checkbox"] { accent-color: var(--rust); width: 16px; height: 16px; margin-top: 2px; flex-shrink: 0; cursor: pointer; }
   @media(max-width:768px) { .vin-section { padding: 40px 24px 64px; } .vin-warning { padding: 20px 20px; } }
 
+
+  /* ── LIGHT FORM THEME (matches register.html) ─────────────────────
+     The hero stays dark; everything inside .vin-section flips to the
+     cream/white treatment used by the trailer registration page. */
+  .vin-section { background: var(--white); color: var(--black); max-width: none; padding: 64px 48px 88px; }
+  .vin-section .vin-warning, .vin-section .form-container { max-width: 720px; margin-left: auto; margin-right: auto; }
+  .vin-section .vin-warning { background: rgba(192,57,43,0.06); border-color: rgba(192,57,43,0.35); border-left-color: #c0392b; margin-bottom: 48px; }
+  .vin-section .vin-warning h2 { color: #c0392b; }
+  .vin-section .vin-warning p, .vin-section .vin-warning ol li { color: rgba(10,10,10,0.75); }
+  .vin-section .vin-warning ol li strong { color: var(--black); }
+  .vin-section .form-container { background: transparent; border: none; padding: 0; }
+  .vin-section .form-section-sub { color: rgba(10,10,10,0.55); }
+  .vin-section .vin-form-section-heading { color: var(--rust-dark); border-bottom-color: rgba(0,0,0,0.12); }
+  .vin-section label { color: rgba(10,10,10,0.55); }
+  .vin-section input[type="text"], .vin-section input[type="email"], .vin-section input[type="tel"],
+  .vin-section select, .vin-section textarea,
+  .vin-section input[type="date"], .vin-section input[type="file"] {
+    background: #fff; border: 1px solid rgba(0,0,0,0.12); border-radius: 2px; color: var(--black);
+  }
+  .vin-section input::placeholder, .vin-section textarea::placeholder { color: rgba(10,10,10,0.35); }
+  .vin-section input:focus, .vin-section select:focus, .vin-section textarea:focus { border-color: var(--rust); }
+  .vin-section select option { background: #fff; color: var(--black); }
+  .vin-section input[type="date"] { color-scheme: light; }
+  .vin-section input[type="file"]::file-selector-button { background: var(--black); color: var(--white); }
+  .vin-section input[type="file"]::file-selector-button:hover { background: var(--steel); }
+  .vin-section .vin-hint { color: rgba(10,10,10,0.5); }
+  .vin-section .vin-radio-option { color: rgba(10,10,10,0.75); }
+  .vin-section .vin-attest { background: rgba(183,163,128,0.14); border-color: rgba(0,0,0,0.1); }
+  .vin-section .vin-attest p { color: rgba(10,10,10,0.7); }
+  .vin-section .vin-attest-check { color: var(--black); }
+  .vin-section .label-info-btn { color: rgba(10,10,10,0.4); }
+  .vin-section .form-submit { width: 100%; background: var(--black); color: var(--white); }
+  .vin-section .form-submit:hover { background: var(--steel); }
+  .vin-section .form-error { background: rgba(192,57,43,0.08); border-color: rgba(192,57,43,0.4); border-left-color: #c0392b; color: #8f2b20; }
+  .vin-section .form-error strong { color: #c0392b; }
+  .vin-section .form-success h3 { color: var(--rust-dark); }
+  .vin-section .form-success p { color: rgba(10,10,10,0.6); }
+  .vin-section .form-reset-btn { border-color: var(--rust-dark); color: var(--rust-dark); }
+  .vin-section .form-reset-btn:hover { background: var(--rust-dark); color: var(--white); }
+
   </style>
 </head>
 <body>
@@ -703,7 +743,7 @@
         </div>
 
         <div class="vin-form-section-heading">Section C: Required Document Uploads</div>
-        <p class="vin-hint" style="margin:-8px 0 16px;">Your documents are used only to verify ownership, are stored privately, and are never shared. See our <a href="privacy" style="color:var(--rust);">Privacy Policy</a>.</p>
+        <p class="vin-hint" style="margin:-8px 0 16px;">Your documents are used only to verify ownership, are stored privately, and are never shared. See our <a href="privacy" style="color:var(--rust-dark);">Privacy Policy</a>.</p>
         <div class="form-group">
           <label for="vin-file-id">Attachment 1: Government-Issued Photo ID</label>
           <input type="file" id="vin-file-id" name="attachment_1_photo_id" accept=".jpg,.jpeg,.png,.webp,.heic,.heif,.pdf" onchange="vinCheckFile(this)" required>
@@ -984,7 +1024,7 @@ function vinUploadErrorHtml(label, fileName, err) {
   if ((err && err.status === 413) || /exceed|too large|entity.?too.?large|payload/i.test(body)) {
     return '<strong>&ldquo;' + vinEscape(fileName) + '&rdquo; (' + label + ') is too large.</strong> Files must be under 10MB. Please resize or compress it and submit again.';
   }
-  return '<strong>We couldn&rsquo;t upload &ldquo;' + vinEscape(fileName) + '&rdquo; (' + label + ').</strong> Please try again in a moment, or email us at <a href="mailto:sales@waltontrailers.com" style="color:var(--rust);">sales@waltontrailers.com</a>.';
+  return '<strong>We couldn&rsquo;t upload &ldquo;' + vinEscape(fileName) + '&rdquo; (' + label + ').</strong> Please try again in a moment, or email us at <a href="mailto:sales@waltontrailers.com" style="color:var(--rust-dark);">sales@waltontrailers.com</a>.';
 }
 
 async function handleVinSubmit(event) {
@@ -1085,7 +1125,7 @@ async function handleVinSubmit(event) {
     } catch (insertErr) {
       console.error('VIN replacement insert failed:', insertErr);
       if (insertErr instanceof TypeError) throw insertErr; // network — handled below
-      vinShowError('<strong>Your documents uploaded, but we couldn&rsquo;t save your request details.</strong> Please try submitting again, or email us at <a href="mailto:sales@waltontrailers.com" style="color:var(--rust);">sales@waltontrailers.com</a>.');
+      vinShowError('<strong>Your documents uploaded, but we couldn&rsquo;t save your request details.</strong> Please try submitting again, or email us at <a href="mailto:sales@waltontrailers.com" style="color:var(--rust-dark);">sales@waltontrailers.com</a>.');
       return;
     }
 
@@ -1119,7 +1159,7 @@ async function handleVinSubmit(event) {
     if (err instanceof TypeError) {
       vinShowError('<strong>We couldn&rsquo;t reach the server.</strong> Please check your internet connection and try again.');
     } else {
-      vinShowError('<strong>Something went wrong saving your request.</strong> Please try again, or email us at <a href="mailto:sales@waltontrailers.com" style="color:var(--rust);">sales@waltontrailers.com</a>.');
+      vinShowError('<strong>Something went wrong saving your request.</strong> Please try again, or email us at <a href="mailto:sales@waltontrailers.com" style="color:var(--rust-dark);">sales@waltontrailers.com</a>.');
     }
   } finally {
     submitBtn.disabled = false;
