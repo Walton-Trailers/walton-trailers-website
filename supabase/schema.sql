@@ -76,6 +76,22 @@ create policy "anon insert dealer_inquiries"
   to anon
   with check (true);
 
+-- Column-level grants (applied 2026-08-04): anon may insert only the
+-- form-supplied columns. Without this, anyone with the (public) anon key
+-- could pin `id` values to break the sequence, backdate `created_at`, or
+-- pre-fill the staff `notes` column. Same hardening as
+-- vin_replacement_requests below.
+revoke insert on public.trailer_registrations from anon;
+grant insert (first_name, last_name, email, phone, address, state, zip, country,
+              purchase_date, vin, model, dealer, proof_url, source, user_agent)
+  on public.trailer_registrations to anon;
+
+revoke insert on public.dealer_inquiries from anon;
+grant insert (first_name, last_name, email, phone, dealer_name, address, city, state,
+              zip, country, years_in_business, parts_program, service_program,
+              trailer_types, current_brands, message, source, user_agent)
+  on public.dealer_inquiries to anon;
+
 -- Authenticated users (Taylor + future admin app) can read everything.
 drop policy if exists "auth read trailer_registrations" on public.trailer_registrations;
 create policy "auth read trailer_registrations"
