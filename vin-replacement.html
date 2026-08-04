@@ -1072,86 +1072,88 @@ async function handleVinSubmit(event) {
   submitBtn.textContent = 'Uploading\u2026';
 
   var last3 = (document.getElementById('vin-last3').value || '').trim();
+  var CONTACT_FALLBACK = ' Please try again, or email us at <a href="mailto:sales@waltontrailers.com" style="color:var(--rust-dark);">sales@waltontrailers.com</a>.';
 
   try {
-    // Per-request folder: vin-<last3>/<request-id>/<doc>-<name>. The random id
-    // keeps one request's four documents unambiguous even if the same trailer
-    // submits twice.
-    var requestId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID()
-                  : Date.now() + '-' + Math.random().toString(36).slice(2, 10);
-    var folder = (last3 ? 'vin-' + last3 : 'unknown-vin') + '/' + requestId;
+    // Step 1: the edge function rate-checks this IP, validates the file
+    // metadata, and issues one signed upload URL per document.
+    var startRes = await WaltonSupabase.invokeFunction('vin-replacement-submit', {
+      action: 'start',
+      gotcha: '',
+      vin_last3: last3,
+      files: attachments.map(function (a) {
+        return { slug: a.slug, name: a.file.name, type: a.file.type || '', size: a.file.size };
+      })
+    });
+    if (startRes.status === 429) {
+      vinShowError('<strong>Submission limit reached.</strong> To prevent abuse we accept a few requests per hour from each connection. Please try again in an hour, or email us at <a href="mailto:sales@waltontrailers.com" style="color:var(--rust-dark);">sales@waltontrailers.com</a>.');
+      return;
+    }
+    if (!startRes.ok || !startRes.body.ok) {
+      if (startRes.body.code === 'invalid_file') {
+        vinShowError('<strong>' + vinEscape(startRes.body.detail || 'One of your files was rejected.') + '</strong> Please attach a JPG, PNG, WEBP, or HEIC photo &mdash; or a PDF &mdash; under 10MB.');
+      } else {
+        vinShowError('<strong>Something went wrong starting your submission.</strong>' + CONTACT_FALLBACK);
+      }
+      return;
+    }
 
-    // Upload sequentially so a failure can name the exact file that broke.
+    // Step 2: upload each document to its signed URL, naming the exact
+    // file on failure.
+    var uploadsBySlug = {};
+    for (var u = 0; u < startRes.body.uploads.length; u++) {
+      uploadsBySlug[startRes.body.uploads[u].slug] = startRes.body.uploads[u];
+    }
     var paths = {};
-    for (var j = 0; j < attachments.length; j++) {
-      var a = attachments[j];
-      var safeName = a.file.name.replace(/[^a-zA-Z0-9._-]+/g, '_');
+    for (var k = 0; k < attachments.length; k++) {
+      var a = attachments[k];
+      var target = uploadsBySlug[a.slug];
       try {
-        paths[a.slug] = await WaltonSupabase.uploadFile('vin-replacement-docs', folder + '/' + a.slug + '-' + safeName, a.file);
+        await WaltonSupabase.uploadToSignedUrl(target.signedUrl, a.file);
       } catch (uploadErr) {
         console.error('VIN replacement upload failed (' + a.label + '):', uploadErr);
         if (uploadErr instanceof TypeError) throw uploadErr; // network — handled below
         vinShowError(vinUploadErrorHtml(a.label, a.file.name, uploadErr), document.getElementById(a.id));
         return;
       }
+      paths[a.slug] = target.path;
     }
 
+    // Step 3: finalize — the function verifies all four objects landed,
+    // saves the request, and sends the notification email server-side.
     var reasonEl = form.querySelector('input[name="replacement_reason"]:checked');
-    var request = {
-      full_name:                document.getElementById('vin-name').value.trim(),
-      phone:                    document.getElementById('vin-phone').value.trim(),
-      email:                    document.getElementById('vin-email').value.trim(),
-      shipping_address:         document.getElementById('vin-address').value.trim(),
-      shipping_city:            document.getElementById('vin-city').value.trim(),
-      shipping_state:           document.getElementById('vin-state').value.trim(),
-      shipping_zip:             document.getElementById('vin-zip').value.trim(),
-      vin_last3:                last3,
-      trailer_model:            document.getElementById('vin-model').value.trim() || null,
-      replacement_reason:       reasonEl ? reasonEl.value : '',
-      replacement_reason_other: document.getElementById('vin-reason-other-text').value.trim() || null,
-      photo_id_path:            paths['photo-id'],
-      proof_of_ownership_path:  paths['proof-of-ownership'],
-      stamped_vin_photo_path:   paths['stamped-vin'],
-      trailer_photo_path:       paths['full-trailer'],
-      attestation_agreed:       form.querySelector('input[name="attestation_agreed"]').checked,
-      digital_signature:        document.getElementById('vin-signature').value.trim(),
-      signature_date:           sigDate,
-      user_agent:               navigator.userAgent,
-      source:                   'vin-replacement.html'
-    };
-
-    try {
-      await WaltonSupabase.insert('vin_replacement_requests', request);
-    } catch (insertErr) {
-      console.error('VIN replacement insert failed:', insertErr);
-      if (insertErr instanceof TypeError) throw insertErr; // network — handled below
-      vinShowError('<strong>Your documents uploaded, but we couldn&rsquo;t save your request details.</strong> Please try submitting again, or email us at <a href="mailto:sales@waltontrailers.com" style="color:var(--rust-dark);">sales@waltontrailers.com</a>.');
+    var finRes = await WaltonSupabase.invokeFunction('vin-replacement-submit', {
+      action: 'finalize',
+      folder: startRes.body.folder,
+      paths: paths,
+      fields: {
+        full_name:                document.getElementById('vin-name').value.trim(),
+        phone:                    document.getElementById('vin-phone').value.trim(),
+        email:                    document.getElementById('vin-email').value.trim(),
+        shipping_address:         document.getElementById('vin-address').value.trim(),
+        shipping_city:            document.getElementById('vin-city').value.trim(),
+        shipping_state:           document.getElementById('vin-state').value.trim(),
+        shipping_zip:             document.getElementById('vin-zip').value.trim(),
+        vin_last3:                last3,
+        trailer_model:            document.getElementById('vin-model').value.trim(),
+        replacement_reason:       reasonEl ? reasonEl.value : '',
+        replacement_reason_other: document.getElementById('vin-reason-other-text').value.trim(),
+        digital_signature:        document.getElementById('vin-signature').value.trim(),
+        signature_date:           sigDate,
+        attestation_agreed:       form.querySelector('input[name="attestation_agreed"]').checked,
+        user_agent:               navigator.userAgent
+      }
+    });
+    if (finRes.body.code === 'duplicate') {
+      // Double-click after a slow response — the request is already saved.
+      vinShowSuccess();
       return;
     }
-
-    // Notification email — best-effort; the request is already saved,
-    // so a Formspree hiccup must not fail the submission.
-    fetch('https://formspree.io/f/xwvygnnq', {
-      method: 'POST',
-      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        _subject: 'VIN Replacement Request — VIN ending ' + last3,
-        'Form': 'VIN Replacement (vin-replacement.html)',
-        'Name': request.full_name,
-        email: request.email,
-        'Phone': request.phone,
-        'Shipping Address': request.shipping_address + ', ' + request.shipping_city + ', ' + request.shipping_state + ' ' + request.shipping_zip,
-        'VIN (last 3)': last3,
-        'Trailer Model': request.trailer_model || '—',
-        'Reason': request.replacement_reason + (request.replacement_reason_other ? ' — ' + request.replacement_reason_other : ''),
-        'Digital Signature': request.digital_signature + ' (' + request.signature_date + ')',
-        'Documents (bucket vin-replacement-docs)':
-          'ID: ' + request.photo_id_path +
-          ' | Ownership: ' + request.proof_of_ownership_path +
-          ' | Stamped VIN: ' + request.stamped_vin_photo_path +
-          ' | Trailer: ' + request.trailer_photo_path
-      })
-    }).catch(function () {});
+    if (!finRes.ok || !finRes.body.ok) {
+      console.error('VIN replacement finalize failed:', finRes);
+      vinShowError('<strong>Your documents uploaded, but we couldn&rsquo;t save your request details.</strong>' + CONTACT_FALLBACK);
+      return;
+    }
 
     vinShowSuccess();
   } catch (err) {
@@ -1159,7 +1161,7 @@ async function handleVinSubmit(event) {
     if (err instanceof TypeError) {
       vinShowError('<strong>We couldn&rsquo;t reach the server.</strong> Please check your internet connection and try again.');
     } else {
-      vinShowError('<strong>Something went wrong saving your request.</strong> Please try again, or email us at <a href="mailto:sales@waltontrailers.com" style="color:var(--rust-dark);">sales@waltontrailers.com</a>.');
+      vinShowError('<strong>Something went wrong saving your request.</strong>' + CONTACT_FALLBACK);
     }
   } finally {
     submitBtn.disabled = false;
@@ -1168,7 +1170,7 @@ async function handleVinSubmit(event) {
 }
 </script>
 
-<script src="walton-supabase.js"></script>
+<script src="walton-supabase.js?v=2"></script>
 <script src="walton-chat.js"></script>
 <script src="walton-phone-format.js" defer></script>
 </body>
