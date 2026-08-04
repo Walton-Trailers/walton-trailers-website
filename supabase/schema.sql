@@ -192,3 +192,62 @@ create policy "auth read vin docs"
   for select
   to authenticated
   using (bucket_id = 'vin-replacement-docs');
+
+-- ── VIN intake hardening (applied 2026-08-03) ─────────────────────
+-- Submissions flow through the vin-replacement-submit edge function
+-- (supabase/functions/), which rate-limits by IP, issues signed upload
+-- URLs, verifies the four documents exist before inserting the row, and
+-- sends the notification email server-side (Resend when RESEND_API_KEY
+-- is set as a function secret, Formspree otherwise). Direct anon writes
+-- are revoked below — the browser can no longer hit the table or bucket.
+
+-- Per-IP rate-limit event log (service role only; trimmed weekly).
+create table if not exists public.vin_submission_events (
+  id         bigint generated always as identity primary key,
+  ip         text not null,
+  created_at timestamptz not null default now()
+);
+create index if not exists vin_submission_events_ip_time on public.vin_submission_events (ip, created_at);
+alter table public.vin_submission_events enable row level security;
+
+-- Retention marker: stamped when a request's documents are purged.
+alter table public.vin_replacement_requests
+  add column if not exists documents_purged_at timestamptz;
+
+-- Weekly maintenance (vin-replacement-maintenance edge function, invoked
+-- by pg_cron Mondays 15:00 UTC — job 'vin-replacement-maintenance-weekly'):
+--   1. deletes bucket objects >7 days old that no request row references
+--   2. deletes request documents >90 days old, stamps documents_purged_at
+--      (rows are kept; privacy.html §6 documents the 90-day window)
+--   3. trims vin_submission_events older than 2 days
+-- Candidates come from this security-definer helper:
+create or replace function public.vin_maintenance_candidates()
+returns table(kind text, object_name text, request_id bigint)
+language sql
+security definer
+set search_path = public, storage
+as $$
+  select 'orphan'::text, o.name, null::bigint
+  from storage.objects o
+  where o.bucket_id = 'vin-replacement-docs'
+    and o.created_at < now() - interval '7 days'
+    and not exists (
+      select 1 from public.vin_replacement_requests r
+      where o.name in (r.photo_id_path, r.proof_of_ownership_path,
+                       r.stamped_vin_photo_path, r.trailer_photo_path)
+    )
+  union all
+  select 'retention'::text, p.path, r.id
+  from public.vin_replacement_requests r
+  cross join lateral (values (r.photo_id_path), (r.proof_of_ownership_path),
+                             (r.stamped_vin_photo_path), (r.trailer_photo_path)) as p(path)
+  where r.created_at < now() - interval '90 days'
+    and r.documents_purged_at is null;
+$$;
+revoke execute on function public.vin_maintenance_candidates() from public, anon, authenticated;
+
+-- The edge function (service role) is now the only writer: the anon grant
+-- and policies that allowed direct browser writes are removed.
+revoke insert on public.vin_replacement_requests from anon;
+drop policy if exists "anon insert vin_replacement_requests" on public.vin_replacement_requests;
+drop policy if exists "anon upload vin docs" on storage.objects;

@@ -93,9 +93,59 @@
     return path; // Path inside the bucket. Caller saves this on the row.
   }
 
+  /**
+   * Invoke a Supabase Edge Function with the anon key. Returns
+   * { status, ok, body } — body is the parsed JSON (or {} on parse failure)
+   * so callers can branch on body.code for structured errors.
+   */
+  async function invokeFunction(name, payload) {
+    if (!isConfigured()) {
+      throw new Error('Supabase is not configured yet.');
+    }
+    var resp = await fetch(SUPABASE_URL + '/functions/v1/' + encodeURIComponent(name), {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+    var body = {};
+    try { body = await resp.json(); } catch (e) { /* non-JSON error body */ }
+    return { status: resp.status, ok: resp.ok, body: body };
+  }
+
+  /**
+   * Upload a File/Blob to a server-issued signed upload URL (from
+   * storage.createSignedUploadUrl on the edge function side). The token in
+   * the URL is the authorization — no bucket policy needed.
+   */
+  async function uploadToSignedUrl(signedUrl, file) {
+    var resp = await fetch(signedUrl, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': file.type || 'application/octet-stream',
+        'x-upsert': 'false'
+      },
+      body: file
+    });
+    if (!resp.ok) {
+      var text = '';
+      try { text = await resp.text(); } catch (e) { /* ignore */ }
+      var err = new Error('Upload failed: HTTP ' + resp.status + (text ? ' — ' + text : ''));
+      err.status = resp.status;
+      err.body = text;
+      throw err;
+    }
+    return true;
+  }
+
   window.WaltonSupabase = {
     insert: insert,
     uploadFile: uploadFile,
+    invokeFunction: invokeFunction,
+    uploadToSignedUrl: uploadToSignedUrl,
     isConfigured: isConfigured
   };
 })();
