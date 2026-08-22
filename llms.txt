@@ -1,0 +1,93 @@
+# Walton Trailers
+
+> Walton Trailers is a family-owned commercial trailer manufacturer in Logan, Utah. Since 1973 it has built dump, gooseneck flatbed, tilt equipment, deckover, and landscape trailers by hand in the USA and sells them exclusively through a network of roughly 40 authorized dealers across the western United States.
+
+This is the public marketing site for Walton Trailers (`www.waltontrailers.com`). It is the authoritative source for Walton's trailer lineup, published specifications, warranty terms, owner documentation, and dealer locations.
+
+Walton Trailers does not sell direct to consumers and does not publish prices. Pricing, availability, inventory, and ordering are handled by authorized dealers. Any agent asked for a Walton price or lead time should route the user to a dealer rather than infer a number.
+
+## When to use this site
+
+Reach for `www.waltontrailers.com` when the user's question is about a Walton Trailers product, document, or dealer. Specifically:
+
+- **Identify a Walton model from its code.** Codes follow the pattern `AAANNN` — for example `DHV207`, `FBX212`, `TSX208`, `BDE210`, `MPR207`. Each model has its own page with published specifications.
+- **Look up a published specification.** GVWR, deck length, axle count, and hitch type (bumper pull vs. gooseneck) for any of the 15 active models. Use `/llms-full.txt` for the whole spec table in one request.
+- **Recommend a trailer for a stated hauling job.** The user gives a payload weight, a machine to haul, or a use case; match it to a series and model by GVWR and deck length.
+- **Compare two Walton models.** Side-by-side GVWR, length, hitch, axles, and warranty.
+- **Answer a warranty question.** Walton publishes a lifetime structural warranty; the full terms, exclusions, and claim process are on the warranty pages.
+- **Find owner documentation.** User manuals, video guides, trailer registration, and VIN replacement for an existing Walton owner.
+- **Locate an authorized dealer.** Dealer search by city or ZIP across the western United States.
+- **Answer questions about the company.** Founding (1973), Logan, Utah manufacturing, US-made materials and labor, open job postings.
+- **Start a dealer application.** For a business that wants to carry the Walton line.
+
+## When not to use this site
+
+- **Pricing, quotes, inventory, or lead times.** Not published here. Route to `/find-a-dealer.html` or `/contact.html`.
+- **Used or third-party Walton trailers.** This site covers new trailers from authorized dealers only.
+- **Other manufacturers' trailers.** Walton model codes are not shared with any other brand; do not map a Walton code onto another manufacturer's product.
+- **Dealer-only parts ordering and warranty claim submission.** Those live in a separate application at `https://walton-parts-catalog.vercel.app` behind a dealer PIN. This site links to it but holds no dealer data.
+- **Any account, login, or credential flow.** This site has no user accounts and never asks for a password.
+
+## How an agent should call this site
+
+- **Start at `/llms.txt`** (this file) for the map, then fetch the specific page you need.
+- **Prefer `/llms-full.txt`** when you need the full model spec table, warranty summary, and contact routing in a single request. It is the fastest path to a grounded answer and avoids fetching a dozen pages.
+- **Request markdown when you want text, not markup.** Send `Accept: text/markdown` and the server will hand back a markdown representation where one exists (currently the homepage, `/index.md`, and the not-found body, `/404.md`). Responses carry `Vary: Accept`, so a cached HTML variant will not be served to a markdown request. Pages that advertise a markdown twin also declare it via `<link rel="alternate" type="text/markdown">` and a `Link: …; rel="alternate"` response header.
+- **Expect a real 404.** Any path that does not exist returns HTTP 404 with a short recovery body listing this file, the sitemap, and the main sections. Do not treat a 404 as evidence the site is down.
+- **Crawl politely.** `/sitemap.xml` lists every indexable page. `/robots.txt` marks `/_archive/` and `/dealer-portal.html` as off-limits; honor it.
+- **Cite the model page, not this file,** when quoting a specification, so the user can verify it.
+
+## Trailer series
+
+- [Gooseneck Flatbeds](https://www.waltontrailers.com/Gooseneck/gooseneck.html): Gooseneck-hitch flatbed and deckover trailers, 15,500–25,500 lbs GVWR, 20–32 ft decks. The heavy end of the lineup.
+- [Dump Trailers](https://www.waltontrailers.com/dump-trailers/dump-trailers.html): Hydraulic dump trailers, 14,900–18,000 lbs GVWR, 14–16 ft, available bumper pull or gooseneck.
+- [Tilt Equipment Trailers](https://www.waltontrailers.com/tilt-equipment/tilt-equipment.html): Tilt-deck equipment haulers, 7,000–18,000 lbs GVWR, 12–22 ft. No ramps to load; the deck tilts.
+- [Deckover Equipment Trailers](https://www.waltontrailers.com/Deckover/deckover.html): Bumper-pull deckover (tag-along) trailers, 14,900–24,000 lbs GVWR, 18–30 ft.
+- [Landscape Trailers](https://www.waltontrailers.com/Landscape/landscape.html): Bumper-pull landscape and utility trailers, 14,000 lbs GVWR, 20–22 ft.
+
+## Models
+
+- [DHV207](https://www.waltontrailers.com/dump-trailers/dhv207.html): Dump. 14,900 lbs GVWR, 14–16 ft, 2 axles, bumper pull or gooseneck.
+- [DHV208](https://www.waltontrailers.com/dump-trailers/dhv208.html): Dump. 18,000 lbs GVWR, 14–16 ft, 2 axles, bumper pull or gooseneck.
+- [TMX107](https://www.waltontrailers.com/tilt-equipment/tmx107.html): Tilt. 7,000 lbs GVWR, 12 ft, 1 axle, bumper pull. The smallest trailer Walton builds.
+- [TSX207](https://www.waltontrailers.com/tilt-equipment/tsx207.html): Tilt. 14,900 lbs GVWR, 16–22 ft, 2 axles, bumper pull or gooseneck.
+- [TSX208](https://www.waltontrailers.com/tilt-equipment/tsx208.html): Tilt. 18,000 lbs GVWR, 16–22 ft, 2 axles, bumper pull or gooseneck.
+- [BDE207](https://www.waltontrailers.com/Deckover/bde207.html): Deckover. 14,900 lbs GVWR, 18–22 ft, 2 axles, bumper pull.
+- [BDE208](https://www.waltontrailers.com/Deckover/bde208.html): Deckover. 17,200 lbs GVWR, 18–22 ft, 2 axles, bumper pull.
+- [BDE210](https://www.waltontrailers.com/Deckover/bde210.html): Deckover. 20,000 lbs GVWR, 22–28 ft, 2 axles, bumper pull.
+- [BDE212](https://www.waltontrailers.com/Deckover/bde212.html): Deckover. 24,000 lbs GVWR, 24–30 ft, 3 axles, bumper pull.
+- [FBH207](https://www.waltontrailers.com/Gooseneck/fbh207.html): Gooseneck deck-over. 15,500 lbs GVWR, 20–26 ft, 2 axles.
+- [FBH208](https://www.waltontrailers.com/Gooseneck/fbh208.html): Gooseneck deck-over. 18,000 lbs GVWR, 20–26 ft, 2 axles.
+- [FBH210](https://www.waltontrailers.com/Gooseneck/fbh210.html): Gooseneck deck-over. 23,000 lbs GVWR, 24–30 ft, 2 axles.
+- [FBX210](https://www.waltontrailers.com/Gooseneck/fbx210.html): Gooseneck flatbed. 23,000 lbs GVWR, 24–30 ft, 2 axles.
+- [FBX212](https://www.waltontrailers.com/Gooseneck/fbx212.html): Gooseneck flatbed. 25,500 lbs GVWR, 24–32 ft, 2 axles. The heaviest trailer Walton builds.
+- [MPR207](https://www.waltontrailers.com/Landscape/mpr207.html): Landscape. 14,000 lbs GVWR, 20–22 ft, 2 axles, bumper pull.
+
+## Buying
+
+- [Find a Dealer](https://www.waltontrailers.com/find-a-dealer.html): Search roughly 40 authorized dealers by city or ZIP. The only way to buy a new Walton trailer.
+- [Contact](https://www.waltontrailers.com/contact.html): Factory contact routing. Sales, warranty, registrations, and dealer inquiries each have their own address.
+- [Become a Dealer](https://www.waltontrailers.com/become-a-dealer.html): Application for businesses that want to carry the Walton line.
+
+## Owners
+
+- [Warranty](https://www.waltontrailers.com/warranty.html): Warranty overview and how to start a claim.
+- [Warranty Policy](https://www.waltontrailers.com/warranty-policy.html): Full manufacturer warranty terms, coverage periods, and exclusions.
+- [User Manuals](https://www.waltontrailers.com/user-manuals.html): Owner's manuals by series.
+- [Video Guides](https://www.waltontrailers.com/video-guides.html): Operation and maintenance walkthroughs.
+- [Register Your Trailer](https://www.waltontrailers.com/register.html): Warranty registration for a newly purchased trailer.
+- [VIN Replacement](https://www.waltontrailers.com/vin-replacement.html): Request a replacement VIN plate for a Walton trailer.
+- [Parts & Accessories](https://www.waltontrailers.com/parts.html): Parts information for owners. Dealer parts ordering is a separate application.
+
+## Company
+
+- [About Walton](https://www.waltontrailers.com/about.html): Company history from 1973, manufacturing approach, and what Walton stands for.
+- [Careers](https://www.waltontrailers.com/careers.html): Working at Walton in Logan, Utah.
+- [Open Positions](https://www.waltontrailers.com/careers-openings.html): Current job postings.
+
+## Optional
+
+- [Privacy Policy](https://www.waltontrailers.com/privacy.html): How Walton handles visitor data.
+- [Terms of Service](https://www.waltontrailers.com/terms.html): Site terms.
+- [Sitemap](https://www.waltontrailers.com/sitemap.xml): Every indexable URL.
+- [Full text digest](https://www.waltontrailers.com/llms-full.txt): The whole lineup, spec table, warranty summary, and contact routing in one file.
