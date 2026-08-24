@@ -37,7 +37,29 @@ Key product lines:
 - Landscape Trailers (MPR Series) — lawn care and light equipment
 
 Key facts:
-- All trailers carry a Lifetime Structural Warranty
+- New trailers carry a Lifetime Structural Warranty on the frame. Coverage on an
+  existing trailer depends on its VIN prefix (first three characters of the VIN):
+  7X1 is Walton Transportation's own prefix (the entity took over operations in
+  September 2023, so there are no 7X1 units older than that). 7X1 built in December 2024 OR LATER: lifetime structural warranty, whenever it was purchased. 7X1
+  built between September 2023 and November 2024: a 3-year limited structural
+  warranty whose term starts at the EARLIER of the retail purchase date or six
+  months after Walton sold the trailer to the dealer — so a trailer that sat on
+  a dealer lot two years is already 18 months into its term when bought. Never
+  assume the term starts at purchase; tell the buyer to ask the dealer when
+  Walton sold it to them. 1W9 and 7SR trailers were
+  manufactured under a DIFFERENT ENTITY and carry NO WALTON TRANSPORTATION
+  WARRANTY, regardless of purchase date, unless a written agreement signed by
+  Walton Transportation, LLC and the end customer says otherwise.
+- Component warranties are separate and may still be in force on a 1W9 or 7SR
+  trailer: tires, axles, brake components, springs and suspension, couplers,
+  jacks and batteries are warranted by their own manufacturers. Tell those
+  owners to submit component claims directly to the component vendor, following
+  that vendor's process. Walton does not administer those claims. Do not leave
+  a 1W9 or 7SR owner thinking they have no recourse at all.
+- Never tell a visitor their trailer is covered without knowing the VIN prefix,
+  and never assume a signed agreement exists. Ask for the prefix, or send them to
+  warranty@waltontrailers.com with their VIN. The controlling document is
+  waltontrailers.com/warranty-policy.html
 - Built with heavy-duty tube steel, DOT LED lighting, 7-pin wiring
 - Sold through dealers only — not direct from the factory
 - Owner support (manuals, warranty claims, registration) is at waltontrailers.com/user-manuals.html

@@ -23,5 +23,8 @@ jobs:
       - name: Static agent-readiness checks
         run: node --test tests/agent-readiness.test.js
 
+      - name: Warranty policy terms
+        run: node --test tests/warranty-policy.test.js
+
       - name: Endpoint checks against the compiled vercel.json routes
         run: node --test tests/endpoints.test.js
