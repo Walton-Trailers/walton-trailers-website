@@ -71,14 +71,54 @@ test('the policy ties the 3-year term to 7X1 only', () => {
 
 test('coverage keys off the manufacture date, not the sale or purchase date', () => {
   const text = textWithoutJs(read('warranty-policy.html'));
-  assert.match(text, /manufactured after December 2024/i,
+  assert.match(text, /manufactured in December 2024 or later/i,
     'the lifetime warranty attaches to when the trailer was built');
-  assert.match(text, /manufactured between September 2023 and December 2024/i,
+  assert.match(text, /manufactured between September 2023 and November 2024/i,
     'the 3-year term is defined by a build window');
   assert.ok(!/sold by Walton as of December 2024/i.test(text),
     'the old sale-date phrasing is superseded and must not linger');
   assert.ok(!/purchased prior to December 2024 (?:are|carry)/i.test(text),
     'the old purchase-date phrasing implied every pre-2024 trailer got 3 years');
+});
+
+/* December 2024 is the first month of the lifetime tier, not the last month of
+   the 3-year tier. A trailer built in December 2024 gets lifetime; one built in
+   November 2024 gets three years. Both of the phrasings banned below get that
+   boundary wrong by exactly one month, in opposite directions, and both read
+   as perfectly natural English — which is why they need pinning rather than
+   trusting to review. Checked on every surface, since the tiers are restated
+   on all of them and a partial correction is its own bug. */
+test('December 2024 falls in the lifetime tier, on every surface', () => {
+  const surfaces = ['warranty-policy.html', 'warranty.html', 'walton-chat.js',
+                    'chatbot-worker.js', 'llms.txt', 'llms-full.txt', 'index.md'];
+  for (const file of surfaces) {
+    const src = read(file);
+    if (!/December 2024/i.test(src)) continue;
+
+    assert.ok(!/(?:built|manufactured)\s+AFTER\s+December 2024/i.test(src),
+      `${file}: "after December 2024" excludes December from the lifetime tier. ` +
+      'A trailer built in December 2024 does qualify — say "in December 2024 or later".');
+
+    assert.ok(!/September 2023 (?:and|to|through|-|–) December 2024/i.test(src),
+      `${file}: ending the 3-year window at December 2024 pulls December into the ` +
+      '3-year tier, where it does not belong. The window closes in November 2024.');
+  }
+});
+
+test('the lifetime and 3-year windows meet without a gap or an overlap', () => {
+  const surfaces = ['warranty-policy.html', 'warranty.html', 'walton-chat.js',
+                    'chatbot-worker.js', 'llms.txt', 'llms-full.txt'];
+  for (const file of surfaces) {
+    const src = read(file);
+    if (!/3-year/i.test(src)) continue;
+    assert.match(src, /November 2024/i,
+      `${file} states the 3-year tier but never names November 2024, so the ` +
+      'window has no stated upper bound');
+    assert.match(src, /December 2024/i,
+      `${file} states the tiers but never names December 2024, the lifetime cutover`);
+    assert.match(src, /September 2023/i,
+      `${file} omits September 2023, the lower bound and the entity cutover`);
+  }
 });
 
 test('the lifetime warranty is stated as unconditional on purchase date', () => {

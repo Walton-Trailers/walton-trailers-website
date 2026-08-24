@@ -40,9 +40,8 @@ Key facts:
 - New trailers carry a Lifetime Structural Warranty on the frame. Coverage on an
   existing trailer depends on its VIN prefix (first three characters of the VIN):
   7X1 is Walton Transportation's own prefix (the entity took over operations in
-  September 2023, so there are no 7X1 units older than that). 7X1 built AFTER
-  December 2024: lifetime structural warranty, whenever it was purchased. 7X1
-  built between September 2023 and December 2024: a 3-year limited structural
+  September 2023, so there are no 7X1 units older than that). 7X1 built in December 2024 OR LATER: lifetime structural warranty, whenever it was purchased. 7X1
+  built between September 2023 and November 2024: a 3-year limited structural
   warranty whose term starts at the EARLIER of the retail purchase date or six
   months after Walton sold the trailer to the dealer — so a trailer that sat on
   a dealer lot two years is already 18 months into its term when bought. Never

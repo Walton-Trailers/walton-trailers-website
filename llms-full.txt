@@ -19,7 +19,7 @@ Walton does not sell direct to consumers and publishes no prices, inventory, or 
 - Manufacturing: one facility at 150 W 2500 N, Logan, Utah 84341. Domestic steel, US labor, hand-built.
 - Product breadth: 7 trailer series, 15 active models currently published.
 - Distribution: roughly 40 authorized dealers, western United States.
-- Structural warranty: lifetime on trailers manufactured after December 2024, subject to VIN-prefix eligibility (see Warranty summary below — `1W9` and `7SR` trailers carry no Walton warranty).
+- Structural warranty: lifetime on trailers manufactured in December 2024 or later, subject to VIN-prefix eligibility (see Warranty summary below — `1W9` and `7SR` trailers carry no Walton warranty).
 - Tagline: "Built Strong. Built Right. Built Here."
 
 ## Model specification table
@@ -77,8 +77,8 @@ Rule of thumb: the trailer's GVWR must exceed the loaded weight of the trailer p
 This is a summary. The controlling document is https://www.waltontrailers.com/warranty-policy.html.
 
 - **Eligibility turns on the VIN prefix** — the first three characters of the 17-character VIN, printed on the trailer's VIN sticker. Establish the prefix before answering any coverage question:
-  - **`7X1`, manufactured after December 2024** — Lifetime Limited Structural Warranty, regardless of when the trailer was purchased.
-  - **`7X1`, manufactured September 2023 to December 2024** — a 3-year limited structural warranty. **The term starts on the earlier of the original retail purchase date or six months after Walton sold the trailer to the dealer.** It can therefore already be running when the customer takes delivery: a trailer that sat on a dealer's lot for two years is 18 months into its 3-year term on the day it is bought. Never compute the expiry from the purchase date alone — you need the date Walton sold the trailer to the dealer, which the dealer holds.
+  - **`7X1`, manufactured in December 2024 or later** — Lifetime Limited Structural Warranty, regardless of when the trailer was purchased.
+  - **`7X1`, manufactured September 2023 to November 2024** — a 3-year limited structural warranty. **The term starts on the earlier of the original retail purchase date or six months after Walton sold the trailer to the dealer.** It can therefore already be running when the customer takes delivery: a trailer that sat on a dealer's lot for two years is 18 months into its 3-year term on the day it is bought. Never compute the expiry from the purchase date alone — you need the date Walton sold the trailer to the dealer, which the dealer holds.
   - There are no `7X1` trailers built before September 2023; that is when Walton Transportation, LLC took over operations.
   - **`1W9` or `7SR`** — **manufactured under a different entity; no Walton Transportation warranty.** No structural warranty and no other coverage under the Limited Warranty, regardless of purchase date, unless a written agreement signed by Walton Transportation, LLC and the end customer expressly provides otherwise. Where such an agreement exists, its terms control.
 - **Component warranties survive the exclusion.** Tires, axles, brake components, springs and suspension components, couplers, jacks, and batteries are warranted by their respective manufacturers on every trailer, `1W9` and `7SR` included. An owner of one of those trailers with a component failure claims directly with the component's manufacturer, following that vendor's process; Walton does not administer those claims. Do not leave such an owner believing they have no recourse at all — the trailer structure is uncovered, the components may not be.
