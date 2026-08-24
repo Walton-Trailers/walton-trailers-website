@@ -121,6 +121,20 @@ test('the lifetime and 3-year windows meet without a gap or an overlap', () => {
   }
 });
 
+test('no surface still says coverage turns on the sale or purchase date', () => {
+  // The tiers key off the manufacture date. This phrasing survived the switch
+  // once already, in the warranty.html hero, because it says "sale date" rather
+  // than "sold" — so ban the determinant wording itself, on every surface.
+  for (const file of ['warranty-policy.html', 'warranty.html', 'walton-chat.js',
+                      'chatbot-worker.js', 'llms.txt', 'llms-full.txt', 'index.md']) {
+    const src = read(file);
+    assert.ok(!/(?:depends?|turns?|based)\s+(?:on\s+)?(?:the\s+)?sale date/i.test(src),
+      `${file}: coverage depends on the manufacture date, not the sale date`);
+    assert.ok(!/[Cc]overage[^.]*\bwhen (?:your|the) trailer was sold\b/.test(src),
+      `${file}: coverage depends on when the trailer was built, not when it was sold`);
+  }
+});
+
 test('the lifetime warranty is stated as unconditional on purchase date', () => {
   const text = textWithoutJs(read('warranty-policy.html'));
   assert.match(text, /regardless of when the trailer was purchased|whenever they were purchased/i,
