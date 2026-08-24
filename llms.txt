@@ -14,7 +14,7 @@ Reach for `www.waltontrailers.com` when the user's question is about a Walton Tr
 - **Look up a published specification.** GVWR, deck length, axle count, and hitch type (bumper pull vs. gooseneck) for any of the 15 active models. Use `/llms-full.txt` for the whole spec table in one request.
 - **Recommend a trailer for a stated hauling job.** The user gives a payload weight, a machine to haul, or a use case; match it to a series and model by GVWR and deck length.
 - **Compare two Walton models.** Side-by-side GVWR, length, hitch, axles, and warranty.
-- **Answer a warranty question.** Walton publishes a lifetime structural warranty; the full terms, exclusions, and claim process are on the warranty pages.
+- **Answer a warranty question.** Coverage depends on the VIN prefix (the first three characters of the VIN) as well as the sale date: `7X1` trailers are covered, while `1W9` and `7SR` trailers are out of warranty unless a signed agreement says otherwise. Get the prefix before answering. Full terms, exclusions, and the claim process are on the warranty pages and summarised in `/llms-full.txt`.
 - **Find owner documentation.** User manuals, video guides, trailer registration, and VIN replacement for an existing Walton owner.
 - **Locate an authorized dealer.** Dealer search by city or ZIP across the western United States.
 - **Answer questions about the company.** Founding (1973), Logan, Utah manufacturing, US-made materials and labor, open job postings.

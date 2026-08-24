@@ -31,7 +31,7 @@ See GVWR, payload, and full specs side by side. The comparison covers all 15 act
 
 - **50+** years manufacturing — founded 1973 in Logan, Utah
 - **40+** dealers across the western United States
-- **Lifetime** structural warranty on trailers sold as of December 2024
+- **Lifetime** structural warranty on new trailers sold as of December 2024 (coverage on older trailers depends on the VIN prefix — see [warranty](https://www.waltontrailers.com/warranty.html))
 - **USA** made — domestic steel, American labor, one facility
 
 ## Why Walton

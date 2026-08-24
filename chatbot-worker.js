@@ -37,7 +37,16 @@ Key product lines:
 - Landscape Trailers (MPR Series) — lawn care and light equipment
 
 Key facts:
-- All trailers carry a Lifetime Structural Warranty
+- New trailers carry a Lifetime Structural Warranty on the frame. Coverage on an
+  existing trailer depends on its VIN prefix (first three characters of the VIN):
+  7X1 is covered — lifetime if sold as of December 2024, a 3-year limited
+  structural warranty if purchased before then. 1W9 and 7SR are OUT OF WARRANTY,
+  regardless of purchase date, unless a written agreement signed by Walton
+  Transportation, LLC and the end customer says otherwise.
+- Never tell a visitor their trailer is covered without knowing the VIN prefix,
+  and never assume a signed agreement exists. Ask for the prefix, or send them to
+  warranty@waltontrailers.com with their VIN. The controlling document is
+  waltontrailers.com/warranty-policy.html
 - Built with heavy-duty tube steel, DOT LED lighting, 7-pin wiring
 - Sold through dealers only — not direct from the factory
 - Owner support (manuals, warranty claims, registration) is at waltontrailers.com/user-manuals.html

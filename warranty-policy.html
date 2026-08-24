@@ -160,6 +160,11 @@
   .policy-block h2 { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 2px; color: var(--rust); margin-bottom: 18px; line-height: 1.2; }
   .policy-block p { font-size: 14px; font-weight: 300; color: rgba(245,243,239,0.72); line-height: 1.9; margin-bottom: 14px; }
   .policy-block p:last-child { margin-bottom: 0; }
+  .policy-block ul { margin: 0 0 14px 20px; padding: 0; }
+  .policy-block li { font-size: 14px; font-weight: 300; color: rgba(245,243,239,0.72); line-height: 1.9; margin-bottom: 12px; }
+  .policy-block li:last-child { margin-bottom: 0; }
+  .policy-block strong { color: var(--white); font-weight: 500; }
+  .policy-vin { font-family: 'SF Mono', Menlo, Consolas, monospace; letter-spacing: 2px; color: var(--rust); }
   .policy-divider { height: 1px; background: rgba(255,255,255,0.07); margin: 56px 0; border: none; }
   .policy-footer-note { font-size: 13px; font-weight: 300; color: rgba(245,243,239,0.5); line-height: 1.8; font-style: italic; }
   .policy-back { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,243,239,0.55); margin-top: 48px; transition: color 0.2s; }
@@ -502,7 +507,18 @@
 
       <div class="policy-callout">
         <div class="policy-callout-label">Important Notice</div>
-        <p>All trailers sold by Walton as of December 2024 now include a Lifetime Structural Warranty. Trailers purchased prior to December 2024 are subject to a 3-year limited structural warranty.</p>
+        <p>All trailers sold by Walton as of December 2024 now include a Lifetime Structural Warranty. Trailers purchased prior to December 2024 are subject to a 3-year limited structural warranty, which applies only to trailers whose VIN begins with the prefix <span class="policy-vin">7X1</span>.</p>
+        <p style="margin-top:12px;">Trailers whose VIN begins with the prefix <span class="policy-vin">1W9</span> or <span class="policy-vin">7SR</span> are out of warranty and carry no coverage under this Limited Warranty, unless a written agreement signed by Walton Transportation, LLC and the end customer expressly provides otherwise.</p>
+      </div>
+
+      <div class="policy-block">
+        <h2>Warranty Eligibility by VIN Prefix</h2>
+        <p>Coverage under this Limited Warranty depends both on when the trailer was sold and on its VIN prefix &mdash; the first three characters of the 17-character VIN, printed on the VIN sticker affixed to the trailer.</p>
+        <ul>
+          <li><strong>VIN prefix <span class="policy-vin">7X1</span>.</strong> Trailers sold as of December 2024 carry the Lifetime Limited Structural Warranty described below. Trailers with the <span class="policy-vin">7X1</span> prefix purchased prior to December 2024 carry a 3-year limited structural warranty, running from the date of original retail purchase. All other terms, exclusions and limitations in this Limited Warranty apply.</li>
+          <li><strong>VIN prefix <span class="policy-vin">1W9</span> or <span class="policy-vin">7SR</span>.</strong> These trailers are out of warranty. They carry no structural warranty and no other coverage under this Limited Warranty, regardless of the date of purchase, unless a written agreement signed by Walton Transportation, LLC and the end customer expressly provides otherwise. Where such an agreement exists, its terms control.</li>
+        </ul>
+        <p>If you are not sure which prefix applies to your trailer, check the VIN sticker or email <a href="mailto:warranty@waltontrailers.com" style="color:var(--rust);">warranty@waltontrailers.com</a> with your VIN before submitting a claim.</p>
       </div>
 
       <div class="policy-block">

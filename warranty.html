@@ -471,7 +471,7 @@
   <!-- PAGE HERO -->
   <section class="page-hero">
     <h1>Warranty Policy</h1>
-    <p>Walton Trailers are built to last. Every trailer we manufacture is backed by a Lifetime Structural Warranty on the frame — because we stand behind our work.</p>
+    <p>Walton Trailers are built to last. Every new Walton trailer is backed by a Lifetime Structural Warranty on the frame — because we stand behind our work. Coverage on older trailers depends on the sale date and the VIN prefix.</p>
     <a href="warranty-policy" style="display:inline-flex;align-items:center;gap:10px;margin-top:28px;background:var(--rust);color:var(--black);padding:14px 28px;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:600;border-radius:2px;text-decoration:none;transition:background 0.2s;">View Full Warranty Policy &rarr;</a>
   </section>
 
@@ -485,7 +485,7 @@
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
           <h3 style="font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:2px; margin-bottom:12px;">Structural Frame</h3>
-          <p style="font-size:13px; font-weight:300; color:rgba(245,243,239,0.65); line-height:1.8;">Lifetime warranty on all main frame welds, cross members, and structural components against defects in materials and workmanship.</p>
+          <p style="font-size:13px; font-weight:300; color:rgba(245,243,239,0.65); line-height:1.8;">On covered trailers, a lifetime warranty on all main frame welds, cross members, and structural components against defects in materials and workmanship.</p>
         </div>
 
         <div style="background: var(--black); border-radius: 4px; padding: 36px 28px; border-top: 3px solid var(--rust);">
@@ -504,6 +504,18 @@
           <p style="font-size:13px; font-weight:300; color:rgba(245,243,239,0.65); line-height:1.8;">All warranty claims must be submitted through an authorized Walton dealer. Your dealer coordinates the inspection and repair process on your behalf.</p>
         </div>
 
+      </div>
+
+      <!-- Eligibility note. The three cards above describe what the warranty
+           covers; this says whose trailer it covers, which is not the same
+           question. Keep in step with warranty-policy.html — the suite in
+           tests/warranty-policy.test.js compares the two. -->
+      <div style="margin-top: 28px; background: var(--black); border-left: 3px solid var(--rust); border-radius: 2px; padding: 26px 30px;">
+        <div style="font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--rust); margin-bottom:12px;">Check Your VIN Prefix</div>
+        <p style="font-size:14px; font-weight:300; color:rgba(245,243,239,0.75); line-height:1.85; margin-bottom:12px;">Coverage depends on when your trailer was sold <em>and</em> on its VIN prefix &mdash; the first three characters of the 17-character VIN printed on your VIN sticker.</p>
+        <p style="font-size:14px; font-weight:300; color:rgba(245,243,239,0.75); line-height:1.85; margin-bottom:12px;"><span style="font-family:'SF Mono',Menlo,Consolas,monospace;letter-spacing:2px;color:var(--rust);">7X1</span> &mdash; Lifetime Structural Warranty if the trailer was sold as of December 2024; a 3-year limited structural warranty if it was purchased before then.</p>
+        <p style="font-size:14px; font-weight:300; color:rgba(245,243,239,0.75); line-height:1.85; margin-bottom:12px;"><span style="font-family:'SF Mono',Menlo,Consolas,monospace;letter-spacing:2px;color:var(--rust);">1W9</span> or <span style="font-family:'SF Mono',Menlo,Consolas,monospace;letter-spacing:2px;color:var(--rust);">7SR</span> &mdash; out of warranty, regardless of purchase date, unless a written agreement signed by Walton Transportation, LLC and the end customer expressly provides otherwise.</p>
+        <p style="font-size:14px; font-weight:300; color:rgba(245,243,239,0.6); line-height:1.85;">Read the <a href="warranty-policy" style="color:var(--rust);">full warranty policy</a>, or email <a href="mailto:warranty@waltontrailers.com" style="color:var(--rust);">warranty@waltontrailers.com</a> with your VIN if you are unsure.</p>
       </div>
     </div>
   </section>
