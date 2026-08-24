@@ -1,0 +1,131 @@
+# Walton Trailers — Full Text Digest
+
+> Walton Trailers (legal entity: Walton Transportation, LLC, d/b/a Walton Trailers) is a family-owned commercial trailer manufacturer founded in 1973 in Logan, Utah. It builds dump, gooseneck flatbed, tilt equipment, deckover, and landscape trailers by hand in the USA and sells them exclusively through roughly 40 authorized dealers across the western United States.
+
+Source of truth: https://www.waltontrailers.com/
+Map of the site: https://www.waltontrailers.com/llms.txt
+Every indexable URL: https://www.waltontrailers.com/sitemap.xml
+
+This file collects the facts an agent most often needs — the model spec table, the warranty summary, and contact routing — so a single fetch is enough to answer most questions without crawling. When you quote a specification to a user, cite the model's own page so they can verify it.
+
+## What Walton does not publish
+
+Walton does not sell direct to consumers and publishes no prices, inventory, or lead times anywhere on this site. Those are dealer-specific and change constantly. If a user asks what a Walton trailer costs, when one is available, or how to order one, the correct answer is to route them to an authorized dealer at https://www.waltontrailers.com/find-a-dealer.html — not to estimate.
+
+## Company facts
+
+- Founded: 1973, Logan, Utah.
+- Legal entity: Walton Transportation, LLC, doing business as Walton Trailers.
+- Manufacturing: one facility at 150 W 2500 N, Logan, Utah 84341. Domestic steel, US labor, hand-built.
+- Product breadth: 7 trailer series, 15 active models currently published.
+- Distribution: roughly 40 authorized dealers, western United States.
+- Structural warranty: lifetime on trailers sold as of December 2024.
+- Tagline: "Built Strong. Built Right. Built Here."
+
+## Model specification table
+
+All 15 currently active models. GVWR is gross vehicle weight rating. "Length" is the published deck length range. "Hitch" is how the trailer couples to the tow vehicle.
+
+| Model  | Series               | GVWR       | Length    | Axles | Hitch                     |
+|--------|----------------------|------------|-----------|-------|---------------------------|
+| TMX107 | Tilt Equipment       |  7,000 lbs | 12 ft     | 1     | Bumper pull               |
+| MPR207 | Landscape            | 14,000 lbs | 20–22 ft  | 2     | Bumper pull               |
+| DHV207 | Dump                 | 14,900 lbs | 14–16 ft  | 2     | Bumper pull or gooseneck  |
+| TSX207 | Tilt Equipment       | 14,900 lbs | 16–22 ft  | 2     | Bumper pull or gooseneck  |
+| BDE207 | Deckover (Tag-Along) | 14,900 lbs | 18–22 ft  | 2     | Bumper pull               |
+| FBH207 | Gooseneck Flatbed    | 15,500 lbs | 20–26 ft  | 2     | Gooseneck                 |
+| BDE208 | Deckover (Tag-Along) | 17,200 lbs | 18–22 ft  | 2     | Bumper pull               |
+| DHV208 | Dump                 | 18,000 lbs | 14–16 ft  | 2     | Bumper pull or gooseneck  |
+| TSX208 | Tilt Equipment       | 18,000 lbs | 16–22 ft  | 2     | Bumper pull or gooseneck  |
+| FBH208 | Gooseneck Flatbed    | 18,000 lbs | 20–26 ft  | 2     | Gooseneck                 |
+| BDE210 | Deckover (Tag-Along) | 20,000 lbs | 22–28 ft  | 2     | Bumper pull               |
+| FBH210 | Gooseneck Flatbed    | 23,000 lbs | 24–30 ft  | 2     | Gooseneck                 |
+| FBX210 | Gooseneck Flatbed    | 23,000 lbs | 24–30 ft  | 2     | Gooseneck                 |
+| BDE212 | Deckover (Tag-Along) | 24,000 lbs | 24–30 ft  | 3     | Bumper pull               |
+| FBX212 | Gooseneck Flatbed    | 25,500 lbs | 24–32 ft  | 2     | Gooseneck                 |
+
+Model page URLs:
+
+- TMX107 — https://www.waltontrailers.com/tilt-equipment/tmx107.html
+- TSX207 — https://www.waltontrailers.com/tilt-equipment/tsx207.html
+- TSX208 — https://www.waltontrailers.com/tilt-equipment/tsx208.html
+- MPR207 — https://www.waltontrailers.com/Landscape/mpr207.html
+- DHV207 — https://www.waltontrailers.com/dump-trailers/dhv207.html
+- DHV208 — https://www.waltontrailers.com/dump-trailers/dhv208.html
+- BDE207 — https://www.waltontrailers.com/Deckover/bde207.html
+- BDE208 — https://www.waltontrailers.com/Deckover/bde208.html
+- BDE210 — https://www.waltontrailers.com/Deckover/bde210.html
+- BDE212 — https://www.waltontrailers.com/Deckover/bde212.html
+- FBH207 — https://www.waltontrailers.com/Gooseneck/fbh207.html
+- FBH208 — https://www.waltontrailers.com/Gooseneck/fbh208.html
+- FBH210 — https://www.waltontrailers.com/Gooseneck/fbh210.html
+- FBX210 — https://www.waltontrailers.com/Gooseneck/fbx210.html
+- FBX212 — https://www.waltontrailers.com/Gooseneck/fbx212.html
+
+## How to pick a series
+
+- **Dump (DHV)** — hydraulic dump bed. Dirt, gravel, demolition debris, landscaping material.
+- **Tilt Equipment (TMX, TSX)** — the deck tilts to load; no ramps to lift. Skid steers, mini excavators, compact equipment driven on and off.
+- **Deckover / Tag-Along (BDE)** — bumper-pull deck sitting above the wheels, so the full deck width is usable. Wide equipment, hay, pallets, when the tow vehicle has no gooseneck ball.
+- **Gooseneck Flatbed (FBH, FBX)** — gooseneck hitch in the truck bed for the highest capacities and best stability. The heavy end of the lineup, up to 25,500 lbs GVWR.
+- **Landscape (MPR)** — bumper-pull utility trailer for landscaping crews, mowers, and general hauling.
+
+Rule of thumb: the trailer's GVWR must exceed the loaded weight of the trailer plus its cargo, and the tow vehicle must be rated for it. Loading above the GVWR on the certificate plate voids the warranty. Confirm the tow rating with a dealer before recommending a model.
+
+## Warranty summary
+
+This is a summary. The controlling document is https://www.waltontrailers.com/warranty-policy.html.
+
+- Trailers sold as of December 2024 carry a **Lifetime Limited Structural Warranty** to the original retail purchaser, against defects in materials and workmanship arising from normal use.
+- Trailers purchased **before December 2024** carry a 3-year limited structural warranty.
+- A trailer used as a **rental unit**, or as part of a rental combination, is warranted for **90 days** from original retail purchase.
+- **Components warranted by their own manufacturers, not Walton:** tires, axles, brake components, springs and suspension components, couplers, jacks, and batteries.
+- **Not covered:** negligence, accident, abuse, misuse, neglect, overload, or repairs and alterations made without Walton's prior written consent. Cosmetic deterioration from use or exposure — chipping, scratching, fading, cracks in caulk seams, road salt or tar, animal damage, pressure-washing damage — is excluded. Paint repairs are limited to spot repair and blending.
+- **Transportation costs are excluded.** Defective parts must be shipped prepaid to Walton to qualify for replacement or reimbursement.
+- **Prior written consent is required** before any warranty repair. Walton does not reimburse a dealer or owner for repairs made without it.
+- **Voided by:** loading in excess of the gross vehicle load rating on the certificate plate, or any modification, alteration, or repair without Walton's prior written consent.
+- **Claim procedure:** start at https://www.waltontrailers.com/warranty.html. Dealers submit claims through the dealer parts and warranty application, not through this site.
+
+## Owner tasks and where they live
+
+- Register a newly purchased trailer for warranty — https://www.waltontrailers.com/register.html
+- Read or download an owner's manual — https://www.waltontrailers.com/user-manuals.html
+- Watch operation and maintenance guides — https://www.waltontrailers.com/video-guides.html
+- Request a replacement VIN plate — https://www.waltontrailers.com/vin-replacement.html
+- Start a warranty claim — https://www.waltontrailers.com/warranty.html
+- Parts and accessories information — https://www.waltontrailers.com/parts.html
+
+## Contact routing
+
+Mailing and manufacturing address: 150 W 2500 N, Logan, Utah 84341, United States.
+General contact form: https://www.waltontrailers.com/contact.html
+
+| Topic                                   | Address                          |
+|-----------------------------------------|----------------------------------|
+| Sales and general product questions     | sales@waltontrailers.com         |
+| Warranty claims and questions           | warranty@waltontrailers.com      |
+| Trailer registration                    | registrations@waltontrailers.com |
+| Dealer inquiries and applications       | dealers@waltontrailers.com       |
+| Careers and job applications            | careers@waltontrailers.com       |
+| Anything else                           | info@waltontrailers.com          |
+
+## Related Walton applications
+
+This marketing site links out to one other application and holds no data from it:
+
+- **Dealer parts and warranty catalog** — https://walton-parts-catalog.vercel.app — for authorized dealers only, behind a Dealer Access PIN. Consumers cannot use it. Do not send an owner or prospect here.
+
+## Machine-readable endpoints
+
+- https://www.waltontrailers.com/llms.txt — site map for agents, with when-to-use guidance
+- https://www.waltontrailers.com/llms-full.txt — this file
+- https://www.waltontrailers.com/index.md — homepage as markdown
+- https://www.waltontrailers.com/404.md — not-found recovery body as markdown
+- https://www.waltontrailers.com/sitemap.xml — every indexable URL
+- https://www.waltontrailers.com/robots.txt — crawl rules
+
+Send `Accept: text/markdown` to a page that advertises a markdown twin and you will get markdown back. Responses carry `Vary: Accept`. Nonexistent paths return a real HTTP 404 with a short recovery body.
+
+## Freshness
+
+Specifications in this file are transcribed from the site's own model data and are accurate as of the last commit to https://github.com/Walton-Trailers/walton-trailers-website. Walton adds and retires models; if a model code is not listed here, check /sitemap.xml before concluding it does not exist. Retired models live under /_archive/ and are excluded from crawling by robots.txt — do not present them as current products.

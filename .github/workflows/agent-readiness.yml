@@ -1,0 +1,27 @@
+name: Agent readiness
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # Installed without --save on purpose: this repo has no package.json, and
+      # adding one would flip Vercel from a static deploy to a Node build.
+      - name: Install routing validator
+        run: npm install --no-save @vercel/routing-utils
+
+      - name: Static agent-readiness checks
+        run: node --test tests/agent-readiness.test.js
+
+      - name: Endpoint checks against the compiled vercel.json routes
+        run: node --test tests/endpoints.test.js
