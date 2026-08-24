@@ -10,7 +10,7 @@
 
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
-const { read, textWithoutJs } = require('./helpers.js');
+const { read, textWithoutJs, decodeEntities } = require('./helpers.js');
 
 /* The authoritative rule, stated once. Every assertion below derives from it. */
 const COVERED_PREFIX = '7X1';
@@ -40,17 +40,90 @@ test('the policy page states the VIN-prefix eligibility rule', () => {
     'the policy needs a section a reader can find the rule in');
 });
 
-test('the policy ties the 3-year pre-December-2024 term to 7X1 only', () => {
-  const text = textWithoutJs(read('warranty-policy.html'));
-  // Wherever the 3-year term appears, 7X1 must be named in the same sentence.
-  const sentences = text.split(/(?<=\.)\s+/);
-  const threeYear = sentences.filter((s) => /3-year limited structural warranty/i.test(s));
-  assert.ok(threeYear.length >= 1, 'the 3-year term should still be stated');
-  for (const s of threeYear) {
-    assert.ok(s.includes(COVERED_PREFIX),
-      `the 3-year term is stated without naming the ${COVERED_PREFIX} prefix, which reads as ` +
-      `covering every pre-December-2024 trailer:\n  "${s.trim()}"`);
+/* Block-level, not sentence-level: a bullet whose label reads "VIN prefix 7X1,
+   manufactured between..." carries the prefix for every sentence under it, and
+   is always quoted with that label. What must never happen is a whole paragraph
+   or list item stating the 3-year term without the prefix appearing in it. */
+function blocks(htmlSrc) {
+  const cleaned = htmlSrc
+    .replace(/<script\b[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style\b[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<!--[\s\S]*?-->/g, ' ');
+  const out = [];
+  const re = /<(p|li)\b[^>]*>([\s\S]*?)<\/\1>/gi;
+  let m;
+  while ((m = re.exec(cleaned)) !== null) {
+    out.push(decodeEntities(m[2].replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim());
   }
+  return out;
+}
+
+test('the policy ties the 3-year term to 7X1 only', () => {
+  const found = blocks(read('warranty-policy.html'))
+    .filter((b) => /3-year limited structural warranty/i.test(b));
+  assert.ok(found.length >= 1, 'the 3-year term should still be stated');
+  for (const b of found) {
+    assert.ok(b.includes(COVERED_PREFIX),
+      `a block states the 3-year term without naming the ${COVERED_PREFIX} prefix, ` +
+      `which reads as covering every older trailer:\n  "${b}"`);
+  }
+});
+
+test('coverage keys off the manufacture date, not the sale or purchase date', () => {
+  const text = textWithoutJs(read('warranty-policy.html'));
+  assert.match(text, /manufactured after December 2024/i,
+    'the lifetime warranty attaches to when the trailer was built');
+  assert.match(text, /manufactured between September 2023 and December 2024/i,
+    'the 3-year term is defined by a build window');
+  assert.ok(!/sold by Walton as of December 2024/i.test(text),
+    'the old sale-date phrasing is superseded and must not linger');
+  assert.ok(!/purchased prior to December 2024 (?:are|carry)/i.test(text),
+    'the old purchase-date phrasing implied every pre-2024 trailer got 3 years');
+});
+
+test('the lifetime warranty is stated as unconditional on purchase date', () => {
+  const text = textWithoutJs(read('warranty-policy.html'));
+  assert.match(text, /regardless of when the trailer was purchased|whenever they were purchased/i,
+    'a trailer that sat on a lot before sale still gets the lifetime warranty');
+});
+
+/* The single most losable rule on the page: the 3-year clock can start before
+   the customer owns the trailer. Stated wrong, an owner computes an expiry six
+   months to two years later than the real one and misses their window. */
+test('the 3-year term states the earlier-of start rule', () => {
+  // Checked per block, not per document: a callout that keeps the rule must not
+  // mask an eligibility bullet that has lost it. Every block that states the
+  // term has to state when the term begins.
+  const stating = blocks(read('warranty-policy.html'))
+    .filter((b) => /3-year limited structural warranty/i.test(b));
+  assert.ok(stating.length >= 2,
+    'both the notice and the eligibility bullet should state the term');
+  for (const b of stating) {
+    assert.match(b, /\bearlier\b/i,
+      `this block states the 3-year term without saying the clock starts on the ` +
+      `EARLIER of two dates:\n  "${b}"`);
+    assert.match(b, /date of original retail purchase/i,
+      `this block omits the first start date:\n  "${b}"`);
+    assert.match(b, /six months after Walton sold the trailer to the dealer/i,
+      `this block omits the six-months-after-dealer-sale start date, which is the ` +
+      `whole point of the rule — without it an owner computes an expiry up to two ` +
+      `and a half years late:\n  "${b}"`);
+  }
+});
+
+test('the policy works the dealer-lot case, which is the counterintuitive one', () => {
+  const text = textWithoutJs(read('warranty-policy.html'));
+  assert.match(text, /18 months/i,
+    'the worked example is what makes the start rule land; keep it');
+  assert.match(text, /ask the dealer when Walton sold it to them/i,
+    'the buyer needs an action, not just a rule');
+});
+
+test('there are no 7X1 trailers predating the current entity', () => {
+  const text = textWithoutJs(read('warranty-policy.html'));
+  assert.match(text, /took over operations in September 2023/i,
+    'this is what closes the gap below the build window — without it a reader ' +
+    'wonders what covers a 7X1 trailer built before September 2023');
 });
 
 const NO_WALTON_WARRANTY =
@@ -170,6 +243,24 @@ test('llms.txt routes the warranty use case through the prefix rule', () => {
     assert.ok(m[1].includes(prefix),
       `the llms.txt warranty use case does not mention ${prefix}`);
   }
+});
+
+test('the start-date rule reaches the surfaces that answer owners', () => {
+  for (const [file, needle] of [
+    ['llms-full.txt', /starts on the earlier of the original retail purchase date or six months after Walton sold the trailer to the dealer/i],
+    ['warranty.html', /earlier<\/em> of your purchase date or six months after Walton sold the trailer to the dealer/i],
+    ['walton-chat.js', /earlier of your purchase date or six months after Walton sold the trailer to the dealer/i],
+    ['chatbot-worker.js', /EARLIER of the retail purchase date or six\s+months after Walton sold the trailer to the dealer/i],
+  ]) {
+    assert.match(read(file), needle,
+      `${file} states the 3-year term without the start rule, so an owner or ` +
+      'assistant will compute the expiry from the purchase date and be wrong');
+  }
+});
+
+test('the assistant is told not to assume the term starts at purchase', () => {
+  assert.match(read('chatbot-worker.js'), /Never\s+assume the term starts at purchase/i,
+    'an LLM will default to the purchase date unless told otherwise');
 });
 
 test('llms-full.txt still defers to the policy page as controlling', () => {
