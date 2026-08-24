@@ -53,14 +53,49 @@ test('the policy ties the 3-year pre-December-2024 term to 7X1 only', () => {
   }
 });
 
-test('the policy puts 1W9 and 7SR out of warranty', () => {
+const NO_WALTON_WARRANTY =
+  /out of warranty|no (?:other )?coverage|not covered|no warranty by Walton|no Walton Transportation warranty/i;
+
+test('the policy puts 1W9 and 7SR outside any Walton warranty', () => {
   const text = textWithoutJs(read('warranty-policy.html'));
   for (const prefix of EXCLUDED_PREFIXES) {
     const sentences = text.split(/(?<=\.)\s+/).filter((s) => s.includes(prefix));
     assert.ok(sentences.length >= 1, `${prefix} is not discussed`);
-    assert.ok(
-      sentences.some((s) => /out of warranty|no (?:other )?coverage|not covered/i.test(s)),
-      `${prefix} appears but is never stated to be out of warranty`);
+    assert.ok(sentences.some((s) => NO_WALTON_WARRANTY.test(s)),
+      `${prefix} appears but is never stated to carry no Walton warranty`);
+  }
+});
+
+test('the policy says why: these trailers were built under a different entity', () => {
+  const text = textWithoutJs(read('warranty-policy.html'));
+  assert.match(text, /manufactured under a different entity/i,
+    'an owner losing coverage deserves the reason, not a bare denial');
+});
+
+test('the exclusion does not swallow the component warranties, which survive', () => {
+  const text = textWithoutJs(read('warranty-policy.html'));
+  assert.match(text, /[Cc]omponent warranties are a separate matter and may still be in force/,
+    'component warranties are unaffected by the Walton exclusion and must be stated');
+  assert.match(text, /directly to that component.s manufacturer/i,
+    'tell the owner where to actually take a component claim');
+  assert.match(text, /Walton Transportation does not administer, submit, or adjudicate those claims/i,
+    'be explicit that Walton is not the route for those claims');
+});
+
+test('every surface stating the exclusion also states the component carve-in', () => {
+  const surfaces = SURFACES.concat([
+    { file: 'walton-chat.js', html: false },
+    { file: 'chatbot-worker.js', html: false },
+    { file: 'llms.txt', html: false },
+  ]);
+  for (const surface of surfaces) {
+    const text = textOf(surface);
+    if (!EXCLUDED_PREFIXES.some((p) => text.includes(p))) continue;
+    assert.match(text, /component/i,
+      `${surface.file} states the exclusion without mentioning component warranties, ` +
+      'which leaves an owner believing they have no recourse at all');
+    assert.ok(/vendor|component.s manufacturer|their own manufacturers|respective manufacturers/i.test(text),
+      `${surface.file} mentions component warranties but never says to claim with the vendor`);
   }
 });
 
@@ -120,8 +155,10 @@ test('llms-full.txt tells an agent to establish the prefix first', () => {
   const md = read('llms-full.txt');
   assert.match(md, /Establish the prefix before answering any coverage question/i,
     'an agent that answers before checking the prefix will misinform an owner');
-  assert.match(md, /Do not tell a `1W9` or `7SR` owner they are covered/,
+  assert.match(md, /Do not tell a `1W9` or `7SR` owner that Walton covers their trailer/,
     'state the failure mode explicitly — agents follow explicit negatives');
+  assert.match(md, /Do not leave such an owner believing they have no recourse at all/,
+    'the opposite failure — writing off a claimable component fault — matters too');
   assert.match(md, /do not assume a signed agreement exists/i);
 });
 
@@ -152,7 +189,10 @@ test('the canned chat answer states the prefix rule', () => {
       `the chat warranty answer never mentions ${prefix}, so it will tell an ` +
       'out-of-warranty owner they are covered');
   }
-  assert.match(m[1], /out of warranty/i);
+  assert.ok(NO_WALTON_WARRANTY.test(m[1]),
+    'the chat answer must say these trailers carry no Walton warranty');
+  assert.match(m[1], /component/i,
+    'and must not stop there — component warranties may still apply');
 });
 
 test('the AI assistant prompt refuses to assume coverage', () => {
@@ -160,8 +200,12 @@ test('the AI assistant prompt refuses to assume coverage', () => {
   for (const prefix of ALL_PREFIXES) {
     assert.ok(src.includes(prefix), `the system prompt never mentions ${prefix}`);
   }
-  assert.match(src, /OUT OF WARRANTY/,
+  assert.match(src, /NO WALTON TRANSPORTATION\s+WARRANTY/,
     'the exclusion needs to be unmissable in an LLM prompt');
+  assert.match(src, /DIFFERENT ENTITY/,
+    'the reason belongs in the prompt so the model can explain it');
+  assert.match(src, /[Dd]o not leave\s+a 1W9 or 7SR owner thinking they have no recourse at all/,
+    'the model must still route component claims to the vendor');
   assert.match(src, /[Nn]ever tell a visitor their trailer is covered without knowing the VIN prefix/,
     'an LLM will assert coverage confidently unless told not to');
 });

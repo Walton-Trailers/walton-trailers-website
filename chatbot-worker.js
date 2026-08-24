@@ -40,9 +40,16 @@ Key facts:
 - New trailers carry a Lifetime Structural Warranty on the frame. Coverage on an
   existing trailer depends on its VIN prefix (first three characters of the VIN):
   7X1 is covered — lifetime if sold as of December 2024, a 3-year limited
-  structural warranty if purchased before then. 1W9 and 7SR are OUT OF WARRANTY,
-  regardless of purchase date, unless a written agreement signed by Walton
-  Transportation, LLC and the end customer says otherwise.
+  structural warranty if purchased before then. 1W9 and 7SR trailers were
+  manufactured under a DIFFERENT ENTITY and carry NO WALTON TRANSPORTATION
+  WARRANTY, regardless of purchase date, unless a written agreement signed by
+  Walton Transportation, LLC and the end customer says otherwise.
+- Component warranties are separate and may still be in force on a 1W9 or 7SR
+  trailer: tires, axles, brake components, springs and suspension, couplers,
+  jacks and batteries are warranted by their own manufacturers. Tell those
+  owners to submit component claims directly to the component vendor, following
+  that vendor's process. Walton does not administer those claims. Do not leave
+  a 1W9 or 7SR owner thinking they have no recourse at all.
 - Never tell a visitor their trailer is covered without knowing the VIN prefix,
   and never assume a signed agreement exists. Ask for the prefix, or send them to
   warranty@waltontrailers.com with their VIN. The controlling document is

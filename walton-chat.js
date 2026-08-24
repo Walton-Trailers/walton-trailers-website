@@ -41,7 +41,7 @@
 
   var FAQS = [
     { tags:['warranty','warrant','guarantee','lifetime'],
-      answer:'New Walton trailers come with a <strong>Lifetime Structural Warranty</strong> on the frame. Coverage on an existing trailer depends on its VIN prefix &mdash; the first three characters of the VIN on your VIN sticker. <strong>7X1</strong> trailers are covered (lifetime if sold as of December 2024, 3-year structural if purchased before then). <strong>1W9</strong> and <strong>7SR</strong> trailers are out of warranty unless a signed agreement with Walton Transportation says otherwise. Check the full policy or email warranty@waltontrailers.com with your VIN.',
+      answer:'New Walton trailers come with a <strong>Lifetime Structural Warranty</strong> on the frame. Coverage on an existing trailer depends on its VIN prefix &mdash; the first three characters of the VIN on your VIN sticker. <strong>7X1</strong> trailers are covered (lifetime if sold as of December 2024, 3-year structural if purchased before then). <strong>1W9</strong> and <strong>7SR</strong> trailers were built under a different entity and carry no Walton Transportation warranty, unless a signed agreement says otherwise &mdash; though component warranties (tires, axles, brakes, suspension, couplers, jacks, batteries) may still apply and are claimed directly with those vendors. Check the full policy or email warranty@waltontrailers.com with your VIN.',
       link:{ text:'Full Warranty Policy', url: base+'warranty-policy.html' } },
     { tags:['price','cost','how much','pricing','quote','msrp','afford'],
       answer:'Pricing varies by model and options. Use the <strong>Get a Quote</strong> button on any product page and a dealer will follow up with current pricing.',
