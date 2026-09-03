@@ -314,6 +314,8 @@
   .form-field input[type=file] { padding: 10px 14px; background: #fff; cursor: pointer; }
   .form-field input[type=file]::file-selector-button { margin-right: 14px; padding: 8px 14px; background: var(--black); color: var(--white); border: none; border-radius: 2px; font-family: 'DM Sans', sans-serif; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; cursor: pointer; transition: background 0.2s; }
   .form-field input[type=file]::file-selector-button:hover { background: var(--steel); }
+  .form-notice { background: var(--cream, #efe9df); border-left: 3px solid var(--rust); padding: 14px 18px; margin-bottom: 24px; font-size: 14px; line-height: 1.6; color: var(--black); }
+  .form-notice strong { font-weight: 600; }
   .form-hint { font-size: 12px; color: rgba(10,10,10,0.5); margin-top: 4px; line-height: 1.5; }
   .label-info { position: relative; display: inline-flex; align-items: center; margin-left: 6px; vertical-align: -2px; }
   .label-info-btn { background: none; border: none; padding: 0; margin: 0; cursor: help; color: rgba(10,10,10,0.4); display: inline-flex; transition: color 0.2s; }
@@ -381,7 +383,6 @@
             <ul class="discover-col-links">
               <li><a href="user-manuals">User Manuals</a></li>
               <li><a href="video-guides">Video Guides</a></li>
-              <li><a href="register">Register Your Trailer</a></li>
               <li><a href="vin-replacement">VIN Replacement</a></li>
             </ul>
           </div>
@@ -406,6 +407,7 @@
             <ul class="discover-col-links">
               <li><a href="dealer-portal">Dealer Portal</a></li>
               <li><a href="become-a-dealer">Become a Dealer</a></li>
+              <li><a href="register">Register Your Trailer</a></li>
               <li><a href="https://walton-parts-catalog.vercel.app" target="_blank" rel="noopener noreferrer">Parts &amp; Warranty</a></li>
             </ul>
           </div>
@@ -481,9 +483,9 @@
 
   <!-- PAGE HERO -->
   <section class="page-hero">
-    <div class="page-hero-tag">Ownership Record</div>
+    <div class="page-hero-tag">Dealer Tools</div>
     <h1>Register Your Trailer</h1>
-    <p>Registering your Walton trailer ensures your warranty is on file and keeps you informed about any safety notices or updates for your model.</p>
+    <p>Dealers: register every Walton trailer you sell in the name of the original purchaser. Registration puts the warranty on file for that owner and keeps them informed of any safety notices or updates for their model.</p>
   </section>
 
   <div class="form-section" style="padding-bottom:1px;">
@@ -492,6 +494,9 @@
            Formspree dependency. File upload lands in the
            proof-of-purchase Storage bucket; metadata row goes into
            public.trailer_registrations. -->
+      <div class="form-notice" role="note">
+        <strong>30-day registration rule.</strong> Trailers must be registered within 30 days of the sale date. Warranty claims on a trailer that was not registered, or was registered more than 30 days after the sale, will be denied. Warranty coverage applies to the original purchaser named on this registration.
+      </div>
       <form id="registerForm" onsubmit="submitRegistration(event)">
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
         <div class="form-grid">
@@ -670,7 +675,6 @@
       <li><a href="user-manuals">User Manuals</a></li>
       <li><a href="warranty">Warranty Policy</a></li>
       <li><a href="video-guides">Video Guides</a></li>
-      <li><a href="register">Register Your Trailer</a></li>
     
       <li><a href="parts">Parts &amp; Accessories</a></li>
     </ul>
@@ -681,6 +685,7 @@
       <li><a href="find-a-dealer">Find a Dealer</a></li>
       <li><a href="become-a-dealer">Become a Dealer</a></li>
       <li><a href="dealer-portal">Dealer Portal</a></li>
+      <li><a href="register">Register Your Trailer</a></li>
       <li><a href="https://walton-parts-catalog.vercel.app" target="_blank" rel="noopener noreferrer">Parts &amp; Warranty</a></li>
     </ul>
   </div>
