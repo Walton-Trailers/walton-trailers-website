@@ -163,3 +163,21 @@ test('markdown negotiation does not hijack pages that have no markdown twin', { 
   assert.equal(res.status, 200,
     'only the homepage negotiates today; other pages must serve normally, not redirect into a dead end');
 });
+
+test('original photo URLs 308 to their WebP derivative, which exists', { skip }, async () => {
+  const fs = require('node:fs');
+  const path = require('node:path');
+  const cases = [
+    ['/Gooseneck/Images/fbx212_30ft_front.jpg', '/Gooseneck/Images/fbx212_30ft_front-1600.webp'],
+    ['/Images/compare_trailers.jpg', '/Images/compare_trailers-1600.webp'],
+    ['/Images/site/img-3-1344x768.png', '/Images/site/img-3-1344x768-1200.webp'],
+  ];
+  for (const [from, to] of cases) {
+    const res = await get(from);
+    assert.equal(res.status, 308, `${from} should redirect to its WebP derivative`);
+    assert.equal(res.headers.get('location'), to, `${from} should land on ${to}`);
+    assert.ok(fs.existsSync(path.join(__dirname, '..', to)), `${to} must exist on disk`);
+    const webp = await get(to);
+    assert.equal(webp.status, 200, `${to} should be served`);
+  }
+});

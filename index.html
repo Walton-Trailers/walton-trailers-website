@@ -174,7 +174,7 @@
           },
           "primaryImageOfPage": {
             "@type": "ImageObject",
-            "url": "https://www.waltontrailers.com/Images/site/img-2-2000x1333.jpg"
+            "url": "https://www.waltontrailers.com/Images/site/img-2-2000x1333-1600.webp"
           },
           "significantLink": [
             "https://www.waltontrailers.com/find-a-dealer.html",
@@ -1562,7 +1562,7 @@
     <div class="pc-track" id="pcTrack">
 
       <div class="product-card">
-        <div class="product-card-img" style="background-image:url('Images/site/gooseneck-flatbeds-black-1200.webp');background-size:cover;background-position:center;"></div>
+        <div class="product-card-img"><img src="Images/site/gooseneck-flatbeds-black-1200.webp" srcset="Images/site/gooseneck-flatbeds-black-800.webp 800w, Images/site/gooseneck-flatbeds-black-1200.webp 1200w, Images/site/gooseneck-flatbeds-black-1600.webp 1600w" sizes="(max-width: 480px) 88vw, (max-width: 768px) 82vw, 928px" alt="" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
         <div class="product-card-overlay"></div>
         <div class="product-card-body">
           <h3 class="product-card-name">Gooseneck Flatbeds</h3>
@@ -1573,7 +1573,7 @@
       </div>
 
       <div class="product-card">
-        <div class="product-card-img" style="background-image:url('Images/site/extracted-3-832x1248-800.webp');background-size:cover;background-position:center 40%;"></div>
+        <div class="product-card-img"><img src="Images/site/extracted-3-832x1248-800.webp" srcset="Images/site/extracted-3-832x1248-800.webp 800w" sizes="(max-width: 480px) 88vw, (max-width: 768px) 82vw, 928px" alt="" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;"></div>
         <div class="product-card-overlay"></div>
         <div class="product-card-body">
           <h3 class="product-card-name">Dump Trailers</h3>
@@ -1584,7 +1584,7 @@
       </div>
 
       <div class="product-card">
-        <div class="product-card-img" style="background-image:url('Images/site/img-2-2000x1333-1200.webp');background-size:cover;background-position:center 55%;"></div>
+        <div class="product-card-img"><img src="Images/site/img-2-2000x1333-1200.webp" srcset="Images/site/img-2-2000x1333-800.webp 800w, Images/site/img-2-2000x1333-1200.webp 1200w, Images/site/img-2-2000x1333-1600.webp 1600w" sizes="(max-width: 480px) 88vw, (max-width: 768px) 82vw, 928px" alt="" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center 55%;display:block;"></div>
         <div class="product-card-overlay"></div>
         <div class="product-card-body">
           <h3 class="product-card-name">Tilt Deck Trailers</h3>
@@ -1595,7 +1595,7 @@
       </div>
 
       <div class="product-card">
-        <div class="product-card-img" style="background-image:url('Images/site/bde-deckover-card-1184x864-800.webp');background-size:cover;background-position:center 55%;"></div>
+        <div class="product-card-img"><img src="Images/site/bde-deckover-card-1184x864-800.webp" srcset="Images/site/bde-deckover-card-1184x864-800.webp 800w" sizes="(max-width: 480px) 88vw, (max-width: 768px) 82vw, 928px" alt="" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center 55%;display:block;"></div>
         <div class="product-card-overlay"></div>
         <div class="product-card-body">
           <h3 class="product-card-name">Deckover Equipment Trailers</h3>
@@ -1606,7 +1606,7 @@
       </div>
 
       <div class="product-card">
-        <div class="product-card-img" style="background-image:url('Images/site/extracted-5-1344x768-1200.webp');background-size:cover;background-position:center;"></div>
+        <div class="product-card-img"><img src="Images/site/extracted-5-1344x768-1200.webp" srcset="Images/site/extracted-5-1344x768-800.webp 800w, Images/site/extracted-5-1344x768-1200.webp 1200w" sizes="(max-width: 480px) 88vw, (max-width: 768px) 82vw, 928px" alt="" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
         <div class="product-card-overlay"></div>
         <div class="product-card-body">
           <h3 class="product-card-name">Landscape Trailers</h3>
@@ -1716,14 +1716,30 @@
   </div>
   <script type="text/javascript">
   /* curator-feed-default-feed-layout */
+  /* Round 3 (2026-09-08): the Curator embed pulls ~30 Instagram thumbnails and
+     videos. Load it only once the section is within 600px of the viewport;
+     browsers without IntersectionObserver load it immediately as before. */
   (function () {
-    var d = document, s = "script";
-    var i = d.createElement(s);
-    i.async = 1;
-    i.charset = "UTF-8";
-    i.src = "https://cdn.curator.io/published/83632df4-29d2-48af-9629-80c858dac4c3.js";
-    var e = d.getElementsByTagName(s)[0];
-    e.parentNode.insertBefore(i, e);
+    var target = document.getElementById('curator-feed-default-feed-layout');
+    var loaded = false;
+    function load() {
+      if (loaded) return;
+      loaded = true;
+      var d = document, s = "script";
+      var i = d.createElement(s);
+      i.async = 1;
+      i.charset = "UTF-8";
+      i.src = "https://cdn.curator.io/published/83632df4-29d2-48af-9629-80c858dac4c3.js";
+      var e = d.getElementsByTagName(s)[0];
+      e.parentNode.insertBefore(i, e);
+    }
+    if (!target || !('IntersectionObserver' in window)) { load(); return; }
+    var io = new IntersectionObserver(function (entries) {
+      for (var k = 0; k < entries.length; k++) {
+        if (entries[k].isIntersecting) { io.disconnect(); load(); return; }
+      }
+    }, { rootMargin: '600px 0px' });
+    io.observe(target);
   })();
   </script>
 </section>
