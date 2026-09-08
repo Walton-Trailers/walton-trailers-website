@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Page Not Found | Walton Trailers</title>
+<meta name="description" content="This page does not exist on waltontrailers.com. Jump back to the trailer lineup, find a dealer, or open the sitemap.">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<!-- Machine-readable twin of this page. Agents that prefer plain text can
+     request /404.md directly, or send `Accept: text/markdown` to any path
+     that does not exist. See llms.txt for the full agent contract. -->
+<link rel="alternate" type="text/markdown" href="/404.md" title="404 — Page Not Found (markdown)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f3ef;
+    --steel: #1c2028;
+    --rust: #b7a380;
+    --gray: #6b7280;
+  }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  a { color: inherit; }
+
+  .nf-header { padding: 24px 48px; border-bottom: 1px solid rgba(245,243,239,0.08); }
+  .nf-header img { height: 44px; width: auto; display: block; }
+
+  .nf-main { flex: 1; padding: 72px 48px 96px; max-width: 1080px; width: 100%; margin: 0 auto; }
+
+  .nf-code {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-size: clamp(64px, 10vw, 132px);
+    line-height: 0.9;
+    letter-spacing: 4px;
+    color: var(--rust);
+  }
+  .nf-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-size: clamp(30px, 4vw, 52px);
+    letter-spacing: 2px;
+    line-height: 1.05;
+    margin-top: 12px;
+  }
+  .nf-lede {
+    font-size: 17px;
+    line-height: 1.65;
+    color: rgba(245,243,239,0.72);
+    max-width: 62ch;
+    margin-top: 18px;
+  }
+
+  .nf-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+  .nf-btn {
+    display: inline-block;
+    padding: 14px 28px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--rust);
+    transition: background 0.2s, color 0.2s;
+  }
+  .nf-btn-primary { background: var(--rust); color: var(--black); }
+  .nf-btn-primary:hover { background: transparent; color: var(--rust); }
+  .nf-btn-secondary { background: transparent; color: var(--rust); }
+  .nf-btn-secondary:hover { background: var(--rust); color: var(--black); }
+
+  .nf-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px 48px;
+    margin-top: 64px;
+    padding-top: 48px;
+    border-top: 1px solid rgba(245,243,239,0.08);
+  }
+  .nf-agents {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(245,243,239,0.08);
+  }
+  .nf-agents ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 32px;
+    margin-bottom: 14px;
+  }
+  .nf-agents li { margin-bottom: 0; }
+  .nf-grid h2, .nf-agents h2 {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 16px;
+  }
+  .nf-grid ul { list-style: none; }
+  .nf-grid li { margin-bottom: 10px; }
+  .nf-grid a, .nf-agents a {
+    font-size: 15px;
+    color: rgba(245,243,239,0.8);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nf-grid a:hover, .nf-agents a:hover { color: var(--white); text-decoration: underline; }
+  .nf-agents li, .nf-agents p { font-size: 14px; line-height: 1.6; color: rgba(245,243,239,0.55); }
+  .nf-agents code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 13px;
+    color: var(--rust);
+  }
+
+  .nf-footer {
+    padding: 24px 48px;
+    border-top: 1px solid rgba(245,243,239,0.08);
+    font-size: 13px;
+    color: rgba(245,243,239,0.45);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 640px) {
+    .nf-header, .nf-main, .nf-footer { padding-left: 24px; padding-right: 24px; }
+    .nf-main { padding-top: 48px; padding-bottom: 64px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nf-header">
+  <a href="/" aria-label="Walton Trailers home"><img src="/Images/logos/walton-logo-white.png" alt="Walton Trailers"></a>
+</header>
+
+<main class="nf-main">
+  <p class="nf-code">404</p>
+  <h1 class="nf-title">This page isn&rsquo;t here.</h1>
+  <p class="nf-lede">
+    The URL you requested doesn&rsquo;t exist on waltontrailers.com &mdash; it may have been retired, or the
+    address may be mistyped. The rest of the site is working fine. Pick a destination below, or open the
+    sitemap for the complete list of pages.
+  </p>
+
+  <div class="nf-actions">
+    <a class="nf-btn nf-btn-primary" href="/">Back to homepage</a>
+    <a class="nf-btn nf-btn-secondary" href="/find-a-dealer.html">Find a dealer</a>
+  </div>
+
+  <div class="nf-grid">
+    <section>
+      <h2>Trailers</h2>
+      <ul>
+        <li><a href="/Gooseneck/gooseneck.html">Gooseneck Flatbeds</a></li>
+        <li><a href="/dump-trailers/dump-trailers.html">Dump Trailers</a></li>
+        <li><a href="/tilt-equipment/tilt-equipment.html">Tilt Equipment Trailers</a></li>
+        <li><a href="/Deckover/deckover.html">Deckover Equipment Trailers</a></li>
+        <li><a href="/Landscape/landscape.html">Landscape Trailers</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Owners</h2>
+      <ul>
+        <li><a href="/user-manuals.html">User Manuals</a></li>
+        <li><a href="/video-guides.html">Video Guides</a></li>
+        <li><a href="/warranty.html">Warranty</a></li>
+        <li><a href="/register.html">Register Your Trailer</a></li>
+        <li><a href="/vin-replacement.html">VIN Replacement</a></li>
+        <li><a href="/parts.html">Parts &amp; Accessories</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Company</h2>
+      <ul>
+        <li><a href="/about.html">About Walton</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/careers.html">Careers</a></li>
+        <li><a href="/become-a-dealer.html">Become a Dealer</a></li>
+      </ul>
+    </section>
+  </div>
+
+  <section class="nf-agents">
+    <h2>For agents &amp; crawlers</h2>
+    <ul>
+      <li><a href="/llms.txt">/llms.txt</a> &mdash; site map, with when-to-use guidance</li>
+      <li><a href="/llms-full.txt">/llms-full.txt</a> &mdash; specs, warranty, contacts</li>
+      <li><a href="/sitemap.xml">/sitemap.xml</a> &mdash; every indexable URL</li>
+      <li><a href="/404.md">/404.md</a> &mdash; this page as markdown</li>
+    </ul>
+    <p>Model pages live under a series folder: <code>/Gooseneck/fbx212.html</code>, not <code>/fbx212.html</code>.</p>
+  </section>
+</main>
+
+<footer class="nf-footer">
+  <span>&copy; 2026 Walton Trailers. All rights reserved.</span>
+  <span>150 W 2500 N &bull; Logan, Utah 84341</span>
+</footer>
+
+<!-- ══════════════════════════════════════════════════════════════════════════
+     Agent recovery block.
+
+     Vercel serves this file with a real HTTP 404 for any unmatched path, so an
+     agent already knows the path is dead. What it needs next is where to look
+     instead. The markdown below is the same recovery information rendered
+     above, in a form an agent can lift verbatim without parsing the layout.
+
+     type="text/markdown" is not an executable script type, so browsers neither
+     run nor display this block, and it costs a human visitor nothing. Keep it
+     in sync with /404.md — tests/agent-readiness.test.js asserts they match.
+     ══════════════════════════════════════════════════════════════════════════ -->
+<script type="text/markdown" id="agent-recovery" data-source="/404.md">
+# 404 — Page Not Found
+
+This URL does not exist on www.waltontrailers.com. The response status is 404; no page was served. Every path that does exist on this site is listed in the sitemap, so a 404 here means the URL is wrong or retired — not that the site is unavailable.
+
+## Where to look next
+
+- [/llms.txt](https://www.waltontrailers.com/llms.txt) — map of this site for agents, with when-to-use guidance
+- [/llms-full.txt](https://www.waltontrailers.com/llms-full.txt) — full model spec table, warranty summary, and contact routing in one file
+- [/sitemap.xml](https://www.waltontrailers.com/sitemap.xml) — every indexable URL on this site
+- [/](https://www.waltontrailers.com/) — homepage
+- [/robots.txt](https://www.waltontrailers.com/robots.txt) — crawl rules
+
+## Common destinations
+
+- [Find a Dealer](https://www.waltontrailers.com/find-a-dealer.html) — the only way to buy a new Walton trailer
+- [Trailer lineup](https://www.waltontrailers.com/#trailers) — gooseneck, dump, tilt, deckover, and landscape series
+- [Warranty](https://www.waltontrailers.com/warranty.html) — coverage and how to start a claim
+- [User Manuals](https://www.waltontrailers.com/user-manuals.html) — owner documentation
+- [Contact](https://www.waltontrailers.com/contact.html) — factory contact routing
+- [About Walton](https://www.waltontrailers.com/about.html) — company background
+
+## If you were looking for a trailer model
+
+Model codes follow the pattern `AAANNN` — for example `DHV207`, `FBX212`, `TSX208`. Model pages live under a series folder, not at the site root:
+
+- `/dump-trailers/dhv207.html`, not `/dhv207.html`
+- `/Gooseneck/fbx212.html`, not `/fbx212.html`
+- `/tilt-equipment/tsx208.html`, `/Deckover/bde210.html`, `/Landscape/mpr207.html`
+
+The complete list of active models is in [/llms-full.txt](https://www.waltontrailers.com/llms-full.txt). Retired models live under `/_archive/` and are excluded from crawling — do not present them as current products.
+</script>
+
+</body>
+</html>

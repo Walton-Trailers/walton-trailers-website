@@ -30,6 +30,166 @@
   <meta name="twitter:title" content="Walton Trailers — Not your first trailer. Probably your last.">
   <meta name="twitter:description" content="Walton Trailers builds heavy-duty gooseneck, dump, tilt, deckover, and landscape trailers. Proudly made in the USA — find a dealer near you today.">
   <meta name="twitter:image" content="https://www.waltontrailers.com/og-image.jpg">
+  <!-- JSON-LD identity graph. Lets an agent resolve who Walton Trailers is,
+       what it makes, and how to reach it without scraping the page copy.
+       Keep the facts here in sync with llms.txt / llms-full.txt; the suite in
+       tests/agent-readiness.test.js parses this block and checks both.
+       Deliberately omitted: telephone (the number in the page copy is still a
+       placeholder) and any price or offer (Walton publishes neither). -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.waltontrailers.com/#organization",
+          "name": "Walton Trailers",
+          "legalName": "Walton Transportation, LLC",
+          "url": "https://www.waltontrailers.com/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.waltontrailers.com/Images/logos/walton-logo-white.png"
+          },
+          "description": "Walton Trailers is a family-owned commercial trailer manufacturer founded in 1973 in Logan, Utah. It builds dump, gooseneck flatbed, tilt equipment, deckover, and landscape trailers by hand in the USA and sells them exclusively through a network of roughly 40 authorized dealers across the western United States.",
+          "slogan": "Built Strong. Built Right. Built Here.",
+          "foundingDate": "1973",
+          "foundingLocation": {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Logan",
+              "addressRegion": "UT",
+              "addressCountry": "US"
+            }
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "150 W 2500 N",
+            "addressLocality": "Logan",
+            "addressRegion": "UT",
+            "postalCode": "84341",
+            "addressCountry": "US"
+          },
+          "areaServed": {
+            "@type": "Country",
+            "name": "United States"
+          },
+          "knowsAbout": [
+            "Commercial trailer manufacturing",
+            "Dump trailers",
+            "Gooseneck flatbed trailers",
+            "Tilt equipment trailers",
+            "Deckover trailers",
+            "Landscape trailers"
+          ],
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "contactType": "sales",
+              "email": "sales@waltontrailers.com",
+              "areaServed": "US",
+              "availableLanguage": "English"
+            },
+            {
+              "@type": "ContactPoint",
+              "contactType": "customer support",
+              "email": "warranty@waltontrailers.com",
+              "areaServed": "US",
+              "availableLanguage": "English"
+            },
+            {
+              "@type": "ContactPoint",
+              "contactType": "sales",
+              "name": "Dealer inquiries",
+              "email": "dealers@waltontrailers.com",
+              "areaServed": "US",
+              "availableLanguage": "English"
+            }
+          ],
+          "sameAs": [
+            "https://www.facebook.com/p/Walton-Trailers-61556123964215/",
+            "https://www.instagram.com/waltontrailers/",
+            "https://www.youtube.com/@WaltonTrailers-l4i",
+            "https://www.linkedin.com/company/waltontrailers/"
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Walton Trailers lineup",
+            "itemListElement": [
+              {
+                "@type": "OfferCatalog",
+                "name": "Gooseneck Flatbeds",
+                "url": "https://www.waltontrailers.com/Gooseneck/gooseneck.html",
+                "description": "Gooseneck-hitch flatbed and deckover trailers, 15,500-25,500 lbs GVWR, 20-32 ft decks."
+              },
+              {
+                "@type": "OfferCatalog",
+                "name": "Dump Trailers",
+                "url": "https://www.waltontrailers.com/dump-trailers/dump-trailers.html",
+                "description": "Hydraulic dump trailers, 14,900-18,000 lbs GVWR, 14-16 ft, bumper pull or gooseneck."
+              },
+              {
+                "@type": "OfferCatalog",
+                "name": "Tilt Equipment Trailers",
+                "url": "https://www.waltontrailers.com/tilt-equipment/tilt-equipment.html",
+                "description": "Tilt-deck equipment haulers, 7,000-18,000 lbs GVWR, 12-22 ft."
+              },
+              {
+                "@type": "OfferCatalog",
+                "name": "Deckover Equipment Trailers",
+                "url": "https://www.waltontrailers.com/Deckover/deckover.html",
+                "description": "Bumper-pull deckover (tag-along) trailers, 14,900-24,000 lbs GVWR, 18-30 ft."
+              },
+              {
+                "@type": "OfferCatalog",
+                "name": "Landscape Trailers",
+                "url": "https://www.waltontrailers.com/Landscape/landscape.html",
+                "description": "Bumper-pull landscape and utility trailers, 14,000 lbs GVWR, 20-22 ft."
+              }
+            ]
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.waltontrailers.com/#website",
+          "url": "https://www.waltontrailers.com/",
+          "name": "Walton Trailers",
+          "description": "Heavy-duty gooseneck, dump, tilt, deckover, and landscape trailers, built in Logan, Utah since 1973 and sold through authorized dealers across the western United States.",
+          "inLanguage": "en-US",
+          "publisher": {
+            "@id": "https://www.waltontrailers.com/#organization"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://www.waltontrailers.com/#webpage",
+          "url": "https://www.waltontrailers.com/",
+          "name": "Walton Trailers — Not your first trailer. Probably your last.",
+          "description": "Walton Trailers builds heavy-duty gooseneck, dump, tilt, deckover, and landscape trailers. Proudly made in the USA — find a dealer near you today.",
+          "isPartOf": {
+            "@id": "https://www.waltontrailers.com/#website"
+          },
+          "about": {
+            "@id": "https://www.waltontrailers.com/#organization"
+          },
+          "primaryImageOfPage": {
+            "@type": "ImageObject",
+            "url": "https://www.waltontrailers.com/Images/site/img-2-2000x1333.jpg"
+          },
+          "significantLink": [
+            "https://www.waltontrailers.com/find-a-dealer.html",
+            "https://www.waltontrailers.com/warranty.html",
+            "https://www.waltontrailers.com/user-manuals.html",
+            "https://www.waltontrailers.com/about.html"
+          ]
+        }
+      ]
+    }
+  </script>
+  <!-- Markdown representation of this page, for agents that prefer text over
+       markup. Also reachable at this URL by sending `Accept: text/markdown`. -->
+  <link rel="alternate" type="text/markdown" href="/index.md" title="Walton Trailers homepage (markdown)">
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="Walton Trailers llms.txt">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -43,6 +203,24 @@
     --gray: #6b7280;
   }
   html { scroll-behavior: smooth; }
+
+  /* Visually-hidden section headings.
+     Several homepage sections are unmistakable to a sighted visitor from their
+     imagery alone (the trailer carousel, the stats bar, the Why Walton video)
+     and so were built without a visible heading. That left the raw HTML with a
+     flat outline: a lone h1 followed by unlabelled sections, which screen
+     readers and non-JS crawlers cannot navigate. These headings name each
+     section for them without changing anything on screen. The text always
+     describes content that is actually visible in that section. */
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
   body { font-family: 'DM Sans', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
 
   /* NAV */
@@ -341,7 +519,7 @@
   .footer-social { display: flex; gap: 12px; margin-top: 20px; }
   .footer-social-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.12); color: rgba(245,243,239,0.5) !important; display: flex; align-items: center; justify-content: center; text-decoration: none !important; transition: border-color 0.2s, color 0.2s, background 0.2s; }
   .footer-social-btn:hover { border-color: var(--rust); color: var(--white); background: rgba(192,57,43,0.15); }
-  .footer-col h4 { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: rgba(245,243,239,0.4); margin-bottom: 20px; }
+  .footer-col h2 { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: rgba(245,243,239,0.4); margin-bottom: 20px; }
   .footer-col ul { list-style: none; }
   .footer-col li { margin-bottom: 12px; }
   .footer-col a { color: rgba(245,243,239,0.75); text-decoration: none; font-size: 14px; transition: color 0.2s; }
@@ -479,35 +657,6 @@
     pointer-events: none;
   }
   .mobile-menu.open { transform: translateX(0); pointer-events: all; }
-  .mobile-menu-item {
-    width: 100%; text-align: center; padding: 22px 40px;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    opacity: 0; transform: translateX(20px);
-    transition: opacity 0.3s, transform 0.3s;
-  }
-  .mobile-menu.open .mobile-menu-item {
-    opacity: 1; transform: translateX(0);
-  }
-  .mobile-menu.open .mobile-menu-item:nth-child(1) { transition-delay: 0.05s; }
-  .mobile-menu.open .mobile-menu-item:nth-child(2) { transition-delay: 0.1s; }
-  .mobile-menu.open .mobile-menu-item:nth-child(3) { transition-delay: 0.15s; }
-  .mobile-menu.open .mobile-menu-item:nth-child(4) { transition-delay: 0.2s; }
-  .mobile-menu.open .mobile-menu-item:nth-child(5) { transition-delay: 0.25s; }
-  .mobile-menu.open .mobile-menu-item:nth-child(6) { transition-delay: 0.3s; }
-  .mobile-menu-item a {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px; letter-spacing: 3px;
-    color: rgba(245,243,239,0.8); text-decoration: none;
-    transition: color 0.2s;
-  }
-  .mobile-menu-item a:hover { color: var(--white); }
-  .mobile-menu-cta {
-    margin-top: 12px; padding: 24px 40px; border-bottom: none !important;
-  }
-  .mobile-menu-cta a {
-    background: var(--rust); color: var(--white) !important;
-    padding: 16px 48px; border-radius: 2px; font-size: 24px !important;
-  }
 
   /* ── PRODUCT CARD CAROUSEL ── */
   .products-section {
@@ -584,6 +733,7 @@
   }
   .product-card-name {
     font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
     font-size: clamp(26px, 2.8vw, 42px);
     letter-spacing: 1.5px;
     color: var(--white);
@@ -736,7 +886,7 @@
     display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
   .chat-avatar svg { width: 18px; height: 18px; fill: white; }
-  .chat-header-text h4 { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 1px; color: #f5f3ef; }
+  .chat-header-text h3 { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 1px; color: #f5f3ef; }
   .chat-header-text p { font-size: 11px; color: rgba(245,243,239,0.5); margin-top: 1px; }
   .chat-close-btn { background: none; border: none; color: rgba(245,243,239,0.4); font-size: 22px; cursor: pointer; line-height: 1; transition: color 0.2s; padding: 0; }
   .chat-close-btn:hover { color: #f5f3ef; }
@@ -1195,13 +1345,40 @@
     transform: rotate(180deg);
   }
 
-  </style>
+  
+  /* Mobile round 1 (2026-09-08): 16px form text stops iOS focus-zoom; the menu drawer scrolls on short
+     phones (spacers keep it centered when it fits, collapse when it doesn't). */
+  @media (max-width: 768px) {
+    input:not([type=checkbox]):not([type=radio]), select, textarea { font-size: 16px !important; }
+    .mobile-menu { overflow-y: auto; justify-content: flex-start; }
+    .mobile-menu::before, .mobile-menu::after { content: ''; flex: 1 1 0; min-height: 0; }
+      .product-card-learn, .promo-card-btn { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+  }
+
+  /* Mobile menu v2 (generated by mobile_menu.py) — edit mobile_menu.py, not this block */
+  .mobile-menu { padding: 96px 24px 40px; }
+  .mobile-menu-cta { display: block; width: 100%; max-width: 420px; background: #b7a380; color: #f5f3ef !important; text-decoration: none; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 15px; letter-spacing: 2px; text-transform: uppercase; text-align: center; padding: 17px 24px; border-radius: 2px; margin: 0 0 8px; }
+  .mobile-menu-group { width: 100%; max-width: 420px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .mobile-menu-toggle { width: 100%; min-height: 64px; display: flex; align-items: center; justify-content: space-between; background: none; border: 0; padding: 14px 4px; font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 3px; color: rgba(245,243,239,0.92); cursor: pointer; text-align: left; }
+  .mobile-menu-chevron { font-size: 16px; color: #b7a380; transition: transform 0.25s; }
+  .mobile-menu-group.open .mobile-menu-chevron { transform: rotate(180deg); }
+  .mobile-menu-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.28s ease; }
+  .mobile-menu-group.open .mobile-menu-panel { grid-template-rows: 1fr; }
+  .mobile-menu-panel > div { overflow: hidden; }
+  .mobile-menu-group.open .mobile-menu-panel > div { padding-bottom: 10px; }
+  .mobile-menu-panel a { display: flex; align-items: center; min-height: 48px; padding: 0 4px 0 16px; font-family: 'DM Sans', sans-serif; font-size: 17px; color: rgba(245,243,239,0.75); text-decoration: none; border-top: 1px solid rgba(255,255,255,0.05); }
+  .mobile-menu-panel a:hover, .mobile-menu-panel a:active { color: #f5f3ef; }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  @media (prefers-reduced-motion: reduce) { .mobile-menu-panel, .mobile-menu-chevron { transition: none; } }
+</style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav id="navbar">
-  <a href="#" class="nav-logo"><img src="Images/logos/walton-logo-white.png" alt="Walton Trailers" style="height:52px;width:auto;"></a>
+  <a href="#" class="nav-logo"><img src="Images/logos/walton-logo-white-330.webp" srcset="Images/logos/walton-logo-white-330.webp 1x, Images/logos/walton-logo-white-660.webp 2x" alt="Walton Trailers" style="height:52px;width:auto;"></a>
   <ul class="nav-links">
     <!-- Trailers dropdown (existing mega) -->
     <li id="trailersTrigger">
@@ -1268,7 +1445,7 @@
     <!-- CTA -->
     <li><a href="find-a-dealer" class="nav-cta">Find a Dealer</a></li>
   </ul>
-  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -1278,27 +1455,27 @@
   <div class="nav-mega-inner" style="grid-template-columns:repeat(5,1fr);gap:8px;">
 
     <a href="Gooseneck/gooseneck" class="mega-item">
-      <div class="mega-img" style="background-image:url('Images/site/img-1-832x1248.png');background-size:cover;background-position:center;border-radius:4px;"></div>
+      <div class="mega-img" style="background-image:url('Images/site/img-1-832x1248-800.webp');background-size:cover;background-position:center;border-radius:4px;"></div>
       <div class="mega-name">Gooseneck Flatbeds</div>
     </a>
 
     <a href="dump-trailers/dump-trailers" class="mega-item">
-      <div class="mega-img" style="background-image:url('Images/site/img-1-1344x768.png');background-size:cover;background-position:center;border-radius:4px;"></div>
+      <div class="mega-img" style="background-image:url('Images/site/img-1-1344x768-1200.webp');background-size:cover;background-position:center;border-radius:4px;"></div>
       <div class="mega-name">Dump Trailers</div>
     </a>
 
     <a href="tilt-equipment/tilt-equipment" class="mega-item">
-      <div class="mega-img" style="background-image:url('Images/site/site-img-1-1184x864.jpg');background-size:cover;background-position:center;border-radius:4px;"></div>
+      <div class="mega-img" style="background-image:url('Images/site/site-img-1-1184x864-800.webp');background-size:cover;background-position:center;border-radius:4px;"></div>
       <div class="mega-name">Tilt Deck Trailers</div>
     </a>
 
     <a href="Deckover/deckover" class="mega-item">
-      <div class="mega-img" style="background-image:url('Images/site/site-img-mega-1184x864.jpg');background-size:cover;background-position:center;border-radius:4px;"></div>
+      <div class="mega-img" style="background-image:url('Images/site/site-img-mega-1184x864-800.webp');background-size:cover;background-position:center;border-radius:4px;"></div>
       <div class="mega-name">Deckover Equipment</div>
     </a>
 
     <a href="Landscape/landscape" class="mega-item">
-      <div class="mega-img" style="background-image:url('Images/site/extracted-1-832x1248.jpg');background-size:cover;background-position:center;border-radius:4px;"></div>
+      <div class="mega-img" style="background-image:url('Images/site/extracted-1-832x1248-800.webp');background-size:cover;background-position:center;border-radius:4px;"></div>
       <div class="mega-name">Landscape Trailers</div>
     </a>
 
@@ -1308,11 +1485,54 @@
 <!-- MOBILE MENU -->
 
 <div class="mobile-menu" id="mobileMenu">
-  <div class="mobile-menu-item"><a href="#trailers" onclick="closeMenu()">Trailers</a></div>
-  <div class="mobile-menu-item"><a href="user-manuals" onclick="closeMenu()">Owners</a></div>
-  <div class="mobile-menu-item"><a href="find-a-dealer" onclick="closeMenu()">Dealers</a></div>
-  <div class="mobile-menu-item"><a href="about" onclick="closeMenu()">Company</a></div>
-  <div class="mobile-menu-item mobile-menu-cta"><a href="find-a-dealer" onclick="closeMenu()">Find a Dealer →</a></div>
+  <!-- generated by mobile_menu.py — edit MENU there, not here -->
+  <a href="find-a-dealer" class="mobile-menu-cta">Find a Dealer &rarr;</a>
+  <div class="mobile-menu-group open">
+    <button class="mobile-menu-toggle" type="button" aria-expanded="true" aria-controls="mmTrailers" onclick="mmToggle(this)">Trailers <span class="mobile-menu-chevron" aria-hidden="true">&#9662;</span></button>
+    <div class="mobile-menu-panel" id="mmTrailers">
+      <div>
+        <a href="Gooseneck/gooseneck">Gooseneck Flatbeds</a>
+        <a href="dump-trailers/dump-trailers">Dump Trailers</a>
+        <a href="tilt-equipment/tilt-equipment">Tilt Deck Trailers</a>
+        <a href="Deckover/deckover">Deckover Equipment</a>
+        <a href="Landscape/landscape">Landscape Trailers</a>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-menu-group">
+    <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mmOwners" onclick="mmToggle(this)">Owners <span class="mobile-menu-chevron" aria-hidden="true">&#9662;</span></button>
+    <div class="mobile-menu-panel" id="mmOwners">
+      <div>
+        <a href="user-manuals">User Manuals</a>
+        <a href="video-guides">Video Guides</a>
+        <a href="register">Register Your Trailer</a>
+        <a href="vin-replacement">VIN Replacement</a>
+        <a href="warranty">Warranty Policy</a>
+        <a href="parts">Parts &amp; Accessories</a>
+        <a href="contact">Contact Support</a>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-menu-group">
+    <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mmDealers" onclick="mmToggle(this)">Dealers <span class="mobile-menu-chevron" aria-hidden="true">&#9662;</span></button>
+    <div class="mobile-menu-panel" id="mmDealers">
+      <div>
+        <a href="dealer-portal">Dealer Portal</a>
+        <a href="become-a-dealer">Become a Dealer</a>
+        <a href="https://walton-parts-catalog.vercel.app" target="_blank" rel="noopener noreferrer">Parts &amp; Warranty</a>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-menu-group">
+    <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mmCompany" onclick="mmToggle(this)">Company <span class="mobile-menu-chevron" aria-hidden="true">&#9662;</span></button>
+    <div class="mobile-menu-panel" id="mmCompany">
+      <div>
+        <a href="about">About Walton</a>
+        <a href="careers">Careers</a>
+        <a href="contact">Contact Us</a>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- HERO CAROUSEL -->
@@ -1334,6 +1554,7 @@
 
 <!-- PRODUCT CARD CAROUSEL -->
 <section class="products-section" id="trailers">
+  <h2 class="sr-only">Walton Trailer Lineup</h2>
   <div class="pc-outer">
   <button class="pc-btn pc-btn-prev" id="pcPrev" onclick="pcMove(-1)">&#8249;</button>
   <button class="pc-btn pc-btn-next" id="pcNext" onclick="pcMove(1)">&#8250;</button>
@@ -1341,10 +1562,10 @@
     <div class="pc-track" id="pcTrack">
 
       <div class="product-card">
-        <div class="product-card-img" style="background-image:url('Images/site/gooseneck-flatbeds-black.jpg');background-size:cover;background-position:center;"></div>
+        <div class="product-card-img" style="background-image:url('Images/site/gooseneck-flatbeds-black-1200.webp');background-size:cover;background-position:center;"></div>
         <div class="product-card-overlay"></div>
         <div class="product-card-body">
-          <div class="product-card-name">Gooseneck Flatbeds</div>
+          <h3 class="product-card-name">Gooseneck Flatbeds</h3>
           <div class="product-card-actions">
             <a href="Gooseneck/gooseneck" class="product-card-learn">Learn More</a>
           </div>
@@ -1352,10 +1573,10 @@
       </div>
 
       <div class="product-card">
-        <div class="product-card-img" style="background-image:url('Images/site/extracted-3-832x1248.jpg');background-size:cover;background-position:center 40%;"></div>
+        <div class="product-card-img" style="background-image:url('Images/site/extracted-3-832x1248-800.webp');background-size:cover;background-position:center 40%;"></div>
         <div class="product-card-overlay"></div>
         <div class="product-card-body">
-          <div class="product-card-name">Dump Trailers</div>
+          <h3 class="product-card-name">Dump Trailers</h3>
           <div class="product-card-actions">
             <a href="dump-trailers/dump-trailers" class="product-card-learn">Learn More</a>
           </div>
@@ -1363,10 +1584,10 @@
       </div>
 
       <div class="product-card">
-        <div class="product-card-img" style="background-image:url('Images/site/img-2-2000x1333.jpg');background-size:cover;background-position:center 55%;"></div>
+        <div class="product-card-img" style="background-image:url('Images/site/img-2-2000x1333-1200.webp');background-size:cover;background-position:center 55%;"></div>
         <div class="product-card-overlay"></div>
         <div class="product-card-body">
-          <div class="product-card-name">Tilt Deck Trailers</div>
+          <h3 class="product-card-name">Tilt Deck Trailers</h3>
           <div class="product-card-actions">
             <a href="tilt-equipment/tilt-equipment" class="product-card-learn">Learn More</a>
           </div>
@@ -1374,10 +1595,10 @@
       </div>
 
       <div class="product-card">
-        <div class="product-card-img" style="background-image:url('Images/site/bde-deckover-card-1184x864.jpg');background-size:cover;background-position:center 55%;"></div>
+        <div class="product-card-img" style="background-image:url('Images/site/bde-deckover-card-1184x864-800.webp');background-size:cover;background-position:center 55%;"></div>
         <div class="product-card-overlay"></div>
         <div class="product-card-body">
-          <div class="product-card-name">Deckover Equipment Trailers</div>
+          <h3 class="product-card-name">Deckover Equipment Trailers</h3>
           <div class="product-card-actions">
             <a href="Deckover/deckover" class="product-card-learn">Learn More</a>
           </div>
@@ -1385,10 +1606,10 @@
       </div>
 
       <div class="product-card">
-        <div class="product-card-img" style="background-image:url('Images/site/extracted-5-1344x768.jpg');background-size:cover;background-position:center;"></div>
+        <div class="product-card-img" style="background-image:url('Images/site/extracted-5-1344x768-1200.webp');background-size:cover;background-position:center;"></div>
         <div class="product-card-overlay"></div>
         <div class="product-card-body">
-          <div class="product-card-name">Landscape Trailers</div>
+          <h3 class="product-card-name">Landscape Trailers</h3>
           <div class="product-card-actions">
             <a href="Landscape/landscape" class="product-card-learn">Learn More</a>
           </div>
@@ -1419,7 +1640,7 @@
       <p>Answer 4 quick questions and we'll match you to the right Walton trailer.</p>
       <button class="promo-card-btn" onclick="openFinder()">Help Me Choose</button>
     </div>
-    <div class="promo-card-img"><img src="Images/site/img-3-1344x768.png" alt="Dump Trailer Lineup" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+    <div class="promo-card-img"><img loading="lazy" decoding="async" src="Images/site/img-3-1344x768-1200.webp" srcset="Images/site/img-3-1344x768-800.webp 800w, Images/site/img-3-1344x768-1200.webp 1200w" sizes="(max-width: 768px) 100vw, 220px" alt="Dump Trailer Lineup" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
   </div>
 
   <div class="promo-card">
@@ -1428,13 +1649,14 @@
       <p>See GVWR, payload, and full specs side by side in seconds.</p>
       <button class="promo-card-btn" onclick="openCompare()">Compare Now</button>
     </div>
-    <div class="promo-card-img"><img src="Images/compare_trailers.jpg" alt="Compare Walton Trailers Side by Side" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+    <div class="promo-card-img"><img loading="lazy" decoding="async" src="Images/compare_trailers-1200.webp" srcset="Images/compare_trailers-800.webp 800w, Images/compare_trailers-1200.webp 1200w, Images/compare_trailers-1600.webp 1600w" sizes="(max-width: 768px) 100vw, 220px" alt="Compare Walton Trailers Side by Side" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
   </div>
 
 </div>
 
 <!-- STATS -->
 <div class="stats-bar">
+  <h2 class="sr-only">Walton Trailers by the Numbers</h2>
   <div class="stat"><div class="stat-number">50+</div><div class="stat-label">Years Manufacturing</div></div>
   <div class="stat"><div class="stat-number">40+</div><div class="stat-label">Dealers — Western US</div></div>
   <div class="stat"><div class="stat-number">∞</div><div class="stat-label">Structural Warranty</div></div>
@@ -1450,6 +1672,7 @@
      loading="lazy" defers the iframe until the section approaches the
      viewport so it doesn't compete with the homepage's first paint. -->
 <section class="why-video-section" id="why">
+  <h2 class="sr-only">Why Walton</h2>
   <div class="why-video-wrap">
     <iframe
       src="https://www.youtube-nocookie.com/embed/W9IC3yegU1A?rel=0&modestbranding=1"
@@ -1466,6 +1689,7 @@
 
 <!-- TESTIMONIAL -->
 <section class="testimonial-section">
+  <h2 class="sr-only">What Walton Owners Say</h2>
   <p class="testimonial-quote">"I bought a Walton 17 years ago, used it constantly — the only repair I've had to make is changing the battery."</p>
   <p class="testimonial-author">— Trevar Erickson, Walton Owner</p>
   <div class="testimonial-dots">
@@ -1520,7 +1744,7 @@
 <!-- FOOTER -->
 <footer>
   <div>
-    <div class="footer-brand"><img src="Images/logos/walton-logo-white.png" alt="Walton Trailers" style="height:48px;width:auto;display:block;margin-bottom:4px;"></div>
+    <div class="footer-brand"><img src="Images/logos/walton-logo-white-330.webp" srcset="Images/logos/walton-logo-white-330.webp 1x, Images/logos/walton-logo-white-660.webp 2x" alt="Walton Trailers" style="height:48px;width:auto;display:block;margin-bottom:4px;"></div>
     <p class="footer-tagline">Built Strong. Built Right. Built Here. Manufacturing commercial trailers since 1973 in Logan, Utah.</p>
     <div class="footer-social">
       <a href="https://www.facebook.com/p/Walton-Trailers-61556123964215/" target="_blank" rel="noopener" class="footer-social-btn" aria-label="Facebook">
@@ -1538,7 +1762,7 @@
     </div>
   </div>
   <div class="footer-col">
-    <h4>Trailers</h4>
+    <h2>Trailers</h2>
     <ul>
       <li><a href="Gooseneck/gooseneck">Gooseneck Flatbeds</a></li>
       <li><a href="dump-trailers/dump-trailers">Dump Trailers</a></li>
@@ -1549,7 +1773,7 @@
   </div>
   
   <div class="footer-col">
-    <h4>Owners</h4>
+    <h2>Owners</h2>
     <ul>
       <li><a href="user-manuals">User Manuals</a></li>
       <li><a href="warranty">Warranty Policy</a></li>
@@ -1559,7 +1783,7 @@
     </ul>
   </div>
   <div class="footer-col">
-    <h4>Dealers</h4>
+    <h2>Dealers</h2>
     <ul>
       <li><a href="find-a-dealer">Find a Dealer</a></li>
       <li><a href="become-a-dealer">Become a Dealer</a></li>
@@ -1569,7 +1793,7 @@
     </ul>
   </div>
   <div class="footer-col">
-    <h4>Company</h4>
+    <h2>Company</h2>
     <ul>
       <li><a href="about">About Walton</a></li>
       <li><a href="careers">Careers</a></li>
@@ -1913,11 +2137,24 @@ function toggleMenu() {
   var isOpen = menu.classList.contains('open');
   menu.classList.toggle('open', !isOpen);
   btn.classList.toggle('open', !isOpen);
+  btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
   document.body.style.overflow = isOpen ? '' : 'hidden';
+}
+function mmToggle(btn) {
+  var group = btn.parentNode;
+  var open = !group.classList.contains('open');
+  var groups = document.querySelectorAll('#mobileMenu .mobile-menu-group.open');
+  for (var i = 0; i < groups.length; i++) {
+    groups[i].classList.remove('open');
+    groups[i].querySelector('.mobile-menu-toggle').setAttribute('aria-expanded', 'false');
+  }
+  group.classList.toggle('open', open);
+  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
 }
 function closeMenu() {
   document.getElementById('mobileMenu').classList.remove('open');
   document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('hamburger').setAttribute('aria-expanded', 'false');
   document.body.style.overflow = '';
 }
 
@@ -2664,7 +2901,7 @@ function updateModelSelect(catSelectId, modelSelectId) {
         <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
       </div>
       <div class="chat-header-text">
-        <h4>Walton Support</h4>
+        <h3>Walton Support</h3>
         <p>Ask us anything about our trailers</p>
       </div>
     </div>
