@@ -348,12 +348,21 @@
   section + section { border-top: 1px solid rgba(255,255,255,0.07); }
   footer, .main-footer { border-top: 2px solid rgba(255,255,255,0.12) !important; }
 
-  </style>
+  
+  /* Mobile round 1 (2026-09-08): 16px form text stops iOS focus-zoom; the menu drawer scrolls on short
+     phones (spacers keep it centered when it fits, collapse when it doesn't). */
+  @media (max-width: 768px) {
+    input:not([type=checkbox]):not([type=radio]), select, textarea { font-size: 16px !important; }
+    .mobile-menu { overflow-y: auto; justify-content: flex-start; }
+    .mobile-menu::before, .mobile-menu::after { content: ''; flex: 1 1 0; min-height: 0; }
+    .mobile-menu-close { position: sticky; top: 16px; order: -1; align-self: flex-end; margin: 0 8px -44px 0; z-index: 1; }
+  }
+</style>
 </head>
 <body>
 
 <nav id="navbar">
-  <a href="/" class="nav-logo"><img src="Images/logos/walton-logo-white.png" alt="Walton Trailers" style="height:52px;width:auto;"></a>
+  <a href="/" class="nav-logo"><img src="Images/logos/walton-logo-white-330.webp" srcset="Images/logos/walton-logo-white-330.webp 1x, Images/logos/walton-logo-white-660.webp 2x" alt="Walton Trailers" style="height:52px;width:auto;"></a>
   <ul class="nav-links">
     <!-- Trailers dropdown -->
     <li id="trailersTrigger">
@@ -420,7 +429,7 @@
     <!-- CTA -->
     <li><a href="find-a-dealer" class="nav-cta">Find a Dealer</a></li>
   </ul>
-  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -428,27 +437,27 @@
   <div class="nav-mega-inner" style="grid-template-columns:repeat(5,1fr);gap:8px;">
 
     <a href="Gooseneck/gooseneck" class="mega-item">
-      <div class="mega-img" style="background-image:url('Images/site/img-1-832x1248.png');background-size:cover;background-position:center;border-radius:4px;"></div>
+      <div class="mega-img" style="background-image:url('Images/site/img-1-832x1248-800.webp');background-size:cover;background-position:center;border-radius:4px;"></div>
       <div class="mega-name">Gooseneck Flatbeds</div>
     </a>
 
     <a href="dump-trailers/dump-trailers" class="mega-item">
-      <div class="mega-img" style="background-image:url('Images/site/img-1-1344x768.png');background-size:cover;background-position:center;border-radius:4px;"></div>
+      <div class="mega-img" style="background-image:url('Images/site/img-1-1344x768-1200.webp');background-size:cover;background-position:center;border-radius:4px;"></div>
       <div class="mega-name">Dump Trailers</div>
     </a>
 
     <a href="tilt-equipment/tilt-equipment" class="mega-item">
-      <div class="mega-img" style="background-image:url('Images/site/site-img-1-1184x864.jpg');background-size:cover;background-position:center;border-radius:4px;"></div>
+      <div class="mega-img" style="background-image:url('Images/site/site-img-1-1184x864-800.webp');background-size:cover;background-position:center;border-radius:4px;"></div>
       <div class="mega-name">Tilt Deck Trailers</div>
     </a>
 
     <a href="Deckover/deckover" class="mega-item">
-      <div class="mega-img" style="background-image:url('Images/site/site-img-mega-1184x864.jpg');background-size:cover;background-position:center;border-radius:4px;"></div>
+      <div class="mega-img" style="background-image:url('Images/site/site-img-mega-1184x864-800.webp');background-size:cover;background-position:center;border-radius:4px;"></div>
       <div class="mega-name">Deckover Equipment</div>
     </a>
 
     <a href="Landscape/landscape" class="mega-item">
-      <div class="mega-img" style="background-image:url('Images/site/extracted-1-832x1248.jpg');background-size:cover;background-position:center;border-radius:4px;"></div>
+      <div class="mega-img" style="background-image:url('Images/site/extracted-1-832x1248-800.webp');background-size:cover;background-position:center;border-radius:4px;"></div>
       <div class="mega-name">Landscape Trailers</div>
     </a>
 
@@ -471,7 +480,7 @@
   <!-- PAGE HERO -->
   <section class="page-hero">
     <h1>Warranty Policy</h1>
-    <p>Walton Trailers are built to last. Every trailer we manufacture is backed by a Lifetime Structural Warranty on the frame — because we stand behind our work.</p>
+    <p>Walton Trailers are built to last. Every new Walton trailer is backed by a Lifetime Structural Warranty on the frame — because we stand behind our work. Coverage on older trailers depends on the VIN prefix and when the trailer was manufactured.</p>
     <a href="warranty-policy" style="display:inline-flex;align-items:center;gap:10px;margin-top:28px;background:var(--rust);color:var(--black);padding:14px 28px;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:600;border-radius:2px;text-decoration:none;transition:background 0.2s;">View Full Warranty Policy &rarr;</a>
   </section>
 
@@ -485,7 +494,7 @@
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
           <h3 style="font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:2px; margin-bottom:12px;">Structural Frame</h3>
-          <p style="font-size:13px; font-weight:300; color:rgba(245,243,239,0.65); line-height:1.8;">Lifetime warranty on all main frame welds, cross members, and structural components against defects in materials and workmanship.</p>
+          <p style="font-size:13px; font-weight:300; color:rgba(245,243,239,0.65); line-height:1.8;">On covered trailers, a lifetime warranty on all main frame welds, cross members, and structural components against defects in materials and workmanship.</p>
         </div>
 
         <div style="background: var(--black); border-radius: 4px; padding: 36px 28px; border-top: 3px solid var(--rust);">
@@ -504,6 +513,20 @@
           <p style="font-size:13px; font-weight:300; color:rgba(245,243,239,0.65); line-height:1.8;">All warranty claims must be submitted through an authorized Walton dealer. Your dealer coordinates the inspection and repair process on your behalf.</p>
         </div>
 
+      </div>
+
+      <!-- Eligibility note. The three cards above describe what the warranty
+           covers; this says whose trailer it covers, which is not the same
+           question. Keep in step with warranty-policy.html — the suite in
+           tests/warranty-policy.test.js compares the two. -->
+      <div style="margin-top: 28px; background: var(--black); border-left: 3px solid var(--rust); border-radius: 2px; padding: 26px 30px;">
+        <div style="font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--rust); margin-bottom:12px;">Check Your VIN Prefix</div>
+        <p style="font-size:14px; font-weight:300; color:rgba(245,243,239,0.75); line-height:1.85; margin-bottom:12px;">Coverage depends on your trailer&rsquo;s VIN prefix &mdash; the first three characters of the 17-character VIN printed on your VIN sticker &mdash; and, for trailers Walton Transportation built, on when it was manufactured.</p>
+        <p style="font-size:14px; font-weight:300; color:rgba(245,243,239,0.75); line-height:1.85; margin-bottom:12px;"><span style="font-family:'SF Mono',Menlo,Consolas,monospace;letter-spacing:2px;color:var(--rust);">7X1</span>, manufactured in December 2024 or later &mdash; Lifetime Structural Warranty, whenever the trailer was purchased.</p>
+        <p style="font-size:14px; font-weight:300; color:rgba(245,243,239,0.75); line-height:1.85; margin-bottom:12px;"><span style="font-family:'SF Mono',Menlo,Consolas,monospace;letter-spacing:2px;color:var(--rust);">7X1</span>, manufactured between September 2023 and November 2024 &mdash; a 3-year limited structural warranty. The term starts on the <em>earlier</em> of your purchase date or six months after Walton sold the trailer to the dealer, so a trailer that sat on a lot for two years is already 18 months into its term on the day it is bought. Ask the dealer when Walton sold it to them.</p>
+        <p style="font-size:14px; font-weight:300; color:rgba(245,243,239,0.75); line-height:1.85; margin-bottom:12px;"><span style="font-family:'SF Mono',Menlo,Consolas,monospace;letter-spacing:2px;color:var(--rust);">1W9</span> or <span style="font-family:'SF Mono',Menlo,Consolas,monospace;letter-spacing:2px;color:var(--rust);">7SR</span> &mdash; manufactured under a different entity, so they carry no Walton Transportation warranty, regardless of purchase date, unless a written agreement signed by Walton Transportation, LLC and the end customer expressly provides otherwise.</p>
+        <p style="font-size:14px; font-weight:300; color:rgba(245,243,239,0.75); line-height:1.85; margin-bottom:12px;">Component warranties on those trailers may still be in force. Tires, axles, brakes, springs and suspension, couplers, jacks, and batteries are warranted by their own manufacturers &mdash; submit those claims directly to the component vendor, following the process that vendor has established.</p>
+        <p style="font-size:14px; font-weight:300; color:rgba(245,243,239,0.6); line-height:1.85;">Read the <a href="warranty-policy" style="color:var(--rust);">full warranty policy</a>, or email <a href="mailto:warranty@waltontrailers.com" style="color:var(--rust);">warranty@waltontrailers.com</a> with your VIN if you are unsure.</p>
       </div>
     </div>
   </section>
@@ -581,7 +604,7 @@
 
 <footer>
   <div>
-    <div class="footer-brand"><img src="Images/logos/walton-logo-white.png" alt="Walton Trailers" style="height:48px;width:auto;display:block;margin-bottom:4px;"></div>
+    <div class="footer-brand"><img src="Images/logos/walton-logo-white-330.webp" srcset="Images/logos/walton-logo-white-330.webp 1x, Images/logos/walton-logo-white-660.webp 2x" alt="Walton Trailers" style="height:48px;width:auto;display:block;margin-bottom:4px;"></div>
     <p class="footer-tagline">Built Strong. Built Right. Built Here. Manufacturing commercial trailers since 1973 in Logan, Utah.</p>
     <div class="footer-social">
       <a href="https://www.facebook.com/p/Walton-Trailers-61556123964215/" target="_blank" rel="noopener" class="footer-social-btn" aria-label="Facebook">
@@ -784,10 +807,15 @@
 function toggleMenu() {
   var m = document.getElementById('mobileMenu');
   var h = document.getElementById('hamburger');
-  m.classList.toggle('open');
-  h.classList.toggle('open');
-  document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+  var open = !m.classList.contains('open');
+  m.classList.toggle('open', open);
+  h.classList.toggle('open', open);
+  h.setAttribute('aria-expanded', open ? 'true' : 'false');
+  document.body.style.overflow = open ? 'hidden' : '';
 }
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && document.getElementById('mobileMenu').classList.contains('open')) toggleMenu();
+});
 </script>
 <script src="walton-phone-format.js" defer></script>
 </body>

@@ -1100,11 +1100,20 @@ footer {
       line-height: 1.85;
       max-width: 820px;
     }
-  </style>
+  
+  /* Mobile round 1 (2026-09-08): 16px form text stops iOS focus-zoom; the menu drawer scrolls on short
+     phones (spacers keep it centered when it fits, collapse when it doesn't). */
+  @media (max-width: 768px) {
+    input:not([type=checkbox]):not([type=radio]), select, textarea { font-size: 16px !important; }
+    .mobile-menu { overflow-y: auto; justify-content: flex-start; }
+    .mobile-menu::before, .mobile-menu::after { content: ''; flex: 1 1 0; min-height: 0; }
+    .mobile-menu-close { position: sticky; top: 16px; order: -1; align-self: flex-end; margin: 0 8px -44px 0; z-index: 1; }
+  }
+</style>
 </head>
 <body>
   <nav id="navbar">
-  <a href="/" class="nav-logo"><img src="../Images/logos/walton-logo-white.png" alt="Walton Trailers" style="height:52px;width:auto;"></a>
+  <a href="/" class="nav-logo"><img src="../Images/logos/walton-logo-white-330.webp" srcset="../Images/logos/walton-logo-white-330.webp 1x, ../Images/logos/walton-logo-white-660.webp 2x" alt="Walton Trailers" style="height:52px;width:auto;"></a>
   <ul class="nav-links">
     <!-- Trailers dropdown -->
     <li id="trailersTrigger">
@@ -1171,7 +1180,7 @@ footer {
     <!-- CTA -->
     <li><a href="../find-a-dealer" class="nav-cta">Find a Dealer</a></li>
   </ul>
-  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -1179,27 +1188,27 @@ footer {
   <div class="nav-mega-inner" style="grid-template-columns:repeat(5,1fr);gap:8px;">
 
     <a href="../Gooseneck/gooseneck" class="mega-item">
-      <div class="mega-img" style="background-image:url('../Images/site/img-1-832x1248.png');background-size:cover;background-position:center;border-radius:4px;"></div>
+      <div class="mega-img" style="background-image:url('../Images/site/img-1-832x1248-800.webp');background-size:cover;background-position:center;border-radius:4px;"></div>
       <div class="mega-name">Gooseneck Flatbeds</div>
     </a>
 
     <a href="../dump-trailers/dump-trailers" class="mega-item">
-      <div class="mega-img" style="background-image:url('../Images/site/img-1-1344x768.png');background-size:cover;background-position:center;border-radius:4px;"></div>
+      <div class="mega-img" style="background-image:url('../Images/site/img-1-1344x768-1200.webp');background-size:cover;background-position:center;border-radius:4px;"></div>
       <div class="mega-name">Dump Trailers</div>
     </a>
 
     <a href="../tilt-equipment/tilt-equipment" class="mega-item">
-      <div class="mega-img" style="background-image:url('../Images/site/site-img-1-1184x864.jpg');background-size:cover;background-position:center;border-radius:4px;"></div>
+      <div class="mega-img" style="background-image:url('../Images/site/site-img-1-1184x864-800.webp');background-size:cover;background-position:center;border-radius:4px;"></div>
       <div class="mega-name">Tilt Deck Trailers</div>
     </a>
 
     <a href="../Deckover/deckover" class="mega-item">
-      <div class="mega-img" style="background-image:url('../Images/site/site-img-mega-1184x864.jpg');background-size:cover;background-position:center;border-radius:4px;"></div>
+      <div class="mega-img" style="background-image:url('../Images/site/site-img-mega-1184x864-800.webp');background-size:cover;background-position:center;border-radius:4px;"></div>
       <div class="mega-name">Deckover Equipment</div>
     </a>
 
     <a href="../Landscape/landscape" class="mega-item">
-      <div class="mega-img" style="background-image:url('../Images/site/extracted-1-832x1248.jpg');background-size:cover;background-position:center;border-radius:4px;"></div>
+      <div class="mega-img" style="background-image:url('../Images/site/extracted-1-832x1248-800.webp');background-size:cover;background-position:center;border-radius:4px;"></div>
       <div class="mega-name">Landscape Trailers</div>
     </a>
 
@@ -1262,40 +1271,40 @@ footer {
   <div class="overview-carousel">
       <div class="carousel-inner">
         <div class="carousel-slide active">
-          <img fetchpriority="high" decoding="async" src="Images/fbh207-angled.jpg" alt="FBH207 — Angled view" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <img fetchpriority="high" decoding="async" src="Images/fbh207-angled-1200.webp" srcset="Images/fbh207-angled-800.webp 800w, Images/fbh207-angled-1200.webp 1200w, Images/fbh207-angled-1600.webp 1600w" sizes="(max-width: 768px) 87vw, 601px" alt="FBH207 — Angled view" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
         <div class="carousel-slide">
-          <img loading="lazy" decoding="async" src="Images/fbh207-side.jpg" alt="FBH207 — Side view" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <img loading="lazy" decoding="async" src="Images/fbh207-side-1200.webp" srcset="Images/fbh207-side-800.webp 800w, Images/fbh207-side-1200.webp 1200w, Images/fbh207-side-1600.webp 1600w" sizes="(max-width: 768px) 87vw, 601px" alt="FBH207 — Side view" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
         <div class="carousel-slide">
-          <img loading="lazy" decoding="async" src="Images/fbh207-front.jpg" alt="FBH207 — Front gooseneck view" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <img loading="lazy" decoding="async" src="Images/fbh207-front-1200.webp" srcset="Images/fbh207-front-800.webp 800w, Images/fbh207-front-1200.webp 1200w, Images/fbh207-front-1600.webp 1600w" sizes="(max-width: 768px) 87vw, 601px" alt="FBH207 — Front gooseneck view" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
         <div class="carousel-slide">
-          <img loading="lazy" decoding="async" src="Images/fbh207-rear.jpg" alt="FBH207 — Rear view" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <img loading="lazy" decoding="async" src="Images/fbh207-rear-1200.webp" srcset="Images/fbh207-rear-800.webp 800w, Images/fbh207-rear-1200.webp 1200w, Images/fbh207-rear-1600.webp 1600w" sizes="(max-width: 768px) 87vw, 601px" alt="FBH207 — Rear view" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
         <div class="carousel-slide">
-          <img loading="lazy" decoding="async" src="Images/fbh207-gooseneck.jpg" alt="FBH207 — Gooseneck and coupler" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <img loading="lazy" decoding="async" src="Images/fbh207-gooseneck-1200.webp" srcset="Images/fbh207-gooseneck-800.webp 800w, Images/fbh207-gooseneck-1200.webp 1200w, Images/fbh207-gooseneck-1600.webp 1600w" sizes="(max-width: 768px) 87vw, 601px" alt="FBH207 — Gooseneck and coupler" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
         <div class="carousel-slide">
-          <img loading="lazy" decoding="async" src="Images/fbh207-axles.jpg" alt="FBH207 — Tandem axles and mud flap" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <img loading="lazy" decoding="async" src="Images/fbh207-axles-1200.webp" srcset="Images/fbh207-axles-800.webp 800w, Images/fbh207-axles-1200.webp 1200w, Images/fbh207-axles-1600.webp 1600w" sizes="(max-width: 768px) 87vw, 601px" alt="FBH207 — Tandem axles and mud flap" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
         <div class="carousel-slide">
-          <img loading="lazy" decoding="async" src="Images/fbh207-undercarriage.jpg" alt="FBH207 — Undercarriage and frame" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <img loading="lazy" decoding="async" src="Images/fbh207-undercarriage-1200.webp" srcset="Images/fbh207-undercarriage-800.webp 800w, Images/fbh207-undercarriage-1200.webp 1200w, Images/fbh207-undercarriage-1600.webp 1600w" sizes="(max-width: 768px) 87vw, 601px" alt="FBH207 — Undercarriage and frame" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
         <div class="carousel-slide">
-          <img loading="lazy" decoding="async" src="Images/fbh207-logo.jpg" alt="FBH207 — Walton logo detail" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <img loading="lazy" decoding="async" src="Images/fbh207-logo-1200.webp" srcset="Images/fbh207-logo-800.webp 800w, Images/fbh207-logo-1200.webp 1200w, Images/fbh207-logo-1600.webp 1600w" sizes="(max-width: 768px) 87vw, 601px" alt="FBH207 — Walton logo detail" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
         <div class="carousel-slide">
-          <img loading="lazy" decoding="async" src="Images/gooseneck-neck.jpg" alt="FBH207 — Gooseneck and toolbox" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <img loading="lazy" decoding="async" src="Images/gooseneck-neck-1200.webp" srcset="Images/gooseneck-neck-800.webp 800w, Images/gooseneck-neck-1200.webp 1200w, Images/gooseneck-neck-1600.webp 1600w" sizes="(max-width: 768px) 87vw, 601px" alt="FBH207 — Gooseneck and toolbox" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
         <div class="carousel-slide">
-          <img loading="lazy" decoding="async" src="Images/gooseneck-toolbox.jpg" alt="FBH207 — Toolbox storage" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <img loading="lazy" decoding="async" src="Images/gooseneck-toolbox-1200.webp" srcset="Images/gooseneck-toolbox-800.webp 800w, Images/gooseneck-toolbox-1200.webp 1200w, Images/gooseneck-toolbox-1600.webp 1600w" sizes="(max-width: 768px) 87vw, 601px" alt="FBH207 — Toolbox storage" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
         <div class="carousel-slide">
-          <img loading="lazy" decoding="async" src="Images/gooseneck-jacks.jpg" alt="FBH207 — Drop-leg jacks" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <img loading="lazy" decoding="async" src="Images/gooseneck-jacks-1200.webp" srcset="Images/gooseneck-jacks-800.webp 800w, Images/gooseneck-jacks-1200.webp 1200w" sizes="(max-width: 768px) 87vw, 601px" alt="FBH207 — Drop-leg jacks" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
         <div class="carousel-slide">
-          <img loading="lazy" decoding="async" src="Images/gooseneck-step.jpg" alt="FBH207 — Rear step" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <img loading="lazy" decoding="async" src="Images/gooseneck-step-1200.webp" srcset="Images/gooseneck-step-800.webp 800w, Images/gooseneck-step-1200.webp 1200w" sizes="(max-width: 768px) 87vw, 601px" alt="FBH207 — Rear step" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
       </div>
       <button class="carousel-btn carousel-prev" onclick="carouselMove(this.closest('.overview-carousel'),-1)" aria-label="Previous">&#8249;</button>
@@ -1424,7 +1433,7 @@ footer {
     <div class="related-grid">
       
     <a href="fbh208" class="related-card">
-      <div class="related-card-img"><img loading="lazy" decoding="async" src="Images/fbh208-26ft-front.jpg" alt="FBH208 front view" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="related-card-img"><img loading="lazy" decoding="async" src="Images/fbh208-26ft-front-1200.webp" srcset="Images/fbh208-26ft-front-800.webp 800w, Images/fbh208-26ft-front-1200.webp 1200w, Images/fbh208-26ft-front-1600.webp 1600w" sizes="(max-width: 768px) 44vw, 306px" alt="FBH208 front view" style="width:100%;height:100%;object-fit:cover;"></div>
       <div class="related-card-body">
         <div class="related-card-code">FBH208</div>
         <div class="related-card-gvwr">18K Gooseneck</div>
@@ -1440,7 +1449,7 @@ footer {
     </a>
     
     <a href="fbx210" class="related-card">
-      <div class="related-card-img"><img loading="lazy" decoding="async" src="Images/fbx210-26ft-front.jpg" alt="FBX210 front view" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="related-card-img"><img loading="lazy" decoding="async" src="Images/fbx210-26ft-front-1200.webp" srcset="Images/fbx210-26ft-front-800.webp 800w, Images/fbx210-26ft-front-1200.webp 1200w, Images/fbx210-26ft-front-1600.webp 1600w" sizes="(max-width: 768px) 44vw, 306px" alt="FBX210 front view" style="width:100%;height:100%;object-fit:cover;"></div>
       <div class="related-card-body">
         <div class="related-card-code">FBX210</div>
         <div class="related-card-gvwr">20K Dual Wheel</div>
@@ -2021,7 +2030,7 @@ function submitQuote() {
 </script>
 <footer>
   <div>
-    <div class="footer-brand"><img src="../Images/logos/walton-logo-white.png" alt="Walton Trailers" style="height:48px;width:auto;display:block;margin-bottom:4px;"></div>
+    <div class="footer-brand"><img src="../Images/logos/walton-logo-white-330.webp" srcset="../Images/logos/walton-logo-white-330.webp 1x, ../Images/logos/walton-logo-white-660.webp 2x" alt="Walton Trailers" style="height:48px;width:auto;display:block;margin-bottom:4px;"></div>
     <p class="footer-tagline">Built Strong. Built Right. Built Here. Manufacturing commercial trailers since 1973 in Logan, Utah.</p>
     <div class="footer-social">
       <a href="https://www.facebook.com/p/Walton-Trailers-61556123964215/" target="_blank" rel="noopener" class="footer-social-btn" aria-label="Facebook">
@@ -2351,10 +2360,15 @@ function toggleSpecs(toggle) {
 function toggleMenu() {
   var m = document.getElementById('mobileMenu');
   var h = document.getElementById('hamburger');
-  m.classList.toggle('open');
-  h.classList.toggle('open');
-  document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+  var open = !m.classList.contains('open');
+  m.classList.toggle('open', open);
+  h.classList.toggle('open', open);
+  h.setAttribute('aria-expanded', open ? 'true' : 'false');
+  document.body.style.overflow = open ? 'hidden' : '';
 }
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && document.getElementById('mobileMenu').classList.contains('open')) toggleMenu();
+});
 </script>
 <script>
 function carouselMove(el, dir) {

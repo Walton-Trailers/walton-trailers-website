@@ -2,7 +2,7 @@
 
 **Repo:** `Walton-Trailers/walton-trailers-website`
 **Audience:** Any Claude session (Claude Code, Cowork, claude.ai with this repo as context) working on this codebase
-**Last updated:** 2026-05-26
+**Last updated:** 2026-08-22
 **Maintainer:** Taylor Nielsen (taylor@waltontrailers.com) — primary committer for this repo. Jordan Williams (jordan@waltontrailers.com) cross-edits when coordinating with sibling apps.
 
 ---
@@ -263,6 +263,122 @@ These live in Jordan's Obsidian vault (`~/Desktop/Obsidian Bank`) and may be ref
 
 ---
 
-## 12. TL;DR for Claude
+## 12. The agent-readiness surface (added 2026-08-22)
+
+An Ora audit scored the live site 71/100 for AI-agent readiness. Five gaps were
+closed. What follows is what exists now and what will break it.
+
+### The files
+
+| File | Purpose |
+|---|---|
+| `llms.txt` | Map of the site for agents, in the llmstxt.org shape (H1, blockquote summary, `##` sections of links). Carries the **When to use this site**, **When not to use this site**, and **How an agent should call this site** sections — the audit's "agent instruction / when-to-use" item. |
+| `llms-full.txt` | Single-fetch digest: the full 15-model spec table, warranty summary, and contact routing. Exists so an agent can answer most questions without crawling 20 pages. |
+| `index.md` | Markdown twin of the homepage, served by content negotiation. |
+| `404.html` | Branded 404. Vercel serves it with a real HTTP 404 for any unmatched path. Carries the recovery links visibly **and** as an inert `<script type="text/markdown">` block. |
+| `404.md` | The same recovery body as a standalone markdown file. |
+
+`index.html` also gained a JSON-LD `@graph` (`Organization` → `WebSite` →
+`WebPage`) and `<link rel="alternate" type="text/markdown">` in its head.
+
+### Markdown content negotiation
+
+An agent sending `Accept: text/markdown` to `/` gets a 307 to `/index.md`,
+which is served as `text/markdown; charset=utf-8` with `Vary: Accept,
+Accept-Encoding`. Browsers are untouched — no browser lists `text/markdown` in
+`Accept`, and `tests/endpoints.test.js` asserts that against five real browser
+Accept strings.
+
+It is a **redirect, not a rewrite**, and that is deliberate. On Vercel,
+`rewrites` are evaluated *after* the filesystem check, so a rewrite on `/`
+would never fire — `/` already resolves to `index.html`. `redirects` run
+before the filesystem, so they are the only config-level hook that can
+intercept a path that already exists. Serving markdown at the same URL with a
+200 would need Routing Middleware or a serverless function; that would turn
+this static deploy into one with a runtime component, which is a call for
+Taylor, not a default.
+
+`Vary: Accept` is scoped to `/` and `/(.*).md` rather than applied site-wide.
+A global `Vary: Accept` would key the CDN cache on the `Accept` header for
+images too, and browsers vary that header, so the image cache would fragment
+for no benefit. `tests/agent-readiness.test.js` asserts the global rule stays
+free of it.
+
+### Heading structure on the homepage
+
+The trailer carousel, stats bar, video, and testimonial sections had no
+headings, which left the homepage outline flat. They now carry
+`<h2 class="sr-only">` headings, and the five product card names are `<h3>`.
+`.sr-only` is the standard clip-rect technique: **rendering is pixel-identical
+before and after** (verified by screenshot diff at 1440px and 390px). If you
+restructure the homepage, keep the outline gapless — the suite fails on a
+skipped heading level.
+
+### Rules for future edits
+
+- **`llms.txt` and `llms-full.txt` must not drift.** `walton-compare.js` is the
+  source of truth for model data. The suite fails if either file lists a model
+  the site does not publish, omits one it does, or quotes a GVWR or axle count
+  that disagrees. Adding or retiring a model means editing all three together.
+- **Add a new page → add it to `sitemap.xml` and `llms.txt`.** Both are
+  asserted to contain only URLs that resolve to real files.
+- **Keep the `404.html` markdown block and `404.md` identical.** The suite
+  compares them byte for byte.
+- **Do not put a phone number in the JSON-LD** until the placeholder in the
+  page copy (`(555) 000-0000`) is replaced with the real one. The suite fails
+  if `telephone`, `price`, or `aggregateRating` appears — Walton publishes none
+  of them.
+- **Never add a `package.json` to the project root.** Vercel would stop
+  treating this as a static deploy. `tests/` runs on bare Node; CI installs its
+  one dependency with `npm install --no-save`.
+
+### Verification
+
+```bash
+node --test tests/agent-readiness.test.js                  # 34 checks, no deps
+npm install --no-save @vercel/routing-utils
+node --test tests/endpoints.test.js                        # 14 HTTP checks
+```
+
+`tests/endpoints.test.js` compiles `vercel.json` with `@vercel/routing-utils`
+— the same package Vercel uses — and replays the routes over a local server, so
+redirects, headers, `cleanUrls`, and the 404 fallback are exercised for real
+without a deploy. See `tests/README.md`. CI runs both on every push.
+
+Against the live site once deployed:
+
+```bash
+curl -s -o /dev/null -w "%{http_code}\n" https://www.waltontrailers.com/nope   # 404
+curl -sI -H "Accept: text/markdown" -L https://www.waltontrailers.com/ | \
+  grep -iE "^(content-type|vary)"        # text/markdown + Vary: Accept
+curl -s https://www.waltontrailers.com/llms.txt | head -3
+```
+
+### Known gaps (need a decision, not a patch)
+
+- **`og-image.jpg` does not exist.** 19 pages set `og:image` and
+  `twitter:image` to `https://www.waltontrailers.com/og-image.jpg`, which 404s.
+  Picking the brand's social preview image is a marketing call. The new JSON-LD
+  deliberately avoids that URL.
+- **Canonical tags fight `cleanUrls`.** Every page's `<link rel="canonical">`
+  and every `sitemap.xml` entry uses `.html`, but `cleanUrls: true` makes
+  Vercel 308-redirect `/about.html` → `/about`. So the declared canonical URL
+  redirects. Reconciling this is an SEO decision — pick one form and apply it
+  to canonicals, the sitemap, and the in-page links together.
+- **The phone number is a placeholder.** `(555) 000-0000` appears on 29 pages
+  and `(435) 000-0000` on 3.
+- **Only the homepage has a markdown twin.** Per-page `.md` files are hand-
+  maintained duplication; `llms-full.txt` covers the rest in one fetch instead.
+  Revisit if agents start asking for markdown on model pages.
+
+---
+
+## 13. TL;DR for Claude
 
 You are working in the Walton Trailers public marketing site. It is static HTML, deployed via Vercel from this repo. It has one outbound integration that matters: a `Parts Catalog` link in the global nav routing dealers to `walton-parts-catalog.vercel.app` (Jordan's app, separate repo). The link is a plain `<a href>` — there is no API, no shared auth, no shared state. You can edit this site freely as long as you preserve the Parts Catalog `<li>` adjacent to the Dealer Portal `<li>` in both the mega-menu and footer of all 15 active HTML pages. If you need to change the catalog URL, restructure the nav significantly, or add a new cross-app link, ping Jordan first — see §10 for the proceed-solo vs. coordinate-first rules.
+
+The site also carries an agent-readiness surface — `llms.txt`, `llms-full.txt`,
+`index.md`, `404.html`/`404.md`, JSON-LD on the homepage, and markdown content
+negotiation in `vercel.json`. It is covered by tests; run
+`node --test tests/agent-readiness.test.js` before you push. See §12 for what
+breaks it. Never add a `package.json` to the project root.

@@ -306,11 +306,20 @@
   section + section { border-top: 1px solid rgba(255,255,255,0.07); }
   footer, .main-footer { border-top: 2px solid rgba(255,255,255,0.12) !important; }
 
-  </style>
+  
+  /* Mobile round 1 (2026-09-08): 16px form text stops iOS focus-zoom; the menu drawer scrolls on short
+     phones (spacers keep it centered when it fits, collapse when it doesn't). */
+  @media (max-width: 768px) {
+    input:not([type=checkbox]):not([type=radio]), select, textarea { font-size: 16px !important; }
+    .mobile-menu { overflow-y: auto; justify-content: flex-start; }
+    .mobile-menu::before, .mobile-menu::after { content: ''; flex: 1 1 0; min-height: 0; }
+    .mobile-menu-close { position: sticky; top: 16px; order: -1; align-self: flex-end; margin: 0 8px -44px 0; z-index: 1; }
+  }
+</style>
 </head>
 <body>
 <nav id="navbar">
-  <a href="/" class="nav-logo"><img src="Images/logos/walton-logo-white.png" alt="Walton Trailers" style="height:52px;width:auto;"></a>
+  <a href="/" class="nav-logo"><img src="Images/logos/walton-logo-white-330.webp" srcset="Images/logos/walton-logo-white-330.webp 1x, Images/logos/walton-logo-white-660.webp 2x" alt="Walton Trailers" style="height:52px;width:auto;"></a>
   <ul class="nav-links">
     <!-- Trailers dropdown -->
     <li id="trailersTrigger">
@@ -377,7 +386,7 @@
     <!-- CTA -->
     <li><a href="find-a-dealer" class="nav-cta">Find a Dealer</a></li>
   </ul>
-  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -385,27 +394,27 @@
   <div class="nav-mega-inner" style="grid-template-columns:repeat(5,1fr);gap:8px;">
 
     <a href="Gooseneck/gooseneck" class="mega-item">
-      <div class="mega-img" style="background-image:url('Images/site/img-1-832x1248.png');background-size:cover;background-position:center;border-radius:4px;"></div>
+      <div class="mega-img" style="background-image:url('Images/site/img-1-832x1248-800.webp');background-size:cover;background-position:center;border-radius:4px;"></div>
       <div class="mega-name">Gooseneck Flatbeds</div>
     </a>
 
     <a href="dump-trailers/dump-trailers" class="mega-item">
-      <div class="mega-img" style="background-image:url('Images/site/img-1-1344x768.png');background-size:cover;background-position:center;border-radius:4px;"></div>
+      <div class="mega-img" style="background-image:url('Images/site/img-1-1344x768-1200.webp');background-size:cover;background-position:center;border-radius:4px;"></div>
       <div class="mega-name">Dump Trailers</div>
     </a>
 
     <a href="tilt-equipment/tilt-equipment" class="mega-item">
-      <div class="mega-img" style="background-image:url('Images/site/site-img-1-1184x864.jpg');background-size:cover;background-position:center;border-radius:4px;"></div>
+      <div class="mega-img" style="background-image:url('Images/site/site-img-1-1184x864-800.webp');background-size:cover;background-position:center;border-radius:4px;"></div>
       <div class="mega-name">Tilt Deck Trailers</div>
     </a>
 
     <a href="Deckover/deckover" class="mega-item">
-      <div class="mega-img" style="background-image:url('Images/site/site-img-mega-1184x864.jpg');background-size:cover;background-position:center;border-radius:4px;"></div>
+      <div class="mega-img" style="background-image:url('Images/site/site-img-mega-1184x864-800.webp');background-size:cover;background-position:center;border-radius:4px;"></div>
       <div class="mega-name">Deckover Equipment</div>
     </a>
 
     <a href="Landscape/landscape" class="mega-item">
-      <div class="mega-img" style="background-image:url('Images/site/extracted-1-832x1248.jpg');background-size:cover;background-position:center;border-radius:4px;"></div>
+      <div class="mega-img" style="background-image:url('Images/site/extracted-1-832x1248-800.webp');background-size:cover;background-position:center;border-radius:4px;"></div>
       <div class="mega-name">Landscape Trailers</div>
     </a>
 
@@ -493,7 +502,7 @@
 </main>
 <footer>
   <div>
-    <div class="footer-brand"><img src="Images/logos/walton-logo-white.png" alt="Walton Trailers" style="height:48px;width:auto;display:block;margin-bottom:4px;"></div>
+    <div class="footer-brand"><img src="Images/logos/walton-logo-white-330.webp" srcset="Images/logos/walton-logo-white-330.webp 1x, Images/logos/walton-logo-white-660.webp 2x" alt="Walton Trailers" style="height:48px;width:auto;display:block;margin-bottom:4px;"></div>
     <p class="footer-tagline">Built Strong. Built Right. Built Here. Manufacturing commercial trailers since 1973 in Logan, Utah.</p>
     <div class="footer-social">
       <a href="https://www.facebook.com/p/Walton-Trailers-61556123964215/" target="_blank" rel="noopener" class="footer-social-btn" aria-label="Facebook">
@@ -697,10 +706,15 @@
 function toggleMenu() {
   var m = document.getElementById('mobileMenu');
   var h = document.getElementById('hamburger');
-  m.classList.toggle('open');
-  h.classList.toggle('open');
-  document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+  var open = !m.classList.contains('open');
+  m.classList.toggle('open', open);
+  h.classList.toggle('open', open);
+  h.setAttribute('aria-expanded', open ? 'true' : 'false');
+  document.body.style.overflow = open ? 'hidden' : '';
 }
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && document.getElementById('mobileMenu').classList.contains('open')) toggleMenu();
+});
 
 function newCaptcha() {
   var a = Math.floor(Math.random() * 9) + 1;
