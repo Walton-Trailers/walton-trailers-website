@@ -20,6 +20,11 @@ jobs:
       - name: Install routing validator
         run: npm install --no-save @vercel/routing-utils
 
+      # The phone menu drawer is stamped into every page by mobile_menu.py;
+      # fail if any page has been hand-edited out of sync with it.
+      - name: Phone menu drawer is in sync with mobile_menu.py
+        run: python3 mobile_menu.py --check
+
       - name: Static agent-readiness checks
         run: node --test tests/agent-readiness.test.js
 
