@@ -1245,7 +1245,7 @@ footer {
   </div>
   <div class="mobile-menu-group">
     <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mmOwners" onclick="mmToggle(this)">Owners <span class="mobile-menu-chevron" aria-hidden="true">&#9662;</span></button>
-    <div class="mobile-menu-panel" id="mmOwners">
+    <div class="mobile-menu-panel" id="mmOwners" inert>
       <div>
         <a href="../user-manuals">User Manuals</a>
         <a href="../video-guides">Video Guides</a>
@@ -1259,7 +1259,7 @@ footer {
   </div>
   <div class="mobile-menu-group">
     <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mmDealers" onclick="mmToggle(this)">Dealers <span class="mobile-menu-chevron" aria-hidden="true">&#9662;</span></button>
-    <div class="mobile-menu-panel" id="mmDealers">
+    <div class="mobile-menu-panel" id="mmDealers" inert>
       <div>
         <a href="../dealer-portal">Dealer Portal</a>
         <a href="../become-a-dealer">Become a Dealer</a>
@@ -1269,7 +1269,7 @@ footer {
   </div>
   <div class="mobile-menu-group">
     <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mmCompany" onclick="mmToggle(this)">Company <span class="mobile-menu-chevron" aria-hidden="true">&#9662;</span></button>
-    <div class="mobile-menu-panel" id="mmCompany">
+    <div class="mobile-menu-panel" id="mmCompany" inert>
       <div>
         <a href="../about">About Walton</a>
         <a href="../careers">Careers</a>
@@ -2394,9 +2394,14 @@ function mmToggle(btn) {
   for (var i = 0; i < groups.length; i++) {
     groups[i].classList.remove('open');
     groups[i].querySelector('.mobile-menu-toggle').setAttribute('aria-expanded', 'false');
+    groups[i].querySelector('.mobile-menu-panel').setAttribute('inert', '');
   }
   group.classList.toggle('open', open);
   btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  /* Collapsed panels are 0px tall but their links would otherwise stay in the
+     tab order and be read by screen readers; inert removes them until opened. */
+  var panel = group.querySelector('.mobile-menu-panel');
+  if (open) panel.removeAttribute('inert'); else panel.setAttribute('inert', '');
 }
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape' && document.getElementById('mobileMenu').classList.contains('open')) toggleMenu();

@@ -85,13 +85,19 @@ function mmToggle(btn) {
   for (var i = 0; i < groups.length; i++) {
     groups[i].classList.remove('open');
     groups[i].querySelector('.mobile-menu-toggle').setAttribute('aria-expanded', 'false');
+    groups[i].querySelector('.mobile-menu-panel').setAttribute('inert', '');
   }
   group.classList.toggle('open', open);
   btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  /* Collapsed panels are 0px tall but their links would otherwise stay in the
+     tab order and be read by screen readers; inert removes them until opened. */
+  var panel = group.querySelector('.mobile-menu-panel');
+  if (open) panel.removeAttribute('inert'); else panel.setAttribute('inert', '');
 }"""
 
 BLOCK_RE = re.compile(r'<div class="mobile-menu" id="mobileMenu">[\s\S]*?\n</div>')
 TOGGLE_RE = re.compile(r"function toggleMenu\(\) \{[\s\S]*?\n\}")
+MM_RE = re.compile(r"function mmToggle\(btn\) \{[\s\S]*?\n\}")
 OLD_CSS_RES = [
     re.compile(r"^[ \t]*\.mobile-menu-link[^\n]*\n", re.M),            # inner pages
     re.compile(r"^[ \t]*\.mobile-menu-close \{[^\n]*\n", re.M),        # inner pages (base rule)
@@ -125,9 +131,10 @@ def markup(prefix):
     for label, pid, open_, items in MENU:
         cls = "mobile-menu-group open" if open_ else "mobile-menu-group"
         exp = "true" if open_ else "false"
+        inert = "" if open_ else " inert"
         lines += [f'  <div class="{cls}">',
                   f'    <button class="mobile-menu-toggle" type="button" aria-expanded="{exp}" aria-controls="{pid}" onclick="mmToggle(this)">{label} <span class="mobile-menu-chevron" aria-hidden="true">&#9662;</span></button>',
-                  f'    <div class="mobile-menu-panel" id="{pid}">',
+                  f'    <div class="mobile-menu-panel" id="{pid}"{inert}>',
                   '      <div>']
         lines += [link(prefix, l, h) for l, h in items]
         lines += ['      </div>', '    </div>', '  </div>']
@@ -147,7 +154,10 @@ def render(page, html):
         if "</style>" not in new:
             raise RuntimeError(f"{page}: no </style>")
         new = new.replace("</style>", CSS + "</style>", 1)
-    if JS_MARK not in new:
+    if JS_MARK in new:
+        # keep the stamped copy in step with JS above
+        new = MM_RE.sub(JS.strip("\n"), new, count=1)
+    else:
         m = TOGGLE_RE.search(new)
         if not m:
             raise RuntimeError(f"{page}: toggleMenu() not found")
