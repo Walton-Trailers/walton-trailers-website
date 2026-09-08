@@ -354,3 +354,30 @@ test('the AI assistant prompt refuses to assume coverage', () => {
   assert.match(src, /[Nn]ever tell a visitor their trailer is covered without knowing the VIN prefix/,
     'an LLM will assert coverage confidently unless told not to');
 });
+
+/* The 30-day registration rule is an eligibility gate added 2026-09-08. It is
+   prospective — it applies only to trailers purchased on or after the effective
+   date — and every surface that states it must carry that date, or a pre-rule
+   owner reads it as an unconditional denial. */
+const REGISTRATION_EFFECTIVE = 'October 1, 2026';
+
+test('the 30-day registration condition and its effective date appear on every surface', () => {
+  const surfaces = SURFACES.concat([{ file: 'register.html', html: true }, { file: 'llms.txt', html: false }]);
+  for (const surface of surfaces) {
+    const text = decodeEntities(textOf(surface));
+    assert.match(text, /regist(?:er|ered|ration)[^.]*(?:thirty \(30\)|30) days/i,
+      `${surface.file}: must state the 30-day registration requirement`);
+    assert.ok(text.includes(REGISTRATION_EFFECTIVE),
+      `${surface.file}: the registration rule must carry its effective date (${REGISTRATION_EFFECTIVE})`);
+  }
+});
+
+test('the registration rule is stated as prospective, not retroactive', () => {
+  const text = decodeEntities(textWithoutJs(read('warranty-policy.html')));
+  assert.match(text, /purchased on or after October 1, 2026/,
+    'the policy must anchor the rule to purchases on or after the effective date');
+  assert.match(text, /purchased before that date remain covered/i,
+    'the policy must say what happens to pre-rule trailers');
+  assert.match(text, /condition of eligibility[^.]*does not change which warranty term/i,
+    'the policy must separate the registration gate from the manufacture-date tiers');
+});

@@ -19,7 +19,7 @@ Walton does not sell direct to consumers and publishes no prices, inventory, or 
 - Manufacturing: one facility at 150 W 2500 N, Logan, Utah 84341. Domestic steel, US labor, hand-built.
 - Product breadth: 7 trailer series, 15 active models currently published.
 - Distribution: roughly 40 authorized dealers, western United States.
-- Structural warranty: lifetime on trailers manufactured in December 2024 or later, subject to VIN-prefix eligibility (see Warranty summary below — `1W9` and `7SR` trailers carry no Walton warranty).
+- Structural warranty: lifetime on trailers manufactured in December 2024 or later, subject to VIN-prefix eligibility (see Warranty summary below — `1W9` and `7SR` trailers carry no Walton warranty) and, for trailers purchased on or after October 1, 2026, to registration within 30 days of purchase.
 - Tagline: "Built Strong. Built Right. Built Here."
 
 ## Model specification table
@@ -84,6 +84,7 @@ This is a summary. The controlling document is https://www.waltontrailers.com/wa
 - **Component warranties survive the exclusion.** Tires, axles, brake components, springs and suspension components, couplers, jacks, and batteries are warranted by their respective manufacturers on every trailer, `1W9` and `7SR` included. An owner of one of those trailers with a component failure claims directly with the component's manufacturer, following that vendor's process; Walton does not administer those claims. Do not leave such an owner believing they have no recourse at all — the trailer structure is uncovered, the components may not be.
 - Do not tell a `1W9` or `7SR` owner that Walton covers their trailer, and do not assume a signed agreement exists. Route them to warranty@waltontrailers.com with their VIN.
 - The Lifetime Limited Structural Warranty runs to the original retail purchaser, against defects in materials and workmanship arising from normal use.
+- **Registration is a condition of eligibility for trailers purchased on or after October 1, 2026.** The trailer must be registered with Walton in the original purchaser's name within 30 days of the original retail purchase — normally by the selling dealer, or by the original purchaser, at https://www.waltontrailers.com/register.html. Claims on trailers that were not registered, or were registered late, are denied. This does not change which term applies (lifetime or 3-year follows the manufacture date, above). Trailers purchased before October 1, 2026 are not subject to the registration rule. If an owner is unsure whether their dealer registered the trailer, tell them to submit the form themselves.
 - A trailer used as a **rental unit**, or as part of a rental combination, is warranted for **90 days** from original retail purchase.
 - **Components warranted by their own manufacturers, not Walton:** tires, axles, brake components, springs and suspension components, couplers, jacks, and batteries.
 - **Not covered:** negligence, accident, abuse, misuse, neglect, overload, or repairs and alterations made without Walton's prior written consent. Cosmetic deterioration from use or exposure — chipping, scratching, fading, cracks in caulk seams, road salt or tar, animal damage, pressure-washing damage — is excluded. Paint repairs are limited to spot repair and blending.
