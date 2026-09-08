@@ -11,3 +11,17 @@
 /robots.txt                @Jwill2026
 /sitemap.xml               @Jwill2026
 /.gitignore                @Jwill2026
+
+# Customer-facing policy / legal text, and the agent files that restate it — Jordan reviews
+/warranty-policy.html      @Jwill2026
+/warranty.html             @Jwill2026
+/register.html             @Jwill2026
+/terms.html                @Jwill2026
+/privacy.html              @Jwill2026
+/llms.txt                  @Jwill2026
+/llms-full.txt             @Jwill2026
+
+# Deploy surface and the nav / image generators (nav restructure = Jordan heads-up)
+/.vercelignore             @Jwill2026
+/mobile_menu.py            @Jwill2026
+/optimize_images.py        @Jwill2026
