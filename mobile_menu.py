@@ -37,7 +37,6 @@ MENU = [
     ("Owners", "mmOwners", False, [
         ("User Manuals", "user-manuals"),
         ("Video Guides", "video-guides"),
-        ("Register Your Trailer", "register"),
         ("VIN Replacement", "vin-replacement"),
         ("Warranty Policy", "warranty"),
         ("Parts &amp; Accessories", "parts"),
@@ -46,6 +45,7 @@ MENU = [
     ("Dealers", "mmDealers", False, [
         ("Dealer Portal", "dealer-portal"),
         ("Become a Dealer", "become-a-dealer"),
+        ("Register Your Trailer", "register"),
         ("Parts &amp; Warranty", "https://walton-parts-catalog.vercel.app"),
     ]),
     ("Company", "mmCompany", False, [

@@ -354,3 +354,50 @@ test('the AI assistant prompt refuses to assume coverage', () => {
   assert.match(src, /[Nn]ever tell a visitor their trailer is covered without knowing the VIN prefix/,
     'an LLM will assert coverage confidently unless told not to');
 });
+
+
+/* ────────────── trailer registration requirement (added 2026-09, PR #17) ────────────── */
+/* The 30-day registration rule is an eligibility condition. It is stated on the policy
+ * page, the owner-facing warranty page, the registration form, and both agent files, and
+ * it carries an effective date written as "on or after Month D, YYYY". Every surface must
+ * state the same date, and the "[EFFECTIVE DATE]" authoring placeholder must never ship. */
+const REGISTRATION_SURFACES = [
+  { file: 'warranty-policy.html', html: true },
+  { file: 'warranty.html', html: true },
+  { file: 'register.html', html: true },
+  { file: 'llms-full.txt', html: false },
+  { file: 'llms.txt', html: false },
+];
+const EFFECTIVE_DATE_RE = /on or after (\[EFFECTIVE DATE\]|(?:January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}, \d{4})/;
+
+test('every registration surface states the 30-day rule', () => {
+  for (const s of REGISTRATION_SURFACES) {
+    const text = decodeEntities(textOf(s));
+    assert.match(text, /regist/i, `${s.file} never mentions registration`);
+    assert.match(text, /(?:thirty \(30\)|30) days/i, `${s.file} does not state the 30-day window`);
+  }
+});
+
+test('every registration surface carries the same effective date', () => {
+  const dates = new Map();
+  for (const s of REGISTRATION_SURFACES) {
+    const m = decodeEntities(textOf(s)).match(EFFECTIVE_DATE_RE);
+    assert.ok(m, `${s.file} does not say when the registration requirement takes effect`);
+    dates.set(s.file, m[1]);
+  }
+  assert.equal(new Set(dates.values()).size, 1, `effective dates disagree: ${JSON.stringify([...dates])}`);
+});
+
+test('the effective date is set — the [EFFECTIVE DATE] placeholder must not ship', () => {
+  for (const s of REGISTRATION_SURFACES) {
+    assert.ok(!/\[EFFECTIVE DATE\]/.test(read(s.file)),
+      `${s.file} still carries the [EFFECTIVE DATE] placeholder — write the date as "Month D, YYYY" on every surface before merging`);
+  }
+});
+
+test('the policy reconciles registration with the manufacture-date tiers and admits owner registration', () => {
+  const text = textWithoutJs(read('warranty-policy.html'));
+  assert.match(text, /condition of eligibility/i, 'the policy must say registration is an eligibility condition');
+  assert.match(text, /does not change which warranty term applies/i, 'the policy must say registration does not alter the term');
+  assert.match(text, /selling dealer \(or by the original purchaser\)/, 'owners must be allowed to register');
+});

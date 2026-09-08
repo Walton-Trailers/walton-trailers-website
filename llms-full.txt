@@ -81,6 +81,7 @@ This is a summary. The controlling document is https://www.waltontrailers.com/wa
   - **`7X1`, manufactured September 2023 to November 2024** — a 3-year limited structural warranty. **The term starts on the earlier of the original retail purchase date or six months after Walton sold the trailer to the dealer.** It can therefore already be running when the customer takes delivery: a trailer that sat on a dealer's lot for two years is 18 months into its 3-year term on the day it is bought. Never compute the expiry from the purchase date alone — you need the date Walton sold the trailer to the dealer, which the dealer holds.
   - There are no `7X1` trailers built before September 2023; that is when Walton Transportation, LLC took over operations.
   - **`1W9` or `7SR`** — **manufactured under a different entity; no Walton Transportation warranty.** No structural warranty and no other coverage under the Limited Warranty, regardless of purchase date, unless a written agreement signed by Walton Transportation, LLC and the end customer expressly provides otherwise. Where such an agreement exists, its terms control.
+- **Registration is required for trailers purchased on or after [EFFECTIVE DATE].** The trailer must be registered with Walton in the original purchaser's name within 30 days of the original retail purchase, by the selling dealer or the purchaser (https://www.waltontrailers.com/register.html). Claims on trailers that were not registered, or were registered late, are denied. This is an eligibility condition; it does not change which warranty term applies. Before confirming coverage on a trailer purchased on or after that date, ask whether it was registered.
 - **Component warranties survive the exclusion.** Tires, axles, brake components, springs and suspension components, couplers, jacks, and batteries are warranted by their respective manufacturers on every trailer, `1W9` and `7SR` included. An owner of one of those trailers with a component failure claims directly with the component's manufacturer, following that vendor's process; Walton does not administer those claims. Do not leave such an owner believing they have no recourse at all — the trailer structure is uncovered, the components may not be.
 - Do not tell a `1W9` or `7SR` owner that Walton covers their trailer, and do not assume a signed agreement exists. Route them to warranty@waltontrailers.com with their VIN.
 - The Lifetime Limited Structural Warranty runs to the original retail purchaser, against defects in materials and workmanship arising from normal use.
@@ -94,7 +95,7 @@ This is a summary. The controlling document is https://www.waltontrailers.com/wa
 
 ## Owner tasks and where they live
 
-- Register a newly purchased trailer for warranty — https://www.waltontrailers.com/register.html
+- Register a newly purchased trailer for warranty (required within 30 days of purchase for trailers purchased on or after [EFFECTIVE DATE]) — https://www.waltontrailers.com/register.html
 - Read or download an owner's manual — https://www.waltontrailers.com/user-manuals.html
 - Watch operation and maintenance guides — https://www.waltontrailers.com/video-guides.html
 - Request a replacement VIN plate — https://www.waltontrailers.com/vin-replacement.html
