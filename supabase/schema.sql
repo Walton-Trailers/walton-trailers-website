@@ -294,3 +294,11 @@ as $$
 $$;
 revoke all on function public.registration_lookup(text) from public;
 grant execute on function public.registration_lookup(text) to anon, authenticated;
+
+-- ── Defense in depth on trailer_registrations (applied 2026-09-09) ────────
+-- Supabase grants anon SELECT/UPDATE/DELETE on new tables by default and relies
+-- on RLS (no anon policy) to return nothing. Revoke the grants outright so a
+-- loosened policy later can't expose registrations. INSERT stays as granted
+-- column-by-column above; registration_lookup is security definer and is
+-- unaffected; the edge functions use the service role.
+revoke select, update, delete on public.trailer_registrations from anon;

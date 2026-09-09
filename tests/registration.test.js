@@ -58,5 +58,7 @@ test('anon may execute the lookup but still cannot read the registrations table'
     'public default execute must be revoked first');
   assert.doesNotMatch(schema, /grant select[^;]*trailer_registrations[^;]*to anon/i,
     'anon must never get select on trailer_registrations');
+  assert.match(schema, /revoke select, update, delete on public\.trailer_registrations from anon;/,
+    'the default anon select/update/delete grants on trailer_registrations must stay revoked (RLS is not the only gate)');
   assert.match(helper, /rpc: rpc/, 'walton-supabase.js must expose the rpc helper');
 });
