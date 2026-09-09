@@ -267,3 +267,30 @@ revoke execute on function public.vin_maintenance_candidates() from public, anon
 revoke insert on public.vin_replacement_requests from anon;
 drop policy if exists "anon insert vin_replacement_requests" on public.vin_replacement_requests;
 drop policy if exists "anon upload vin docs" on storage.objects;
+
+-- ── Registration lookup ← /register.html (added 2026-09-09) ────────────
+-- Lets the public form warn "this VIN is already registered" before an owner
+-- or dealer submits a duplicate. Anonymous callers get ONLY a yes/no and the
+-- date of the EARLIEST registration for an exact 17-character VIN — never the
+-- row, never a name or email. Requiring the full VIN limits enumeration.
+-- SECURITY DEFINER so it can read a table anon cannot select. Duplicates are
+-- still accepted by the form on purpose (warn, don't block); enforcement
+-- keys off the earliest registration per VIN.
+create index if not exists trailer_registrations_vin_upper_idx
+  on public.trailer_registrations (upper(trim(vin)));
+
+create or replace function public.registration_lookup(p_vin text)
+returns table(registered boolean, registered_on date)
+language sql
+stable
+security definer
+set search_path = public
+as $$
+  select exists (select 1 from public.trailer_registrations r
+                 where upper(trim(r.vin)) = upper(trim(p_vin))) as registered,
+         (select min(r.created_at)::date from public.trailer_registrations r
+           where upper(trim(r.vin)) = upper(trim(p_vin))) as registered_on
+  where length(trim(coalesce(p_vin, ''))) = 17;
+$$;
+revoke all on function public.registration_lookup(text) from public;
+grant execute on function public.registration_lookup(text) to anon, authenticated;

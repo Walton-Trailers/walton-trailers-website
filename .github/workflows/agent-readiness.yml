@@ -31,5 +31,8 @@ jobs:
       - name: Warranty policy terms
         run: node --test tests/warranty-policy.test.js
 
+      - name: Registration form and VIN lookup
+        run: node --test tests/registration.test.js
+
       - name: Endpoint checks against the compiled vercel.json routes
         run: node --test tests/endpoints.test.js

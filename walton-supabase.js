@@ -141,8 +141,40 @@
     return true;
   }
 
+  /**
+   * Call a Postgres function exposed through PostgREST (`/rest/v1/rpc/<fn>`).
+   * Only functions explicitly granted to `anon` in supabase/schema.sql are
+   * callable; the response is whatever the function returns (rows as JSON).
+   *
+   *   var rows = await WaltonSupabase.rpc('registration_lookup', { p_vin: vin });
+   */
+  async function rpc(fn, args) {
+    if (!isConfigured()) {
+      throw new Error('Supabase is not configured yet. Set SUPABASE_URL and SUPABASE_ANON_KEY in walton-supabase.js.');
+    }
+    var resp = await fetch(SUPABASE_URL + '/rest/v1/rpc/' + encodeURIComponent(fn), {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(args || {})
+    });
+    if (!resp.ok) {
+      var text = '';
+      try { text = await resp.text(); } catch (e) { /* ignore */ }
+      var err = new Error('Supabase rpc ' + fn + ' failed: HTTP ' + resp.status + (text ? ' — ' + text : ''));
+      err.status = resp.status;
+      err.body = text;
+      throw err;
+    }
+    return resp.json();
+  }
+
   window.WaltonSupabase = {
     insert: insert,
+    rpc: rpc,
     uploadFile: uploadFile,
     invokeFunction: invokeFunction,
     uploadToSignedUrl: uploadToSignedUrl,

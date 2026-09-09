@@ -313,6 +313,11 @@
   .form-field input[type=file]::file-selector-button:hover { background: var(--steel); }
   .form-notice { background: var(--cream, #efe9df); border-left: 3px solid var(--rust); padding: 14px 18px; margin-bottom: 24px; font-size: 14px; line-height: 1.6; color: var(--black); }
   .form-notice strong { font-weight: 600; }
+  .form-notice[hidden] { display: none; }
+  #rVinNotice { margin: 4px 0 0; }
+  .field-hint { font-size: 12px; line-height: 1.5; color: rgba(10,10,10,0.5); }
+  .field-hint.error { color: #c0392b; }
+  .form-field input.invalid { border-color: #c0392b; }
   .form-hint { font-size: 12px; color: rgba(10,10,10,0.5); margin-top: 4px; line-height: 1.5; }
   .label-info { position: relative; display: inline-flex; align-items: center; margin-left: 6px; vertical-align: -2px; }
   .label-info-btn { background: none; border: none; padding: 0; margin: 0; cursor: help; color: rgba(10,10,10,0.4); display: inline-flex; transition: color 0.2s; }
@@ -572,7 +577,12 @@
           <div class="form-field"><label>Zip Code</label><input type="text" id="rZip" name="zip" placeholder="84321" required></div>
           <div class="form-field"><label>Country</label><input type="text" id="rCountry" name="country" placeholder="United States" value="United States" required></div>
           <div class="form-field"><label>Purchase Date</label><input type="date" id="rDate" name="purchase_date" required></div>
-          <div class="form-field full"><label>VIN Number</label><input type="text" id="rVin" name="vin" placeholder="17-character VIN" maxlength="17" required></div>
+          <div class="form-field full">
+            <label for="rVin">VIN Number</label>
+            <input type="text" id="rVin" name="vin" placeholder="17-character VIN" maxlength="17" minlength="17" pattern="[A-HJ-NPR-Za-hj-npr-z0-9]{17}" autocomplete="off" autocapitalize="characters" spellcheck="false" required aria-describedby="rVinHint">
+            <div class="field-hint" id="rVinHint">17 letters and numbers, from the VIN sticker on the trailer. A VIN never contains the letters I, O or Q.</div>
+            <div class="form-notice" id="rVinNotice" role="status" aria-live="polite" hidden></div>
+          </div>
           <div class="form-field full">
             <label>Model
               <span class="label-info">
@@ -616,8 +626,98 @@
     if (firstInput) firstInput.focus();
   }
 
+  /* ── VIN validation + duplicate check (2026-09-09) ──
+     A VIN is exactly 17 characters and never uses I, O or Q. Before submit we
+     ask registration_lookup (supabase/schema.sql) whether this VIN is already
+     on file; it answers only yes/no + the earliest date. A duplicate shows a
+     notice and asks for one more tap to confirm — it never blocks, because an
+     owner correcting a dealer's entry is a legitimate second submission. */
+  var VIN_RE = /^[A-HJ-NPR-Z0-9]{17}$/;
+  var VIN_HINT_DEFAULT = '17 letters and numbers, from the VIN sticker on the trailer. A VIN never contains the letters I, O or Q.';
+  var VIN_HINT_ERROR = 'That doesn\u2019t look like a VIN. It must be exactly 17 letters and numbers, with no I, O or Q. Check the VIN sticker on the trailer.';
+  var lastLookedUpVin = '';
+  var lastLookupResult = null;
+  var dupeAcknowledged = false;
+
+  function normalizeVin(v) { return (v || '').toUpperCase().replace(/[^A-Z0-9]/g, ''); }
+
+  function validateVin(showError) {
+    var el = document.getElementById('rVin');
+    var hint = document.getElementById('rVinHint');
+    var v = normalizeVin(el.value);
+    if (el.value !== v) el.value = v;
+    var ok = VIN_RE.test(v);
+    var flag = showError && !ok;
+    el.classList.toggle('invalid', flag);
+    hint.classList.toggle('error', flag);
+    hint.textContent = flag ? VIN_HINT_ERROR : VIN_HINT_DEFAULT;
+    return ok;
+  }
+
+  function formatIsoDate(iso) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso || '');
+    if (!m) return '';
+    var d = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+    return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  }
+
+  async function lookupVin() {
+    var v = normalizeVin(document.getElementById('rVin').value);
+    var notice = document.getElementById('rVinNotice');
+    if (!VIN_RE.test(v)) { notice.hidden = true; return null; }
+    if (v === lastLookedUpVin) return lastLookupResult;
+    lastLookedUpVin = v;
+    lastLookupResult = null;
+    dupeAcknowledged = false;
+    try {
+      var rows = await WaltonSupabase.rpc('registration_lookup', { p_vin: v });
+      var r = rows && rows[0];
+      lastLookupResult = (r && r.registered) ? { registered_on: r.registered_on || null } : { none: true };
+    } catch (err) {
+      // The lookup is best-effort: if the function is unavailable or the
+      // network fails, the form still works and the row still saves.
+      lastLookedUpVin = '';
+      lastLookupResult = null;
+    }
+    renderVinNotice();
+    return lastLookupResult;
+  }
+
+  function renderVinNotice(askToConfirm) {
+    var notice = document.getElementById('rVinNotice');
+    var r = lastLookupResult;
+    if (!r || r.none) { notice.hidden = true; notice.textContent = ''; return; }
+    var when = r.registered_on ? ' on ' + formatIsoDate(r.registered_on) : '';
+    notice.innerHTML = '<strong>This VIN is already registered' + when + '.</strong> ' +
+      'If your details differ, you can still submit and we\u2019ll reconcile against the earliest registration. ' +
+      'Questions: <a href="mailto:registrations@waltontrailers.com" style="color:inherit;">registrations@waltontrailers.com</a>.' +
+      (askToConfirm ? ' <strong>Tap Submit again to continue.</strong>' : '');
+    notice.hidden = false;
+  }
+
+  (function wireVinField() {
+    var el = document.getElementById('rVin');
+    if (!el) return;
+    el.addEventListener('input', function () { validateVin(false); });
+    el.addEventListener('blur', function () { if (validateVin(true)) lookupVin(); });
+  })();
+
   async function submitRegistration(event) {
     event.preventDefault();
+    if (!validateVin(true)) {
+      var vinEl = document.getElementById('rVin');
+      vinEl.focus();
+      vinEl.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      return;
+    }
+    // Warn once on a duplicate; the second submit goes through.
+    var lookup = await lookupVin();
+    if (lookup && !lookup.none && !dupeAcknowledged) {
+      dupeAcknowledged = true;
+      renderVinNotice(true);
+      document.getElementById('rVinNotice').scrollIntoView({ block: 'center', behavior: 'smooth' });
+      return;
+    }
     var form = document.getElementById('registerForm');
     var submitBtn = form.querySelector('button[type="submit"]');
     var proof = document.getElementById('rProof');
