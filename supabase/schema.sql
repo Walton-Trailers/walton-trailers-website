@@ -302,3 +302,8 @@ grant execute on function public.registration_lookup(text) to anon, authenticate
 -- column-by-column above; registration_lookup is security definer and is
 -- unaffected; the edge functions use the service role.
 revoke select, update, delete on public.trailer_registrations from anon;
+-- Same for the other two lead tables (applied 2026-09-10). dealer_inquiries
+-- keeps its column-level anon INSERT; vin_replacement_requests is written only
+-- by the edge function (service role), so anon loses everything.
+revoke select, update, delete on public.dealer_inquiries from anon;
+revoke select, update, delete on public.vin_replacement_requests from anon;
