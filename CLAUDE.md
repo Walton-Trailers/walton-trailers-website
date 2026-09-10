@@ -30,7 +30,7 @@ This website is one of several apps under the Walton Trailers Vercel team. Most 
 | App | URL | Repo | Owner | Role |
 |---|---|---|---|---|
 | **walton-trailers-website** (this) | `walton-trailers-website.vercel.app` / `www.waltontrailers.com` | `Walton-Trailers/walton-trailers-website` | Taylor | Public marketing site |
-| walton-trailers-configurator | `walton-trailers-configurator.vercel.app` | (separate) | Jordan | "Build Now" trailer configurator — public, link target from this site's "Build Now" CTAs |
+| walton-trailers-configurator | `build.waltontrailers.com` (custom domain since 2026-09-10; `walton-trailers-configurator.vercel.app` still serves) | (separate) | Jordan | "Build Now" trailer configurator — public, link target from this site's "Build Now" CTAs |
 | walton-parts-catalog | `walton-parts-catalog.vercel.app` | `Walton-Trailers/walton-os` (monorepo) | Jordan | **Dealer parts catalog & Dealer Access PIN entry — link target from this site's "Parts Catalog" nav item** |
 | dealer-portal | `dealer-portal-one-chi.vercel.app` | (separate) | Jordan | Real dealer self-serve portal (still in Phase 2.5 build per Doc 56). Currently NOT linked from this site — the marketing site's `dealer-portal.html` is a separate Coming Soon landing. |
 | walton-os-admin | `walton-os-admin.vercel.app` | `Walton-Trailers/walton-os` | Jordan | Internal admin / ops dashboard. Not user-facing from this site. |
