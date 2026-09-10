@@ -973,7 +973,7 @@ footer {
         </div>
         <div class="model-card-actions">
               <a href="dhv207" class="model-view-btn">View Full Specs</a>
-              <a href="https://walton-trailers-configurator.vercel.app/?model=DHV207" target="_blank" rel="noopener" class="model-build-btn">Build Your Own</a>
+              <a href="https://build.waltontrailers.com/?model=DHV207" target="_blank" rel="noopener" class="model-build-btn">Build Your Own</a>
             </div>
       </div>
     </div>
@@ -1008,7 +1008,7 @@ footer {
         </div>
         <div class="model-card-actions">
               <a href="dhv208" class="model-view-btn">View Full Specs</a>
-              <a href="https://walton-trailers-configurator.vercel.app/?model=DHV208" target="_blank" rel="noopener" class="model-build-btn">Build Your Own</a>
+              <a href="https://build.waltontrailers.com/?model=DHV208" target="_blank" rel="noopener" class="model-build-btn">Build Your Own</a>
             </div>
       </div>
     </div>
@@ -1547,7 +1547,7 @@ function submitQuote() {
   var btn = document.querySelector('.quote-submit');
   btn.disabled = true;
   btn.textContent = 'Sending\u2026';
-  fetch('https://walton-trailers-configurator.vercel.app/api/quotes', {
+  fetch('https://build.waltontrailers.com/api/quotes', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({

@@ -1471,7 +1471,7 @@ footer {
   <section class="cta-banner">
     <h2>Ready to Get Started?</h2>
     <p>Request a quote or speak with a dealer about the DHV207.</p>
-    <a href="https://walton-trailers-configurator.vercel.app/?model=DHV207" target="_blank" rel="noopener" class="cta-btn">Build Now</a>
+    <a href="https://build.waltontrailers.com/?model=DHV207" target="_blank" rel="noopener" class="cta-btn">Build Now</a>
   </section>
   
   <section class="related-section">
@@ -2021,7 +2021,7 @@ function submitQuote() {
   var btn = document.querySelector('.quote-submit');
   btn.disabled = true;
   btn.textContent = 'Sending\u2026';
-  fetch('https://walton-trailers-configurator.vercel.app/api/quotes', {
+  fetch('https://build.waltontrailers.com/api/quotes', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
